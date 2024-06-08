@@ -6,8 +6,8 @@
          <div class="" style="height:100%; width: 300px;">
             <NavDetailCol/>
          </div>
-         <div class="bg-secondary" style="height:100%; width: 900px">
-            <!--화면나오는곳-->
+         <div style="width: 900px">
+            <!-- 화면 나오는곳 -->
          </div>
       </div>
    </div>
@@ -15,7 +15,7 @@
 
 <script setup>
    import NavDetailRow from "@/components/NavDetailRow.vue";
-   import NavDetailCol from "@/components/NavDetailCol.vue"
+   import NavDetailCol from "@/components/NavDetailCol.vue";
 </script>
 
 <style scoped>
