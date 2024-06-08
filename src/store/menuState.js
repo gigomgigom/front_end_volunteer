@@ -7,7 +7,7 @@ export default {
         menuIndex: {
             firstFloor: 4,
             secondFloor: 0,
-            thirdFloor: -1,
+            thirdFloor: 0,
         },
 
         //페이지 정보를 담은 객체
