@@ -6,7 +6,7 @@
          <div class="" style="height:100%; width: 300px;">
             <NavDetailCol/>
          </div>
-         <div class="bg-secondary" style="height:100%; width: 900px">
+         <div class="px-5" style="height:100%; width: 900px">
             <!--화면나오는곳-->
          </div>
       </div>
