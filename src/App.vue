@@ -5,6 +5,8 @@
   <DetailBody/>
   <AppFooter/>
 
+
+<Intro/>
 </template>
 
 <script setup>
