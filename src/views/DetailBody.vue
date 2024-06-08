@@ -1,10 +1,7 @@
 <template>
    <div>
-      <div class="containter-fluid d-flex justify-content-center" style="height: 30px">
-         <div style="width:1100px">
-            <NavDetailRow/>
-         </div>
-      </div>
+      <!--세부사항 네비게이션바(가로, Row)-->
+      <NavDetailRow/>
       <div class="d-flex justify-content-center">
          <div class="bg-primary" style="height:500px; width: 200px;">
             <NavDetailCol/>

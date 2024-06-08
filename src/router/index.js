@@ -1,12 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-
 const routes = [
-  {
-    path : '/layout',
-    name: 'layout',
-    component: () => import('@/views/DetailBody.vue')
-  }
 ]
 
 const router = createRouter({
