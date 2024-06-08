@@ -5,9 +5,9 @@ export default {
     state: {
         //현재 페이지 인덱스 정보
         menuIndex: {
-            firstFloor: 0,
+            firstFloor: 4,
             secondFloor: 0,
-            thirdFloor: 0,
+            thirdFloor: -1,
         },
 
         //페이지 정보를 담은 객체

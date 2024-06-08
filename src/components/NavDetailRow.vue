@@ -69,7 +69,14 @@ const thirdFloorList = ref(menuList[firstFloorIndex.value].secondFloor[secondFlo
 //네비 이동상태에 따라 이름이 바뀌도록 하기 위해 상태 데이터를 지정함
 const firstName = ref(menuList[firstFloorIndex.value].firstName);
 const secondName = ref(menuList[firstFloorIndex.value].secondFloor[secondFloorIndex.value].secondName);
-const thirdName = ref(menuList[firstFloorIndex.value].secondFloor[secondFloorIndex.value].thirdFloor[thirdFloorIndex.value].thirdName);
+const thirdName = ref('');
+
+//thirdFloorIndex가 -1일경우 공백을 갖도록함
+if(thirdFloorIndex.value !== -1) {
+    thirdName.value = menuList[firstFloorIndex.value].secondFloor[secondFloorIndex.value].thirdFloor[thirdFloorIndex.value].thirdName;
+} else {
+    thirdName.value = '';
+}
 
 //화면 이동을 위한 함수
 //FirstFloor 이동
