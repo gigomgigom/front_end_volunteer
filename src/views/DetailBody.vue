@@ -3,11 +3,11 @@
       <!--세부사항 네비게이션바(가로, Row)-->
       <NavDetailRow/>
       <div class="d-flex justify-content-center">
-         <div class="bg-primary" style="height:500px; width: 200px;">
+         <div class="" style="height:100%; width: 300px;">
             <NavDetailCol/>
          </div>
-         <div class="bg-secondary" style="width: 900px">
-            <RouterView/>
+         <div class="bg-secondary" style="height:100%; width: 900px">
+            <!--화면나오는곳-->
          </div>
       </div>
    </div>
