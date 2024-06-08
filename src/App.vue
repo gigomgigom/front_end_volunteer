@@ -6,7 +6,6 @@
   <AppFooter/>
 
 
-<Intro/>
 </template>
 
 <script setup>
