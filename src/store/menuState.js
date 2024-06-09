@@ -3,13 +3,8 @@ export default {
 
     //루트 상태 정의
     state: {
-        loginIndex: {
-            firstFloor: 0
-        },
-
-        loginList: {
-
-        },
+        isAdmin: 0,
+        isAuthenticated: 0,
 
         //현재 페이지 인덱스 정보
         menuIndex: {
@@ -192,6 +187,45 @@ export default {
                     },
                 ]
             },
+            {
+                //회원 메뉴(로그인, 회원가입)
+                firstMenuNo: 5,
+                firstName: '관리자',
+                secondFloor: [
+                    {
+                        secondMenuNo: 0,
+                        secondName: '프로그램 관리',
+                        thirdFloor: []
+                    }
+                ]
+            },
+            {
+                //회원 메뉴(로그인, 회원가입)
+                firstMenuNo: 6,
+                firstName: '회원',
+                secondFloor: [
+                    {
+                        secondMenuNo: 0,
+                        secondName: '로그인',
+                        thirdFloor: []
+                    },
+                    {
+                        secondMenuNo: 1,
+                        secondName: '아이디 찾기',
+                        thirdFloor: []
+                    },
+                    {
+                        secondMenuNo: 2,
+                        secondName: '비밀번호 찾기',
+                        thirdFloor: []
+                    },
+                    {
+                        secondMenuNo: 3,
+                        secondName: '회원가입',
+                        thirdFloor: []
+                    },
+                ]
+            }
         ]
     },
     //Getter정의(루트 상태 가져오기)

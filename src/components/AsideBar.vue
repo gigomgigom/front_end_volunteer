@@ -30,6 +30,7 @@ const store = useStore();
 
 const menuIndex = ref(store.state.menuState.menuIndex);
 const menuList = store.state.menuState.menuList;
+
 const firstFloorIndex = ref(menuIndex.value.firstFloor);
 const secondFloorIndex = ref(menuIndex.value.secondFloor);
 const thirdFloorIndex = ref(menuIndex.value.thirdFloor);
@@ -55,7 +56,6 @@ function selectMenu(event, secondMenuNo, thirdFloor) {
     const findActiveElement = document.querySelector('.main-active');
 
     //만약 해당 DOM객체가 존재하고 현재 타겟과 ActiveElement가 일치하지 않다면 activeElement의 active속성을 제거한다.
-
     if (findActiveElement !== null && target !== findActiveElement) {
         findActiveElement.classList.remove('main-active');
     }

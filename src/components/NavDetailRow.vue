@@ -49,18 +49,18 @@
 </template>
 
 <script setup>
-import { watch, ref } from 'vue';
+import { watch, ref, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 
 //Vuex 사용을 위한 store객체 생성
 const store = useStore();
-
 const router = useRouter();
 
 //store(menu 모듈) 내부의 속성(menuList: 메뉴정보, menuIndex: 현재메뉴정보) 가져오기
-const menuList = store.state.menuState.menuList;
+let menuList = store.state.menuState.menuList;
 const menuIndex = ref(store.state.menuState.menuIndex);
+
 //배열에서 페이지 정보를 찾기 위한 현재 메뉴 위치찾기
 const firstFloorIndex = ref(menuIndex.value.firstFloor);
 const secondFloorIndex = ref(menuIndex.value.secondFloor);
@@ -71,13 +71,7 @@ const thirdFloorList = ref(menuList[firstFloorIndex.value].secondFloor[secondFlo
 //네비 이동상태에 따라 이름이 바뀌도록 하기 위해 상태 데이터를 지정함
 const firstName = ref(menuList[firstFloorIndex.value].firstName);
 const secondName = ref(menuList[firstFloorIndex.value].secondFloor[secondFloorIndex.value].secondName);
-const thirdName = ref('');
-//thirdFloorIndex가 -1일경우 공백을 갖도록함
-if(thirdFloorIndex.value !== -1) {
-    thirdName.value = menuList[firstFloorIndex.value].secondFloor[secondFloorIndex.value].thirdFloor[thirdFloorIndex.value].thirdName;
-} else {
-    thirdName.value = '';
-}
+const thirdName = ref(menuList[firstFloorIndex.value].secondFloor[secondFloorIndex.value].thirdFloor[thirdFloorIndex.value].thirdName || '');
 
 function goHome() {
     router.push('/Main');
@@ -89,35 +83,28 @@ function changeFirstFloorMenu(firstFloor) {
     console.log("FirstFloor 기준 페이지 이동 실행");
     //Vuex 상태를 변경하기 위해 mutation 매개값용으로 payload객체를 만든다.
     let payload = {
-    firstFloor: 0,
-    secondFloor: 0,
-    thirdFloor: 0
+        firstFloor: 0,
+        secondFloor: 0,
+        thirdFloor: 0
     };
     //변경하고자 하는 화면에 ThirdFloor 메뉴가 존재할 경우 payload에 추가
     const isThirdListExists = menuList[firstFloor.firstMenuNo].secondFloor[0].thirdFloor.length !== 0
-    if(isThirdListExists) {
+    if (isThirdListExists) {
         //mutations(setter)메소드의 매개값 생성
         payload = {
-        firstFloor: firstFloor.firstMenuNo,
-        secondFloor: 0,
-        thirdFloor: 0
+            firstFloor: firstFloor.firstMenuNo,
+            secondFloor: 0,
+            thirdFloor: 0
         }
         //Vuex에 상태 변경
         store.commit("menuState/setMenuIndex", payload);
-        firstFloorIndex.value = payload.firstFloor;
-        secondFloorIndex.value = payload.secondFloor;
-        thirdFloorIndex.value = payload.thirdFloor;
     } else {    //만약 변경하고자 하는 화면에 ThirdFloor 메뉴가 존재하지 않을 경우
         payload = {
-        firstFloor: firstFloor.firstMenuNo,
-        secondFloor: 0,
-        thirdFloor: -1
+            firstFloor: firstFloor.firstMenuNo,
+            secondFloor: 0,
+            thirdFloor: -1
         }
-        console.log('변경전',secondFloorList.value);
         store.commit("menuState/setMenuIndex", payload);
-        firstFloorIndex.value = payload.firstFloor; 
-        secondFloorIndex.value = payload.secondFloor;
-        thirdFloorIndex.value = payload.thirdFloor;
     }
 }
 //SecondFloor 화면 이동
@@ -130,24 +117,20 @@ function changeSecondFloorMenu(firstFloorIndex, secondFloor) {
     }
     //변경하고자 하는 화면에 ThirdFloor 메뉴가 존재할 경우 payload에 추가
     const isThirdListExists = menuList[firstFloorIndex].secondFloor[secondFloor.secondMenuNo].thirdFloor.length !== 0
-    if(isThirdListExists) {
+    if (isThirdListExists) {
         payload = {
-        firstFloor: firstFloorIndex,
-        secondFloor: secondFloor.secondMenuNo,
-        thirdFloor: 0
+            firstFloor: firstFloorIndex,
+            secondFloor: secondFloor.secondMenuNo,
+            thirdFloor: 0
         }
         store.commit("menuState/setMenuIndex", payload);
-        secondFloorIndex.value = payload.secondFloor;
-        thirdFloorIndex.value = payload.thirdFloor;
     } else {
         payload = {
-        firstFloor: firstFloorIndex,
-        secondFloor: secondFloor.secondMenuNo,
-        thirdFloor: -1
+            firstFloor: firstFloorIndex,
+            secondFloor: secondFloor.secondMenuNo,
+            thirdFloor: -1
         }
         store.commit("menuState/setMenuIndex", payload);
-        secondFloorIndex.value = payload.secondFloor;
-        thirdFloorIndex.value = payload.thirdFloor;
     }
 }
 //ThirdFloor 화면 이동
@@ -159,28 +142,31 @@ function changeThirdFloorMenu(firstFloorIndex, secondFloorIndex, thirdFloor) {
         thirdFloor: thirdFloor.thirdMenuNo,
     }
     store.commit("menuState/setMenuIndex", payload);
-    thirdFloorIndex.value = payload.thirdFloor;
 }
 
 watch(() => menuIndex.value, (newMenuIndex, oldMenuIndex) => {
     //상태 데이터 -> 템플릿 바인딩
-        firstFloorIndex.value = newMenuIndex.firstFloor;
-        secondFloorIndex.value = newMenuIndex.secondFloor;
-        thirdFloorIndex.value = newMenuIndex.thirdFloor;
+    firstFloorIndex.value = newMenuIndex.firstFloor;
+    secondFloorIndex.value = newMenuIndex.secondFloor;
+    thirdFloorIndex.value = newMenuIndex.thirdFloor;
 
-        //표시되는 이름
-        firstName.value = menuList[newMenuIndex.firstFloor].firstName;
-        secondName.value = menuList[newMenuIndex.firstFloor].secondFloor[newMenuIndex.secondFloor].secondName;
-        
-        //메뉴 리스트 업데이트
-        secondFloorList.value = menuList[newMenuIndex.firstFloor].secondFloor;
-        thirdFloorList.value = menuList[newMenuIndex.firstFloor].secondFloor[newMenuIndex.secondFloor].thirdFloor;
-        if(newMenuIndex.thirdFloor !== -1){
-            thirdName.value = menuList[newMenuIndex.firstFloor].secondFloor[newMenuIndex.secondFloor].thirdFloor[newMenuIndex.thirdFloor].thirdName;
-        } else {
-            thirdName.value = '';
-        }
-}, { deep: true});
+    //표시되는 이름
+    firstName.value = menuList[newMenuIndex.firstFloor].firstName;
+    secondName.value = menuList[newMenuIndex.firstFloor].secondFloor[newMenuIndex.secondFloor].secondName;
+
+    //메뉴 리스트 업데이트
+    secondFloorList.value = menuList[newMenuIndex.firstFloor].secondFloor;
+    thirdFloorList.value = menuList[newMenuIndex.firstFloor].secondFloor[newMenuIndex.secondFloor].thirdFloor;
+    if (newMenuIndex.thirdFloor !== -1) {
+        thirdName.value = menuList[newMenuIndex.firstFloor].secondFloor[newMenuIndex.secondFloor].thirdFloor[newMenuIndex.thirdFloor].thirdName;
+    } else {
+        thirdName.value = '';
+    }
+}, { deep: true });
+
+watch(() => {
+    //admin authentication 상태 변이 확인//////////////////////////////////////////
+})
 </script>
 
 <style scoped>
@@ -210,14 +196,14 @@ watch(() => menuIndex.value, (newMenuIndex, oldMenuIndex) => {
     cursor: pointer;
 }
 
-#menu > li {
+#menu>li {
     float: left;
     list-style: none;
     height: 50px;
     position: relative;
 }
 
-#menu > li > div {
+#menu>li>div {
     display: flex;
     align-items: center;
     height: 100%;
@@ -226,12 +212,12 @@ watch(() => menuIndex.value, (newMenuIndex, oldMenuIndex) => {
     padding-right: 20px;
 }
 
-#menu > li > div > span {
+#menu>li>div>span {
     font-weight: bold;
     font-size: 0.8em;
 }
 
-#menu > li:hover > div > ul{
+#menu>li:hover>div>ul {
     display: block;
 }
 
@@ -246,24 +232,24 @@ watch(() => menuIndex.value, (newMenuIndex, oldMenuIndex) => {
     display: none;
 }
 
-.submenu > li {
+.submenu>li {
     border: 1px solid silver;
     border-collapse: collapse;
 }
 
 /*상세 메뉴 컨테이너 스타일*/
-.submenu > li > div {
+.submenu>li>div {
     display: flex;
     justify-content: center;
     padding: 10px 5px;
 }
 
-.submenu > li > div > span {
+.submenu>li>div>span {
     font-size: 0.8rem;
     font-weight: bold;
 }
 
-.submenu > li > div:hover {
+.submenu>li>div:hover {
     background-color: #f2f2f2;
     cursor: pointer;
 }
