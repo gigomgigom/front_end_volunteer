@@ -11,51 +11,35 @@
                 <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                     <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
                         <li class="brand-logo ms-2">
-                            <RouterLink to="/"><img src="@/assets/socialpulse_re.png" height="85px"></RouterLink>
+                            <RouterLink to="/Main"><img src="@/assets/socialpulse_re.png" height="85px"></RouterLink>
                             <!-- 로고 누르면 홈으로 이동하게 -->
                         </li>
                         <li class="nav-item">
-                            <RouterLink to="/VolunteerGuide/EducatingSource" class="nav-link active">
+                            <span class="nav-link active" @click="goDetailBody(0)">
                                 봉사 안내
-                            </RouterLink>
+                            </span>
                         </li>
                         <li class="nav-item">
-                            <RouterLink to="" class="nav-link active">
+                            <span class="nav-link active" @click="goDetailBody(1)">
                                 봉사 참여
-                            </RouterLink>
+                            </span>
                         </li>
                         <li class="nav-item">
-                            <RouterLink to="" class="nav-link active">
+                            <span class="nav-link active" @click="goDetailBody(2)">
                                 봉사 정보
-                            </RouterLink>
+                            </span>
                         </li>
                         <li class="nav-item">
-                            <RouterLink to="" class="nav-link active">
+                            <span class="nav-link active" @click="goDetailBody(3)">
                                 고객센터
-                            </RouterLink>
+                            </span>
                         </li>
 
                         <li class="nav-item">
-                            <RouterLink to="" class="nav-link active">
+                            <span class="nav-link active" @click="goDetailBody(4)">
                                 마이페이지
-                            </RouterLink>
+                            </span>
                         </li>
-
-                        <!-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                마이페이지
-                            </a>
-                            
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">나의 정보</a></li>
-                                <li><a class="dropdown-item" href="#">봉사 내역</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">로그아웃</a></li>
-                            </ul>
-                        </li> -->
                     </ul>
                 </div>
             </div>
@@ -64,8 +48,30 @@
 </template>
 
 <script setup>
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 
+const router = useRouter();
+const store = useStore();
+
+function goDetailBody(firstFloorIndex) {
+    if (store.state.menuState.menuList[firstFloorIndex].secondFloor[0].thirdFloor.length === 0) {
+        let payload = {
+        firstFloor: firstFloorIndex,
+        secondFloor: 0,
+        thirdFloor: -1
+        }
+        store.commit("menuState/setMenuIndex", payload);
+    } else {
+        let payload = {
+            firstFloor: firstFloorIndex,
+            secondFloor: 0,
+            thirdFloor: 0
+        }
+        store.commit("menuState/setMenuIndex", payload);
+    }
+    router.push("/Details");
+}
 </script>
 
 <style scoped>
@@ -75,7 +81,6 @@ import { RouterLink } from 'vue-router';
     letter-spacing: -0.12px;
     font-size: 1.26rem;
 }
-
 
 .navbar-nav {
     align-items: center;
@@ -92,6 +97,7 @@ import { RouterLink } from 'vue-router';
 
 .navbar-nav .nav-link {
     position: relative;
+    cursor: pointer;
     /* 부모로부터 상대 위치 설정 */
 }
 

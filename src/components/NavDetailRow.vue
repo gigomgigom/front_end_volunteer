@@ -1,6 +1,6 @@
 <template>
     <nav id="menu-wrapper" class="containter-fluid d-flex justify-content-center">
-        <div id="home-button" class="d-flex justify-content-center align-items-center">
+        <div id="home-button" class="d-flex justify-content-center align-items-center" @click="goHome">
             <img id="home-icon" src="@/assets/home.png">
         </div>
         <ul id="menu" class="">
@@ -56,6 +56,8 @@ import { useRouter } from 'vue-router';
 //Vuex 사용을 위한 store객체 생성
 const store = useStore();
 
+const router = useRouter();
+
 //store(menu 모듈) 내부의 속성(menuList: 메뉴정보, menuIndex: 현재메뉴정보) 가져오기
 const menuList = store.state.menuState.menuList;
 const menuIndex = ref(store.state.menuState.menuIndex);
@@ -70,12 +72,15 @@ const thirdFloorList = ref(menuList[firstFloorIndex.value].secondFloor[secondFlo
 const firstName = ref(menuList[firstFloorIndex.value].firstName);
 const secondName = ref(menuList[firstFloorIndex.value].secondFloor[secondFloorIndex.value].secondName);
 const thirdName = ref('');
-
 //thirdFloorIndex가 -1일경우 공백을 갖도록함
 if(thirdFloorIndex.value !== -1) {
     thirdName.value = menuList[firstFloorIndex.value].secondFloor[secondFloorIndex.value].thirdFloor[thirdFloorIndex.value].thirdName;
 } else {
     thirdName.value = '';
+}
+
+function goHome() {
+    router.push('/Main');
 }
 
 //화면 이동을 위한 함수
@@ -159,6 +164,10 @@ function changeThirdFloorMenu(firstFloorIndex, secondFloorIndex, thirdFloor) {
 
 watch(() => menuIndex.value, (newMenuIndex, oldMenuIndex) => {
     //상태 데이터 -> 템플릿 바인딩
+        firstFloorIndex.value = newMenuIndex.firstFloor;
+        secondFloorIndex.value = newMenuIndex.secondFloor;
+        thirdFloorIndex.value = newMenuIndex.thirdFloor;
+
         //표시되는 이름
         firstName.value = menuList[newMenuIndex.firstFloor].firstName;
         secondName.value = menuList[newMenuIndex.firstFloor].secondFloor[newMenuIndex.secondFloor].secondName;

@@ -3,9 +3,17 @@ export default {
 
     //루트 상태 정의
     state: {
+        loginIndex: {
+            firstFloor: 0
+        },
+
+        loginList: {
+
+        },
+
         //현재 페이지 인덱스 정보
         menuIndex: {
-            firstFloor: 4,
+            firstFloor: 0,
             secondFloor: 0,
             thirdFloor: 0,
         },

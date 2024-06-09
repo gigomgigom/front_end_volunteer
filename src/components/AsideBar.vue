@@ -5,13 +5,16 @@
                 <h4>{{ firstName }}</h4>
             </div>
             <div v-for="(menu, index) in secondFloorList" :key="index">
-                <div :class="menu.thirdFloor.length !== 0 ? menu.secondMenuNo === secondFloorIndex ?'menu-item main-active':'menu-item' : menu.secondMenuNo === secondFloorIndex ?'menu-item nochild main-active':'menu-item nochild'" @click="selectMenu($event)">
+                <div :class="menu.thirdFloor.length !== 0 ? menu.secondMenuNo === secondFloorIndex ? 'menu-item main-active' : 'menu-item' : menu.secondMenuNo === secondFloorIndex ? 'menu-item nochild main-active' : 'menu-item nochild'"
+                    @click="selectMenu($event, menu.secondMenuNo, menu.thirdFloor)">
                     <span>{{ menu.secondName }}</span>
                     <img v-show="menu.thirdFloor.length !== 0" id="drop-icon" src="@/assets/dropdown.png">
                 </div>
                 <ul v-if="menu.thirdFloor.length !== 0" class="submenu-items">
-                    <li v-for="(submenu, index) in menu.thirdFloor" :key="index" :class="menu.secondMenuNo === secondFloorIndex?submenu.thirdMenuNo === thirdFloorIndex?'submenu-item sub-active':'submenu-item':'submenu-item'" @click="selectSubMenu($event)">
-                        <span >{{ submenu.thirdName||''}}</span>
+                    <li v-for="(submenu, index) in menu.thirdFloor" :key="index"
+                        :class="menu.secondMenuNo === secondFloorIndex ? submenu.thirdMenuNo === thirdFloorIndex ? 'submenu-item sub-active' : 'submenu-item' : 'submenu-item'"
+                        @click="selectSubMenu($event, menu.secondMenuNo, submenu.thirdMenuNo)">
+                        <span>{{ submenu.thirdName || '' }}</span>
                     </li>
                 </ul>
             </div>
@@ -20,8 +23,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import {useStore} from 'vuex';
+import { ref, watch } from 'vue';
+import { useStore } from 'vuex';
 
 const store = useStore();
 
@@ -33,14 +36,13 @@ const thirdFloorIndex = ref(menuIndex.value.thirdFloor);
 
 const firstName = ref(menuList[firstFloorIndex.value].firstName);
 const secondFloorList = ref(menuList[firstFloorIndex.value].secondFloor);
-const activeElement = document.querySelector('.main-active');
-console.log(activeElement);
+
 //SecondFloor 메뉴 클릭이벤트 함수
-function selectMenu(event) {
+function selectMenu(event, secondMenuNo, thirdFloor) {
     let targetClassList;
     let target;
     //만약 이벤트를 발생한 타겟이 menu-item이라면
-    if(event.target.classList.contains('menu-item')) {
+    if (event.target.classList.contains('menu-item')) {
         //올바른 DOM객체이므로 그에 맞는 값들을 넣어준다.
         target = event.target;
         targetClassList = target.classList;
@@ -54,35 +56,65 @@ function selectMenu(event) {
 
     //만약 해당 DOM객체가 존재하고 현재 타겟과 ActiveElement가 일치하지 않다면 activeElement의 active속성을 제거한다.
 
-    if(findActiveElement !== null && target !== findActiveElement) {
+    if (findActiveElement !== null && target !== findActiveElement) {
         findActiveElement.classList.remove('main-active');
     }
     //타겟의 클래스가 active이고 nochild가 아닐 경우 active 속성을 삭제한다.
-    if(targetClassList.contains('main-active') && !targetClassList.contains('nochild')) {
+    if (targetClassList.contains('main-active') && !targetClassList.contains('nochild')) {
         targetClassList.remove('main-active');
-    } else{
+    } else {
         //그것이 아니라면 active 속성을 추가한다.
         targetClassList.add('main-active');
     }
+    let payload;
+    if (thirdFloor.length === 0) {
+        payload = {
+            firstFloor: firstFloorIndex.value,
+            secondFloor: secondMenuNo,
+            thirdFloor: -1
+        };
+        store.commit("menuState/setMenuIndex", payload);
+    } else {
+        console.log('자식있음');
+    }
 }
 //ThirdFloor 메뉴 클릭이벤트 함수
-function selectSubMenu(event) {
+function selectSubMenu(event, secondMenuNo, thirdMenuNo) {
     let targetClassList;
+    let target;
 
-    if(event.target.classList.contains('submenu-item')) {
-        targetClassList = event.target.classList;
+    if (event.target.classList.contains('submenu-item')) {
+        target = event.target;
+        targetClassList = target.classList;
     } else {
-        targetClassList = event.target.parentElement.classList;
+        target = event.target.parentElement;
+        targetClassList = target.classList;
     }
-
     const findActiveElement = document.querySelector('.sub-active');
-    findActiveElement.classList.remove('sub-active');
-    if(targetClassList.contains('sub-active')){
-        console.log();
-    } else{
+    if (findActiveElement !== null) {
+        findActiveElement.classList.remove('sub-active');
+    }
+    if (!targetClassList.contains('sub-active')) {
         targetClassList.add('sub-active');
     }
+    let payload;
+    payload = {
+        firstFloor: firstFloorIndex.value,
+        secondFloor: secondMenuNo,
+        thirdFloor: thirdMenuNo
+    };
+    store.commit("menuState/setMenuIndex", payload);
 }
+
+watch(() => menuIndex.value, (newMenuIndex, oldMenuIndex) => {
+    console.log(newMenuIndex.firstFloor);
+    firstFloorIndex.value = newMenuIndex.firstFloor;
+    secondFloorIndex.value = newMenuIndex.secondFloor;
+    thirdFloorIndex.value = newMenuIndex.thirdFloor;
+
+    firstName.value = menuList[firstFloorIndex.value].firstName;
+    secondFloorList.value = menuList[firstFloorIndex.value].secondFloor;
+}, { deep: true });
 </script>
 
 <style scoped>
@@ -129,13 +161,13 @@ h4::after {
     padding-left: 20px;
 }
 
-.submenu-item > span {
+.submenu-item>span {
     font-size: 0.8em;
     color: #666;
     cursor: pointer;
 }
 
-.submenu-item.sub-active > span {
+.submenu-item.sub-active>span {
     font-weight: bold;
     color: black;
 }
@@ -170,7 +202,7 @@ img {
     color: black;
 }
 
-.menu-item.main-active + .submenu-items {
+.menu-item.main-active+.submenu-items {
     display: block;
 }
 </style>
