@@ -17,10 +17,7 @@
 
 <script setup>
    import NavDetailRow from "@/components/NavDetailRow.vue";
-   import NavDetailCol from "@/components/NavDetailCol.vue";
    import AsideBar from "@/components/AsideBar.vue";
-   import { onMounted } from "vue";
-   import { useRouter } from 'vue-router';
 </script>
 
 <style scoped>
