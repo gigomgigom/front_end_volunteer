@@ -14,37 +14,46 @@
             </h6>
           </div> -->
           <div class="accordion" id="filterAccordion">
-    <div class="accordion-item" style="border: none;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h6 class="all">[전체 32건, 현재페이지 1/3]</h6>
-            <div style="display: flex; align-items: center;">
-                <h2 class="accordion-header" id="headingFilter">
-                    <button class="accordion-button collapsed1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
-                        제목
-                    </button>
-                </h2>
-                <input class="form-control form-control-sm ms-2" type="text" aria-label=".form-control-sm example">
-                <button class=" btn btn-sm btn-primary ms-2" id="btn-sm1">검색</button>
-            </div>
+  <div class="accordion-item" style="border: none;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h6 class="all">[전체 32건, 현재페이지 1/3]</h6>
+      <div style="display: flex; align-items: center;">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            제목
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" href="#">제목</a></li>
+            <li><a class="dropdown-item" href="#">내용</a></li>
+            <li><a class="dropdown-item" href="#">작성자</a></li>
+          </ul>
         </div>
-        <div id="collapseFilter" class="accordion-collapse collapse" aria-labelledby="headingFilter" data-bs-parent="#filterAccordion">
-            <div class="accordion-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="searchTitle" class="form-label">제목</label>
-                    </div>
-                    <div class="mb-3">
-                        <label for="searchContent" class="form-label">내용</label>
-                    </div>
-                    <div class="mb-3">
-                        <label for="searchAuthor" class="form-label">작성자</label>
-                    </div>
-                </form>
-            </div>
-        </div>
+        <input class="form-control form-control-sm ms-2" type="text" aria-label=".form-control-sm example">
+        <button class="btn btn-sm btn-primary ms-2" id="btn-sm1">검색</button>
+      </div>
     </div>
+    <div id="collapseFilter" class="accordion-collapse collapse" aria-labelledby="headingFilter">
+      <div class="accordion-body">
+        <form>
+          <div class="mb-3">
+            <label for="searchTitle" class="form-label">제목</label>
+            <input type="text" class="form-control" id="searchTitle">
+          </div>
+          <div class="mb-3">
+            <label for="searchContent" class="form-label">내용</label>
+            <input type="text" class="form-control" id="searchContent">
+          </div>
+          <div class="mb-3">
+            <label for="searchAuthor" class="form-label">작성자</label>
+            <input type="text" class="form-control" id="searchAuthor">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
-           </div>
+
+</div>
     
 
     <div class="accordion mt-2" id="accordionExample">
@@ -85,6 +94,7 @@
         </b>
       </button>
     </h2>
+    
     <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <div class="accordion-body">
         <div class="accordion-body">
@@ -99,11 +109,11 @@
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
         <b> ▪️ [관리자_관리자 인증] 관리자 인증은 어떻게 하나요?</b>
       </button>
     </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+    <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <div class="accordion-body">
         <div class="accordion-body">
       봉사활동한 수요처에서 실적 등록 후 지역자원봉사센터에서 실적 승인 처리까지 완료되어야 봉사자가 실적 조회
@@ -117,11 +127,11 @@
 
   <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseThree">
         <b> ▪️ [회원정보_회원 탈퇴] 회원탈퇴 후 기존 가입되어 있었던 정보를 확인 하고 싶습니다.</b>
       </button>
     </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+    <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <div class="accordion-body">
         <div class="accordion-body">
       봉사활동한 수요처에서 실적 등록 후 지역자원봉사센터에서 실적 승인 처리까지 완료되어야 봉사자가 실적 조회
@@ -135,11 +145,11 @@
 
   <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseThree">
         <b> ▪️ [회원정보_아이디 통합] 아이디를 하나로 통합하고 싶습니다.</b>
       </button>
     </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+    <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <div class="accordion-body">
         <div class="accordion-body">
       봉사활동한 수요처에서 실적 등록 후 지역자원봉사센터에서 실적 승인 처리까지 완료되어야 봉사자가 실적 조회
@@ -153,11 +163,11 @@
 
   <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseThree">
         <b> ▪️ [봉사활동정보_봉사신청] 자원봉사 신청은 어떻게 하나요?</b>
       </button>
     </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+    <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <div class="accordion-body">
         <div class="accordion-body">
       봉사활동한 수요처에서 실적 등록 후 지역자원봉사센터에서 실적 승인 처리까지 완료되어야 봉사자가 실적 조회
@@ -171,11 +181,11 @@
 
   <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseThree">
         <b> ▪️ [봉사활동정보_봉사신청] 봉사신청 취소는 어떻게 하나요?</b>
       </button>
     </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+    <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <div class="accordion-body">
         <div class="accordion-body">
       봉사활동한 수요처에서 실적 등록 후 지역자원봉사센터에서 실적 승인 처리까지 완료되어야 봉사자가 실적 조회
@@ -189,11 +199,11 @@
 
   <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseThree">
         <b> ▪️ [회원정보_정보 수정] 개명을 해서 이름을 변경하고 싶습니다.</b>
       </button>
     </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+    <div id="collapseNine" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <div class="accordion-body">
         <div class="accordion-body">
       봉사활동한 수요처에서 실적 등록 후 지역자원봉사센터에서 실적 승인 처리까지 완료되어야 봉사자가 실적 조회
@@ -207,11 +217,11 @@
 
   <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseThree">
         <b> ▪️ [기타_센터 업무] 지역자원봉사센터에서 처리 할 수 있는 업무 안내</b>
       </button>
     </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+    <div id="collapseTen" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <div class="accordion-body">
         <div class="accordion-body">
       봉사활동한 수요처에서 실적 등록 후 지역자원봉사센터에서 실적 승인 처리까지 완료되어야 봉사자가 실적 조회
@@ -243,6 +253,7 @@
 </script>
 
 <style scoped>
+
 .all {
     color: gray;
 }
@@ -275,20 +286,34 @@
 }
 
 input.form-control.form-control-sm {
-    width: 150px; 
+    width: 150px;
 }
+
 .accordion-button.collapsed1 {
-    width: 100px; 
-    padding: 5px; 
-    font-size: 14px; 
+    width: 100px;
+    padding: 5px;
+    font-size: 14px;
 }
 
 #btn-sm1 {
-  background-color: orange;
-  border-color: #ffffff;
-  
+    background-color: orange;
+    border-color: #ffffff;
 }
 
+.dropdown-toggle {
+    background-color: orange; 
+    color: #ffffff; 
+    width: 70px;
+    height: 30px; 
+    padding: 5px 10px; 
+    font-size: 14px; 
+    border-radius: 5px; 
+    border-color: #ffffff;
+}
+
+.dropdown-toggle:hover {
+    background-color: orange; 
+}
 
 
 </style>
