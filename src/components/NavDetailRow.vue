@@ -98,6 +98,7 @@ function changeFirstFloorMenu(firstFloor) {
         }
         //Vuex에 상태 변경
         store.commit("menuState/setMenuIndex", payload);
+        router.push(menuList[payload.firstFloor].secondFloor[payload.secondFloor].url);
     } else {    //만약 변경하고자 하는 화면에 ThirdFloor 메뉴가 존재하지 않을 경우
         payload = {
             firstFloor: firstFloor.firstMenuNo,
@@ -105,6 +106,7 @@ function changeFirstFloorMenu(firstFloor) {
             thirdFloor: -1
         }
         store.commit("menuState/setMenuIndex", payload);
+        router.push(menuList[payload.firstFloor].secondFloor[payload.secondFloor].url);
     }
 }
 //SecondFloor 화면 이동
@@ -124,6 +126,7 @@ function changeSecondFloorMenu(firstFloorIndex, secondFloor) {
             thirdFloor: 0
         }
         store.commit("menuState/setMenuIndex", payload);
+        router.push(menuList[payload.firstFloor].secondFloor[payload.secondFloor].url);
     } else {
         payload = {
             firstFloor: firstFloorIndex,
@@ -131,6 +134,7 @@ function changeSecondFloorMenu(firstFloorIndex, secondFloor) {
             thirdFloor: -1
         }
         store.commit("menuState/setMenuIndex", payload);
+        router.push(menuList[payload.firstFloor].secondFloor[payload.secondFloor].url);
     }
 }
 //ThirdFloor 화면 이동
@@ -142,6 +146,7 @@ function changeThirdFloorMenu(firstFloorIndex, secondFloorIndex, thirdFloor) {
         thirdFloor: thirdFloor.thirdMenuNo,
     }
     store.commit("menuState/setMenuIndex", payload);
+    router.push(menuList[payload.firstFloor].secondFloor[payload.secondFloor].thirdFloor[payload.thirdFloor].url);
 }
 
 watch(() => menuIndex.value, (newMenuIndex, oldMenuIndex) => {

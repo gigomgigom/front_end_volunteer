@@ -53,6 +53,7 @@ import { useStore } from 'vuex';
 
 const router = useRouter();
 const store = useStore();
+const menuList = store.state.menuState.menuList;
 
 function goDetailBody(firstFloorIndex) {
     if (store.state.menuState.menuList[firstFloorIndex].secondFloor[0].thirdFloor.length === 0) {
@@ -62,6 +63,7 @@ function goDetailBody(firstFloorIndex) {
         thirdFloor: -1
         }
         store.commit("menuState/setMenuIndex", payload);
+        router.push(menuList[payload.firstFloor].secondFloor[payload.secondFloor].url);
     } else {
         let payload = {
             firstFloor: firstFloorIndex,
@@ -69,8 +71,8 @@ function goDetailBody(firstFloorIndex) {
             thirdFloor: 0
         }
         store.commit("menuState/setMenuIndex", payload);
+        router.push(menuList[payload.firstFloor].secondFloor[payload.secondFloor].url);
     }
-    router.push("/Details");
 }
 </script>
 

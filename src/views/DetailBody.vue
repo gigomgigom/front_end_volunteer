@@ -9,8 +9,7 @@
 
          <div class="px-5" style="height:100%; width: 1000px">
             <!--화면나오는곳-->
-            <EducatingSource/>
-
+            <RouterView/>
          </div>
       </div>
    </div>
@@ -21,11 +20,13 @@
    import NavDetailCol from "@/components/NavDetailCol.vue";
 
    import AsideBar from "@/components/AsideBar.vue";
-   import EducatingSource from "./VolunteerGuide/EducatingSource.vue";
+   import { onMounted } from "vue";
+   import { useRouter } from 'vue-router';
 
-   import Approach from "./Approach.vue"
-   
-
+   const router = useRouter();
+   onMounted(() => {
+      router.push("/Details/VolunteerGuide");
+   })
 </script>
 
 <style scoped>

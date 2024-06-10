@@ -24,9 +24,11 @@
 
 <script setup>
 import { ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 
 const store = useStore();
+const router = useRouter();
 
 const menuIndex = ref(store.state.menuState.menuIndex);
 const menuList = store.state.menuState.menuList;
@@ -74,6 +76,7 @@ function selectMenu(event, secondMenuNo, thirdFloor) {
             thirdFloor: -1
         };
         store.commit("menuState/setMenuIndex", payload);
+        router.push(menuList[payload.firstFloor].secondFloor[payload.secondFloor].url);
     } else {
         console.log('자식있음');
     }
@@ -104,6 +107,7 @@ function selectSubMenu(event, secondMenuNo, thirdMenuNo) {
         thirdFloor: thirdMenuNo
     };
     store.commit("menuState/setMenuIndex", payload);
+    router.push(menuList[payload.firstFloor].secondFloor[payload.secondFloor].thirdFloor[payload.thirdFloor].url);
 }
 
 watch(() => menuIndex.value, (newMenuIndex, oldMenuIndex) => {

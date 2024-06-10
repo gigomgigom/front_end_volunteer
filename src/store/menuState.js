@@ -23,46 +23,56 @@ export default {
                     {
                         secondMenuNo: 0,
                         secondName: '자원봉사 안내',
+                        url: '/Details/VolunteerGuide/Outline',
                         thirdFloor: [
                             {
                                 thirdMenuNo: 0,
-                                thirdName: '자원봉사 개요'
+                                thirdName: '자원봉사 개요',
+                                url: '/Details/VolunteerGuide/Outline',
                             },
                             {
                                 thirdMenuNo: 1,
-                                thirdName: '이용방법'
+                                thirdName: '이용방법',
+                                url: '/Details/VolunteerGuide/HowToUse',
                             },
                             {
                                 thirdMenuNo: 2,
-                                thirdName: '교육자료'
+                                thirdName: '교육자료',
+                                url: '/Details/VolunteerGuide/EduSrc',
                             },
                             {
                                 thirdMenuNo: 3,
-                                thirdName: '종합보험'
+                                thirdName: '종합보험',
+                                url: '/Details/VolunteerGuide/Insurance',
                             }
                         ]
                     },
                     {
                         secondMenuNo: 1,
                         secondName: 'Social Pulse',
+                        url: '/Details/VolunteerGuide/Introduce',
                         thirdFloor: [
                             {
                                 thirdMenuNo: 0,
-                                thirdName: '소개'
+                                thirdName: '소개',
+                                url: '/Details/VolunteerGuide/Introduce',
                             },
                             {
                                 thirdMenuNo: 1,
-                                thirdName: '찾아오는 길'
+                                thirdName: '찾아오는 길',
+                                url: '/Details/VolunteerGuide/Direction',
                             },
                             {
                                 thirdMenuNo: 2,
-                                thirdName: '브랜드 소개'
+                                thirdName: '브랜드 소개',
+                                url: '/Details/VolunteerGuide/Brand',
                             }
                         ]
                     },
                     {
                         secondMenuNo: 2,
                         secondName: '지역별봉사센터',
+                        url: '/Details/VolunteerGuide/RegionalCenters',
                         thirdFloor: []
                     },
                 ]
@@ -75,16 +85,19 @@ export default {
                     {
                         secondMenuNo: 0,
                         secondName: '개인봉사',
+                        url: '/Details/Participation/VolProgram',
                         thirdFloor: []
                     },
                     {
                         secondMenuNo: 1,
                         secondName: '자원봉사 교육',
+                        url: '/Details/Participation/VolTraining',
                         thirdFloor: []
                     },
                     {
                         secondMenuNo: 2,
                         secondName: '희망봉사 제안',
+                        url: '/Details/Participation/VolProposal',
                         thirdFloor: []
                     }
                 ]
@@ -97,16 +110,19 @@ export default {
                     {
                         secondMenuNo: 0,
                         secondName: '자원봉사 이야기',
+                        url: '/Details/Information/Story',
                         thirdFloor: []
                     },
                     {
                         secondMenuNo: 1,
                         secondName: '자원봉사 후기',
+                        url: '/Details/Information/Review',
                         thirdFloor: []
                     },
                     {
                         secondMenuNo: 2,
                         secondName: '자원봉사 통계',
+                        url: '/Details/Information/Statistics',
                         thirdFloor: []
                     }
                 ]
@@ -119,16 +135,19 @@ export default {
                     {
                         secondMenuNo: 0,
                         secondName: '공지사항',
+                        url: '/Details/ServiceCenter/Announcement',
                         thirdFloor: []
                     },
                     {
                         secondMenuNo: 1,
                         secondName: '질문과 답변',
+                        url: '/Details/ServiceCenter/QNA',
                         thirdFloor: []
                     },
                     {
                         secondMenuNo: 2,
                         secondName: '자주하는 질문',
+                        url: '/Details/ServiceCenter/FAQ',
                         thirdFloor: []
                     }
                 ]
@@ -141,47 +160,57 @@ export default {
                     {
                         secondMenuNo: 0,
                         secondName: '내 봉사정보',
+                        url: '/Details/MyPage/Perform',
                         thirdFloor: [
                             {
                                 thirdMenuNo: 0,
-                                thirdName: '봉사 실적'
+                                thirdName: '봉사 실적',
+                                url: '/Details/MyPage/Perform',
                             },
                             {
                                 thirdMenuNo: 1,
-                                thirdName: '봉사 신청내역'
+                                thirdName: '봉사 신청내역',
+                                url: '/Details/MyPage/ApplDetails',
                             }
                         ]
                     },
                     {
                         secondMenuNo: 1,
                         secondName: '관심봉사',
+                        url: '/Details/MyPage/Interest',
                         thirdFloor: []
                     },
                     {
                         secondMenuNo: 2,
                         secondName: '교육신청내역',
+                        url: '/Details/MyPage/TrainApplDetails',
                         thirdFloor: []
                     },
                     {
                         secondMenuNo: 3,
                         secondName: '작성한 후기',
+                        url: '/Details/MyPage/ReviewDetails',
                         thirdFloor: []
                     },
                     {
                         secondMenuNo: 4,
                         secondName: '회원정보',
+                        url: '/Details/MyPage/AccInfo',
                         thirdFloor: [
                             {
                                 thirdMenuNo: 0,
-                                thirdName: '기본정보'
+                                thirdName: '기본정보',
+                                url: '/Details/MyPage/AccInfo',
                             },
                             {
                                 thirdMenuNo: 1,
-                                thirdName: '비밀번호 변경'
+                                thirdName: '비밀번호 변경',
+                                url: '/Details/MyPage/ChgPassword',
                             },
                             {
                                 thirdMenuNo: 2,
-                                thirdName: '회원탈퇴'
+                                thirdName: '회원탈퇴',
+                                url: '/Details/MyPage/Withdraw',
                             },
                         ]
                     },
@@ -195,6 +224,7 @@ export default {
                     {
                         secondMenuNo: 0,
                         secondName: '프로그램 관리',
+                        url: '/Details/Admin/MngPrgm',
                         thirdFloor: []
                     }
                 ]
@@ -207,21 +237,25 @@ export default {
                     {
                         secondMenuNo: 0,
                         secondName: '로그인',
+                        url: '/Details/Member/SignIn',
                         thirdFloor: []
                     },
                     {
                         secondMenuNo: 1,
                         secondName: '아이디 찾기',
+                        url: '/Details/Member/FindID',
                         thirdFloor: []
                     },
                     {
                         secondMenuNo: 2,
                         secondName: '비밀번호 찾기',
+                        url: '/Details/Member/FindPW',
                         thirdFloor: []
                     },
                     {
                         secondMenuNo: 3,
                         secondName: '회원가입',
+                        url: '/Details/Member/SignUp',
                         thirdFloor: []
                     },
                 ]
