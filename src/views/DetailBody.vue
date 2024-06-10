@@ -19,12 +19,10 @@
 <script setup>
    import NavDetailRow from "@/components/NavDetailRow.vue";
    import NavDetailCol from "@/components/NavDetailCol.vue";
-
    import AsideBar from "@/components/AsideBar.vue";
    import EducatingSource from "./VolunteerGuide/EducatingSource.vue";
-
    import Question from "./Question.vue"
-   
+   import Approach from "./Approach.vue"
 
 </script>
 
