@@ -7,7 +7,7 @@
             <AsideBar/>
          </div>
 
-         <div class="px-5" style="height:100%; width: 1000px">
+         <div class="px-5" style="height:100%; width: 900px">
             <!--화면나오는곳-->
             <RouterView/>
          </div>
@@ -18,15 +18,9 @@
 <script setup>
    import NavDetailRow from "@/components/NavDetailRow.vue";
    import NavDetailCol from "@/components/NavDetailCol.vue";
-
    import AsideBar from "@/components/AsideBar.vue";
    import { onMounted } from "vue";
    import { useRouter } from 'vue-router';
-
-   const router = useRouter();
-   onMounted(() => {
-      router.push("/Details/VolunteerGuide");
-   })
 </script>
 
 <style scoped>
