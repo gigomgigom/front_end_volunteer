@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="aa" style="height: 100vh;">
+    <div id="aside-wrapper" style="height: 100%">
+        <div class="aa">
             <div style="position: relative;">
                 <h4>{{ firstName }}</h4>
             </div>
@@ -127,8 +127,16 @@ watch(() => menuIndex.value, (newMenuIndex, oldMenuIndex) => {
     padding: 0;
 }
 
+#aside-wrapper {
+    border-left: 1px solid silver;
+    border-right: 1px solid silver;
+    border-collapse: collapse;
+}
+
 .aa {
-    border: 1px solid silver;
+    border-bottom: 1px solid silver;
+    position: sticky;
+    top: 0px;
 }
 
 h4 {
@@ -156,6 +164,7 @@ h4::after {
 .submenu-items {
     list-style: none;
     border-bottom: 1px solid silver;
+    border-collapse: collapse;
     display: none;
 }
 
@@ -208,5 +217,11 @@ img {
 
 .menu-item.main-active+.submenu-items {
     display: block;
+}
+
+@media screen and (max-width: 1115px) {
+    #aside-wrapper {
+        display: none;
+    }
 }
 </style>

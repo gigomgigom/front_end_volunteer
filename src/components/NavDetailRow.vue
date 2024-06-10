@@ -3,7 +3,7 @@
         <div id="home-button" class="d-flex justify-content-center align-items-center" @click="goHome">
             <img id="home-icon" src="@/assets/home.png">
         </div>
-        <ul id="menu" class="">
+        <ul id="menu">
             <li>
                 <div class="d-flex align-items-center h-100">
                     <span>{{ firstName }}</span>
@@ -61,11 +61,11 @@ const router = useRouter();
 let menuList = store.state.menuState.menuList;
 const menuIndex = ref(store.state.menuState.menuIndex);
 
-//배열에서 페이지 정보를 찾기 위한 현재 메뉴 위치찾기
+//배열에서 페이지 정보를 찾기 위해 현재 메뉴 위치찾기
 const firstFloorIndex = ref(menuIndex.value.firstFloor);
 const secondFloorIndex = ref(menuIndex.value.secondFloor);
 const thirdFloorIndex = ref(menuIndex.value.thirdFloor);
-//현재 위치에서 존재하는 하위 리스트를 찾기
+//현재 위치에서 존재하는 하위 메뉴 리스트를 상태 데이터로 지정함.
 const secondFloorList = ref(menuList[firstFloorIndex.value].secondFloor);
 const thirdFloorList = ref(menuList[firstFloorIndex.value].secondFloor[secondFloorIndex.value].thirdFloor);
 //네비 이동상태에 따라 이름이 바뀌도록 하기 위해 상태 데이터를 지정함
@@ -187,7 +187,7 @@ watch(() => {
 }
 
 #menu {
-    width: 1150px;
+    width: 1050px;
 }
 
 #home-button {

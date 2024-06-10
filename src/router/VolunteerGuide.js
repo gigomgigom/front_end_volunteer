@@ -13,7 +13,7 @@ const routes = [
     },
     {
         path: "/Details/VolunteerGuide/Insurance",
-        component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/VolunteerGuide/EducatingSource.vue'),
+        component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/VolunteerGuide/Insurance.vue'),
     },
     {
         path: "/Details/VolunteerGuide/Introduce",
