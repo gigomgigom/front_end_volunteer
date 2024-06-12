@@ -4,19 +4,19 @@
       <NavDetailRow/>
       <div class="d-flex justify-content-center">
          <div style="width: 200px;">
-            <AsideBar/>
+            <AsideBar />
          </div>
          <div class="px-5" style="height:100%; width: 900px">
             <!--화면나오는곳-->
-            <RouterView/>
+            <RouterView />
          </div>
       </div>
    </div>
 </template>
 
 <script setup>
-   import NavDetailRow from "@/components/NavDetailRow.vue";
-   import AsideBar from "@/components/AsideBar.vue";
+   import NavDetailRow from "@/components/DetailsNavi/NavDetailRow.vue";
+   import AsideBar from "@/components/DetailsNavi/AsideBar.vue";
 </script>
 
 <style scoped>

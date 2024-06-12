@@ -60,8 +60,6 @@
 </template>
   
 <script setup>
-import NavDetailRow from "@/components/NavDetailRow.vue";
-import NavDetailCol from "@/components/NavDetailCol.vue";
 
 const maintitle = '자원봉사 종합보험';
 const subtitle = '자원봉사자 분들에게 제공되는 종합 보험 안내입니다.'

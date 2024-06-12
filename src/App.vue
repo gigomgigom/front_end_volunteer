@@ -7,9 +7,9 @@
 </template>
 
 <script setup>
-import AppFirstHeader from "@/components/AppFirstHeader.vue";
-import AppSecondHeader from "@/components/AppSecondHeader.vue";
-import AppFooter from "@/components/AppFooter.vue";
+import AppFirstHeader from "@/components/Common/AppFirstHeader.vue";
+import AppSecondHeader from "@/components/Common/AppSecondHeader.vue";
+import AppFooter from "@/components/Common/AppFooter.vue";
 </script>
 <style scoped>
  

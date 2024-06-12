@@ -80,7 +80,7 @@
 </template>
 
 <script setup>
-import TextHeader from "@/components/TextHeader.vue";
+import TextHeader from "@/components/Common/TextHeader.vue";
 </script>
 
 <style scoped>

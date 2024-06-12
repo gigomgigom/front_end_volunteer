@@ -25,9 +25,6 @@
  </template>
  
  <script setup>
- import NavDetailRow from "@/components/NavDetailRow.vue";
- import NavDetailCol from "@/components/NavDetailCol.vue";
- 
 const maintitle='자원봉사 교육 자료'
 const subtitle= '자원봉사의 의미, 방법 등 자원봉사활동에 도움이 되는 교육자료 모음입니다.'
  const items = [

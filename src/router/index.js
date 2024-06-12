@@ -9,9 +9,13 @@ import Member from './Member';
 
 const routes = [
   {
+    path: '',
+    redirect: '/Main'
+  },
+  {
     path: '/Main',
     name: 'Main',
-    component: () =>  import(/* webpackChunkName: "MainPage" */ '@/views/MainPage.vue')
+    component: () =>  import(/* webpackChunkName: "MainPage" */ '@/views/MainPage')
   },
   {
     path: '/Details',
