@@ -6,11 +6,11 @@ const routes = [
         children: [
             {
                 path: "/Details/Participation/VolProgram/VolProgram1",
-                component: () => import(/* webpackChunkName: "DetailBody" */ '@/views/Participation/VolProgram/VolProgram1.vue')
+                component: () => import(/* webpackChunkName: "DetailBody" */ '@/views/Participation/VolProgram/ViewVolProgramList.vue')
             },
             {
                 path: "/Details/Participation/VolProgram/VolProgram2",
-                component: () => import(/* webpackChunkName: "DetailBody" */ '@/views/Participation/VolProgram/VolProgram2.vue')
+                component: () => import(/* webpackChunkName: "DetailBody" */ '@/views/Participation/VolProgram/ViewVolProgramDetail.vue')
             }
         ]
     },
