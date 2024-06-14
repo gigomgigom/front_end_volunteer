@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="card-header"></div>
+    <div class="card-header">비밀번호 변경</div>
     <div class="card-body">
 
     </div>

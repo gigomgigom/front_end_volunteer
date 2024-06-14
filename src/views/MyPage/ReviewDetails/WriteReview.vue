@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="card-header"></div>
+    <div class="card-header">후기 수정하기</div>
     <div class="card-body">
 
     </div>

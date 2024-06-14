@@ -4,7 +4,6 @@ import menuState from "@/store/menuState";
 export default createStore({
     //루트 상태 정의
     state: {
-        
     },
     //Getter정의(루트 상태 가져오기)
     getters: {

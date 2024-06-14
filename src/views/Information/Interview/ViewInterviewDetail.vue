@@ -1,8 +1,9 @@
 <template>
   <div class="card">
-    <div class="card-header"></div>
+    <div class="card-header">자원봉사이야기 상세보기</div>
     <div class="card-body">
-
+      <router-link class="me-5" to="/Details/Information/Interview/WriteInterview">작성페이지로 가기</router-link>
+      <router-link to="/Details/Information/Interview/ViewInterviewList">목록으로 가기</router-link>
     </div>
   </div>
 </template>

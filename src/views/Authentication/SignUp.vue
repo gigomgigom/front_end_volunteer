@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="card-header"></div>
+    <div class="card-header">회원가입</div>
     <div class="card-body">
 
     </div>

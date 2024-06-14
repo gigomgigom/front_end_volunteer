@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="card-header"></div>
+    <div class="card-header">공지사항</div>
     <div class="card-body">
       <RouterView/>
     </div>

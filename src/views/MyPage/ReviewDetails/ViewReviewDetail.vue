@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="card-header"></div>
+    <div class="card-header">후기 상세정보 보기</div>
     <div class="card-body">
 
     </div>

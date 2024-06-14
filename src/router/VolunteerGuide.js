@@ -1,11 +1,11 @@
 const routes = [
     {
         path: "/Details/VolunteerGuide/Outline",
-        component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/VolunteerGuide/EducatingSource.vue'),
+        component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/VolunteerGuide/Outline.vue'),
     },
     {
         path: "/Details/VolunteerGuide/HowToUse",
-        component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/VolunteerGuide/Outline.vue'),
+        component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/VolunteerGuide/HowToUse.vue'),
     },
     {
         path: "/Details/VolunteerGuide/EduSrc",

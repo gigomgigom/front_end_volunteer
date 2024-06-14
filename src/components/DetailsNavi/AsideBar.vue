@@ -33,6 +33,10 @@ const router = useRouter();
 const menuIndex = ref(store.state.menuState.menuIndex);
 const menuList = store.state.menuState.menuList;
 
+/* const firstFloorIndex = ref(menuIndex.value.firstFloor);
+const secondFloorIndex = ref(menuIndex.value.secondFloor);
+const thirdFloorIndex = ref(menuIndex.value.thirdFloor); */
+
 const firstFloorIndex = ref(menuIndex.value.firstFloor);
 const secondFloorIndex = ref(menuIndex.value.secondFloor);
 const thirdFloorIndex = ref(menuIndex.value.thirdFloor);

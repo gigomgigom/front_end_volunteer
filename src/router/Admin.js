@@ -18,6 +18,10 @@ const routes = [
     {
         path: "/Details/Admin/MngMember",
         component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/Admin/MngMember'),
+    },
+    {
+        path: "/Details/Admin/Approve",
+        component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/Admin/Approve'),
     }
 ];
 

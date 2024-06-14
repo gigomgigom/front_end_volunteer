@@ -1,7 +1,7 @@
 export default {
     namespaced: true,
 
-    //루트 상태 정의
+    //상태 정의
     state: {
         isAdmin: 0,
         isAuthenticated: 0,
@@ -223,8 +223,38 @@ export default {
                 secondFloor: [
                     {
                         secondMenuNo: 0,
-                        secondName: '프로그램 관리',
-                        url: '/Details/Admin/MngPrgm',
+                        secondName: '봉사 프로그램 관리',
+                        url: '/Details/Admin/MngVolProgram',
+                        thirdFloor: []
+                    },
+                    {
+                        secondMenuNo: 1,
+                        secondName: '봉사 프로그램 추가',
+                        url: '/Details/Admin/AddVolProgram',
+                        thirdFloor: []
+                    },
+                    {
+                        secondMenuNo: 2,
+                        secondName: '교육 프로그램 관리',
+                        url: '/Details/Admin/MngEduProgram',
+                        thirdFloor: []
+                    },
+                    {
+                        secondMenuNo: 3,
+                        secondName: '교육 프로그램 추가',
+                        url: '/Details/Admin/AddEduProgram',
+                        thirdFloor: []
+                    },
+                    {
+                        secondMenuNo: 4,
+                        secondName: '회원 관리',
+                        url: '/Details/Admin/MngMember',
+                        thirdFloor: []
+                    },
+                    {
+                        secondMenuNo: 5,
+                        secondName: '승인 관리',
+                        url: '/Details/Admin/Approve',
                         thirdFloor: []
                     }
                 ]
@@ -262,11 +292,11 @@ export default {
             }
         ]
     },
-    //Getter정의(루트 상태 가져오기)
+    //Getter정의(상태 가져오기)
     getters: {
 
         getMenuIndex: (state, getters, rootState, rootGetters) => {
-            return state.firstFloor;
+            return state.menuIndex;
         },
 
         getMenuList: (state, getters, rootState, rootGetters) => {
@@ -274,7 +304,7 @@ export default {
         }
 
     },
-    //Setter정의(루트 상태 변경하기, 동기)
+    //Setter정의(상태 변경하기, 동기)
     mutations: {
         setMenuIndex: (state, payload) => {
             console.log('변경시작');
@@ -283,11 +313,11 @@ export default {
             state.menuIndex.thirdFloor = payload.thirdFloor;
         }
     },
-    //루트 상태 변경하기, 비동기
+    //상태 변경하기, 비동기
     actions: {
 
     },
-    //루트 모듈 하위 상태모듈 정의
+    //모듈 하위 상태모듈 정의
     modules: {
 
     }

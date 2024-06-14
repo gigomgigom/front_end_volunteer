@@ -71,7 +71,12 @@ const thirdFloorList = ref(menuList[firstFloorIndex.value].secondFloor[secondFlo
 //네비 이동상태에 따라 이름이 바뀌도록 하기 위해 상태 데이터를 지정함
 const firstName = ref(menuList[firstFloorIndex.value].firstName);
 const secondName = ref(menuList[firstFloorIndex.value].secondFloor[secondFloorIndex.value].secondName);
-const thirdName = ref(menuList[firstFloorIndex.value].secondFloor[secondFloorIndex.value].thirdFloor[thirdFloorIndex.value].thirdName || '');
+const thirdName = ref()
+if(menuList[firstFloorIndex.value].secondFloor[secondFloorIndex.value].thirdFloor.length === 0) {
+    thirdName.value = '';
+} else {
+    thirdName.value = menuList[firstFloorIndex.value].secondFloor[secondFloorIndex.value].thirdFloor[thirdFloorIndex.value].thirdName;
+}
 
 function goHome() {
     router.push('/Main');
