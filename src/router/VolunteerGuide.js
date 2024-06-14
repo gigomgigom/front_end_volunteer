@@ -5,7 +5,7 @@ const routes = [
     },
     {
         path: "/Details/VolunteerGuide/HowToUse",
-        component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/VolunteerGuide/HowToUse.vue'),
+        component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/VolunteerGuide/Outline.vue'),
     },
     {
         path: "/Details/VolunteerGuide/EduSrc",
@@ -17,19 +17,19 @@ const routes = [
     },
     {
         path: "/Details/VolunteerGuide/Introduce",
-        component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/VolunteerGuide/EducatingSource.vue'),
+        component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/VolunteerGuide/Introduce.vue'),
     },
     {
         path: "/Details/VolunteerGuide/Direction",
-        component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/VolunteerGuide/EducatingSource.vue'),
+        component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/VolunteerGuide/Direction.vue'),
     },
     {
         path: "/Details/VolunteerGuide/Brand",
-        component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/VolunteerGuide/EducatingSource.vue'),
+        component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/VolunteerGuide/Brand.vue'),
     },
     {
         path: "/Details/VolunteerGuide/RegionalCenters",
-        component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/VolunteerGuide/EducatingSource.vue'),
+        component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/VolunteerGuide/RegionalCenters'),
     }
 ];
 

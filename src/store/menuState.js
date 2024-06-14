@@ -110,7 +110,7 @@ export default {
                     {
                         secondMenuNo: 0,
                         secondName: '자원봉사 이야기',
-                        url: '/Details/Information/Story',
+                        url: '/Details/Information/Interview',
                         thirdFloor: []
                     },
                     {
@@ -135,7 +135,7 @@ export default {
                     {
                         secondMenuNo: 0,
                         secondName: '공지사항',
-                        url: '/Details/ServiceCenter/Announcement',
+                        url: '/Details/ServiceCenter/Notice',
                         thirdFloor: []
                     },
                     {
@@ -170,7 +170,7 @@ export default {
                             {
                                 thirdMenuNo: 1,
                                 thirdName: '봉사 신청내역',
-                                url: '/Details/MyPage/ApplDetails',
+                                url: '/Details/MyPage/VolApplDetails',
                             }
                         ]
                     },
@@ -183,7 +183,7 @@ export default {
                     {
                         secondMenuNo: 2,
                         secondName: '교육신청내역',
-                        url: '/Details/MyPage/TrainApplDetails',
+                        url: '/Details/MyPage/EduApplDetails',
                         thirdFloor: []
                     },
                     {
