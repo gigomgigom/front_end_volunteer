@@ -220,10 +220,4 @@ img {
 .menu-item.main-active+.submenu-items {
     display: block;
 }
-
-@media screen and (max-width: 1115px) {
-    #aside-wrapper {
-        display: none;
-    }
-}
 </style>

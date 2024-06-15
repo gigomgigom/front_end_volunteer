@@ -3,7 +3,7 @@
       <!--세부사항 네비게이션바(가로, Row)-->
       <NavDetailRow />
       <div class="d-flex justify-content-center">
-         <div style="width: 200px;">
+         <div id="aside-bar" style="width: 200px;">
             <AsideBar />
          </div>
          <div class="px-5" style="height:100%; width: 900px">
@@ -24,5 +24,10 @@ import AsideBar from "@/components/DetailsNavi/AsideBar.vue";
 * {
    margin: 0;
    padding: 0;
+}
+@media screen and (max-width: 1115px) {
+    #aside-bar {
+        display: none;
+    }
 }
 </style>
