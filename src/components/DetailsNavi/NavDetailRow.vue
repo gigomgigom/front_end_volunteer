@@ -9,9 +9,9 @@
                     <span>{{ firstName }}</span>
                     <img id="drop-icon" src="@/assets/dropdown.png">
                     <ul class="submenu">
-                        <li v-for="(firstFloor, index) in menuList" :key="index">
-                            <div @click="changeFirstFloorMenu(firstFloor)">
-                                <span>{{ firstFloor.firstName }}</span>
+                        <li v-for="index in 5" :key="index">
+                            <div @click="changeFirstFloorMenu(menuList[index - 1])">
+                                <span>{{ menuList[index - 1].firstName }}</span>
                             </div>
                         </li>
                     </ul>
@@ -49,7 +49,7 @@
 </template>
 
 <script setup>
-import { watch, ref, onMounted } from 'vue';
+import { watch, ref } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 
@@ -149,6 +149,7 @@ function changeThirdFloorMenu(firstFloorIndex, secondFloorIndex, thirdFloor) {
     router.push(menuList[payload.firstFloor].secondFloor[payload.secondFloor].thirdFloor[payload.thirdFloor].url);
 }
 
+//menuIndex(전역상태)가 변경된다면 이를 감지하고 UI에 바인딩
 watch(() => menuIndex.value, (newMenuIndex, oldMenuIndex) => {
     //상태 데이터 -> 템플릿 바인딩
     firstFloorIndex.value = newMenuIndex.firstFloor;
