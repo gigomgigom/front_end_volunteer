@@ -2,7 +2,6 @@
   <div class="card">
     <div class="card-header">브랜드 소개</div>
     <div class="card-body">
-
     </div>
   </div>
 </template>

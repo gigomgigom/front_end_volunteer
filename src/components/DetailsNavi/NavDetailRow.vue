@@ -65,6 +65,7 @@ const menuIndex = ref(store.state.menuState.menuIndex);
 const firstFloorIndex = ref(menuIndex.value.firstFloor);
 const secondFloorIndex = ref(menuIndex.value.secondFloor);
 const thirdFloorIndex = ref(menuIndex.value.thirdFloor);
+
 //현재 위치에서 존재하는 하위 메뉴 리스트를 상태 데이터로 지정함.
 const secondFloorList = ref(menuList[firstFloorIndex.value].secondFloor);
 const thirdFloorList = ref(menuList[firstFloorIndex.value].secondFloor[secondFloorIndex.value].thirdFloor);
@@ -101,16 +102,13 @@ function changeFirstFloorMenu(firstFloor) {
             secondFloor: 0,
             thirdFloor: 0
         }
-        //Vuex에 상태 변경
-        store.commit("menuState/setMenuIndex", payload);
-        router.push(menuList[payload.firstFloor].secondFloor[payload.secondFloor].url);
+        router.push(menuList[payload.firstFloor].secondFloor[payload.secondFloor].thirdFloor[payload.thirdFloor].url);
     } else {    //만약 변경하고자 하는 화면에 ThirdFloor 메뉴가 존재하지 않을 경우
         payload = {
             firstFloor: firstFloor.firstMenuNo,
             secondFloor: 0,
             thirdFloor: -1
         }
-        store.commit("menuState/setMenuIndex", payload);
         router.push(menuList[payload.firstFloor].secondFloor[payload.secondFloor].url);
     }
 }
@@ -130,15 +128,13 @@ function changeSecondFloorMenu(firstFloorIndex, secondFloor) {
             secondFloor: secondFloor.secondMenuNo,
             thirdFloor: 0
         }
-        store.commit("menuState/setMenuIndex", payload);
-        router.push(menuList[payload.firstFloor].secondFloor[payload.secondFloor].url);
+        router.push(menuList[payload.firstFloor].secondFloor[payload.secondFloor].thirdFloor[payload.thirdFloor].url);
     } else {
         payload = {
             firstFloor: firstFloorIndex,
             secondFloor: secondFloor.secondMenuNo,
             thirdFloor: -1
         }
-        store.commit("menuState/setMenuIndex", payload);
         router.push(menuList[payload.firstFloor].secondFloor[payload.secondFloor].url);
     }
 }
@@ -150,7 +146,6 @@ function changeThirdFloorMenu(firstFloorIndex, secondFloorIndex, thirdFloor) {
         secondFloor: secondFloorIndex,
         thirdFloor: thirdFloor.thirdMenuNo,
     }
-    store.commit("menuState/setMenuIndex", payload);
     router.push(menuList[payload.firstFloor].secondFloor[payload.secondFloor].thirdFloor[payload.thirdFloor].url);
 }
 

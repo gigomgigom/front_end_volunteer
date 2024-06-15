@@ -23,7 +23,7 @@ export default {
                     {
                         secondMenuNo: 0,
                         secondName: '자원봉사 안내',
-                        url: '/Details/VolunteerGuide/Outline',
+                        url: '',
                         thirdFloor: [
                             {
                                 thirdMenuNo: 0,
@@ -50,7 +50,7 @@ export default {
                     {
                         secondMenuNo: 1,
                         secondName: 'Social Pulse',
-                        url: '/Details/VolunteerGuide/Introduce',
+                        url: '',
                         thirdFloor: [
                             {
                                 thirdMenuNo: 0,
@@ -160,7 +160,7 @@ export default {
                     {
                         secondMenuNo: 0,
                         secondName: '내 봉사정보',
-                        url: '/Details/MyPage/Perform',
+                        url: '',
                         thirdFloor: [
                             {
                                 thirdMenuNo: 0,
@@ -195,7 +195,7 @@ export default {
                     {
                         secondMenuNo: 4,
                         secondName: '회원정보',
-                        url: '/Details/MyPage/AccInfo',
+                        url: '',
                         thirdFloor: [
                             {
                                 thirdMenuNo: 0,

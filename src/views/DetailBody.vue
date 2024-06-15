@@ -1,7 +1,7 @@
 <template>
    <div>
       <!--세부사항 네비게이션바(가로, Row)-->
-      <NavDetailRow/>
+      <NavDetailRow />
       <div class="d-flex justify-content-center">
          <div style="width: 200px;">
             <AsideBar />
@@ -15,13 +15,14 @@
 </template>
 
 <script setup>
-   import NavDetailRow from "@/components/DetailsNavi/NavDetailRow.vue";
-   import AsideBar from "@/components/DetailsNavi/AsideBar.vue";
+import NavDetailRow from "@/components/DetailsNavi/NavDetailRow.vue";
+import AsideBar from "@/components/DetailsNavi/AsideBar.vue";
+
 </script>
 
 <style scoped>
-  *{
-   margin:0;
-   padding:0;
-  }
+* {
+   margin: 0;
+   padding: 0;
+}
 </style>
