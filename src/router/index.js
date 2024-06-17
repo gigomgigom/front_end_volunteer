@@ -6,7 +6,7 @@ import ServiceCenter from './ServiceCenter';
 import MyPage from './MyPage';
 import Admin from './Admin';
 import Member from './Member';
-
+//APP.vue
 const routes = [
   //만약 단순히 'http://localhost:8090'으로만 요청했을 경우 메인페이지로 리다이렉트
   {
@@ -25,13 +25,13 @@ const routes = [
     name: 'Details',
     component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/DetailBody.vue'),
     redirect: '/Details/VolunteerGuide',
-    //1차 Router-View
+    //2차 Router-View
     children: [
       //1. 봉사안내 탭 내부에 구성되어있는 뷰 컴포넌트들의 라우트
       {
         path: "/Details/VolunteerGuide",
         name: "VolunteerGuide",
-        redirect: "/Details/VolunteerGuide/EduSrc",
+        redirect: "/Details/VolunteerGuide/Outline",
         //2차 Router-View
         children: [
           ...VolunteerGuide,

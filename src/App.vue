@@ -30,6 +30,7 @@ function setMenuIndex() {
 function findMenuNo() {
    //http://localhost:8080을 제외한 그 뒤의 경로를 받아온다.
    let currentLocation = window.location.pathname;
+   // '/Details/VolunteerGuide/Outline' '' '' '' ''
    //split : 받아온 경로에서 '/'구분자를 기준으로 나누어 배열을 만든다.
    let parts = currentLocation.split('/');
    //slice : 배열의 일부를 추출하여 새로운 배열로 반환한다.

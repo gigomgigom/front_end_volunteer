@@ -8,7 +8,7 @@
          </div>
          <div class="px-5" style="height:100%; width: 900px">
             <!--화면나오는곳-->
-            <RouterView />
+            <RouterView />                                                                
          </div>
       </div>
    </div>
