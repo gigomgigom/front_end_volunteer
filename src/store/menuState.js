@@ -14,6 +14,7 @@ export default {
         },
 
         //페이지 정보를 담은 객체
+        //배열 객체
         menuList: [
             {
                 //봉사 안내

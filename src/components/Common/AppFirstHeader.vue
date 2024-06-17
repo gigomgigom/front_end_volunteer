@@ -14,6 +14,9 @@
                 <li class="nav-item" v-if="store.state.menuState.isAuthenticated">
                     <RouterLink class="nav-link text-darkgray" to="/Details/MyPage/Perform">OO님 안녕하세요</RouterLink>
                 </li>
+                <li class="nav-item" v-if="store.state.menuState.isAuthenticated">
+                    <RouterLink class="nav-link text-darkgray" to="/">로그아웃</RouterLink>
+                </li>
             </ul>
         </div>
     </div>
