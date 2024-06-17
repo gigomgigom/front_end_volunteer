@@ -1,5 +1,7 @@
 import { createStore } from "vuex";
 import menuState from "@/store/menuState";
+import regionCode from "./regionCode";
+import categoryCode from "./categoryCode";
 
 export default createStore({
     //루트 상태 정의
@@ -20,6 +22,8 @@ export default createStore({
     //루트 모듈 하위 상태모듈 정의
     modules: {
         //menu상태 모듈
-        menuState
+        menuState,
+        regionCode,
+        categoryCode
     }
 });

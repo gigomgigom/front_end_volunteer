@@ -1,16 +1,26 @@
 <template>
-  <div class="card">
-    <div class="card-header">봉사프로그램 목록(from. 공공데이터포털) 조회</div>
-    <div class="card-body">
-
-    </div>
+  <div id="view-programlist-wrapper">
+    <h5>🔶봉사조회</h5>
+    <SearchVolPgrm/>
   </div>
 </template>
 
 <script setup>
-
+import SearchVolPgrm from '@/components/SearchVolPgrm.vue';
 </script>
 
 <style scoped>
+*{
+  margin: 0;
+  padding: 0;
+}
 
+h5 {
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+#view-programlist-wrapper {
+  padding-top: 30px;
+}
 </style>
