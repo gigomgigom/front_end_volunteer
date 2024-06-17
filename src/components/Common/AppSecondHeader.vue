@@ -71,7 +71,7 @@ function goDetailBody(firstFloorIndex) {
             thirdFloor: 0
         }
         store.commit("menuState/setMenuIndex", payload);
-        router.push(menuList[payload.firstFloor].secondFloor[payload.secondFloor].url);
+        router.push(menuList[payload.firstFloor].secondFloor[payload.secondFloor].thirdFloor[payload.thirdFloor].url);
     }
 }
 </script>

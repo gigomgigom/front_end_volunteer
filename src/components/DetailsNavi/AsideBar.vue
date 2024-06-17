@@ -79,7 +79,6 @@ function selectMenu(event, secondMenuNo, thirdFloor) {
             secondFloor: secondMenuNo,
             thirdFloor: -1
         };
-        store.commit("menuState/setMenuIndex", payload);
         router.push(menuList[payload.firstFloor].secondFloor[payload.secondFloor].url);
     } else {
         console.log('자식있음');
@@ -110,7 +109,6 @@ function selectSubMenu(event, secondMenuNo, thirdMenuNo) {
         secondFloor: secondMenuNo,
         thirdFloor: thirdMenuNo
     };
-    store.commit("menuState/setMenuIndex", payload);
     router.push(menuList[payload.firstFloor].secondFloor[payload.secondFloor].thirdFloor[payload.thirdFloor].url);
 }
 
@@ -221,11 +219,5 @@ img {
 
 .menu-item.main-active+.submenu-items {
     display: block;
-}
-
-@media screen and (max-width: 1115px) {
-    #aside-wrapper {
-        display: none;
-    }
 }
 </style>

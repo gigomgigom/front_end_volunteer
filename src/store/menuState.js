@@ -3,8 +3,8 @@ export default {
 
     //상태 정의
     state: {
-        isAdmin: 0,
-        isAuthenticated: 0,
+        isAdmin: 1,
+        isAuthenticated: 1,
 
         //현재 페이지 인덱스 정보
         menuIndex: {
@@ -14,6 +14,7 @@ export default {
         },
 
         //페이지 정보를 담은 객체
+        //배열 객체
         menuList: [
             {
                 //봉사 안내
@@ -23,7 +24,7 @@ export default {
                     {
                         secondMenuNo: 0,
                         secondName: '자원봉사 안내',
-                        url: '/Details/VolunteerGuide/Outline',
+                        url: '',
                         thirdFloor: [
                             {
                                 thirdMenuNo: 0,
@@ -50,7 +51,7 @@ export default {
                     {
                         secondMenuNo: 1,
                         secondName: 'Social Pulse',
-                        url: '/Details/VolunteerGuide/Introduce',
+                        url: '',
                         thirdFloor: [
                             {
                                 thirdMenuNo: 0,
@@ -160,7 +161,7 @@ export default {
                     {
                         secondMenuNo: 0,
                         secondName: '내 봉사정보',
-                        url: '/Details/MyPage/Perform',
+                        url: '',
                         thirdFloor: [
                             {
                                 thirdMenuNo: 0,
@@ -195,7 +196,7 @@ export default {
                     {
                         secondMenuNo: 4,
                         secondName: '회원정보',
-                        url: '/Details/MyPage/AccInfo',
+                        url: '',
                         thirdFloor: [
                             {
                                 thirdMenuNo: 0,
