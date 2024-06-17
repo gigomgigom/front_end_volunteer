@@ -24,5 +24,4 @@ const routes = [
         component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/Admin/Approve'),
     }
 ];
-
 export default routes;
