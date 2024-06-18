@@ -1,50 +1,22 @@
 <template>
-  <div class="container">
-    <!-- 필터 및 검색 부분 -->
-    <div class="accordion" id="filterAccordion">
-      <div class="accordion-item" style="border: none;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <h6 class="all">
-            [전체 <span class="highlight">{{ posts.length }}</span>건,
-            현재페이지 <span class="highlight">{{ currentPage }}</span>/2]
-          </h6>
-          <div style="display: flex; align-items: center;">
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                제목
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="#">제목</a></li>
-                <li><a class="dropdown-item" href="#">내용</a></li>
-                <li><a class="dropdown-item" href="#">작성자</a></li>
-              </ul>
-            </div>
-            <input class="form-control form-control-sm ms-2" type="text" aria-label=".form-control-sm example">
-            <button class="btn btn-sm btn-primary ms-2" id="btn-sm1">검색</button>
-          </div>
-        </div>
-        <div id="collapseFilter" class="accordion-collapse collapse" aria-labelledby="headingFilter">
-          <div class="accordion-body">
-            <form>
-              <div class="mb-3">
-                <label for="searchTitle" class="form-label">제목</label>
-                <input type="text" class="form-control" id="searchTitle">
-              </div>
-              <div class="mb-3">
-                <label for="searchContent" class="form-label">내용</label>
-                <input type="text" class="form-control" id="searchContent">
-              </div>
-              <div class="mb-3">
-                <label for="searchAuthor" class="form-label">작성자</label>
-                <input type="text" class="form-control" id="searchAuthor">
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+  
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+  <h6 class="all">
+    [전체 <span class="highlight">{{ posts.length }}</span>건,
+    현재페이지 <span class="highlight">{{ currentPage }}</span>/2]
+  </h6>
+  <div style="display: flex; align-items: center;">
+    <select class="form-select form-select-sm custom-select-width" aria-label="Small select example">
+      <option value="1">제목</option>
+      <option value="2">작성자</option>
+      <option value="3">내용</option>
+    </select>
+    <input class="form-control form-control-sm ms-2 no-margin1" type="text" aria-label=".form-control-sm example">
+    <button class="btn btn-sm btn-primary ms-2 no-margin2" id="btn-sm1">검색</button>
   </div>
+</div>
+   
+    
 
   <!-- 게시물 목록 -->
   <div>
@@ -282,8 +254,6 @@ th {
   border-radius: 0 0 !important;
   /* 모서리를 각지게 만드는데, !important 속성을 활용해서 css 우선순위 높임 */
 
-
-
 }
 
 .page-link:hover,
@@ -296,6 +266,27 @@ th {
   border-color: #dee2e6;
   outline: none;
   box-shadow: none;
-  /*누를 때마다 나오는 효과 없애기 */
+
 }
+
+.custom-select-width {
+  width: 90px; 
+  box-shadow: none;
+}
+
+.ms-2 {
+  margin-left: 8px; /*기본 마진 제거*/
+}
+
+
+.no-margin1 {
+  margin-left: 0;
+  box-shadow: none; 
+}
+
+.no-margin2 {
+  margin-left: 0; 
+}
+
+
 </style>
