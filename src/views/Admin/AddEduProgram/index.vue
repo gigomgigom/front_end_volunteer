@@ -1,14 +1,11 @@
 <template>
-  <div class="card">
-    <div class="card-header">봉사 교육 프로그램 추가</div>
-    <div class="card-body">
-      <ViewEduProgramList/>
-    </div>
-  </div>
+ <TextHeader title="교육 프로그램 추가" />
+ <ViewEduProgramList/>
 </template>
 
 <script setup>
 import ViewEduProgramList from './ViewEduProgramList.vue';
+import TextHeader from '@/components/Common/TextHeader.vue';
 </script>
 
 <style scoped>

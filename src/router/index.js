@@ -6,7 +6,7 @@ import ServiceCenter from './ServiceCenter';
 import MyPage from './MyPage';
 import Admin from './Admin';
 import Member from './Member';
-//APP.vue
+//App.vue
 const routes = [
   //만약 단순히 'http://localhost:8090'으로만 요청했을 경우 메인페이지로 리다이렉트
   {
