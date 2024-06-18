@@ -12,6 +12,7 @@
       <label class="form-label" for="password">비밀번호</label>
       <input class="form-control" type="password" v-model="password" placeholder="비밀번호를 입력해 주세요" id="password">
       <small class="rewrite-msg text-muted">올바른 비밀번호를 입력해 주세요</small>
+
     </div>
 
     <!-- Remember ID checkbox -->
@@ -20,44 +21,18 @@
       <label class="form-check-label" for="rememberId">아이디 저장하기</label>
     </div>
 
+
+    <div class="mt-1 mb-3 text-center"> <!-- Center align content -->
+        <a href="#" class="find-links" style="margin-right: 12px;">아이디 찾기</a>  | <!-- Apply find-links class for styling -->
+        <a href="#" class="find-links" style="margin-left: 12px;">비밀번호 찾기</a> <!-- Apply find-links class for styling -->
+      </div>
+
     <!-- Submit button -->
     <div class="mb-3">
       <button class="btn btn-primary btn-block" @click="login">확인</button>
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      id: '',
-      password: '',
-      rememberId: false // 아이디 저장 여부를 나타내는 데이터 속성
-    };
-  },
-  methods: {
-    login() {
-      if (this.rememberId) {
-        localStorage.setItem('savedId', this.id);
-      } else {
-        localStorage.removeItem('savedId');
-      }
-
-      // 로그인 로직 구현
-      // 예를 들어, 서버로 로그인 정보를 전송하는 API 호출
-      alert(`아이디: ${this.id}, 비밀번호: ${this.password}`);
-    }
-  },
-  mounted() {
-    // 페이지가 로드될 때 저장된 아이디를 불러옵니다.
-    if (localStorage.getItem('savedId')) {
-      this.id = localStorage.getItem('savedId');
-      this.rememberId = true;
-    }
-  }
-};
-</script>
 
 <style scoped>
 .container {
@@ -118,5 +93,16 @@ export default {
 
 .form-check-label {
   font-size: 13px;
+}
+
+.find-links {
+  font-size: 13px; /* Adjust font size for the find links */
+  text-decoration: none; /* Remove underline */
+  color: #007bff; /* Set link color */
+}
+
+.text-center {
+  text-align: center; /* Center align text */
+  margin-top: 5px; /* Add some margin */
 }
 </style>
