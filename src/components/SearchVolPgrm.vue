@@ -46,7 +46,7 @@
                         </select>
                     </td>
                     <td style="width: 12%">
-                        <select id="final-select" class="form-select" multiple>
+                        <select id="select-recruit" class="form-select" multiple>
                             <option selected>전체</option>
                             <option>모집중</option>
                             <option>모집완료</option>
@@ -57,43 +57,42 @@
         </table>
         <div class="mt-3">
             <div id="search-program-form">
-                <div class="search-input">
+                <div class="search-input mb-4">
                     <div class="me-5">
                         <label class="me-2" for="act-date">▪️봉사 기간</label>
-                        <input id="act-date" type="date" />
+                        <input id="act-start-date" type="date" :value="currentDate"/>
                         <span> - </span>
-                        <input type="date" />
+                        <input id="act-end-date" type="date" />
                     </div>
                     <div class="d-flex align-items-center">
-                        <span>▪️봉사자 유형</span>
-                        <input class="form-check-input" type="checkbox" value="Y" id="adultAble">
-                        <label class="form-check-label" for="adultAble">성인</label>
-                        <input class="form-check-input" type="checkbox" value="Y" id="yngAble">
+                        <span class="me-2">▪️봉사자 유형</span>
+                        <input class="form-check-input me-1" type="checkbox" value="Y" id="adultAble">
+                        <label class="form-check-label me-3" for="adultAble">성인</label>
+                        <input class="form-check-input me-1" type="checkbox" value="Y" id="yngAble">
                         <label class="form-check-label" for="yngAble">청소년</label>
                     </div>
                 </div>
+                <div class="search-input mb-4">
+                    <div class="d-flex w-75">
+                        <label class="w-25" for="search-keyword">▪️봉사명 검색</label>
+                        <input id="search-keyword" class="form-control" type="text"/>
+                    </div>
+                </div>
                 <div class="search-input">
-                    <div class="me-5">
-                        <label class="me-2" for="act-date">▪️봉사 기간</label>
-                        <input id="act-date" type="date" />
-                        <span> - </span>
-                        <input type="date" />
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <span>▪️봉사자 유형</span>
-                        <input class="form-check-input" type="checkbox" value="Y" id="adultAble">
-                        <label class="form-check-label" for="adultAble">성인</label>
-                        <input class="form-check-input" type="checkbox" value="Y" id="yngAble">
-                        <label class="form-check-label" for="yngAble">청소년</label>
-                    </div>
+                    <HighLightButton text="검색" class="me-5" @buttonClick="searchVolProgram"/>
+                    <NormalButton text="초기화" @buttonClick="resetInputValue"/>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script setup>
+import HighLightButton from "@/components/Common/HighlightButton.vue";
+import NormalButton from "@/components/Common/NormalButton.vue";
+
 import { ref } from "vue";
 import { useStore } from "vuex";
+
 
 //상태 데이터(지역코드, 분야코드)를 사용하기 위한 store객체 생성
 const store = useStore();
@@ -125,6 +124,27 @@ function selectHighCls(listData) {
     lowClsList.value = listData;
     //군/구 리스트에서 기본값(전체)로 selected되도록 함.
     document.getElementById("select-low-class").selectedIndex = 0;
+}
+
+//----봉사 프로그램 검색버튼 누를시 호출
+function searchVolProgram() {
+
+}
+
+const currentDate = new Date();
+//----검색어 입력 초기화 버튼
+function resetInputValue() {
+    document.getElementById("select-city").selectedIndex = 0;
+    document.getElementById("select-county").selectedIndex = 0;
+    document.getElementById("select-high-class").selectedIndex = 0;
+    document.getElementById("select-low-class").selectedIndex = 0;
+    document.getElementById("select-recruit").selectedIndex = 0;
+    document.getElementById("act-start-date").value = currentDate;
+    document.getElementById("act-end-date").value = currentDate;
+    document.getElementById("search-keyword").value = '';
+
+    countyList.value = [];
+    lowClsList.value = [];
 }
 
 </script>
@@ -168,8 +188,10 @@ tbody>tr>td {
 
 #search-program-form {
     border: 1px solid silver;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .search-input {
