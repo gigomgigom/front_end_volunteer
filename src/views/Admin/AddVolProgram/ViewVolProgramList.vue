@@ -1,12 +1,26 @@
 <template>
   <div id="view-programlist-wrapper">
     <h5>🔶봉사조회</h5>
-    <SearchVolPgrm/>
+    <SearchVolPgrm @showModal="showDialog"/>
+    <AddVolProgramModal id="addVolProgramModal"/>
   </div>
 </template>
 
 <script setup>
+import { onMounted } from 'vue';
+import { Modal } from 'bootstrap';
 import SearchVolPgrm from '@/components/SearchVolPgrm.vue';
+import AddVolProgramModal from './AddVolProgramModal.vue';
+
+let addVolProgramModal = null;
+
+onMounted( () => {
+  addVolProgramModal = new Modal(document.querySelector("#addVolProgramModal"));
+});
+
+function showDialog() {
+  addVolProgramModal.show();
+}
 </script>
 
 <style scoped>

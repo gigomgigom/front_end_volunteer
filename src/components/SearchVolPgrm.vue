@@ -93,6 +93,8 @@ import NormalButton from "@/components/Common/NormalButton.vue";
 import { ref } from "vue";
 import { useStore } from "vuex";
 
+const emits = defineEmits(['showModal']);
+
 
 //상태 데이터(지역코드, 분야코드)를 사용하기 위한 store객체 생성
 const store = useStore();
@@ -128,7 +130,7 @@ function selectHighCls(listData) {
 
 //----봉사 프로그램 검색버튼 누를시 호출
 function searchVolProgram() {
-
+    emits('showModal');
 }
 
 const currentDate = new Date();
