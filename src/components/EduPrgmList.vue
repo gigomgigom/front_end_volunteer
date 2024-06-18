@@ -4,72 +4,53 @@
             <div class="row" style="border-bottom: 2px solid gray;">
                 <div class="col-sm-10" style="padding: 0;">
                     <span>
-                    [전체 25건, 현재페이지 1/3]
+                        [전체 25건, 현재페이지 1/3]
                     </span>
                 </div>
                 <div class="col-sm-2">
-                    <button class="" style="display: inline-block; margin-bottom: 4px; border: none; border-radius: 4px; margin-left: 25px">새로 생성</button>
+                    <button class="" style="display: inline-block; margin-bottom: 4px; border: none; border-radius: 4px; margin-left: 25px" @click="emit('buttonClick')">새로 생성</button>
                 </div>
             </div>
-            <div class="row_container mt-3 mb-3">
+            <div class="row_container mt-3 mb-3" v-for="(edu) in eduList" :key="edu.no">
                 <div class="row">
                     <div class="col-sm-12" style="padding: 0;">
                         <span style="font-weight: bold; font-size: 18px;">
-                            2024. 자원봉사 대학
+                            {{ edu.title }}
                         </span>
                     </div>
                 </div>
                 <div class="row" style="font-size: 14px; border-bottom: 1px solid gray; padding-bottom: 10px; ">
-                    <div class="col-sm-10 mt-1" style="padding: 0;">
-                        <span>[교육센터] 
+                    <div class="col-sm-3 mt-1" style="padding: 0;">
+                        <span>[교육센터]
                             <span style="color: gray;">
-                                충청북도 단양군
+                                {{ edu.center }}
                             </span>
                         </span>
-                        <span class="ms-3">[모집기간] 
+                    </div>
+                    <div class="col-sm-7">
+                        <span class="ms-5" style="">[모집기간]
                             <span style="color: gray;">
-                                2024.06.10 - 2024.06.26
-                            </span>
-                        </span>
-                        <span class="ms-3">[교육기간] 
-                            <span style="color: gray;">
-                                2024.07.02 - 2024.07.07
+                                {{ edu.recruitDate }}
                             </span>
                         </span>
                     </div>
                     <div class="col-sm-2 ">
-                        <button class="" style="display: inline-block; margin-bottom: 4px; border: none; border-radius: 4px; margin-left: 25px; font-size: 16px; width: 81.63px;" @click="emit('showDialogA')">추가</button>
+                        <button class=""
+                            style="display: inline-block; margin-bottom: 4px; border: none; border-radius: 4px; margin-left: 25px; font-size: 16px; width: 81.63px;"
+                            >추가</button>
                     </div>
-                </div>
-            </div>
-            <div class="row_container mt-3 mb-3">
-                <div class="row">
-                    <div class="col-sm-12" style="padding: 0;">
-                        <span style="font-weight: bold; font-size: 18px;">
-                            2024. 자원봉사 대학
-                        </span>
-                    </div>
-                </div>
-                <div class="row" style="font-size: 14px; border-bottom: 1px solid gray; padding-bottom: 10px; ">
-                    <div class="col-sm-10 mt-1" style="padding: 0;">
-                        <span>[교육센터] 
-                            <span style="color: gray;">
-                                충청북도 단양군
+                    <div class="row">
+                        <div class="col-sm-10" style="padding: 0;">
+                            <span class="">[교육기간]
+                                <span style="color: gray;">
+                                    {{ edu.eduDate }}
+                                </span>
                             </span>
-                        </span>
-                        <span class="ms-3">[모집기간] 
-                            <span style="color: gray;">
-                                2024.06.10 - 2024.06.26
-                            </span>
-                        </span>
-                        <span class="ms-3">[교육기간] 
-                            <span style="color: gray;">
-                                2024.07.02 - 2024.07.07
-                            </span>
-                        </span>
-                    </div>
-                    <div class="col-sm-2">
-                        <button class="" style="display: inline-block; margin-bottom: 4px; border: none; border-radius: 4px; margin-left: 25px; font-size: 16px; width: 81.63px;">추가</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class=""
+                                style="display: inline-block; margin-bottom: 4px; border: none; border-radius: 4px; margin-left: 45px; font-size: 16px; width: 81.63px;">추가</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -78,10 +59,17 @@
 </template>
 
 <script setup>
-//스크립트 이용해서 v-for 짜기
-const emit = defineEmits(["showDialogA"]);
+import { ref } from "vue";
+
+const emit = defineEmits(["buttonClick"]);
+const eduList = ref([
+    { no: 1, title: "2012. 봉사", center: "경기도 수원시", recruitDate: "2012.02.10 - 2012.02.11", eduDate: "2012.03.12 - 2012.03.16" },
+    { no: 2, title: "2013. 봉사", center: "인천광역시 광역시", recruitDate: "2013.02.10 - 2013.02.11", eduDate: "2013.03.12 - 2013.03.16" },
+    { no: 3, title: "2014. 봉사", center: "서울특별시 노원구", recruitDate: "2014.02.10 - 2014.02.11", eduDate: "2014.03.12 - 2014.03.16" },
+    { no: 4, title: "2015. 봉사", center: "부산광역시 해운대구", recruitDate: "2015.02.10 - 2015.02.11", eduDate: "2015.03.12 - 2015.03.16" },
+    { no: 5, title: "2016. 봉사", center: "제주특별시 서귀포시", recruitDate: "2016.02.10 - 2016.02.11", eduDate: "2016.03.12 - 2016.03.16" }
+]);
+
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

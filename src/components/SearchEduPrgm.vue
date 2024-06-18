@@ -5,24 +5,26 @@
                 <div class="row" style="margin-bottom: 30px; margin-top: 10px;">
                     <div class="col-sm-6 aa">
                         <span class="bb">교육지역</span>
-                            <select name="" id="" class="ms-4 me-2" >
-                                <option value="">인천 광역시</option>
-                                <option value="">전체</option>
-                                <option value="">전체</option>
-                                <option value="">전체</option>
-                                <option value="">전체</option>
-                                <option value="">전체</option>
-                            </select>
-                            <select name="" id="">
-                                <option value="">전체</option>
-                            </select>
+                        <select class="ms-4 me-2" @change="selectCity($event)">
+                            <option selected>전체</option>
+                            <option v-for="(city, index) in regionList" :key="index" :value="city.cityCode">{{
+                                city.cityName }}</option>
+                        </select>
+                        <select id="county" class="">
+                            <option selected>전체</option>
+                            <option v-for="(county, index) in countyList" :key="index" :value="county.countyCode">{{
+                                county.countyName }}</option>
+                        </select>
                     </div>
                     <div class="col-sm-6 aa">
                         <span class="bb">모집상태</span>
                         <div class="ms-4" style="display: inline-block;">
-                        <span class="checks small"><input type="radio" id="ex_rds1" name="searchSrvcStts" value="3"><label for="ex_rds1" class="ms-1">전체</label></span>
-                        <span class="checks small ms-2"><input type="radio" id="ex_rds2" name="searchSrvcStts" value="0" checked="checked"><label for="ex_rds2" class="ms-1">모집중</label></span>
-                        <span class="checks small ms-2"><input type="radio" id="ex_rds3" name="searchSrvcStts" value="1"><label for="ex_rds3" class="ms-1">모집완료</label></span>
+                            <span class="checks small"><input type="radio" id="ex_rds1" name="searchSrvcStts"
+                                    value="3"><label for="ex_rds1" class="ms-1">전체</label></span>
+                            <span class="checks small ms-2"><input type="radio" id="ex_rds2" name="searchSrvcStts"
+                                    value="0" checked="checked"><label for="ex_rds2" class="ms-1">모집중</label></span>
+                            <span class="checks small ms-2"><input type="radio" id="ex_rds3" name="searchSrvcStts"
+                                    value="1"><label for="ex_rds3" class="ms-1">모집완료</label></span>
                         </div>
                     </div>
                 </div>
@@ -44,6 +46,28 @@
 </template>
 
 <script setup>
+import { onMounted, ref } from 'vue';
+import { useStore } from 'vuex';
+
+const store = useStore();
+const regionList = store.state.regionCode.regionList;
+const countyList = ref([]);
+
+// 도시 분야 선택시 호출
+function selectCity(event) {
+    const cityCode = Number(event.target.value);
+    countyList.value = findCounty(cityCode);
+    document.getElementById("county").selectedIndex = 0;
+}
+// 하위 분야 리스트를 찾아오기
+function findCounty(cityCode) {
+    for (let city of regionList) {
+        if (city.cityCode === cityCode) {
+            return city.county;
+        }
+    }
+    return [];
+}
 
 </script>
 
@@ -59,6 +83,4 @@
     margin-left: 12px;
     background: url("@/assets/ico_search.png") center left no-repeat;
 }
-
-
 </style>
