@@ -1,3 +1,4 @@
+//Store 생성 및 내보내기
 export default {
     namespaced: true,
 

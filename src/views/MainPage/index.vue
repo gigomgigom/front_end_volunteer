@@ -1,9 +1,15 @@
 <template>
     <div>
-        메인페이지
+  
+        <Carousel/>
     </div>
 </template>
+
 <script setup>
+import Carousel from "@/views/MainPage/Carousel.vue";
+
+
+
 
 </script>
 <style scoped>

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="my-3">
         <h2>{{title.title}}</h2>
     </div>
 </template>

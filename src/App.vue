@@ -1,3 +1,4 @@
+<!-- 전체 레이아웃 구조 기본 레이아웃 지정-->
 <template>
   <AppFirstHeader/>
   <AppSecondHeader/>
@@ -65,7 +66,9 @@ function findMenuNo() {
       thirdFloor: 0
    };
 }
-//요청 경로 변경 감지
+//watch() -> 특정 데이터의 변화를 감지해서 원하는 코드를 실행시켜주는 기능
+//주로 API 호출, 데이터 유효성 검사 등 특정 데이터가 변경되자마자 어떠한 작업을 수행하려는 경우 유용
+//첫번째 인자 -> 감시하려는 소스/ 두번째 인자 -> 콜백함수로 감시하려는 소스가 변경될 때마다 실행
 watch(route, (newRoute, oldRoute) => {
    setMenuIndex();
 });

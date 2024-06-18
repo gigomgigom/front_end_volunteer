@@ -1,13 +1,14 @@
 <template>
-  <div class="card">
-    <div class="card-header">자원봉사 후기</div>
-    <div class="card-body">
-      <RouterView/>
-    </div>
-  </div>
+ <div>
+
+  <RouterView/>
+ </div>
+ 
 </template>
 
 <script setup>
+
+
 
 </script>
 

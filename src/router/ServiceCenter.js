@@ -41,6 +41,7 @@ const routes = [
         path: "/Details/ServiceCenter/FAQ",
         component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/ServiceCenter/FAQ.vue'),
     }
+
 ];
 
 export default routes;
