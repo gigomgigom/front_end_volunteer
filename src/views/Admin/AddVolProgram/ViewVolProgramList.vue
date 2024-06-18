@@ -3,6 +3,7 @@
     <h5>🔶봉사조회</h5>
     <SearchVolPgrm @showModal="showDialog"/>
     <AddVolProgramModal id="addVolProgramModal"/>
+    <Applicant id="applicant"/>
   </div>
 </template>
 
@@ -11,11 +12,12 @@ import { onMounted } from 'vue';
 import { Modal } from 'bootstrap';
 import SearchVolPgrm from '@/components/SearchVolPgrm.vue';
 import AddVolProgramModal from './AddVolProgramModal.vue';
+import Applicant from '@/components/Applicant.vue';
 
 let addVolProgramModal = null;
 
 onMounted( () => {
-  addVolProgramModal = new Modal(document.querySelector("#addVolProgramModal"));
+  addVolProgramModal = new Modal(document.querySelector("#applicant"));
 });
 
 function showDialog() {

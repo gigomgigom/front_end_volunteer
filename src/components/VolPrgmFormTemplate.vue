@@ -228,11 +228,9 @@ onMounted(() => {
 .modal-body>div>div {
     width: 90%;
 }
-
 table {
     width: 90%;
 }
-
 td {
     text-align: center;
 }
