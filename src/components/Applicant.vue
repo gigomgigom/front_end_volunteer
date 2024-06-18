@@ -437,8 +437,4 @@ const applicantList = [
     border-top: 1px solid black;
     border-bottom: 1px solid black;
 }
-
-.thead {
-    background-color: khaki;
-}
 </style>

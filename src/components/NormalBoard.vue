@@ -1,11 +1,11 @@
 <template>
-   <div class="container">
+  <div class="container">
     <!-- 필터 및 검색 부분 -->
     <div class="accordion" id="filterAccordion">
       <div class="accordion-item" style="border: none;">
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <h6 class="all">
-            [전체 <span class="highlight">{{ posts.length }}</span>건, 
+            [전체 <span class="highlight">{{ posts.length }}</span>건,
             현재페이지 <span class="highlight">{{ currentPage }}</span>/2]
           </h6>
           <div style="display: flex; align-items: center;">
@@ -46,32 +46,32 @@
     </div>
   </div>
 
-    <!-- 게시물 목록 -->
-    <div id="app">
-      <table class="table caption-top mt-2">
-        <thead class="table-primary">
-          <tr class="tablehead">
-            <th scope="col" class="col-num no-border-left text-center" style="background-color: gainsboro;">번호</th>
-            <th scope="col" class="col-title text-center" style="background-color: gainsboro;" colspan="2">제목</th>
-            <th scope="col" class="col-author text-center" style="background-color: gainsboro;">작성자</th>
-            <th scope="col" class="col-date text-center" style="background-color: gainsboro;">작성일</th>
-            <th scope="col" class="col-views no-border-right text-center" style="background-color: gainsboro;">조회수</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="post in paginatedPosts" :key="post.id">
-            <td class="col-num no-border-left text-center">{{ post.id }}</td>
-            <td colspan="2">{{ post.title }}</td>
-            <td class="col-author text-center">{{ post.author }}</td>
-            <td class="col-date text-center">{{ post.date }}</td>
-            <td class="col-views no-border-right text-center">{{ post.views }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <!-- 게시물 목록 -->
+  <div>
+    <table class="table caption-top mt-2">
+      <thead class="table-primary">
+        <tr class="tablehead">
+          <th scope="col" class="col-num no-border-left text-center" style="background-color: gainsboro;">번호</th>
+          <th scope="col" class="col-title text-center" style="background-color: gainsboro;" colspan="2">제목</th>
+          <th scope="col" class="col-author text-center" style="background-color: gainsboro;">작성자</th>
+          <th scope="col" class="col-date text-center" style="background-color: gainsboro;">작성일</th>
+          <th scope="col" class="col-views no-border-right text-center" style="background-color: gainsboro;">조회수</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="post in paginatedPosts" :key="post.id">
+          <td class="col-num no-border-left text-center">{{ post.id }}</td>
+          <td colspan="2">{{ post.title }}</td>
+          <td class="col-author text-center">{{ post.author }}</td>
+          <td class="col-date text-center">{{ post.date }}</td>
+          <td class="col-views no-border-right text-center">{{ post.views }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-   
-    <div class="d-flex justify-content-between align-items-center">
+
+  <div class="d-flex justify-content-between align-items-center">
     <div class="flex-grow-1 d-flex justify-content-center">
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center mb-4 ms-5">
@@ -81,16 +81,17 @@
         </ul>
       </nav>
     </div>
-    <button class="btn btn-primary btn-sm mb-5" type="submit" id="btn-sm2">글쓰기</button>
+    <HighlightButton text="글쓰기" @buttonClick="injecter.moveReviewForm()"/>
   </div>
 
 
- 
+
 </template>
 
 
 <script setup>
-import { ref, computed } from 'vue';
+import HighlightButton from './Common/HighlightButton.vue';
+import { ref, computed, inject } from 'vue';
 
 const posts = ref([
   { id: 1, title: "제목 1", author: "황세림", date: "2024-06-17", views: 100 },
@@ -131,119 +132,124 @@ function changePage(page) {
   }
 }
 
+const injecter = inject('provideByReview');
+
 </script>
 
 <style scoped>
 .dropdown-toggle {
-    background-color: #ffffff;
-    color: black;
-    width: 70px;
-    height: 30px;
-    padding: 5px 10px;
-    font-size: 14px;
-    border-radius: 5px;
-    border-color: #ddd;
+  background-color: #ffffff;
+  color: black;
+  width: 70px;
+  height: 30px;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border-color: #ddd;
 }
 
 .dropdown-toggle:hover {
-    background-color: #ffffff;
+  background-color: #ffffff;
 }
 
 .form-label {
-    z-index: 999;
+  z-index: 999;
 }
 
 input.form-control.form-control-sm {
-    width: 150px;
+  width: 150px;
 }
 
 #btn-sm1 {
-    background-color: #666;
-    border-color: #ffffff;
+  background-color: #666;
+  border-color: #ffffff;
 }
- #btn-sm2 {
-    background-color: darkorange;
-    border-color: #ffffff;
- }
+
+#btn-sm2 {
+  background-color: darkorange;
+  border-color: #ffffff;
+}
 
 table {
-    table-layout: fixed;
-    width: 100%;
+  table-layout: fixed;
+  width: 100%;
 
 }
 
 thead th {
-    background-color: #666;
-    text-align: left;
-    border: 1px solid black;
+  background-color: #666;
+  text-align: left;
+  border: 1px solid black;
 }
 
 td,
 th {
-    word-wrap: break-word;
-    white-space: normal;
-    padding: 12px 8px;
-    vertical-align: middle;
-    text-align: left;
-    border: 1px solid #ddd;
+  word-wrap: break-word;
+  white-space: normal;
+  padding: 12px 8px;
+  vertical-align: middle;
+  text-align: left;
+  border: 1px solid #ddd;
 }
 
 .no-border-right {
-    border-right: none;
+  border-right: none;
 }
 
 .no-border-left {
-    border-left: none;
+  border-left: none;
 }
 
 .col-num {
-    width: 10%;
+  width: 10%;
 }
 
 .col-title {
-    width: 50%;
+  width: 50%;
 }
 
 .col-author {
-    width: 15%;
+  width: 15%;
 }
 
 .col-date {
-    width: 15%;
+  width: 15%;
 }
 
 .col-views {
-    width: 15%;
+  width: 15%;
 }
 
 .pagination .page-link {
-    background-color:#ffffff;
-    border-color: #ffffff;
-    border: 1px solid #ddd; 
-    margin: 0 3px; 
-    border: 1px solid #ddd; 
+  background-color: #ffffff;
+  border-color: #ffffff;
+  border: 1px solid #ddd;
+  margin: 0 3px;
+  border: 1px solid #ddd;
 }
+
 .pagination .page-link:hover {
-    background-color: #666;
-    border-color: #ffffff;
- 
-    
+  background-color: #666;
+  border-color: #ffffff;
+
+
 }
 
 .pagination .page-item.active .page-link {
-    background-color:#666;
-    border-color: #ffffff;
-   
+  background-color: #666;
+  border-color: #ffffff;
+
 }
 
 .pagination .page-item.disabled .page-link {
-    background-color:#666;
-    border-color: #ffffff;
- 
+  background-color: #666;
+  border-color: #ffffff;
+
 }
+
 .highlight {
-    color: coral;
-    font-weight: bolder;
+  color: coral;
+  font-weight: bolder;
 }
 
 .pagination {
@@ -273,9 +279,10 @@ th {
   background-color: #fff;
   border: 1px solid black;
   line-height: 1.25;
-  border-radius: 0 0 !important; /* 모서리를 각지게 만드는데, !important 속성을 활용해서 css 우선순위 높임 */
-  
- 
+  border-radius: 0 0 !important;
+  /* 모서리를 각지게 만드는데, !important 속성을 활용해서 css 우선순위 높임 */
+
+
 
 }
 
@@ -288,9 +295,7 @@ th {
   background-color: #e9ecef;
   border-color: #dee2e6;
   outline: none;
-  box-shadow: none; /*누를 때마다 나오는 효과 없애기 */
+  box-shadow: none;
+  /*누를 때마다 나오는 효과 없애기 */
 }
-
-
-
 </style>
