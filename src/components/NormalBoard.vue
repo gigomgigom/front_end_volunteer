@@ -47,7 +47,11 @@
     <div class="flex-grow-1 d-flex justify-content-center">
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center mb-4 ms-5">
+
+          <!--배열을 순회하면서 각 페이지에 대해 li 요소를 생성 -->
+          <!-- 현재 페이지(currentPage)와 일치하는 페이지 번호에 active 클래스를 적용-->
           <li class="page-item" v-for="page in totalPages" :key="page" :class="{ active: page === currentPage }">
+            <!--클릭 이벤트를 막고, changePage 함수를 호출하여 페이지를 변경-->
             <a class="page-link" href="#" @click.prevent="changePage(page)">{{ page }}</a>
           </li>
         </ul>
@@ -91,13 +95,23 @@ const posts = ref([
 const currentPage = ref(1);
 const perPage = 10; // 페이지당 표시할 아이템 수
 
+
+// 현재 페이지에 해당하는 게시글들을 계산하여 반환
+// startIndex는 현재 페이지의 첫 번째 게시글의 인덱스
+//paginatedPosts => 현재 페이지에 해당하는 게시글들을 계산하여 반환하는 계산 속성.
 const paginatedPosts = computed(() => {
   const startIndex = (currentPage.value - 1) * perPage;
   return posts.value.slice(startIndex, startIndex + perPage);
 });
 
+
+// 전체 페이지 수를 계산하여 반환
+// posts 배열의 길이를 페이지당 표시할 게시글 수로 나누어 올림 처리
 const totalPages = computed(() => Math.ceil(posts.value.length / perPage));
 
+
+// 페이지를 변경하는 함수
+// 유효한 페이지 번호일 경우 currentPage를 변경
 function changePage(page) {
   if (page >= 1 && page <= totalPages.value) {
     currentPage.value = page;
