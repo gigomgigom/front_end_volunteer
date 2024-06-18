@@ -81,7 +81,7 @@
         </ul>
       </nav>
     </div>
-    <HighlightButton text="글쓰기" @buttonClick="injecter.moveReviewForm()"/>
+    <HighlightButton text="글쓰기" @buttonClick="emits('goWriteForm')"/>
   </div>
 
 
@@ -132,7 +132,7 @@ function changePage(page) {
   }
 }
 
-const injecter = inject('provideByReview');
+const emits = defineEmits('goWriteForm');
 
 </script>
 

@@ -17,7 +17,7 @@ import Applicant from '@/components/Applicant.vue';
 let addVolProgramModal = null;
 
 onMounted( () => {
-  addVolProgramModal = new Modal(document.querySelector("#applicant"));
+  addVolProgramModal = new Modal(document.querySelector("#addVolProgramModal"));
 });
 
 function showDialog() {

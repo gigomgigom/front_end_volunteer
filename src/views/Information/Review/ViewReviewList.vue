@@ -1,5 +1,5 @@
 <template>
-  <NormalBoard/>
+  <NormalBoard @goWriteForm="moveReviewForm"/>
 </template>
 
 <script setup>
@@ -20,8 +20,6 @@ function moveReviewList() {
 function moveReviewDetail() {
   router.push('/Details/Information/Review/ViewReviewDetail');
 }
-
-provide("provideByReview", {moveReviewForm, moveReviewDetail, moveReviewList});
 </script>
 
 <style scoped>

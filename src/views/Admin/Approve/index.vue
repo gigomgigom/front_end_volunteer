@@ -22,7 +22,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(rqst, index) in requestList" :key="index">
+          <tr v-for="(rqst, index) in requestList" :key="index" @click="rqstDetailModal.show()">
             <td class="no-border-left text-center">{{ rqst.rqstStts }}</td>
             <td colspan="2">{{ rqst.programName }}</td>
             <td class="text-center">{{ rqst.userID }}</td>
@@ -34,22 +34,21 @@
       </table>
     </div>
 
-    <div class="d-flex justify-content-between align-items-center">
-      <div class="flex-grow-1 d-flex justify-content-center">
-          <ul class="pagination justify-content-center mb-4 ms-5">
-            <li class="page-item" v-for="n in 5" :key="n">
-              <a class="page-link" href="#" @click.prevent="changePage(page)">{{ page }}</a>
-            </li>
-          </ul>
-      </div>
-      <HighlightButton text="글쓰기" @buttonClick="injecter.moveReviewForm()" />
-    </div>
+    <ViewRqstDetailModal id="rqstDetailModal"/>
   </div>
 </template>
 
 <script setup>
+import { onMounted } from 'vue';
+import { Modal } from 'bootstrap';
 import ViewRqstDetailModal from './ViewRqstDetailModal.vue';
 import TextHeader from '@/components/Common/TextHeader.vue';
+
+let rqstDetailModal = null;
+
+onMounted(() => {
+  rqstDetailModal = new Modal(document.querySelector('#rqstDetailModal'));
+});
 
 const requestList = [
   {
