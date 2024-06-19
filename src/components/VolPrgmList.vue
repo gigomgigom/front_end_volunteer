@@ -2,10 +2,9 @@
     <div class="card" style="border:none">
         <div class="card-body" style="padding: 12px;">
             <div class="row" style="border-bottom: 2px solid gray;">
-                <div class="col-sm-10" style="padding: 0;">
-                    <span>
-                    [전체 25건, 현재페이지 1/3]
-                    </span>
+                <div class="col-sm-10" style="padding:0 0 8px 0;">
+                    [전체 <span class="highlight">25</span>건,
+                    현재페이지 <span class="highlight">1</span>/3]
                 </div>
                 <div class="col-sm-2">
                     <button class="" style="display: inline-block; margin-bottom: 4px; border: none; border-radius: 4px; margin-left: 25px" @click="emit('showModal')" v-if="isAddPage">새로 생성</button>
@@ -92,5 +91,8 @@ onMounted(()=> {
 </script>
 
 <style scoped>
-
+.highlight {
+  color: coral;
+  font-weight: bolder;
+}
 </style>
