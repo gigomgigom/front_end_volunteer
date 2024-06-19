@@ -67,7 +67,7 @@
 
 <script setup>
 import HighlightButton from './Common/HighlightButton.vue';
-import { ref, computed, inject } from 'vue';
+import { ref, computed } from 'vue';
 
 const posts = ref([
   { id: 1, title: "제목 1", author: "황세림", date: "2024-06-17", views: 100 },

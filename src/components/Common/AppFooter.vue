@@ -4,8 +4,8 @@
         <img src="@/assets/socialpulse_logo.png" height="65px" class="logo">
         <div class="footer-details">
           <ul class="footer-menu">
-            <li><router-link to="/home">홈</router-link></li> |
-            <li><router-link to="/about">단체 소개</router-link></li> |
+            <li><router-link to="/Main">홈</router-link></li> |
+            <li><router-link to="/Details/VolunteerGuide/Introduce">단체 소개</router-link></li> |
             <li><router-link to="/Details/ServiceCenter/FAQ">자주 묻는 질문</router-link></li>
           </ul>
           <p>(05717) 서울특별시 송파구 중대로 135 IT 벤처타워</p>
