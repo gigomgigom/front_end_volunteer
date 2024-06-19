@@ -123,20 +123,6 @@ const emits = defineEmits('goWriteForm');
 </script>
 
 <style scoped>
-.dropdown-toggle {
-  background-color: #ffffff;
-  color: black;
-  width: 70px;
-  height: 30px;
-  padding: 5px 10px;
-  font-size: 14px;
-  border-radius: 5px;
-  border-color: #ddd;
-}
-
-.dropdown-toggle:hover {
-  background-color: #ffffff;
-}
 
 .form-label {
   z-index: 999;

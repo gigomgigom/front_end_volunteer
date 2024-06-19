@@ -1,20 +1,20 @@
 <template>
    <div class="image-container mt-5">
       <div class="icon-text">
-        <img src="@/assets/MainPage/자원봉사 2.png" class="small-image" />
-        <h6 class="icon-label">바로가기</h6>
+        <img src="@/assets/MainPage/search.png" class="small-image" />
+        <h5 class="icon-label mt-4">바로가기</h5>
       </div>
       <div class="icon-text">
-        <img src="@/assets/MainPage/자원봉사 3.png" class="small-image" />
-        <h6 class="icon-label">Social Pulse 소개</h6>
+        <img src="@/assets/MainPage/introduction.png" class="small-image" />
+        <h5 class="icon-label mt-4">Social Pulse 소개</h5>
       </div>
       <div class="icon-text">
-        <img src="@/assets/MainPage/자원봉사 5.png" class="small-image" />
-        <h6 class="icon-label">봉사 후기</h6>
+        <img src="@/assets/MainPage/reviews.png" class="small-image" />
+        <h5 class="icon-label mt-4">봉사 후기</h5>
       </div>
       <div class="icon-text">
-        <img src="@/assets/MainPage/자원봉사 1.png" class="small-image" />
-        <h6 class="icon-label">질문과 답변</h6>
+        <img src="@/assets/MainPage/qa.png" class="small-image" />
+        <h5 class="icon-label mt-4">질문과 답변</h5>
       </div>
     </div>
 </template>
@@ -28,7 +28,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 120px; 
+  gap: 170px; 
 }
 
 .icon-text {
@@ -38,8 +38,9 @@
 }
 
 .small-image {
-  width: 100px;
-  height: 90px;
+  width: 70px;
+  height: 70px;
 }
+
 
 </style>

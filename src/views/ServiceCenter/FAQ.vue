@@ -16,43 +16,22 @@
     <div class="accordion" id="filterAccordion">
       <div class="accordion-item" style="border: none;">
         <div style="display: flex; justify-content: space-between; align-items: center;">
-          <h6 class="all">[전체 32건, 현재페이지 1/3]</h6>
-          <div style="display: flex; align-items: center;">
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                제목
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="#">제목</a></li>
-                <li><a class="dropdown-item" href="#">내용</a></li>
-                <li><a class="dropdown-item" href="#">작성자</a></li>
-              </ul>
-            </div>
-            <input class="form-control form-control-sm ms-2" type="text" aria-label=".form-control-sm example">
-            <button class="btn btn-sm btn-primary ms-2" id="btn-sm1">검색</button>
-          </div>
-        </div>
-        <div id="collapseFilter" class="accordion-collapse collapse" aria-labelledby="headingFilter">
-          <div class="accordion-body">
-            <form>
-              <div class="mb-3">
-                <label for="searchTitle" class="form-label">제목</label>
-                <input type="text" class="form-control" id="searchTitle">
-              </div>
-              <div class="mb-3">
-                <label for="searchContent" class="form-label">내용</label>
-                <input type="text" class="form-control" id="searchContent">
-              </div>
-              <div class="mb-3">
-                <label for="searchAuthor" class="form-label">작성자</label>
-                <input type="text" class="form-control" id="searchAuthor">
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+          <h6 class="all">
+    [전체 <span class="highlight">10</span>건,
+    현재페이지 <span class="highlight">2</span>/2]
+  </h6>
+  <div style="display: flex; align-items: center;">
+    <select class="form-select form-select-sm custom-select-width" aria-label="Small select example">
+      <option value="1">제목</option>
+      <option value="2">작성자</option>
+      <option value="3">내용</option>
+    </select>
+    <input class="form-control form-control-sm ms-2 no-margin1" type="text" aria-label=".form-control-sm example">
+    <button class="btn btn-sm btn-primary ms-2 no-margin2" id="btn-sm1">검색</button>
+  </div>
+</div>
+   </div>
+   </div>
 
   </div>
 
@@ -306,22 +285,26 @@ input.form-control.form-control-sm {
 }
 
 #btn-sm1 {
-  background-color: orange;
+  background-color: coral;
   border-color: #ffffff;
 }
 
-.dropdown-toggle {
-  background-color: orange;
-  color: #ffffff;
-  width: 70px;
-  height: 30px;
-  padding: 5px 10px;
-  font-size: 14px;
-  border-radius: 5px;
-  border-color: #ffffff;
+
+.highlight {
+  color: coral;
+  font-weight: bolder;
 }
 
-.dropdown-toggle:hover {
-  background-color: orange;
+.no-margin1 {
+  margin-left: 0;
+  box-shadow: none; 
+}
+
+.no-margin2 {
+  margin-left: 0; 
+}
+.custom-select-width {
+  width: 90px; 
+  box-shadow: none;
 }
 </style>

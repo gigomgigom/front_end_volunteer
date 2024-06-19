@@ -1,9 +1,12 @@
 <template>
-     <div class="button-container">
-    <div class="btn btn-dark btn-small rounded-btn">#마을 공동체 활동</div>
-    <div class="btn btn-dark btn-small rounded-btn">#급식 지원하기</div>
-    <div class="btn btn-dark btn-small rounded-btn">#상담 봉사활동</div>
-    <div class="btn btn-dark btn-small rounded-btn">#학습 지도 봉사활동</div>
+   
+    <div class="button-container">
+
+      <div class="btn btn-dark btn-small rounded-btn">#마을 공동체 활동</div>
+      <div class="btn btn-dark btn-small rounded-btn">#급식 지원하기</div>
+      <div class="btn btn-dark btn-small rounded-btn">#상담 봉사활동</div>
+      <div class="btn btn-dark btn-small rounded-btn">#학습 지도 봉사활동</div>
+
   </div>
 </template>
 
@@ -12,11 +15,20 @@
 </script>
 
 <style scoped>
+
+#text1{
+  font-weight: bold;
+  color: black;
+}
+
+
+
 .button-container {
   display: flex;
   justify-content: center;
-  gap: 50px;
-  margin-top: 50px;
+  gap: 70px;
+  margin-top: 90px;
+  margin-bottom: 90px;
 
 
 }
@@ -28,7 +40,7 @@
   background-color: #fff;
   border-color: coral;
   padding: 12px 24px; 
-  font-size: 16px; 
+  font-size: 18px; 
   width: auto; 
   height: auto; 
   border-style: dashed;
