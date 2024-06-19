@@ -1,16 +1,17 @@
 <template>
-  <div class="card">
-    <div class="card-header">자원봉사 이야기</div>
+  <div>
+    <TextHeader  title="자원봉사 이야기"></TextHeader>
     <div class="card-body">
-      <RouterView/>
+      <BoardDetail/>
     </div>
   </div>
 </template>
 
 <script setup>
+import TextHeader from '@/components/Common/TextHeader.vue';
+import BoardDetail from '../../../components/BoardDetail.vue';
+
 
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

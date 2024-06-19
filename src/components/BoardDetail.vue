@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <!-- <div class="container"> -->
       <table class="post-table">
         <thead>
           <tr>
@@ -38,7 +38,7 @@
           </tr>
         </tfoot>
       </table>
-    </div>
+    <!-- </div> -->
   </template>
   
   <script>
@@ -46,7 +46,7 @@
     data() {
       return {
         post: {
-          title: '게시물 제목입니다~',
+          title: '게시물 제목입니다',
           author: '홍길동',
           date: '2024년 6월 18일',
           content: '게시물 내용이 여기에 들어갑니다'
@@ -58,7 +58,7 @@
   </script>
   
   <style scoped>
-  .container {
+  /* .container {
     max-width: 100%;
     margin: 20px auto;
     padding: 20px;
@@ -67,7 +67,7 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow-x: auto;
-  }
+  } */
   
   .post-table {
     width: 100%;
@@ -87,7 +87,7 @@
   .title-line {
     border-bottom: 2px solid #cfcfcf;
     text-align: center;
-    font-size: 1.1em;
+    font-size: 1.05em;
     font-weight: bold;
     color: #333333;
   }
@@ -115,7 +115,7 @@
   }
   
   .content-text {
-    font-size: 0.9em;
+    font-size: 1.0em;
     margin-left: 20px;
     font-weight: normal;
   }
