@@ -1,7 +1,6 @@
 <template>
+    <TextHeader class="mb-3" title="종합 보험" />
     <div class="body">
-        <h2 class="main-title"><b>{{ maintitle }}</b></h2>
-        <hr>
         <h5 class="subtitle">{{ subtitle }}</h5>
         <p></p>
         <section class="what-is-insurance">
@@ -60,15 +59,12 @@
 </template>
   
 <script setup>
-
-const maintitle = '자원봉사 종합보험';
+import TextHeader from "@/components/Common/TextHeader.vue";
 const subtitle = '자원봉사자 분들에게 제공되는 종합 보험 안내입니다.'
-
-
-
 </script>
   
 <style scoped>
+
 .subtitle {
     margin-bottom: 25px;
     font-weight: bold;
@@ -105,8 +101,7 @@ img:hover {
 }
 
 .body {
-    width: 845px;
-    padding: 60px 0 60px 40px;
+    width: 100%;
 }
 
 .ul-introduction {

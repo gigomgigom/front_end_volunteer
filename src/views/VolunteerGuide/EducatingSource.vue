@@ -1,7 +1,6 @@
 <template>
+  <TextHeader class="mb-3" title="교육 자료" />
    <div class="body">
-     <h2 class="maintitle"><b>{{maintitle}}</b></h2>
-     <hr>
      <h5 class="subtitle">{{subtitle}}</h5>
      <p></p>
      <div class="items">
@@ -25,7 +24,8 @@
  </template>
  
  <script setup>
-const maintitle='자원봉사 교육 자료'
+ import TextHeader from "@/components/Common/TextHeader.vue";
+
 const subtitle= '자원봉사의 의미, 방법 등 자원봉사활동에 도움이 되는 교육자료 모음입니다.'
  const items = [
    {
@@ -91,8 +91,7 @@ const subtitle= '자원봉사의 의미, 방법 등 자원봉사활동에 도움
   color:black;
 }
 .body{
-   width: 845px;
-    padding: 60px 0 60px 40px;
+   width: 100%;
  }
  .item-content {
    display: flex;

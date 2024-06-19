@@ -1,8 +1,6 @@
 <template>
-    <!-- 세림 파트 -->
+    <TextHeader class="mb-3" title="1365 자원봉사포털 소개" />
     <div>
-        <h3 class="mt-3">1365 자원봉사포털 소개</h3>
-    <hr/>
         <h4 class="ms-2 mb-3"><b> 🔶자원봉사란?</b></h4>
         <h6 class="ms-3">라틴어 voluntas에서 유래</h6>
         <h6 class="row ms-3">volo(의지)</h6>
@@ -60,6 +58,7 @@
 </template>
 
 <script setup>
+import TextHeader from "@/components/Common/TextHeader.vue";
 
 </script>
 

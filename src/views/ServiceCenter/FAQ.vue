@@ -1,8 +1,8 @@
 <template>
   <!-- 세림 -->
+  <TextHeader title="자주하는 질문"/>
   <div>
-    <h3 class="mt-4">자주하는 질문</h3>
-    <hr />
+    
 
     <!-- <div style="display: flex;">
             <h6 class="all">[전체 32건, 현재페이지 1/4]
@@ -239,6 +239,7 @@
 </template>
 
 <script setup>
+import TextHeader from '@/components/Common/TextHeader.vue';
 
 </script>
 
