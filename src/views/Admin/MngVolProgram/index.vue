@@ -1,16 +1,13 @@
 <template>
-  <div class="card">
-    <div class="card-header">봉사 프로그램 관리</div>
-    <div class="card-body">
-      <ViewVolProgramList/>
-    </div>
-  </div>
-</template>
-
-<script setup>
-import ViewVolProgramList from './ViewVolProgramList.vue';
-</script>
-
-<style scoped>
-
-</style>
+  <TextHeader title="봉사 프로그램 조회" />
+  <ViewVolProgramList/>
+ </template>
+ 
+ <script setup>
+ import ViewVolProgramList from './ViewVolProgramList.vue';
+ import TextHeader from '@/components/Common/TextHeader.vue';
+ </script>
+ 
+ <style scoped>
+ 
+ </style>

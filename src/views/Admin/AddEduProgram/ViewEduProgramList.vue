@@ -1,27 +1,26 @@
 <template>
   <div>
     <SearchEduPrgm />
-    <EduPrgmList class="mt-5" @buttonClick="showDialogA"/>
-    <EduPrgmFormTemplate id="dialogA"/>
-    
+    <EduPrgmList :isAddPage="true" class="mt-5" @buttonClick="showModal"/>
+    <EduPrgmFormTemplateSlot id="addEduProgramModal"/>
   </div>
 </template>
 
 <script setup>
 import SearchEduPrgm from '@/components/SearchEduPrgm.vue';
-import EduPrgmList from '@/components/EduPrgmList.vue'; 
-import EduPrgmFormTemplate from '@/components/EduPrgmFormTemplate.vue';
+import EduPrgmList from '@/components/EduPrgmList.vue';
+import EduPrgmFormTemplateSlot from './EduPrgmFormTemplateSlot.vue'
 import { onMounted } from "vue";
 import { Modal } from "bootstrap";
 
-let modalDialogA = null;
+let addEduProgramModal = null;
 
 onMounted(() => {
-    modalDialogA = new Modal(document.querySelector("#dialogA"));
+  addEduProgramModal = new Modal(document.querySelector("#addEduProgramModal"));
 });
 
-function showDialogA() {
-    modalDialogA.show();
+function showModal() {
+  addEduProgramModal.show();
 }
 
 </script>

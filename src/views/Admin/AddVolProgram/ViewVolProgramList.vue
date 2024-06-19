@@ -1,9 +1,10 @@
 <template>
   <div id="view-programlist-wrapper">
     <h5>🔶봉사조회</h5>
-    <SearchVolPgrm @showModal="showDialog"/>
+    <SearchVolPgrm/>
     <AddVolProgramModal id="addVolProgramModal"/>
-    <Applicant id="applicant"/>
+    <VolPrgmList class="mt-5" :isAddPage="true" @showModal="showDialog"/>
+
   </div>
 </template>
 
@@ -12,7 +13,7 @@ import { onMounted } from 'vue';
 import { Modal } from 'bootstrap';
 import SearchVolPgrm from '@/components/SearchVolPgrm.vue';
 import AddVolProgramModal from './AddVolProgramModal.vue';
-import Applicant from '@/components/Applicant.vue';
+import VolPrgmList from '@/components/VolPrgmList.vue'
 
 let addVolProgramModal = null;
 
