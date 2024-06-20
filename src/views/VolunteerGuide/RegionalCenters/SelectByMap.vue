@@ -64,7 +64,7 @@ function drawMap(target) {
                 }
             })
             .on("click", function (d) {
-                selectedRegionCode.value = d.properties.code;
+                selectedRegionCode.value = Number(d.properties.code);
             });
     }).catch(function (error) {
         console.error('Error loading or parsing JSON:', error);
