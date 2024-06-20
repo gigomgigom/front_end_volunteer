@@ -56,6 +56,7 @@ function drawMap(target) {
             .enter()
             .append('path')
             .attr('d', path)
+            //CSS 적용을 위한 클래스 속성 추가코드
             .attr('class', function (d) {
                 if(selectedRegionCode.value === Number(d.properties.code)) {
                     return 'on r' + d.properties.code;
@@ -63,6 +64,7 @@ function drawMap(target) {
                     return 'r' + d.properties.code;
                 }
             })
+            //JSON 데이터에서 선택한 지역 코드를 찾아 상태 데이터에 대입해준다. 
             .on("click", function (d) {
                 selectedRegionCode.value = Number(d.properties.code);
             });

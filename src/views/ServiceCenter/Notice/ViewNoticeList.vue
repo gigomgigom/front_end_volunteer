@@ -1,14 +1,14 @@
 <template>
-  <div class="card">
-    <div class="card-header">공지사항 목록 조회</div>
-    <div class="card-body">
-
-    </div>
-  </div>
+  <NormalBoard/> 
 </template>
 
 <script setup>
+import NormalBoard from '@/components/NormalBoard.vue';
+import router from '@/router';
 
+function goWriteForm() {
+  router.push('/Details/ServiceCenter/Notice/WriteNotice');
+}
 </script>
 
 <style scoped>

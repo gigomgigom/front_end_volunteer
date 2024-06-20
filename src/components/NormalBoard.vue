@@ -57,7 +57,6 @@
         </ul>
       </nav>
     </div>
-    <HighlightButton text="글쓰기" @buttonClick="emits('goWriteForm')"/>
   </div>
 
 
@@ -117,8 +116,6 @@ function changePage(page) {
     currentPage.value = page;
   }
 }
-
-const emits = defineEmits('goWriteForm');
 
 </script>
 

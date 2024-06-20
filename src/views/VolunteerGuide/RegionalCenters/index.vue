@@ -17,11 +17,15 @@ import SelectByMap from './SelectByMap.vue';
 import SelectByButton from './SelectByButton.vue';
 import RegionList from './RegionList.vue';
 
+//선택한 지역코드 초기화(서울특별시)
 const selectedRegionCode = ref(6110000);
 
+//선택한 지역코드 하위 컴포넌트들에게 제공
 provide("data", {selectedRegionCode});
 
+//만약 선택한 지역코드가 변경이 되었을 경우
 watch(() => selectedRegionCode.value, (newRegionCode, oldRegionCode) => {
+  //CSS 선택자를 변경시킴
   let oldRegions = document.querySelectorAll('.r' + oldRegionCode);
   let newRegions = document.querySelectorAll('.r' + newRegionCode);
   for(let oldRegion of oldRegions) {
@@ -30,6 +34,7 @@ watch(() => selectedRegionCode.value, (newRegionCode, oldRegionCode) => {
   for(let newRegion of newRegions) {
     newRegion.classList.add('on');
   }
+  //상단 기준에서 800의 간격만큼 스크롤을 내려준다.
   window.scrollTo({
     top: 800,
     behavior: 'smooth'

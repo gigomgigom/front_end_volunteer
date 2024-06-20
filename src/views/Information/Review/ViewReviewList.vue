@@ -1,11 +1,10 @@
 <template>
-  <NormalBoard @goWriteForm="moveReviewForm"/>
+  <NormalBoard/>
 </template>
 
 <script setup>
 import { useRouter } from 'vue-router';
 import NormalBoard from '@/components/NormalBoard.vue';
-import { provide } from 'vue';
 
 const router = useRouter();
 

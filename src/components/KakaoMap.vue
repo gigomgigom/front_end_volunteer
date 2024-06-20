@@ -1,11 +1,6 @@
 <template>
-    <div class="card">
-        <div class="card-header">카카오맵 api</div>
-        <div class="card-body">
-            <div ref="mapContainer" style="width: 100%; height: 400px">
+    <div ref="mapContainer" style="width: 100%; height: 400px">
 
-            </div>
-        </div>
     </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="my-3">
+    <div>
         <h2>{{title.title}}</h2>
     </div>
 </template>
@@ -17,6 +17,11 @@ div h2{
     color: #333;
     letter-spacing: -0.060em;
     margin: 0;
+}
+
+div {
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
     
 </style>

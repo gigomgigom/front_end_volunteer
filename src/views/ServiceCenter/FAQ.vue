@@ -1,37 +1,26 @@
 <template>
-  <!-- 세림 -->
-  <TextHeader title="자주하는 질문"/>
+  <TextHeader title="자주하는 질문" />
   <div>
-    
-
-    <!-- <div style="display: flex;">
-            <h6 class="all">[전체 32건, 현재페이지 1/4]
-              <h2 class="accordion-header" id="headingFilter" >
-                <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
-                  제목
-                </button>
-              </h2>
-            </h6>
-          </div> -->
     <div class="accordion" id="filterAccordion">
       <div class="accordion-item" style="border: none;">
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <h6 class="all">
-    [전체 <span class="highlight">10</span>건,
-    현재페이지 <span class="highlight">2</span>/2]
-  </h6>
-  <div style="display: flex; align-items: center;">
-    <select class="form-select form-select-sm custom-select-width" aria-label="Small select example">
-      <option value="1">제목</option>
-      <option value="2">작성자</option>
-      <option value="3">내용</option>
-    </select>
-    <input class="form-control form-control-sm ms-2 no-margin1" type="text" aria-label=".form-control-sm example">
-    <button class="btn btn-sm btn-primary ms-2 no-margin2" id="btn-sm1">검색</button>
-  </div>
-</div>
-   </div>
-   </div>
+            [전체 <span class="highlight">10</span>건,
+            현재페이지 <span class="highlight">2</span>/2]
+          </h6>
+          <div style="display: flex; align-items: center;">
+            <select class="form-select form-select-sm custom-select-width" aria-label="Small select example">
+              <option value="1">제목</option>
+              <option value="2">작성자</option>
+              <option value="3">내용</option>
+            </select>
+            <input class="form-control form-control-sm ms-2 no-margin1" type="text"
+              aria-label=".form-control-sm example">
+            <button class="btn btn-sm btn-primary ms-2 no-margin2" id="btn-sm1">검색</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 
@@ -106,7 +95,6 @@
           </div>
         </div>
       </div>
-
     </div>
 
     <div class="accordion-item">
@@ -298,14 +286,15 @@ input.form-control.form-control-sm {
 
 .no-margin1 {
   margin-left: 0;
-  box-shadow: none; 
+  box-shadow: none;
 }
 
 .no-margin2 {
-  margin-left: 0; 
+  margin-left: 0;
 }
+
 .custom-select-width {
-  width: 90px; 
+  width: 90px;
   box-shadow: none;
 }
 </style>

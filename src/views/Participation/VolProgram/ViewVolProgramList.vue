@@ -1,16 +1,28 @@
 <template>
-  <div class="card">
-    <div class="card-header">봉사 프로그램 조회</div>
-    <div class="card-body">
-        <RouterLink to="/Details/Participation/VolProgram/ViewVolProgramDetail">2페이지로 전환</RouterLink>
-    </div>
+  <div id="view-programlist-wrapper">
+    <h5>🔶봉사조회</h5>
+    <SearchVolPgrm/>
+    <VolPrgmListSlot/>
   </div>
 </template>
 
 <script setup>
-
+import SearchVolPgrm from '@/components/SearchVolPgrm.vue';
+import VolPrgmListSlot from './VolPrgmListSlot.vue';
 </script>
 
 <style scoped>
+*{
+  margin: 0;
+  padding: 0;
+}
 
+h5 {
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+#view-programlist-wrapper {
+  padding-top: 30px;
+}
 </style>
