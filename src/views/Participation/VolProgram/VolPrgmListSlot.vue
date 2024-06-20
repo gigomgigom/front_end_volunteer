@@ -3,8 +3,8 @@
     <template v-slot:body>
       <div class="row_container mt-3 mb-3" v-for="(vol, index) in volvol" :key="index">
         <div class="row">
-          <div class="col-sm-12" style="padding: 0;">
-            <span style="font-weight: bold; font-size: 18px;">
+          <div class="col-sm-12" style="padding: 0;" >
+            <span style="font-weight: bold; font-size: 18px; cursor: pointer;" @click="router.push('/Details/Participation/VolProgram/ViewVolProgramDetail')">
               제목 데이터
             </span>
           </div>
@@ -64,6 +64,7 @@
 
 <script setup>
 import VolPrgmList from '@/components/VolPrgmList.vue';
+import router from '@/router';
 import { ref } from 'vue';
 const volvol = ref([
     { no: 1, title: "서구치매안심센터 치매가족프로그램 활동 지원(치매안심센터 건담분소)", registerCenter: "asdf 수원시", recruitCenter: "인천서구육아종합지원센터", recruitDate: "2012.02.10 - 2012.02.11", volDate: "2012.03.12 - 2012.03.16", volTime: "13:00 - 17:00", classification: "생활편의지원 > 활동보조" },
