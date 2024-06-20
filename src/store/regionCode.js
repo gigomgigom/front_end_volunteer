@@ -7,1022 +7,1756 @@ export default {
             {
                 cityName: '서울특별시',
                 cityCode: 6110000,
+                tel: '1670-1365',
+                addr: '서울특별시 마포구 마포대로 163 서울신용보증재단 3층',
+                url: 'https://volunteer.seoul.go.kr/main.do',
                 county: [
                     {
                         countyName: '종로구',
-                        countyCode: 3000000
+                        countyCode: 3000000,
+                        tel: '02-2148-1462',
+                        addr: '서울특별시 종로구 종로1길 36 8층 자치행정과 자원봉사팀',
+                        url: 'http://jongno.seoulvc.kr/front',
                     },
                     {
                         countyName: '중구',
-                        countyCode: 3010000
+                        countyCode: 3010000,
+                        tel: '02-2274-1365',
+                        addr: '서울특별시 중구 퇴계로8길 65-12(회현동1가) 중구자원봉사센터',
+                        url: 'http://junggu.seoulvc.kr/',
                     },
                     {
                         countyName: '용산구',
-                        countyCode: 3020000
+                        countyCode: 3020000,
+                        tel: '02-718-1365',
+                        addr: '서울특별시 용산구 청파로 49길 34 3층(청파동2가) 3층 용산구자원봉사센터',
+                        url: 'http://yongsan.seoulvc.kr/',
                     },
                     {
                         countyName: '성동구',
-                        countyCode: 3030000
+                        countyCode: 3030000,
+                        tel: '02-499-5070',
+                        addr: '서울특별시 성동구 왕십리로11길 19 4층 성동구자원봉사센터',
+                        url: 'http://sdvc.kr/',
                     },
                     {
                         countyName: '광진구',
-                        countyCode: 3040000
+                        countyCode: 3040000,
+                        tel: '02-450-1664',
+                        addr: '서울특별시 광진구 자양로 117(자양동, 광진구청) 행정지원동 1층',
+                        url: 'http://volunteer.gwangjin.go.kr/',
                     },
                     {
                         countyName: '동대문구',
-                        countyCode: 3050000
+                        countyCode: 3050000,
+                        tel: '02-2171-6210',
+                        addr: '서울특별시 동대문구 사가정로 30 답십리1동 주민센터4층',
+                        url: 'http://vol.ddm.go.kr/',
                     },
                     {
                         countyName: '중랑구',
-                        countyCode: 3060000
+                        countyCode: 3060000,
+                        tel: '02-2094-1365',
+                        addr: '서울특별시 중랑구 봉화산로 190 중랑구청 제2청사 4층',
+                        url: 'http://jnvc.seoulvc.kr/',
                     },
                     {
                         countyName: '성북구',
-                        countyCode: 3070000
+                        countyCode: 3070000,
+                        tel: '02-2241-2360',
+                        addr: '서울특별시 성북구 돌곶이로40길 46 716동 상가2층 (장위동, 꿈의숲아이파크아파트)',
+                        url: 'http://sbg.seoulvc.kr/',
                     },
                     {
                         countyName: '강북구',
-                        countyCode: 3080000
+                        countyCode: 3080000,
+                        tel: '02-901-6647',
+                        addr: '서울특별시 강북구 오현로 199-9 (번동619-33)',
+                        url: 'http://gangbuk.seoulvc.kr/',
                     },
                     {
                         countyName: '도봉구',
-                        countyCode: 3090000
+                        countyCode: 3090000,
+                        tel: '2091-2232-37',
+                        addr: '서울특별시 도봉구 마들로 656 도봉구청 7층',
+                        url: 'http://vol.dobong.go.kr/',
                     },
                     {
                         countyName: '노원구',
-                        countyCode: 3100000
-                    },
-                    {
-                        countyName: '노원구',
-                        countyCode: 3100000
+                        countyCode: 3100000,
+                        tel: '02-974-3200',
+                        addr: '서울특별시 노원구 동일로 1229, 3층 노원구자원봉사센터',
+                        url: 'http://nowon1365.seoulvc.kr/',
                     },
                     {
                         countyName: '은평구',
-                        countyCode: 3110000
+                        countyCode: 3110000,
+                        tel: '02-351-6344-8',
+                        addr: '서울특별시 은평구 은평로 180 은평구청 별관 2층',
+                        url: 'http://ep.seoulvc.kr/',
                     },
                     {
                         countyName: '서대문구',
-                        countyCode: 3120000
+                        countyCode: 3120000,
+                        tel: '02-330-1365',
+                        addr: '서울특별시 서대문구 연희로 248(연희동, 서대문구청) 5층 자치행정과',
+                        url: 'http://sdm.seoulvc.kr/',
                     },
                     {
                         countyName: '마포구',
-                        countyCode: 3130000
+                        countyCode: 3130000,
+                        tel: '02-3153-8346',
+                        addr: '서울특별시 마포구 월드컵로 212 1층(성산동)',
+                        url: 'http://mapo.seoulvc.kr/',
                     },
                     {
                         countyName: '양천구',
-                        countyCode: 3140000
+                        countyCode: 3140000,
+                        tel: '02-2643-1365',
+                        addr: '서울특별시 양천구 중앙로 250 2층 양천구자원봉사센터',
+                        url: 'http://www.yangcheonvc.go.kr/',
                     },
                     {
                         countyName: '강서구',
-                        countyCode: 3150000
+                        countyCode: 3150000,
+                        tel: '02-2600-5331',
+                        addr: '서울특별시 강서구 공항대로 501 강서구자원봉사센터',
+                        url: 'http://gangseo.seoulvc.kr/',
                     },
                     {
                         countyName: '구로구',
-                        countyCode: 3160000
+                        countyCode: 3160000,
+                        tel: '02-860-2532',
+                        addr: '서울특별시 구로구 가마산로 245 신관 3층 구로구자원봉사센터',
+                        url: 'http://gurovol.guro.go.kr/',
                     },
                     {
                         countyName: '금천구',
-                        countyCode: 3170000
+                        countyCode: 3170000,
+                        tel: '02-2627-1066',
+                        addr: '서울특별시 금천구 시흥대로73길 70 지하1층 자원봉사센터',
+                        url: 'http://gcvc.seoulvc.kr/',
                     },
                     {
                         countyName: '영등포구',
-                        countyCode: 3180000
+                        countyCode: 3180000,
+                        tel: '02-2670-4152',
+                        addr: '서울특별시 영등포구 국회대로 596 (영등포아트홀 1층)',
+                        url: 'http://ydp1365.seoulvc.kr/front',
                     },
                     {
                         countyName: '동작구',
-                        countyCode: 3190000
+                        countyCode: 3190000,
+                        tel: '02-824-0019',
+                        addr: '서울특별시 동작구 만양로3길 14 2층',
+                        url: 'http://dongjak.seoulvc.kr/',
                     },
                     {
                         countyName: '관악구',
-                        countyCode: 3200000
+                        countyCode: 3200000,
+                        tel: '02-889-6140',
+                        addr: '서울특별시 관악구 관악로 145 관악구청 지하 1층',
+                        url: 'http://gwanak.seoulvc.kr/',
                     },
                     {
                         countyName: '서초구',
-                        countyCode: 3210000
+                        countyCode: 3210000,
+                        tel: '02-573-9252',
+                        addr: '서울특별시 서초구 강남대로 201 2층 (양재동,서초문화예술회관)',
+                        url: 'http://www.seochov.or.kr/',
                     },
                     {
                         countyName: '강남구',
-                        countyCode: 3220000
+                        countyCode: 3220000,
+                        tel: '02-3445-5152',
+                        addr: '서울특별시 강남구 봉은사로 320 강남구함께나눔센터 9층',
+                        url: 'http://www.gangnamvc.or.kr/',
                     },
                     {
                         countyName: '송파구',
-                        countyCode: 3230000
+                        countyCode: 3230000,
+                        tel: '02-2202-1365',
+                        addr: '서울특별시 송파구 백제고분로 242 송파구민회관 2층 송파구자원봉사센터',
+                        url: 'http://songpavc.seoulvc.kr/front',
                     },
                     {
                         countyName: '강동구',
-                        countyCode: 3240000
+                        countyCode: 3240000,
+                        tel: '02-3425-5680',
+                        addr: '서울특별시 강동구 천호대로 1089 헤르셔타워 7층 강동구자원봉사센터',
+                        url: 'http://gangdong.seoulvc.kr/',
                     },
                 ]
             },
             {
                 cityName: '부산광역시',
                 cityCode: 6260000,
+                tel: '051-864-1365',
+                addr: '부산광역시 부산진구 중앙대로 955 10층',
+                url: 'https://www.busan1365.kr/',
                 county: [
                     {
                         countyName: '중구',
-                        countyCode: 3250000
+                        countyCode: 3250000,
+                        tel: '051-441-1365',
+                        addr: '부산광역시 중구 중구로 71 가톨릭센터 7층',
+                        url: 'http://bsjungguvc.or.kr/',
                     },
                     {
                         countyName: '서구',
-                        countyCode: 3260000
+                        countyCode: 3260000,
+                        tel: '051-242-1365',
+                        addr: '부산광역시 서구 남부민로 38 (남부민동)',
+                        url: 'http://bsseoguvc.or.kr/',
                     },
                     {
                         countyName: '동구',
-                        countyCode: 3270000
+                        countyCode: 3270000,
+                        tel: '051-465-1365',
+                        addr: '부산광역시 동구 정공단로 20-1 1층',
+                        url: 'http://bsdongguvc.or.kr/',
                     },
                     {
                         countyName: '영도구',
-                        countyCode: 3280000
+                        countyCode: 3280000,
+                        tel: '051-412-1365',
+                        addr: '부산광역시 영도구 본산남길 5(동삼동, 영도구자원봉사센터) 2층',
+                        url: 'http://www.yeongdo1365.kr/',
                     },
                     {
                         countyName: '부산진구',
-                        countyCode: 3290000
+                        countyCode: 3290000,
+                        tel: '051-863-2493',
+                        addr: '부산광역시 부산진구 전포대로255번길 15(전포동) 부산진구자원봉사센터(2층, 3층)',
+                        url: 'http://vt.busanjin.go.kr/',
                     },
                     {
                         countyName: '동래구',
-                        countyCode: 3300000
+                        countyCode: 3300000,
+                        tel: '051-526-1430',
+                        addr: '부산광역시 동래구 명륜로112번길 64(수안동) NH농협은행 동래지점 2층 동래구자원봉사센터',
+                        url: 'http://vt.dongnae.go.kr/',
                     },
                     {
                         countyName: '남구',
-                        countyCode: 3310000
+                        countyCode: 3310000,
+                        tel: '051-636-1365',
+                        addr: '부산광역시 남구 수영로39번길 35 3층 남구자원봉사센터',
+                        url: 'http://부산남구자원봉사센터.com/',
                     },
                     {
                         countyName: '북구',
-                        countyCode: 3320000
+                        countyCode: 3320000,
+                        tel: '051-309-4126',
+                        addr: '부산광역시 북구 낙동대로1570번길 33 북구자원봉사센터',
+                        url: 'http://부산북구자원봉사센터.com/',
                     },
                     {
                         countyName: '해운대구',
-                        countyCode: 3330000
+                        countyCode: 3330000,
+                        tel: '051-782-1365',
+                        addr: '부산광역시 해운대구 센텀중앙로 170, 4층(재송동, 해운대구문화복합센터) 1층 해운대구자원봉사센터',
+                        url: 'http://jabongi.kr/',
                     },
                     {
                         countyName: '사하구',
-                        countyCode: 3340000
+                        countyCode: 3340000,
+                        tel: '051-294-1365',
+                        addr: '부산광역시 사하구 하신중앙로 185 (신평동, 사하구제2청사), 3층',
+                        url: 'http://sahav.kr/',
                     },
                     {
                         countyName: '금정구',
-                        countyCode: 3350000
+                        countyCode: 3350000,
+                        tel: '051-512-2461',
+                        addr: '부산광역시 금정구 중앙대로 1992 4층 금정구자원봉사센터',
+                        url: 'http://gj1365.or.kr/',
                     },
                     {
                         countyName: '강서구',
-                        countyCode: 3360000
+                        countyCode: 3360000,
+                        tel: '051-971-4173',
+                        addr: '부산광역시 강서구 대저로63번길 31 2층 자원봉사센터',
+                        url: 'http://www.gangseo1365.kr/',
                     },
                     {
                         countyName: '연제구',
-                        countyCode: 3370000
+                        countyCode: 3370000,
+                        tel: '051-862-0529',
+                        addr: '부산광역시 연제구 봉수로 17 3층(연산동,연산종합사회복지관)',
+                        url: 'http://vt.yeonje.or.kr/',
                     },
                     {
                         countyName: '수영구',
-                        countyCode: 3380000
+                        countyCode: 3380000,
+                        tel: '051-752-8766',
+                        addr: '부산광역시 수영구 망미번영로24번길 39 먼물샘 공유센터 2층',
+                        url: 'http://sy1365.or.kr/',
                     },
                     {
                         countyName: '사상구',
-                        countyCode: 3390000
+                        countyCode: 3390000,
+                        tel: '051-999-6991',
+                        addr: '부산광역시 사상구 백양대로700번길 140 신라대학교 화랑관 B105호',
+                        url: 'http://sasang1365.or.kr/',
                     },
                     {
                         countyName: '기장군',
-                        countyCode: 3400000
+                        countyCode: 3400000,
+                        tel: '051-724-1365',
+                        addr: '부산광역시 기장군 차성동로 87번길 19 중앙빌딩 3층 0',
+                        url: 'http://www.gijang1365.kr/',
                     },
                 ]
             },
             {
                 cityName: '대구광역시',
                 cityCode: 6270000,
+                tel: '053-263-1365',
+                addr: '대구광역시 달서구 성당로 291 3층',
+                url: 'https://dgvolunteer.co.kr/',
                 county: [
                     {
                         countyName: '중구',
-                        countyCode: 3410000
+                        countyCode: 3410000,
+                        tel: '053-254-6367',
+                        addr: '대구광역시 중구 국채보상로 732 (동인동4가) 4층',
+                        url: 'http://djvc1365.or.kr/',
                     },
                     {
                         countyName: '동구',
-                        countyCode: 3420000
+                        countyCode: 3420000,
+                        tel: '053-744-1365',
+                        addr: '대구광역시 동구 효신로 34 (효목동) 팔공정보문화센터 1층',
+                        url: 'http://dgdgvongsa.kr/',
                     },
                     {
                         countyName: '서구',
-                        countyCode: 3430000
+                        countyCode: 3430000,
+                        tel: '053-563-1365',
+                        addr: '대구광역시 서구 국채보상로399 A동',
+                        url: 'http://www.seoguvt.or.kr/',
                     },
                     {
                         countyName: '남구',
-                        countyCode: 3440000
+                        countyCode: 3440000,
+                        tel: '053-473-1199',
+                        addr: '대구광역시 남구 중앙대로38길 13-2 대구남구자원봉사센터',
+                        url: 'http://nanum.nam.daegu.kr/',
                     },
                     {
                         countyName: '북구',
-                        countyCode: 3450000
+                        countyCode: 3450000,
+                        tel: '053-665-2288',
+                        addr: '대구광역시 북구 구암로 388-17 2층',
+                        url: 'http://bukguvt.or.kr/',
                     },
                     {
                         countyName: '수성구',
-                        countyCode: 3460000
+                        countyCode: 3460000,
+                        tel: '053-794-0707',
+                        addr: '대구광역시 수성구 청수로 64 2층 수성구자원봉사센터',
+                        url: 'http://suvc1365.kr/',
                     },
                     {
                         countyName: '달서구',
-                        countyCode: 3470000
+                        countyCode: 3470000,
+                        tel: '053-636-1365',
+                        addr: '대구광역시 달서구 진천로9길 33 (4층)',
+                        url: 'http://dalseovolunteer.com/',
                     },
                     {
                         countyName: '달성군',
-                        countyCode: 3480000
+                        countyCode: 3480000,
+                        tel: '053-631-4092',
+                        addr: '대구광역시 달성군 화원읍 성천로 5(달성군여성문화복지센터) 별관 2층, 자원봉사센터',
+                        url: 'http://www.dalseong1365.or.kr/',
                     },
                     {
                         countyName: '군위군',
-                        countyCode: 5140000
+                        countyCode: 5140000,
+                        tel: '054-383-1366',
+                        addr: '대구광역시 군위군 군위읍 동서2길 35(군위생활문화센타) 3층(사)군위군자원봉사센터',
+                        url: 'http://www.gunwi1365.or.kr/',
                     },
                 ]
             },
             {
                 cityName: '인천광역시',
                 cityCode: 6280000,
+                tel: '032-863-1365',
+                addr: '인천광역시 남동구 용천로 208 인천시사회복지회관 410호',
+                url: 'http://www.icvt.or.kr/',
                 county: [
                     {
                         countyName: '중구',
-                        countyCode: 3490000
+                        countyCode: 3490000,
+                        tel: '032-777-1365',
+                        addr: '인천광역시 중구 신포로46번길 31 중구자원봉사센터 6층',
+                        url: 'http://www.junggu1365.or.kr/',
                     },
                     {
                         countyName: '동구',
-                        countyCode: 3500000
+                        countyCode: 3500000,
+                        tel: '032-772-1365',
+                        addr: '인천광역시 동구 염전로 40번길 70 주민행복센터 2층 자원봉사센터',
+                        url: 'http://icdonggu1365.or.kr/',
                     },
                     {
                         countyName: '미추홀구',
-                        countyCode: 3510000
+                        countyCode: 3510000,
+                        tel: '032-873-1365',
+                        addr: '인천광역시 미추홀구 소성로 189 2층 자원봉사센터',
+                        url: 'http://michu1365.kr/',
                     },
                     {
                         countyName: '연수구',
-                        countyCode: 3520000
+                        countyCode: 3520000,
+                        tel: '032-833-1365',
+                        addr: '인천광역시 연수구 한나루로 143 연수구자원봉사센터',
+                        url: 'http://yeonsugu1365.kr/',
                     },
                     {
                         countyName: '남동구',
-                        countyCode: 3530000
+                        countyCode: 3530000,
+                        tel: '032-472-1365',
+                        addr: '인천광역시 남동구 소래로 645 남동구평생학습관 3층',
+                        url: 'http://www.nd1365.kr/',
                     },
                     {
                         countyName: '부평구',
-                        countyCode: 3540000
+                        countyCode: 3540000,
+                        tel: '032-509-7518',
+                        addr: '인천광역시 부평구 장제로 부평어울림센터 3층 3층 자원봉사센터',
+                        url: 'http://portal.icbp.go.kr/volbp/',
                     },
                     {
                         countyName: '계양구',
-                        countyCode: 3550000
+                        countyCode: 3550000,
+                        tel: '032-430-7725',
+                        addr: '인천광역시 계양구 계산새로88 계양구청 2층 자원봉사센터 자원봉사센터',
+                        url: 'http://www.gy1365.kr/',
                     },
                     {
                         countyName: '서구',
-                        countyCode: 3560000
+                        countyCode: 3560000,
+                        tel: '032-568-1365',
+                        addr: '인천광역시 서구 도요지로202번길 6 (검암동)',
+                        url: 'http://www.sg1365.kr/',
                     },
                     {
                         countyName: '강화군',
-                        countyCode: 3570000
+                        countyCode: 3570000,
+                        tel: '032-934-8441',
+                        addr: '인천광역시 강화군 강화읍 강화대로 430 3층 강화군자원봉사센터',
+                        url: 'http://www.gh1365.kr/',
                     },
                     {
                         countyName: '옹진군',
-                        countyCode: 3580000
+                        countyCode: 3580000,
+                        tel: '032-899-2315',
+                        addr: '인천광역시 미추홀구 매소홀로 120 옹진군청',
+                        url: 'http://www.vtongjin.or.kr/',
                     },
                 ]
             },
             {
                 cityName: '광주광역시',
                 cityCode: 6290000,
+                tel: '062-613-5587',
+                addr: '광주광역시 서구 상무대로 760 광주광역시도시철도공사1층 광주광역시자원봉사센터',
+                url: 'https://www.vcgj.net/',
                 county: [
                     {
                         countyName: '동구',
-                        countyCode: 3590000
+                        countyCode: 3590000,
+                        tel: '062-228-1365',
+                        addr: '광주광역시 동구 남문로 600-3 1층 동구자원봉사센터',
+                        url: 'http://dgvc1365.or.kr/',
                     },
                     {
                         countyName: '서구',
-                        countyCode: 3600000
+                        countyCode: 3600000,
+                        tel: '062-385-4311',
+                        addr: '광주광역시 서구 경열로45번길 25 지하 1층',
+                        url: 'http://sgvc1365.kr/',
                     },
                     {
                         countyName: '남구',
-                        countyCode: 3610000
+                        countyCode: 3610000,
+                        tel: '062-369-1365',
+                        addr: '광주광역시 남구 독립로 2 4층(백운동 남구자원봉사센터)',
+                        url: 'http://namgu1365.kr/',
                     },
                     {
                         countyName: '북구',
-                        countyCode: 3620000
+                        countyCode: 3620000,
+                        tel: '062-269-1365',
+                        addr: '광주광역시 북구 대천로 86 북구청소년수련관별관 1층',
+                        url: 'http://www.gjbukgu1365.kr/',
                     },
                     {
                         countyName: '광산구',
-                        countyCode: 3630000
+                        countyCode: 3630000,
+                        tel: '062-952-1365',
+                        addr: '광주광역시 광산구 하남마항로48번길 7 (흑석동, 하남3지구 주민복합시설(보건소)) 2층',
+                        url: 'http://www.gsvc.co.kr/',
                     }
                 ]
             },
             {
                 cityName: '대전광역시',
                 cityCode: 6300000,
+                tel: '042-221-1365',
+                addr: '대전광역시 중구 중앙로 119 7층(선화동, 대전테크노파크 디스테이션)',
+                url: 'http://www.djv1365.or.kr/',
                 county: [
                     {
                         countyName: '동구',
-                        countyCode: 3640000
+                        countyCode: 3640000,
+                        tel: '042-274-4418',
+                        addr: '대전광역시 동구 동구청로 147 11층 자원봉사센터',
+                        url: 'http://1365.go.kr/',
                     },
                     {
                         countyName: '중구',
-                        countyCode: 3650000
+                        countyCode: 3650000,
+                        tel: '042-252-5717',
+                        addr: '대전광역시 중구 충무로 65(대사동) 2층 (사)대전광역시중구자원봉사센터',
+                        url: 'http://djvc.or.kr/',
                     },
                     {
                         countyName: '서구',
-                        countyCode: 3660000
+                        countyCode: 3660000,
+                        tel: '042-489-7860',
+                        addr: '대전광역시 서구 문정로 30(탄방동) 7층',
+                        url: 'http://dsvc1365.or.kr/',
                     },
                     {
                         countyName: '유성구',
-                        countyCode: 3670000
+                        countyCode: 3670000,
+                        tel: '042-822-1561',
+                        addr: '대전광역시 유성구 유성대로730번길 51 1층',
+                        url: 'http://www.ysvc.or.kr/',
                     },
                     {
                         countyName: '대덕구',
-                        countyCode: 3680000
+                        countyCode: 3680000,
+                        tel: '042-636-0642',
+                        addr: '대전광역시 대덕구 대전로1033번길 10 , 행정지원센터 도란도란 1층(오정동)',
+                        url: 'http://ddvc.or.kr/',
                     },
                 ]
             },
             {
                 cityName: '울산광역시',
                 cityCode: 6310000,
+                tel: '052-286-1472',
+                addr: '울산광역시 중구 염포로 85 울산광역시자원봉사센터',
+                url: 'https://www.ulsan1365.or.kr/',
                 county: [
                     {
                         countyName: '중구',
-                        countyCode: 3690000
+                        countyCode: 3690000,
+                        tel: '052-211-1365',
+                        addr: '울산광역시 중구 중앙길 199 ',
+                        url: 'http://www.sujg1365.or.kr/',
                     },
                     {
                         countyName: '남구',
-                        countyCode: 3700000
+                        countyCode: 3700000,
+                        tel: '052-267-0676',
+                        addr: '울산광역시 남구 산업로325번길 34 남구자원봉사센터',
+                        url: 'http://www.울산남구자원봉사센터.com/',
                     },
                     {
                         countyName: '동구',
-                        countyCode: 3710000
+                        countyCode: 3710000,
+                        tel: '052-236-1365',
+                        addr: '울산광역시 동구 문현5길 27 동구보훈복지회관 1층',
+                        url: 'http://www.울산동구자원봉사센터.com/',
                     },
                     {
                         countyName: '북구',
-                        countyCode: 3720000
+                        countyCode: 3720000,
+                        tel: '052-282-1365',
+                        addr: '울산광역시 북구 산업로 1016(연암동) 친환경급식지원센터 1층 북구자원봉사센터',
+                        url: 'http://usbg1365.or.kr/',
                     },
                     {
                         countyName: '울주군',
-                        countyCode: 3730000
+                        countyCode: 3730000,
+                        tel: '052-249-1365',
+                        addr: '울산광역시 울주군 청량읍 군청로 1(울주군청) 9층',
+                        url: 'http://www.울주군자원봉사센터.com/',
                     },
                 ]
             },
             {
                 cityName: '세종특별자치시',
                 cityCode: 5690000,
+                tel: '044-864-1365',
+                addr: '세종특별자치시 조치원읍 군청로 87-16 (2층) 세종특별자치시자원봉사센터',
+                url: 'http://sjvc1365.or.kr/',
                 county: [
                     {
                         countyName: '세종시',
-                        countyCode: 5690001
+                        countyCode: 5690001,
+                        tel: '044-865-1365',
+                        addr: '세종특별자치시 도움1로 116 종촌종합복지센터 2층',
+                        url: 'http://sjvc1365.or.kr/',
                     }
                 ]
             },
             {
                 cityName: '경기도',
                 cityCode: 6410000,
+                tel: '031-256-1365',
+                addr: '경기도 수원시 팔달구 인계로 178 7층',
+                url: 'https://www.ggvc.or.kr/',
                 county: [
                     {
                         countyName: '수원시',
-                        countyCode: 3740000
+                        countyCode: 3740000,
+                        tel: '031-253-1365',
+                        addr: '경기도 수원시 장안구 영화로71번길 2 수원시자원봉사센터',
+                        url: 'http://www.suwonvol.com/',
                     },
                     {
                         countyName: '성남시',
-                        countyCode: 3780000
+                        countyCode: 3780000,
+                        tel: '031-606-1365',
+                        addr: '경기도 성남시 중원구 성남대로 997 (여수동, 성남시청) 서관 2층',
+                        url: 'http://volunteer.seongnam.go.kr/',
                     },
                     {
                         countyName: '고양시',
-                        countyCode: 3940000
+                        countyCode: 3940000,
+                        tel: '031-906-1365',
+                        addr: '경기도 고양시 일산서구 중앙로 1601 고양종합운동장 내',
+                        url: 'http://www.gy1365.or.kr/',
                     },
                     {
                         countyName: '용인시',
-                        countyCode: 4050000
+                        countyCode: 4050000,
+                        tel: '1544-7115',
+                        addr: '경기도 용인시 처인구 중부대로 1199 용인시청 지하1층 용인시자원봉사센터',
+                        url: 'http://www.yongin1365.or.kr/',
                     },
                     {
                         countyName: '부천시',
-                        countyCode: 3860000
+                        countyCode: 3860000,
+                        tel: '032-625-6891',
+                        addr: '경기도 부천시 원미구 중동로262번길 102 (중동, 미관광장8호지하주차장) 지하1층 공영주차장',
+                        url: 'http://1365.bucheon.go.kr/',
                     },
                     {
                         countyName: '안산시',
-                        countyCode: 3930000
+                        countyCode: 3930000,
+                        tel: '031-411-1365',
+                        addr: '경기도 안산시 단원구 화랑로 260 와스타디움 1층 안산시자원봉사센터',
+                        url: 'http://www.ansan1365.or.kr/',
                     },
                     {
                         countyName: '안양시',
-                        countyCode: 3830000
+                        countyCode: 3830000,
+                        tel: '031-8045-2487',
+                        addr: '경기도 안양시 동안구 시민대로 235 별관, 종합민원실 3층',
+                        url: 'http://www.anyang1365.or.kr/',
                     },
                     {
                         countyName: '남양주시',
-                        countyCode: 3990000
+                        countyCode: 3990000,
+                        tel: '031-595-1365',
+                        addr: '경기도 남양주시 경춘로 883-36 2층',
+                        url: 'http://www.nyjvc.or.kr/',
                     },
                     {
                         countyName: '화성시',
-                        countyCode: 5530000
+                        countyCode: 5530000,
+                        tel: '031-8059-5680',
+                        addr: '경기도 화성시 향남읍 행정중앙1로 30 2층 사무실',
+                        url: 'http://www.hsvolunteer.or.kr/',
                     },
                     {
                         countyName: '평택시',
-                        countyCode: 3910000
+                        countyCode: 3910000,
+                        tel: '031-8024-2674',
+                        addr: '경기도 평택시 중앙로 264 영중빌딩5층',
+                        url: 'http://www.pyeongtaek.go.kr/pt1365',
                     },
                     {
                         countyName: '의정부시',
-                        countyCode: 3820000
+                        countyCode: 3820000,
+                        tel: '031-850-5745',
+                        addr: '경기도 의정부시 태평로73번길 20 (의정부동, 의정부제일시장) 라동 2층',
+                        url: 'http://www.uibong4.net/',
                     },
                     {
                         countyName: '시흥시',
-                        countyCode: 4010000
+                        countyCode: 4010000,
+                        tel: '031-312-7792',
+                        addr: '경기도 시흥시 호현로 72, 4층(대야동) 4층',
+                        url: 'http://www.sh1365.or.kr/',
                     },
                     {
                         countyName: '파주시',
-                        countyCode: 4060000
+                        countyCode: 4060000,
+                        tel: '031-941-8212',
+                        addr: '경기도 파주시 금정8길 15-2 파주시자원봉사센터',
+                        url: 'http://www.pajuvc.or.kr/',
                     },
                     {
                         countyName: '광명시',
-                        countyCode: 3900000
+                        countyCode: 3900000,
+                        tel: '02-2687-1365',
+                        addr: '경기도 광명시 철산로 56 철산3동행정복지센터 5층',
+                        url: 'http://www.gm1365.or.kr/',
                     },
                     {
                         countyName: '김포시',
-                        countyCode: 4090000
+                        countyCode: 4090000,
+                        tel: '031-998-1365',
+                        addr: '경기도 김포시 봉화로182번길 18 (북변동) 4층 일부(북변동,북변공영주차장)',
+                        url: 'http://www.gimpo1365.or.kr/',
                     },
                     {
                         countyName: '군포시',
-                        countyCode: 4020000
+                        countyCode: 4020000,
+                        tel: '031-394-1365',
+                        addr: '경기도 군포시 산본천로 23 (군포시자원봉사센터) 3층',
+                        url: 'http://www.gpvc.or.kr/',
                     },
                     {
                         countyName: '광주시',
-                        countyCode: 5540000
+                        countyCode: 5540000,
+                        tel: '031-798-1365',
+                        addr: '경기도 광주시 중앙로175번길 12 광주시자원봉사센터',
+                        url: 'http://www.gjvol.or.kr/',
                     },
                     {
                         countyName: '이천시',
-                        countyCode: 4070000
+                        countyCode: 4070000,
+                        tel: '031-633-1365',
+                        addr: '경기도 이천시 서희로 11 (중리동) 공설운동장 업무 A동 2층 이천시자원봉사센터',
+                        url: 'http://icvc1365.tistory.com/',
                     },
                     {
                         countyName: '양주시',
-                        countyCode: 5590000
+                        countyCode: 5590000,
+                        tel: '031-843-1365',
+                        addr: '경기도 양주시 회정로 132 파르코프라자 6층 양주시자원봉사센터',
+                        url: 'http://yjv1365.or.kr/',
                     },
                     {
                         countyName: '오산시',
-                        countyCode: 4000000
+                        countyCode: 4000000,
+                        tel: '031-372-1365',
+                        addr: '경기도 오산시 운암로 7 (사)오산시자원봉사센터',
+                        url: 'http://www.osan1365.or.kr/',
                     },
                     {
                         countyName: '구리시',
-                        countyCode: 3980000
+                        countyCode: 3980000,
+                        tel: '031-565-1365',
+                        addr: '경기도 구리시 체육관로 74 5층 구리시자원봉사센터',
+                        url: 'http://guri1365.or.kr/',
                     },
                     {
                         countyName: '안성시',
-                        countyCode: 4080000
+                        countyCode: 4080000,
+                        tel: '031-674-1365',
+                        addr: '경기도 안성시 중앙로 274-30 3층',
+                        url: 'http://anseong1365.or.kr/',
                     },
                     {
                         countyName: '포천시',
-                        countyCode: 5600000
+                        countyCode: 5600000,
+                        tel: '031-538-3377',
+                        addr: '경기도 포천시 중앙로 96 포천시자원봉사센터',
+                        url: 'http://pcvc.kr/',
                     },
                     {
                         countyName: '의왕시',
-                        countyCode: 4030000
+                        countyCode: 4030000,
+                        tel: '031-454-1365',
+                        addr: '경기도 의왕시 사천로 11 고천동주민센터 5층 의왕시종합자원봉사센터',
+                        url: 'http://www.vol.or.kr/',
                     },
                     {
                         countyName: '하남시',
-                        countyCode: 4040000
+                        countyCode: 4040000,
+                        tel: '031-792-1365',
+                        addr: '경기도 하남시 신장동로 15 (신장동, 하남시종합복지타운) (6층)',
+                        url: 'http://www.hanamcity1365.or.kr/',
                     },
                     {
                         countyName: '여주시',
-                        countyCode: 5700000
+                        countyCode: 5700000,
+                        tel: '031-885-1365',
+                        addr: '경기도 여주시 강변북로 163 수상센터 3층 여주시자원봉사센터',
+                        url: 'http://www.yeojuvol.or.kr/',
                     },
                     {
                         countyName: '양평군',
-                        countyCode: 4170000
+                        countyCode: 4170000,
+                        tel: '031-775-1365',
+                        addr: '경기도 양평군 양평읍 중앙로111번길 34-23 행복플러스센터 4층',
+                        url: 'http://www.ypvc.or.kr/',
                     },
                     {
                         countyName: '동두천시',
-                        countyCode: 3920000
+                        countyCode: 3920000,
+                        tel: '031-865-1365',
+                        addr: '경기도 동두천시 중앙로 249 두드림희망센터 2층',
+                        url: 'http://www.ddc1365.or.kr/',
                     },
                     {
                         countyName: '과천시',
-                        countyCode: 3970000
+                        countyCode: 3970000,
+                        tel: '02-503-2238',
+                        addr: '경기도 과천시 별양상가1로 10 3층',
+                        url: 'http://www.gcvc.org/',
                     },
                     {
                         countyName: '가평군',
-                        countyCode: 4160000
+                        countyCode: 4160000,
+                        tel: '031-581-1365',
+                        addr: '경기도 가평군 가평읍 문화로 131 종합운동장 신축스탠드 1층 자원봉사센터',
+                        url: 'http://www.gpvc.org/',
                     },
                     {
                         countyName: '연천군',
-                        countyCode: 4140000
+                        countyCode: 4140000,
+                        tel: '031-834-1365',
+                        addr: '경기도 연천군 전곡읍 전영로 11 연천군 종합복지관 3층',
+                        url: 'http://www.ycvol.net/',
                     }
                 ]
             },
             {
                 cityName: '강원특별자치도',
                 cityCode: 6420000,
+                tel: '033-253-2500',
+                addr: '강원특별자치도 춘천시 중앙로134번길 8 (소양로4가) 강원특별자치도자원봉사센터',
+                url: 'http://www.gsvc1365.or.kr/',
                 county: [
                     {
                         countyName: '춘천시',
-                        countyCode: 4180000
+                        countyCode: 4180000,
+                        tel: '033-257-0202',
+                        addr: '강원특별자치도 춘천시 중앙로 42 (요선동 15-12)',
+                        url: 'http://www.ccvc1365.kr/',
                     },
                     {
                         countyName: '원주시',
-                        countyCode: 4190000
+                        countyCode: 4190000,
+                        tel: '033-732-4500',
+                        addr: '강원특별자치도 원주시 갈머리2길 31 3층',
+                        url: 'http://www.wonju1365.or.kr/',
                     },
                     {
                         countyName: '강릉시',
-                        countyCode: 4200000
+                        countyCode: 4200000,
+                        tel: '033-648-6100',
+                        addr: '강원특별자치도 강릉시 수문길13번길 17-2 (옥천동) 2층 강릉시자원봉사센터',
+                        url: 'http://www.gnvc.or.kr/',
                     },
                     {
                         countyName: '동해시',
-                        countyCode: 4210000
+                        countyCode: 4210000,
+                        tel: '033-533-1365',
+                        addr: '강원특별자치도 동해시 전천로 273-10 3층',
+                        url: 'http://www.dh.go.kr/nanum/index.do',
                     },
                     {
                         countyName: '태백시',
-                        countyCode: 4220000
+                        countyCode: 4220000,
+                        tel: '033-553-1365',
+                        addr: '강원특별자치도 태백시 태백로 1176 2층',
+                        url: 'http://1365.go.kr/',
                     },
                     {
                         countyName: '속초시',
-                        countyCode: 4230000
+                        countyCode: 4230000,
+                        tel: '033-636-1366',
+                        addr: '강원특별자치도 속초시 청초호반로 296 2층',
+                        url: 'http://www.sc1365.or.kr/',
                     },
                     {
                         countyName: '삼척시',
-                        countyCode: 4240000
+                        countyCode: 4240000,
+                        tel: '033-574-5441',
+                        addr: '강원특별자치도 삼척시 원당로2길 72-6 삼척시종합사회복지회관 6층',
+                        url: 'http://www.scvc.kr/',
                     },
                     {
                         countyName: '홍천군',
-                        countyCode: 4250000
+                        countyCode: 4250000,
+                        tel: '033-433-1365',
+                        addr: '강원특별자치도 홍천군 홍천읍 너브내길 123 5층',
+                        url: 'http://www.hongcheon1365.or.kr/',
                     },
                     {
                         countyName: '횡성군',
-                        countyCode: 4260000
+                        countyCode: 4260000,
+                        tel: '033-345-1365',
+                        addr: '강원특별자치도 횡성군 횡성로 379 종합보건복지타운 4층',
+                        url: 'http://www.hs1365.or.kr/',
                     },
                     {
                         countyName: '영월군',
-                        countyCode: 4270000
+                        countyCode: 4270000,
+                        tel: '033-372-2646',
+                        addr: '강원특별자치도 영월군 영월읍 단종로16번길 18-5 여성회관 3층 자원봉사센터',
+                        url: 'http://www.ywvc.or.kr/',
                     },
                     {
                         countyName: '평창군',
-                        countyCode: 4280000
+                        countyCode: 4280000,
+                        tel: '033-334-1365',
+                        addr: '강원특별자치도 평창군 평창읍 종부로 61 평창군사회복지센터2층',
+                        url: 'http://www.3341365.or.kr/',
                     },
                     {
                         countyName: '정선군',
-                        countyCode: 4290000
+                        countyCode: 4290000,
+                        tel: '033-563-9904',
+                        addr: '강원특별자치도 정선군 정선읍 봉양6길 1 정선군자원봉사센터',
+                        url: 'http://www.1365.go.kr/',
                     },
                     {
                         countyName: '철원군',
-                        countyCode: 4300000
+                        countyCode: 4300000,
+                        tel: '033-456-1365',
+                        addr: '강원특별자치도 철원군 갈말읍 명성로 154(신철원버스터미널) 3층 자원봉사센터',
+                        url: 'http://www.cwg.go.kr/nanum/',
                     },
                     {
                         countyName: '화천군',
-                        countyCode: 4310000
+                        countyCode: 4310000,
+                        tel: '033-442-8114',
+                        addr: '강원특별자치도 화천군 화천읍 화천새싹길 40 화천군의회 1층',
+                        url: 'http://hc1365.or.kr/',
                     },
                     {
                         countyName: '양구군',
-                        countyCode: 4320000
+                        countyCode: 4320000,
+                        tel: '033-482-9596',
+                        addr: '강원특별자치도 양구군 양구읍 비봉로73번길 52 양구군자원봉사센터',
+                        url: 'http://band.us/band/56023994',
                     },
                     {
                         countyName: '인제군',
-                        countyCode: 4330000
+                        countyCode: 4330000,
+                        tel: '033-463-5400',
+                        addr: '강원특별자치도 인제군 인제읍 비봉로 52 목공예전시관 2층',
+                        url: 'http://www.ij1365.or.kr/',
                     },
                     {
                         countyName: '고성군',
-                        countyCode: 4340000
+                        countyCode: 4340000,
+                        tel: '033-681-1365',
+                        addr: '강원특별자치도 고성군 간성읍 간성로 67번길 12 고성군자원봉사센터',
+                        url: 'http://gs1365.tistory.com/',
                     },
                     {
                         countyName: '양양군',
-                        countyCode: 4350000
+                        countyCode: 4350000,
+                        tel: '033-672-1926',
+                        addr: '강원특별자치도 양양군 양양읍 일출로 540 양양군문화복지회관 1층',
+                        url: 'http://www.yy1365.or.kr/',
                     }
                 ]
             },
             {
                 cityName: '충청북도',
                 cityCode: 6430000,
+                tel: '043-225-1365',
+                addr: '충청북도 청주시 상당구 대성로 103 1층',
+                url: 'https://cb1365.net/new/',
                 county: [
                     {
                         countyName: '청주시',
-                        countyCode: 5710000
+                        countyCode: 5710000,
+                        tel: '043-298-1365',
+                        addr: '충청북도 청주시 상당구 중흥로31번길 11-9 청주시자원봉사센터',
+                        url: 'http://cj1365.or.kr/',
                     },
                     {
                         countyName: '충주시',
-                        countyCode: 4390000
+                        countyCode: 4390000,
+                        tel: '043-855-1365',
+                        addr: '충청북도 충주시 으뜸로 21 충주시청10층 충주시자원봉사센터',
+                        url: 'http://cjvc1365.or.kr/',
                     },
                     {
                         countyName: '제천시',
-                        countyCode: 4400000
+                        countyCode: 4400000,
+                        tel: '043-648-1365',
+                        addr: '충청북도 제천시 내토로35길 17 (화산동)',
+                        url: 'http://blog.daum.net/jcvc1365',
                     },
                     {
                         countyName: '보은군',
-                        countyCode: 4420000
+                        countyCode: 4420000,
+                        tel: '043-544-3409',
+                        addr: '충청북도 보은군 보은읍 삼산로1길 28-12 보은군자원봉사센터',
+                        url: 'http://1365.go.kr/',
                     },
                     {
                         countyName: '옥천군',
-                        countyCode: 4430000
+                        countyCode: 4430000,
+                        tel: '043-731-0627',
+                        addr: '충청북도 옥천군 옥천읍 중앙로 126 다목적회관 3층',
+                        url: 'http://cafe.daum.net/oc1365',
                     },
                     {
                         countyName: '영동군',
-                        countyCode: 4440000
+                        countyCode: 4440000,
+                        tel: '043-740-3385',
+                        addr: '충청북도 영동군 영동읍 성안길 9-17 영동군자원봉사센터',
+                        url: 'http://cafe.daum.net/yeongdong1365',
                     },
                     {
                         countyName: '증평군',
-                        countyCode: 5570000
+                        countyCode: 5570000,
+                        tel: '043-835-3975',
+                        addr: '충청북도 증평군 증평읍 문화로 75(증평문화원) 증평군자원봉사센터(문화원 옆 보라색건물)',
+                        url: 'http://www.1365.go.kr/',
                     },
                     {
                         countyName: '진천군',
-                        countyCode: 4450000
+                        countyCode: 4450000,
+                        tel: '043-533-1365',
+                        addr: '충청북도 진천군 진천읍 중앙북1길 11-10 생거진천종합사회복지관 3층',
+                        url: 'http://www.jc1365.or.kr/',
                     },
                     {
                         countyName: '괴산군',
-                        countyCode: 4460000
+                        countyCode: 4460000,
+                        tel: '043-834-1365',
+                        addr: '충청북도 괴산군 괴산읍 읍내로6길 19-8 여성회관2층',
+                        url: 'http://blog.naver.com/gvol1365',
                     },
                     {
                         countyName: '음성군',
-                        countyCode: 4470000
+                        countyCode: 4470000,
+                        tel: '043-873-1413',
+                        addr: '충청북도 음성군 음성읍 설성로 88 음성군자원봉사센터 (1층)',
+                        url: 'http://cafe.daum.net/esvclove1365',
                     },
                     {
                         countyName: '단양군',
-                        countyCode: 4480000
+                        countyCode: 4480000,
+                        tel: '043-423-8581',
+                        addr: '충청북도 단양군 단양읍 별곡1로 27-6 단양군자원봉사종합센터',
+                        url: 'http://www.1365.go.kr/',
                     }
                 ]
             },
             {
                 cityName: '충청남도',
                 cityCode: 6440000,
+                tel: '041-635-1365',
+                addr: '충청남도 홍성군 홍북읍 홍예공원로 20 충남내포혁신플랫폼 3층 충청남도자원봉사센터',
+                url: 'https://v1365.org/',
                 county: [
                     {
                         countyName: '천안시',
-                        countyCode: 4490000
+                        countyCode: 4490000,
+                        tel: '041-570-8694',
+                        addr: '충청남도 천안시 동남구 신촌로 24(신방동, 천안산업기자재유통단지 1층) 천안시자원봉사센터',
+                        url: 'http://www.cheonan.go.kr/nanum.do',
                     },
                     {
                         countyName: '공주시',
-                        countyCode: 4500000
+                        countyCode: 4500000,
+                        tel: '041-852-1365',
+                        addr: '충청남도 공주시 봉황로 68 (반죽동) 공주시자원봉사회관 1층',
+                        url: 'http://gongjuv1365.org/',
                     },
                     {
                         countyName: '보령시',
-                        countyCode: 4510000
+                        countyCode: 4510000,
+                        tel: '041-933-1365',
+                        addr: '충청남도 보령시 보령북로 75 사)보령시자원봉사센터',
+                        url: 'http://nanumboryeong.co.kr/',
                     },
                     {
                         countyName: '아산시',
-                        countyCode: 4520000
+                        countyCode: 4520000,
+                        tel: '041-543-1365',
+                        addr: '충청남도 아산시 시민로329번길 101 아산시자원봉사센터',
+                        url: 'http://asan1365.org/',
                     },
                     {
                         countyName: '서산시',
-                        countyCode: 4530000
+                        countyCode: 4530000,
+                        tel: '041-668-1365',
+                        addr: '충청남도 서산시 서해로 3577 르셀 D동 (사)서산시자원봉사센터',
+                        url: 'http://ssv1365.or.kr/',
                     },
                     {
                         countyName: '논산시',
-                        countyCode: 4540000
+                        countyCode: 4540000,
+                        tel: '041-736-1365',
+                        addr: '충청남도 논산시 대학로 121 의료공학관 의202호 논산시자원봉사센터',
+                        url: 'http://nanum.nonsan.go.kr/',
                     },
                     {
                         countyName: '계룡시',
-                        countyCode: 5580000
+                        countyCode: 5580000,
+                        tel: '042-841-0625',
+                        addr: '충청남도 계룡시 서금암1길 15 2층',
+                        url: 'http://1365.go.kr/',
                     },
                     {
                         countyName: '당진시',
-                        countyCode: 4630000
+                        countyCode: 4630000,
+                        tel: '041-360-3184',
+                        addr: '충청남도 당진시 시청1로 38(종합복지타운 5층) 당진시자원봉사센터',
+                        url: 'http://www.dangjinvc.co.kr/',
                     },
                     {
                         countyName: '금산군',
-                        countyCode: 4550000
+                        countyCode: 4550000,
+                        tel: '041-751-3382',
+                        addr: '충청남도 금산군 금산읍 비호산로 38-5 다목적군민회관 내 자원봉사센터',
+                        url: 'http://www.geumsan.go.kr/nanum/index.html',
                     },
                     {
                         countyName: '부여군',
-                        countyCode: 4570000
+                        countyCode: 4570000,
+                        tel: '041-835-1365',
+                        addr: '충청남도 부여군 부여읍 사비로 41 부여군민회관 2층',
+                        url: 'http://www.1365.go.kr/',
                     },
                     {
                         countyName: '서천군',
-                        countyCode: 4580000
+                        countyCode: 4580000,
+                        tel: '041-952-0941',
+                        addr: '충청남도 서천군 서천읍 충절로 121번길 8 서천군자원봉사센터',
+                        url: 'http://scv1365.org/',
                     },
                     {
                         countyName: '청양군',
-                        countyCode: 4590000
+                        countyCode: 4590000,
+                        tel: '041-940-2255',
+                        addr: '충청남도 청양군 청양읍 칠갑산로9길 32 청양복지타운 B동 1층',
+                        url: 'http://www.1365cy.com/',
                     },
                     {
                         countyName: '홍성군',
-                        countyCode: 4600000
+                        countyCode: 4600000,
+                        tel: '041-633-1365',
+                        addr: '충청남도 홍성군 홍성읍 문화로 26 2층(에이스빌) 홍성군자원봉사센터',
+                        url: 'http://hsv1365.org/',
                     },
                     {
                         countyName: '예산군',
-                        countyCode: 4610000
+                        countyCode: 4610000,
+                        tel: '041-334-1365',
+                        addr: '충청남도 예산군 예산읍 산성공원2길 15 1층',
+                        url: 'http://ysvc.kr/',
                     },
                     {
                         countyName: '태안군',
-                        countyCode: 4620000
+                        countyCode: 4620000,
+                        tel: '041-675-1365',
+                        addr: '충청남도 태안군 태안읍 후곡로 83 2층',
+                        url: 'http://taeanvol.com/',
                     }
                 ]
             },
             {
                 cityName: '전북특별자치도',
                 cityCode: 6450000,
+                tel: '063-227-1365',
+                addr: '전북특별자치도 전주시 완산구 선너머3길 61번지 나동 4층',
+                url: 'https://www.jbvolo.or.kr/',
                 county: [
                     {
                         countyName: '전주시',
-                        countyCode: 4640000
+                        countyCode: 4640000,
+                        tel: '063-273-1365',
+                        addr: '전북특별자치도 전주시 덕진구 전주천동로 455 (진북동) 전주시자원봉사센터',
+                        url: 'http://www.jeonjuvc.or.kr/',
                     },
                     {
                         countyName: '군산시',
-                        countyCode: 4670000
+                        countyCode: 4670000,
+                        tel: '063-451-1365',
+                        addr: '전북특별자치도 군산시 삼화안길 9 군산시자원봉사센터',
+                        url: 'http://doumi1365.or.kr/',
                     },
                     {
                         countyName: '익산시',
-                        countyCode: 4680000
+                        countyCode: 4680000,
+                        tel: '063-837-1365',
+                        addr: '전북특별자치도 익산시 동서로 355 (영등동)',
+                        url: 'http://www.iksanvol.com/',
                     },
                     {
                         countyName: '정읍시',
-                        countyCode: 4690000
+                        countyCode: 4690000,
+                        tel: '063-538-1365',
+                        addr: '전북특별자치도 정읍시 벚꽃로 321 구)시기동주민센터',
+                        url: 'http://www.jeongup1365.or.kr/',
                     },
                     {
                         countyName: '남원시',
-                        countyCode: 4700000
+                        countyCode: 4700000,
+                        tel: '063-636-1365',
+                        addr: '전북특별자치도 남원시 광한북로 57 1층 왼쪽, 하정동',
+                        url: 'http://www.nw1365.or.kr/',
                     },
                     {
                         countyName: '김제시',
-                        countyCode: 4710000
+                        countyCode: 4710000,
+                        tel: '063-544-1365',
+                        addr: '전북특별자치도 김제시 화동길 105 2층 (요촌동 105-1)',
+                        url: 'http://gimjevolunteer.kr/',
                     },
                     {
                         countyName: '완주군',
-                        countyCode: 4720000
+                        countyCode: 4720000,
+                        tel: '063-290-2218',
+                        addr: '전북특별자치도 완주군 봉동읍 봉동동서로 89 2층',
+                        url: 'http://www.wanjuvol.or.kr/',
                     },
                     {
                         countyName: '진안군',
-                        countyCode: 4730000
+                        countyCode: 4730000,
+                        tel: '063-433-1365',
+                        addr: '전북특별자치도 진안군 진안읍 중앙로 66 자원봉사센터 3층',
+                        url: 'http://1365.go.kr/vols/main.do',
                     },
                     {
                         countyName: '무주군',
-                        countyCode: 4740000
+                        countyCode: 4740000,
+                        tel: '063-322-2620',
+                        addr: '전북특별자치도 무주군 무주읍 교동1길 13 3층',
+                        url: 'http://1365.go.kr/',
                     },
                     {
                         countyName: '장수군',
-                        countyCode: 4750000
+                        countyCode: 4750000,
+                        tel: '063-351-5017',
+                        addr: '전북특별자치도 장수군 장수읍 군청길 19 특산물지원센터 2층',
+                        url: 'http://www.jangsuvol.or.kr/',
                     },
                     {
                         countyName: '임실군',
-                        countyCode: 4760000
+                        countyCode: 4760000,
+                        tel: '063-642-3650',
+                        addr: '전북특별자치도 임실군 임실읍 봉황로 129 보훈회관 2층',
+                        url: 'http://1365.go.kr/',
                     },
                     {
                         countyName: '순창군',
-                        countyCode: 4770000
+                        countyCode: 4770000,
+                        tel: '063-653-2660',
+                        addr: '전북특별자치도 순창군 순창읍 순창로 127 행복누리센터 1층',
+                        url: 'http://nanum.sunchang.go.kr/',
                     },
                     {
                         countyName: '고창군',
-                        countyCode: 4780000
+                        countyCode: 4780000,
+                        tel: '063-560-8098',
+                        addr: '전북특별자치도 고창군 고창읍 월곡14길 19 군민복지회관 2층 (사)고창군자원봉사센터',
+                        url: 'http://www.gochang.go.kr/nanum/index.gochang',
                     },
                     {
                         countyName: '부안군',
-                        countyCode: 4790000
+                        countyCode: 4790000,
+                        tel: '063-580-4259',
+                        addr: '전북특별자치도 부안군 부안읍 당산1길 18 부안군자원봉사센터',
+                        url: 'http://nanum.buan.go.kr/',
                     }
                 ]
             },
             {
                 cityName: '전라남도',
                 cityCode: 6460000,
+                tel: '061-287-1365',
+                addr: '전라남도 무안군 삼향읍 후광대로 282 6층 전라남도자원봉사센터',
+                url: 'http://jnvc1365.or.kr/',
                 county: [
                     {
                         countyName: '목포시',
-                        countyCode: 4800000
+                        countyCode: 4800000,
+                        tel: '061-270-8678',
+                        addr: '전라남도 목포시 수강로12번길 41(광동3가, 목포 건어물 젓갈센터) 4층 목포시자원봉사센터',
+                        url: 'http://www.1365.go.kr/',
                     },
                     {
                         countyName: '여수시',
-                        countyCode: 4810000
+                        countyCode: 4810000,
+                        tel: '061-659-3696',
+                        addr: '전라남도 여수시 신월로 648 (국동, 전남대학교 국동캠퍼스) 섬박람회지원과',
+                        url: 'http://1365.go.kr/',
                     },
                     {
                         countyName: '순천시',
-                        countyCode: 4820000
+                        countyCode: 4820000,
+                        tel: '061-746-4024',
+                        addr: '전라남도 순천시 덕암길 61 자원봉사센터',
+                        url: 'http://scv1365.com/',
                     },
                     {
                         countyName: '나주시',
-                        countyCode: 4830000
+                        countyCode: 4830000,
+                        tel: '061-339-8484',
+                        addr: '전라남도 나주시 시청길 22(송월동) 사회복지과',
+                        url: 'http://1365.go.kr/',
                     },
                     {
                         countyName: '광양시',
-                        countyCode: 4840000
+                        countyCode: 4840000,
+                        tel: '061-382-1365',
+                        addr: '전라남도 담양군 담양읍 추성로 1371 사회단체사무실동 1층 담양군자원봉사센터',
+                        url: 'http://nanum.damyang.jeonnam.kr/',
                     },
                     {
                         countyName: '담양군',
-                        countyCode: 4850000
+                        countyCode: 4850000,
+                        tel: '061-382-1365',
+                        addr: '전라남도 담양군 담양읍 추성로 1371 사회단체사무실동 1층 담양군자원봉사센터',
+                        url: 'http://nanum.damyang.jeonnam.kr/',
                     },
                     {
                         countyName: '곡성군',
-                        countyCode: 4860000
+                        countyCode: 4860000,
+                        tel: '061-360-2948',
+                        addr: '전라남도 곡성군 곡성읍 학정3길 6 인구정책과',
+                        url: 'http://www.1365.go.kr/',
                     },
                     {
                         countyName: '구례군',
-                        countyCode: 4870000
+                        countyCode: 4870000,
+                        tel: '061-780-2560',
+                        addr: '전라남도 구례군 구례읍 봉성로 1 구례군청',
+                        url: 'http://nanum.gurye.go.kr/',
                     },
                     {
                         countyName: '고흥군',
-                        countyCode: 4880000
+                        countyCode: 4880000,
+                        tel: '061-830-6702',
+                        addr: '전라남도 고흥군 고흥읍 고흥군청로 1 주민복지과 1층',
+                        url: 'http://1365.go.kr/',
                     },
                     {
                         countyName: '보성군',
-                        countyCode: 4890000
+                        countyCode: 4890000,
+                        tel: '061-850-5088',
+                        addr: '전라남도 보성군 보성읍 송재로 165 보성군청 사회복지과',
+                        url: 'http://www.facebook.com/boseong1365/',
                     },
                     {
                         countyName: '화순군',
-                        countyCode: 4900000
+                        countyCode: 4900000,
+                        tel: '061-379-3558',
+                        addr: '전라남도 화순군 화순읍 동헌길 23 가정활력과',
+                        url: 'http://nanum.hwasun.go.kr/vol/gov/mogaha/ntis/web/vol/portal/action/VolHomeAction.do?method=executes',
                     },
                     {
                         countyName: '장흥군',
-                        countyCode: 4910000
+                        countyCode: 4910000,
+                        tel: '061-860-5852',
+                        addr: '전라남도 장흥군 장흥읍 장흥로 21 장흥군청 주민복지과',
+                        url: 'http://nanum.jangheung.go.kr/',
                     },
                     {
                         countyName: '강진군',
-                        countyCode: 4920000
+                        countyCode: 4920000,
+                        tel: '061-430-3168',
+                        addr: '전라남도 강진군 강진읍 탐진로 111(강진군청) 강진군청',
+                        url: 'http://1365.go.kr/vols/main.do',
                     },
                     {
                         countyName: '해남군',
-                        countyCode: 4930000
+                        countyCode: 4930000,
+                        tel: '061-530-5611',
+                        addr: '전라남도 해남군 해남읍 중앙1로 61 2층 자원봉사센터',
+                        url: 'http://hnvc.haenam.go.kr/',
                     },
                     {
                         countyName: '영암군',
-                        countyCode: 4940000
+                        countyCode: 4940000,
+                        tel: '061-470-2417',
+                        addr: '전라남도 영암군 영암읍 군청로 1 주민복지과 복지기획팀',
+                        url: 'http://www.yeongam.go.kr/home/nanum',
                     },
                     {
                         countyName: '무안군',
-                        countyCode: 4950000
+                        countyCode: 4950000,
+                        tel: '061-452-2350',
+                        addr: '전라남도 무안군 무안읍 무안로 530(구보건소 2층) ',
+                        url: 'http://blog.naver.com/muan1365v',
                     },
                     {
                         countyName: '함평군',
-                        countyCode: 4960000
+                        countyCode: 4960000,
+                        tel: '061-324-1365',
+                        addr: '전라남도 함평군 함평읍 중앙길 200 함평군자원봉사센터',
+                        url: 'http://1365.go.kr/',
                     },
                     {
                         countyName: '영광군',
-                        countyCode: 4970000
+                        countyCode: 4970000,
+                        tel: '061-350-5349',
+                        addr: '전라남도 영광군 영광읍 중앙로 203 영광군청 1층 사회복지과 내',
+                        url: 'http://www.yeonggwang.go.kr/',
                     },
                     {
                         countyName: '장성군',
-                        countyCode: 4980000
+                        countyCode: 4980000,
+                        tel: '061-390-7565',
+                        addr: '전라남도 장성군 장성읍 영천로 200 주민복지과',
+                        url: 'http://www.1365.go.kr/',
                     },
                     {
                         countyName: '완도군',
-                        countyCode: 4990000
+                        countyCode: 4990000,
+                        tel: '061-550-5337',
+                        addr: '전라남도 완도군 청해진남로 51 완도군청 주민복지과',
+                        url: 'http://nanum.wando.go.kr/',
                     },
                     {
                         countyName: '진도군',
-                        countyCode: 5000000
+                        countyCode: 5000000,
+                        tel: '061-544-7945',
+                        addr: '전라남도 진도군 진도읍 진도대로 7195 진도여성플라자 1층',
+                        url: 'http://nanum.jindo.go.kr/',
                     },
                     {
                         countyName: '신안군',
-                        countyCode: 5010000
+                        countyCode: 5010000,
+                        tel: '061-240-8433',
+                        addr: '전라남도 신안군 압해읍 천사로 1004 교육복지과',
+                        url: 'http://www.1365.go.kr/',
                     }
                 ]
             },
             {
                 cityName: '경상북도',
                 cityCode: 6470000,
+                tel: '054-855-1365',
+                addr: '경상북도 안동시 풍천면 도청대로 455 주민복지관 407호',
+                url: 'http://gbvt1365.kr/',
                 county: [
                     {
                         countyName: '포항시',
-                        countyCode: 5020000
+                        countyCode: 5020000,
+                        tel: '054-248-8742',
+                        addr: '경상북도 포항시 북구 삼호로46번길 14 포항시자원봉사센터',
+                        url: 'http://phvc.pohang.go.kr/',
                     },
                     {
                         countyName: '경주시',
-                        countyCode: 5050000
+                        countyCode: 5050000,
+                        tel: '054-771-1365',
+                        addr: '경상북도 경주시 대안길 53 경주시종합자원봉사센터',
+                        url: 'http://www.경주자봉.org/',
                     },
                     {
                         countyName: '김천시',
-                        countyCode: 5060000
+                        countyCode: 5060000,
+                        tel: '054-436-1365',
+                        addr: '경상북도 김천시 공단 2길 30-22 김천시자원봉사센터',
+                        url: 'http://www.gcvc.or.kr/',
                     },
                     {
                         countyName: '안동시',
-                        countyCode: 5070000
+                        countyCode: 5070000,
+                        tel: '054-841-9897',
+                        addr: '경상북도 안동시 안기천로 74 1층 1층',
+                        url: 'http://www.andongvc.or.kr/',
                     },
                     {
                         countyName: '구미시',
-                        countyCode: 5080000
+                        countyCode: 5080000,
+                        tel: '054-458-9188',
+                        addr: '경상북도 구미시 백산로 211 3층',
+                        url: 'http://gumivol.or.kr/',
                     },
                     {
                         countyName: '영주시',
-                        countyCode: 5090000
+                        countyCode: 5090000,
+                        tel: '054-636-1814',
+                        addr: '경상북도 영주시 원당로 76 2층',
+                        url: 'http://www.yeongju1365.or.kr/',
                     },
                     {
                         countyName: '영천시',
-                        countyCode: 5100000
+                        countyCode: 5100000,
+                        tel: '054-336-1365',
+                        addr: '경상북도 영천시 영천고2길 57 영천시자원봉사센터',
+                        url: 'http://yc1365.or.kr/',
                     },
                     {
                         countyName: '상주시',
-                        countyCode: 5110000
+                        countyCode: 5110000,
+                        tel: '054-533-4032',
+                        addr: '경상북도 상주시 중앙로 146 2층',
+                        url: 'http://www.sjvc1365.co.kr/',
                     },
                     {
                         countyName: '문경시',
-                        countyCode: 5120000
+                        countyCode: 5120000,
+                        tel: '054-555-2800',
+                        addr: '경상북도 문경시 시청1길 16 문경시종합자원봉사센터',
+                        url: 'http://www.facebook.com/mgvc1365',
                     },
                     {
                         countyName: '경산시',
-                        countyCode: 5130000
+                        countyCode: 5130000,
+                        tel: '053-812-3300',
+                        addr: '경상북도 경산시 원효로 54 1층',
+                        url: 'http://www.gsvol.or.kr/',
                     },
                     {
                         countyName: '의성군',
-                        countyCode: 5150000
+                        countyCode: 5150000,
+                        tel: '054-834-8900',
+                        addr: '경상북도 의성군 의성읍 북원2길 43 의성군종합지원센터 2층',
+                        url: 'http://www.uiseong1365.or.kr/uiseong1365/',
                     },
                     {
                         countyName: '청송군',
-                        countyCode: 5160000
+                        countyCode: 5160000,
+                        tel: '054-870-6759',
+                        addr: '경상북도 청송군 청송읍 복지타운길 77 청소년수련관1층',
+                        url: 'http://1365.cs.go.kr/',
                     },
                     {
                         countyName: '영양군',
-                        countyCode: 5170000
+                        countyCode: 5170000,
+                        tel: '054-683-1365',
+                        addr: '경상북도 영양군 영양읍 시장3길 11 영양군종합자원봉사센터',
+                        url: 'http://yygvt.or.kr/',
                     },
                     {
                         countyName: '영덕군',
-                        countyCode: 5180000
+                        countyCode: 5180000,
+                        tel: '054-734-1020',
+                        addr: '경상북도 영덕군 영덕읍 강변길 324 영덕문화체육센터 여성회관 1층 영덕군종합자원봉사센터',
+                        url: 'http://yd1365.co.kr/',
                     },
                     {
                         countyName: '청도군',
-                        countyCode: 5190000
+                        countyCode: 5190000,
+                        tel: '054-373-1365',
+                        addr: '경상북도 청도군 화양읍 산성강변길 474-7 .',
+                        url: 'http://www.cdjb.co.kr/',
                     },
                     {
                         countyName: '고령군',
-                        countyCode: 5200000
+                        countyCode: 5200000,
+                        tel: '054-956-1365',
+                        addr: '경상북도 고령군 대가야읍 왕릉로 30 대가야문화누리 2층',
+                        url: 'http://goryeong1365.or.kr/',
                     },
                     {
                         countyName: '성주군',
-                        countyCode: 5210000
+                        countyCode: 5210000,
+                        tel: '054-931-1365',
+                        addr: '경상북도 성주군 성주읍 주산로 5 3층',
+                        url: 'http://www.sj.go.kr/vc1365',
                     },
                     {
                         countyName: '칠곡군',
-                        countyCode: 5220000
+                        countyCode: 5220000,
+                        tel: '054-971-3944-3945',
+                        addr: '경상북도 칠곡군 왜관읍 관문로1길 32 칠곡군종합자원봉사센터',
+                        url: 'http://www.chilgok1365.kr/',
                     },
                     {
                         countyName: '예천군',
-                        countyCode: 5230000
+                        countyCode: 5230000,
+                        tel: '054-655-0020',
+                        addr: '경상북도 예천군 예천읍 군청앞길 2 2층 201호',
+                        url: 'http://www.ycvc.kr/',
                     },
                     {
                         countyName: '봉화군',
-                        countyCode: 5240000
+                        countyCode: 5240000,
+                        tel: '054-673-6965',
+                        addr: '경상북도 봉화군 봉화읍 거촌로 14 봉화군종합자원봉사센터',
+                        url: 'http://www.bonghwa1365.or.kr/',
                     },
                     {
                         countyName: '울진군',
-                        countyCode: 5250000
+                        countyCode: 5250000,
+                        tel: '054-789-5413',
+                        addr: '경상북도 울진군 울진읍 울진북로 496-11 울진군평생학습관 2층',
+                        url: 'http://ujv.or.kr/',
                     },
                     {
                         countyName: '울릉군',
-                        countyCode: 5260000
+                        countyCode: 5260000,
+                        tel: '054-791-1069',
+                        addr: '경상북도 울릉군 울릉읍 도동길 143 울릉군의회 1층',
+                        url: 'http://www.ulvt1365.kr/ulleung1365/main.do',
                     },
                 ]
             },
             {
                 cityName: '경상남도',
                 cityCode: 6480000,
+                tel: '055-281-1365',
+                addr: '경상남도 창원시 성산구 용지로 240 (용호동, 경상남도 여성능력 개발센터) 2층',
+                url: 'http://www.gnbongsa.net/',
                 county: [
                     {
                         countyName: '창원시',
-                        countyCode: 5670000
+                        countyCode: 5670000,
+                        tel: '055-281-1365',
+                        addr: '경상남도 창원시 성산구 용지로 240 (용호동, 경상남도 여성능력 개발센터) 2층',
+                        url: 'http://www.gnbongsa.net/',
                     },
                     {
                         countyName: '진주시',
-                        countyCode: 5310000
+                        countyCode: 5310000,
+                        tel: '055-749-5424',
+                        addr: '경상남도 진주시 동진로 155 진주시청 여성가족과 자원봉사팀',
+                        url: 'http://www.jinju.go.kr/00134/00614/03494.web',
                     },
                     {
                         countyName: '통영시',
-                        countyCode: 5330000
+                        countyCode: 5330000,
+                        tel: '055-650-4290-2',
+                        addr: '경상남도 통영시 통영해안로 515 통영시청 1층 자원봉사센터',
+                        url: 'http://1365.go.kr/',
                     },
                     {
                         countyName: '사천시',
-                        countyCode: 5340000
+                        countyCode: 5340000,
+                        tel: '055-831-5792',
+                        addr: '경상남도 사천시 동금5길 15 사천시자원봉사센터',
+                        url: 'http://vt.sacheon.go.kr/',
                     },
                     {
                         countyName: '김해시',
-                        countyCode: 5350000
+                        countyCode: 5350000,
+                        tel: '055-330-7391',
+                        addr: '경상남도 김해시 가야로 432 1층',
+                        url: 'http://blog.naver.com/gimhae1365',
                     },
                     {
                         countyName: '밀양시',
-                        countyCode: 5360000
+                        countyCode: 5360000,
+                        tel: '055-354-1365',
+                        addr: '경상남도 밀양시 밀성로3길 9 (내이동) 1층',
+                        url: 'http://www.1365.go.kr/',
                     },
                     {
                         countyName: '거제시',
-                        countyCode: 5370000
+                        countyCode: 5370000,
+                        tel: '055-632-0400',
+                        addr: '경상남도 거제시 고현로 2길 42 (고현동) 2층',
+                        url: 'http://vt.geoje.go.kr/',
                     },
                     {
                         countyName: '양산시',
-                        countyCode: 5380000
+                        countyCode: 5380000,
+                        tel: '055-385-8100',
+                        addr: '경상남도 양산시 옥곡2길 20 양산시자원봉사센터',
+                        url: 'http://blog.naver.com/yangsan1365',
                     },
                     {
                         countyName: '의령군',
-                        countyCode: 5390000
+                        countyCode: 5390000,
+                        tel: '055-570-4976',
+                        addr: '경상남도 의령군 의령읍 의병로8길 44 종합사회복지관 2층 자원봉사센터',
+                        url: 'http://pf.kakao.com/_cTkeC',
                     },
                     {
                         countyName: '함안군',
-                        countyCode: 5400000
+                        countyCode: 5400000,
+                        tel: '055-580-2458',
+                        addr: '경상남도 함안군 가야읍 함안대로 518 2층 자원봉사센터',
+                        url: 'http://vt.haman.go.kr/',
                     },
                     {
                         countyName: '창녕군',
-                        countyCode: 5410000
+                        countyCode: 5410000,
+                        tel: '055-530-1148',
+                        addr: '경상남도 창녕군 창녕읍 군청길 2 창녕군자원봉사센터',
+                        url: 'http://vt.cng.go.kr/',
                     },
                     {
                         countyName: '고성군',
-                        countyCode: 5420000
+                        countyCode: 5420000,
+                        tel: '055-674-7295',
+                        addr: '경상남도 고성군 고성읍 동외로156번길 36 고성군 종합사회복지관 2층',
+                        url: 'http://vt.goseong.go.kr/',
                     },
                     {
                         countyName: '남해군',
-                        countyCode: 5430000
+                        countyCode: 5430000,
+                        tel: '055-860-3883',
+                        addr: '경상남도 남해군 남해읍 망운로32 남해군자원봉사센터',
+                        url: 'http://www.1365.go.kr/',
                     },
                     {
                         countyName: '하동군',
-                        countyCode: 5440000
+                        countyCode: 5440000,
+                        tel: '055-884-8253',
+                        addr: '경상남도 하동군 하동읍 섬진강대로 2222 1층 자원봉사센터',
+                        url: 'http://vthadong.tistory.com/',
                     },
                     {
                         countyName: '산청군',
-                        countyCode: 5450000
+                        countyCode: 5450000,
+                        tel: '055-970-7352',
+                        addr: '경상남도 산청군 산청읍 웅석봉로86번길 7(산청군자원봉사센터) 산청군자원봉사센터',
+                        url: 'http://cafe.naver.com/9707352',
                     },
                     {
                         countyName: '함양군',
-                        countyCode: 5460000
+                        countyCode: 5460000,
+                        tel: '055-960-5757',
+                        addr: '경상남도 함양군 함양읍 고운로 34 기관단체청사 101호',
+                        url: 'http://vt.hamyang.go.kr/',
                     },
                     {
                         countyName: '거창군',
-                        countyCode: 5470000
+                        countyCode: 5470000,
+                        tel: '055-940-3904',
+                        addr: '경상남도 거창군 아림로 66 거창군종합사회복지관 2층 거창군자원봉사센터',
+                        url: 'http://www.1365.go.kr/',
                     },
                     {
                         countyName: '합천군',
-                        countyCode: 5480000
+                        countyCode: 5480000,
+                        tel: '055-930-3881',
+                        addr: '경상남도 합천군 합천읍 동서로 39 종합사회복지회관 5층 자원봉사센터',
+                        url: 'http://vt.hc.go.kr/',
                     }
                 ]
             },
             {
                 cityName: '제주특별자치도',
                 cityCode: 6500000,
+                tel: '064-710-8885',
+                addr: '제주특별자치도 제주시 문연로 30 제2청사 1층 108호',
+                url: 'http://www.jeju.go.kr/nanum',
                 county: [
                     {
                         countyName: '제주시',
-                        countyCode: 6510000
+                        countyCode: 6510000,
+                        tel: '064-728-7520',
+                        addr: '제주특별자치도 제주시 사라봉동길 15호 2층 (건입동, 제주시평생학습관내) 제주시자원봉사센터',
+                        url: 'http://www.jejusi1365.or.kr/',
                     },
                     {
                         countyName: '서귀포시',
-                        countyCode: 6520000
+                        countyCode: 6520000,
+                        tel: '064-738-0716',
+                        addr: '제주특별자치도 서귀포시 월드컵로 33 제주월드컵경기장 내 2층 서귀포시자원봉사센터',
+                        url: 'http://www.sgpnanum1365.or.kr/',
                     }
                 ]
             },

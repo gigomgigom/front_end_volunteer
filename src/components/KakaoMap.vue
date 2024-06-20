@@ -29,7 +29,7 @@ onMounted(() => {
 
 const loadKakaoMap = (container) => {
     const script = document.createElement('script');
-    script.src = 'http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=a475c090e241b8895d644d35af840ffb';
+    script.src = `http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${process.env.VUE_APP_KAKAO_API_KEY}`;
     document.head.appendChild(script);
 
     script.onload = () => {
