@@ -1,16 +1,11 @@
 <template>
-  <div class="card">
-    <div class="card-header">교육 프로그램 목록 보기</div>
-    <div class="card-body">
-
-    </div>
-  </div>
+  <SearchEduPrgm/>
+  <EduPrgmListSlot/>
 </template>
 
 <script setup>
-
+import SearchEduPrgm from '@/components/SearchEduPrgm.vue';
+import EduPrgmListSlot from './EduPrgmListSlot.vue';
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

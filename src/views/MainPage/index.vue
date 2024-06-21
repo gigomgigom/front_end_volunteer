@@ -1,13 +1,11 @@
 <template>
     <div>
-  
-        <Carousel/>
-        <MenuShortcuts/>
-        <VolShortcuts/>
-        <RecruitVol/>
-        <TotalVolCnt/>
-        <BoardOutline/>
-
+        <Carousel />
+        <MenuShortcuts />
+        <VolShortcuts />
+        <RecruitVol />
+        <TotalVolCnt />
+        <BoardOutline />
     </div>
 </template>
 
@@ -23,6 +21,4 @@ import BoardOutline from "@/views/MainPage/BoardOutline.vue";
 
 
 </script>
-<style scoped>
-    
-</style>
+<style scoped></style>
