@@ -1,7 +1,7 @@
 <template>
   <div>
-    <TextHeader  title="자원봉사 이야기"></TextHeader>
-    <div class="card-body">
+    <TextHeader  title="자원봉사 이야기" style="margin-bottom: 0px;"></TextHeader>
+    <div class="card-body" >
       <BoardDetail/>
     </div>
   </div>
