@@ -1,11 +1,9 @@
 <template>
     <!-- <div class="container"> -->
-      <table class="post-table">
-        <thead>
-          <tr>
-            <th colspan="2" class="top-line"></th>
-          </tr>
-          <tr>
+      <table class="post-table" style="">
+        <thead style="">
+          
+          <tr style="font-size: 25px; ">
             <th colspan="2" class="title-line">
               <span>{{ post.title }}</span>
             </th>
