@@ -28,7 +28,7 @@
             </span>
           </div>
           <div class="col-sm-2 ">
-            <span>모집인원 : n명</span>
+            <span style="font-size: 13px">모집인원 : n명/일</span>
           </div>
         </div>
         <div class="row" style="font-size: 14px; ">
@@ -45,7 +45,7 @@
             </span>
           </div>
           <div class="col-sm-2">
-            <span>신청인원 : n명</span>
+            <span style="font-size: 13px">신청인원 : n명</span>
           </div>
         </div>
         <div class="row" style="font-size: 14px; border-bottom: 1px solid gray; padding-bottom: 10px; ">
