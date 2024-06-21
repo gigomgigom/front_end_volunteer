@@ -1,6 +1,6 @@
 <template>
     <div>
-    <h2 class="d-flex justify-content-lg-center mt-5" id="text1">모집 중인 봉사</h2>
+    <h3 class="d-flex justify-content-lg-center mt-5" id="text1">모집 중인 봉사</h3>
 
     <div id="carouselExampleControls" class="carousel slide mt-3" data-bs-ride="carousel" data-bs-interval="3000">
       <div class="carousel-inner">
@@ -107,12 +107,10 @@
 <style scoped>
 .card-container {
   display: flex;
-  gap: 1rem; 
-  justify-content: center; 
-  margin-top: 10px; 
-  margin: 0 auto;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 10px;
 }
-
 
 #text1 {
   font-weight: bold;
@@ -135,17 +133,17 @@
 
 .carousel-control-prev-icon::before,
 .carousel-control-next-icon::before {
-  width: 30px;
-  height: 30px; 
-  border-radius: 50%; 
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
 }
 
 .carousel-control-prev {
-  left: -60px; 
+  left: 20px;
 }
 
 .carousel-control-next {
-  right: -60px; 
+  right: 20px;
 }
 
 .no-underline {
@@ -154,5 +152,22 @@
 
 .no-underline:hover {
   text-decoration: none;
+}
+
+.custom-card {
+  width: 300px; 
+  border: 1px solid gainsboro;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: left;
+}
+
+.custom-card img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.custom-card p {
+  margin-bottom: 5px;
 }
 </style>

@@ -1,11 +1,16 @@
 <template>
     <div>
-        <Carousel />
-        <MenuShortcuts />
-        <VolShortcuts />
-        <RecruitVol />
-        <TotalVolCnt />
-        <BoardOutline />
+  
+        <Carousel/>
+        <MenuShortcuts/>
+        <VolShortcuts/>
+    
+        <RecruitVol/>
+        <TotalVolCnt/>
+        <BoardOutline/>
+       
+       
+
     </div>
 </template>
 

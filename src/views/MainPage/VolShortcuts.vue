@@ -16,42 +16,30 @@
 
 <style scoped>
 
-#text1{
+#text1 {
   font-weight: bold;
   color: black;
 }
 
-
-
 .button-container {
   display: flex;
   justify-content: center;
-  gap: 105px;
+  gap: 160px; 
   margin-top: 80px;
   margin-bottom: 80px;
-
-
 }
 
 .rounded-btn {
-  border-radius: 40px; 
-  margin: 10px 0; 
+  border-radius: 40px;
+  margin: 10px 0;
   color: #fff;
-  background-color: coral;
-  border-color: coral;
-  padding: 12px 24px; 
-  font-size: 18px; 
-  width: auto; 
-  height: auto; 
-  border-width: 2px; 
-}
-
-.move-right {
-  margin-left: 20px; 
-}
-
-.move-left {
-  margin-right: 30px;
+  background-color: forestgreen;
+  border-color: forestgreen;
+  padding: 12px 24px;
+  font-size: 18px;
+  width: auto;
+  height: auto;
+  border-width: 2px;
 }
 
 </style>
