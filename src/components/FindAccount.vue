@@ -1,131 +1,138 @@
 <template>
-    <div class="container">
-      <h5 class="title">아이디 찾기 방식</h5>
-  
-      <!-- Find by phone or email -->
-      <div class="mb-3 find-by-options">
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" v-model="findBy" value="phone" id="findByPhone">
-          <label class="form-check-label" for="findByPhone">휴대번호로 찾기</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" v-model="findBy" value="email" id="findByEmail">
-          <label class="form-check-label" for="findByEmail">이메일로 찾기</label>
-        </div>
+  <div class="container">
+    <h5 class="title">{{ title }}</h5>
+
+    <!-- Find by phone or email -->
+    <div class="mb-3 find-by-options">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" v-model="findBy" value="phone" id="findByPhone">
+        <label class="form-check-label" for="findByPhone">연락처로 찾기</label>
       </div>
-  
-      <!-- Input for name -->
-      <div class="mb-3">
-        <label class="form-label" for="name">이름</label>
-        <input class="form-control" type="text" v-model="name" placeholder="이름을 입력해 주세요" id="name">
-        <small class="rewrite-msg text-muted">올바른 이름을 입력해 주세요</small>
-      </div>
-  
-      <!-- Conditional input for phone -->
-      <div class="mb-3" v-if="findBy === 'phone'">
-        <label class="form-label" for="phone">휴대폰 번호</label>
-        <input class="form-control" type="text" v-model="phone" placeholder="휴대폰 번호를 입력해 주세요" id="phone">
-        <small class="rewrite-msg text-muted">올바른 휴대폰 번호를 입력해 주세요</small>
-      </div>
-  
-      <!-- Conditional input for email -->
-      <div class="mb-3" v-if="findBy === 'email'">
-        <label class="form-label" for="email">이메일</label>
-        <input class="form-control" type="email" v-model="email" placeholder="이메일을 입력해 주세요" id="email">
-        <small class="rewrite-msg text-muted">올바른 이메일을 입력해 주세요</small>
-      </div>
-  
-      <!-- Submit button -->
-      <div class="mb-3">
-        <button class="btn btn-primary btn-block" @click="findId">확인</button>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" v-model="findBy" value="email" id="findByEmail" >
+        <label class="form-check-label" for="findByEmail" >이메일로 찾기</label>
       </div>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        findBy: 'phone',
-        name: '',
-        phone: '',
-        email: ''
-      };
+
+    <!-- Customizable input fields -->
+    <div class="mb-3" v-for="(field, index) in dynamicFields" :key="index">
+      <label class="form-label" :for="field.id">{{ field.label }}</label>
+      <input
+        class="form-control"
+        :type="field.type"
+        :id="field.id"
+        v-model="field.value"
+        :placeholder="field.placeholder"
+        :maxlength="field.maxlength"
+      >
+      <small class="rewrite-msg text-muted">{{ field.hint }}</small>
+    </div>
+
+    <!-- Submit button -->
+    <div class="mb-3">
+      <button class="btn btn-primary btn-block" @click="handleSubmit">{{ submitButtonText }}</button>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    title: { type: String, default: '아이디 찾기 방식' },
+    phoneFields: {
+      type: Array,
+      default: () => []
     },
-    methods: {
-      findId() {
-        if (this.findBy === 'phone') {
-          alert(`이름: ${this.name}, 휴대번호: ${this.phone}`);
-        } else {
-          alert(`이름: ${this.name}, 이메일: ${this.email}`);
-        }
-      }
+
+    emailFields: {
+      type: Array,
+      default: () => []
+    },
+
+    submitButtonText: { type: String, default: '확인' }
+  },
+
+
+  data() {
+    return {
+      findBy: 'phone'
+    };
+  },
+  computed: {
+    dynamicFields() {
+      return this.findBy === 'phone' ? this.phoneFields : this.emailFields;
     }
-  };
-  </script>
-  
-  <style scoped>
-  .container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-family: 'Arial', sans-serif;
+  },
+  methods: {
+    handleSubmit() {
+      this.$emit('submit', {
+        findBy: this.findBy,
+        fields: this.dynamicFields
+      });
+    }
   }
-  
-  .title {
-    margin-bottom: 20px;
-    text-align: center;
-    color: #333;
-    font-weight: bold;
-  }
-  
-  .find-by-options {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .find-by-options .form-check {
-    margin-right: 10px;
-  }
-  
-  .form-label {
-    font-weight: bold;
-    color: #555;
-  }
-  
-  .form-control {
-    border-radius: 4px;
-    padding: 10px;
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  
-  .btn {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 4px;
-    font-weight: bold;
-  }
-  
-  .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-  }
-  
-  .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #004085;
-  }
-  
-  .rewrite-msg {
-    display: block;
-    font-size: 12px;
-    color: #999;
-  }
-  </style>
-  
+};
+</script>
+
+<style scoped>
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  font-family: 'Arial', sans-serif;
+}
+
+.title {
+  margin-bottom: 20px;
+  text-align: left;
+  color: #333;
+  font-weight: bold;
+}
+
+.find-by-options {
+  display: flex;
+  justify-content: left;
+  margin-bottom: 20px;
+}
+
+.find-by-options .form-check {
+  margin-right: 10px;
+}
+
+.form-label {
+  font-weight: bold;
+  color: #555;
+}
+
+.form-control {
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+.rewrite-msg {
+  display: block;
+  font-size: 12px;
+  color: #999;
+}
+</style>

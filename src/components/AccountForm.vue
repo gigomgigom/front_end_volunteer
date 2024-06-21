@@ -1,8 +1,6 @@
 <template>
   <div class="account-form">
-    <h2>회원정보</h2>
     <form @submit.prevent="handleSubmit">
-        
       <table>
         <tr>
           <th colspan="2" class="top-line"></th>
@@ -147,8 +145,13 @@ const findZipCode = () => {
 </script>
 
 <style scoped>
-.top-line, .bottom-line {
+.top-line{
   border-bottom: 2px solid #757575;
+}
+
+.bottom-line {
+  border-top: 2px solid #757575;
+  border-bottom: 0px;
 }
 
 .noemail{
@@ -158,10 +161,8 @@ const findZipCode = () => {
 .account-form {
   max-width: 800px;
   margin: auto;
-  background-color: #f9f9f9;
-  padding-top: 10px;
+  padding-bottom: 10px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
 }
 
@@ -184,7 +185,6 @@ th, td {
 }
 
 th {
-  background-color: #f4f4f4;
   text-align: left;
   font-weight: 600;
   font-size: 16px;
