@@ -7,82 +7,83 @@
         <!-- First slide -->
         <div class="carousel-item active">
           <div class="card-container d-flex justify-content-center">
-            <div class="card custom-card ms-4">
+            <div class="card custom-card ">
               <img src="@/assets/MainPage/봉사 사진1.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
+              <router-link to="/Details/Participation/VolProgram/ViewVolProgramDetail" class="card-body no-underline">
                 <p class="card-text1">[이마트 임직원 대상 ] 굿윌스토어 밀알 강서점 봉사자 모집</p>
                 <p class="card-text2">▶️ 모집인원: 3명/1일 </p>
                 <p class="card-text2">▶️ 모집기간: 2024.02.20~2024.06.28 </p>
                 <p class="card-text2">▶️ 봉사기간: 2024.02.20~2024.06.28  </p>
-              </div>
+              </router-link>
+
             </div>
             <div class="card custom-card">
               <img src="@/assets/MainPage//봉사 사진1.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
+              <router-link to="/Details/Participation/VolProgram/ViewVolProgramDetail" class="card-body no-underline">
                 <p class="card-text1">[이마트 임직원 대상 ] 굿윌스토어 밀알 강서점 봉사자 모집</p>
                 <p class="card-text2">▶️ 모집인원: 3명/1일 </p>
                 <p class="card-text2">▶️ 모집기간: 2024.02.20~2024.06.28 </p>
                 <p class="card-text2">▶️ 봉사기간: 2024.02.20~2024.06.28  </p>
-              </div>
+              </router-link>
             </div>
             <div class="card custom-card">
               <img src="@/assets/MainPage//봉사 사진1.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
+              <router-link to="/Details/Participation/VolProgram/ViewVolProgramDetail" class="card-body no-underline">
                 <p class="card-text1">[이마트 임직원 대상 ] 굿윌스토어 밀알 강서점 봉사자 모집</p>
                 <p class="card-text2">▶️ 모집인원: 3명/1일 </p>
                 <p class="card-text2">▶️ 모집기간: 2024.02.20~2024.06.28 </p>
                 <p class="card-text2">▶️ 봉사기간: 2024.02.20~2024.06.28  </p>
-              </div>
+              </router-link>
             </div>
-            <div class="card custom-card me-4">
+            <div class="card custom-card ">
               <img src="@/assets/MainPage//봉사 사진1.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
+              <router-link to="/Details/Participation/VolProgram/ViewVolProgramDetail" class="card-body no-underline">
                 <p class="card-text1">[이마트 임직원 대상 ] 굿윌스토어 밀알 강서점 봉사자 모집</p>
                 <p class="card-text2">▶️ 모집인원: 3명/1일 </p>
                 <p class="card-text2">▶️ 모집기간: 2024.02.20~2024.06.28 </p>
                 <p class="card-text2">▶️ 봉사기간: 2024.02.20~2024.06.28  </p>
-              </div>
+              </router-link>
             </div>
           </div>
         </div>
 
         <div class="carousel-item">
           <div class="card-container d-flex justify-content-center">
-            <div class="card custom-card ms-4">
+            <div class="card custom-card">
               <img src="@/assets/MainPage//봉사 사진1.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
+              <router-link to="/Details/Participation/VolProgram/ViewVolProgramDetail" class="card-body no-underline">
                 <p class="card-text1">[이마트 임직원 대상 ] 굿윌스토어 밀알 강서점 봉사자 모집</p>
                 <p class="card-text2">▶️ 모집인원: 3명/1일 </p>
                 <p class="card-text2">▶️ 모집기간: 2024.02.20~2024.06.28 </p>
                 <p class="card-text2">▶️ 봉사기간: 2024.02.20~2024.06.28  </p>
-              </div>
+              </router-link>
             </div>
             <div class="card custom-card">
               <img src="@/assets/MainPage//봉사 사진1.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
+              <router-link to="/Details/Participation/VolProgram/ViewVolProgramDetail" class="card-body no-underline">
                 <p class="card-text1">[이마트 임직원 대상 ] 굿윌스토어 밀알 강서점 봉사자 모집</p>
                 <p class="card-text2">▶️ 모집인원: 3명/1일 </p>
                 <p class="card-text2">▶️ 모집기간: 2024.02.20~2024.06.28 </p>
                 <p class="card-text2">▶️ 봉사기간: 2024.02.20~2024.06.28  </p>
-              </div>
+              </router-link>
             </div>
             <div class="card custom-card">
               <img src="@/assets/MainPage//봉사 사진1.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
+              <router-link to="/Details/Participation/VolProgram/ViewVolProgramDetail" class="card-body no-underline">
                 <p class="card-text1">[이마트 임직원 대상 ] 굿윌스토어 밀알 강서점 봉사자 모집</p>
                 <p class="card-text2">▶️ 모집인원: 3명/1일 </p>
                 <p class="card-text2">▶️ 모집기간: 2024.02.20~2024.06.28 </p>
                 <p class="card-text2">▶️ 봉사기간: 2024.02.20~2024.06.28  </p>
-              </div>
+              </router-link>
             </div>
-            <div class="card custom-card me-4">
+            <div class="card custom-card">
               <img src="@/assets/MainPage//봉사 사진1.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
+              <router-link to="/Details/Participation/VolProgram/ViewVolProgramDetail" class="card-body no-underline">
                 <p class="card-text1">[이마트 임직원 대상 ] 굿윌스토어 밀알 강서점 봉사자 모집</p>
                 <p class="card-text2">▶️ 모집인원: 3명/1일 </p>
                 <p class="card-text2">▶️ 모집기간: 2024.02.20~2024.06.28 </p>
                 <p class="card-text2">▶️ 봉사기간: 2024.02.20~2024.06.28  </p>
-              </div>
+              </router-link>
             </div>
           </div>
         </div>
@@ -112,9 +113,6 @@
   margin: 0 auto;
 }
 
-.custom-card {
-  width: 30rem; 
-}
 
 #text1 {
   font-weight: bold;
@@ -148,5 +146,13 @@
 
 .carousel-control-next {
   right: -60px; 
+}
+
+.no-underline {
+  text-decoration: none;
+}
+
+.no-underline:hover {
+  text-decoration: none;
 }
 </style>

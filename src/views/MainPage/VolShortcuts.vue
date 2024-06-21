@@ -2,10 +2,10 @@
    
     <div class="button-container">
 
-      <div class="btn btn-dark btn-small rounded-btn">#마을 공동체 활동</div>
-      <div class="btn btn-dark btn-small rounded-btn">#급식 지원하기</div>
-      <div class="btn btn-dark btn-small rounded-btn">#상담 봉사활동</div>
-      <div class="btn btn-dark btn-small rounded-btn">#학습 지도 봉사활동</div>
+      <div class="btn btn-dark btn-small rounded-btn move-right">#마을 공동체 활동</div>
+      <div class="btn btn-dark btn-small rounded-btn move-left">#급식 지원하기</div>
+      <div class="btn btn-dark btn-small rounded-btn move-right">#상담 봉사활동</div>
+      <div class="btn btn-dark btn-small rounded-btn ">#학습 지도 봉사활동</div>
 
   </div>
 </template>
@@ -26,9 +26,9 @@
 .button-container {
   display: flex;
   justify-content: center;
-  gap: 70px;
-  margin-top: 90px;
-  margin-bottom: 90px;
+  gap: 105px;
+  margin-top: 80px;
+  margin-bottom: 80px;
 
 
 }
@@ -36,16 +36,22 @@
 .rounded-btn {
   border-radius: 40px; 
   margin: 10px 0; 
-  color: #666;
-  background-color: #fff;
+  color: #fff;
+  background-color: coral;
   border-color: coral;
   padding: 12px 24px; 
   font-size: 18px; 
   width: auto; 
   height: auto; 
-  border-style: dashed;
   border-width: 2px; 
 }
 
+.move-right {
+  margin-left: 20px; 
+}
+
+.move-left {
+  margin-right: 30px;
+}
 
 </style>

@@ -21,13 +21,12 @@
 
 <style scoped>
 .box1 {
-  background-color: dimgrey !important;
+  background-color: gray !important;
   padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 200px;
-  max-width: 2000px; 
   margin: 0 auto;
 }
 

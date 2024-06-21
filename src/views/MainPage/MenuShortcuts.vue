@@ -1,20 +1,29 @@
 <template>
    <div class="image-container mt-5">
+    
       <div class="icon-text">
+        <router-link to="/Details/Participation/VolProgram/ViewVolProgramDetail" class="no-underline">
         <img src="@/assets/MainPage/search.png" class="small-image" />
         <h5 class="icon-label mt-4">바로가기</h5>
+        </router-link>
       </div>
       <div class="icon-text">
+        <router-link to="/Details/VolunteerGuide/Introduce" class="no-underline">
         <img src="@/assets/MainPage/introduction.png" class="small-image" />
-        <h5 class="icon-label mt-4">Social Pulse 소개</h5>
+        <h5 class="icon-label mt-4 ">Social Pulse 소개</h5>
+      </router-link>
       </div>
       <div class="icon-text">
+        <router-link to="/Details/Information/Review/ViewReviewList" class="no-underline">
         <img src="@/assets/MainPage/reviews.png" class="small-image" />
         <h5 class="icon-label mt-4">봉사 후기</h5>
+      </router-link>
       </div>
       <div class="icon-text">
+        <router-link to="/Details/ServiceCenter/QNA/ViewQnaList" class="no-underline">
         <img src="@/assets/MainPage/qa.png" class="small-image" />
         <h5 class="icon-label mt-4">질문과 답변</h5>
+      </router-link>
       </div>
     </div>
 </template>
@@ -28,7 +37,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 170px; 
+  gap: 200px; 
 }
 
 .icon-text {
@@ -38,9 +47,19 @@
 }
 
 .small-image {
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
 }
+
+.no-underline {
+  text-decoration: none;
+  color: black;
+}
+
+.no-underline:hover {
+  text-decoration: none;
+}
+
 
 
 </style>
