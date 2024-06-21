@@ -4,7 +4,6 @@
         <Carousel/>
         <MenuShortcuts/>
         <VolShortcuts/>
-    
         <RecruitVol/>
         <TotalVolCnt/>
         <BoardOutline/>

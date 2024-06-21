@@ -17,19 +17,35 @@
 
   </div>
    
-   <div class="button-container">
+  
+    
+
+    <div class="button-container">
       <div class="text-center mt-3 mb-4">
-        <HighlightButton text="탈퇴" class="me-3" />
+        <HighlightButton text="탈퇴" class="me-3" @click="openWithdrawModal" />
         <NormalButton text="취소"/>
       </div>
     </div>
+
+    <!-- WithdrawModal 컴포넌트 -->
+    <WithdrawModal :isOpen="isWithdrawModalOpen" />
+  
+
+
 </template>
 
 <script setup>
+import {ref} from 'vue';
 import TextHeader from '@/components/Common/TextHeader.vue';
 import HighlightButton from '@/components/Common/HighlightButton.vue';
 import NormalButton from '@/components/Common/NormalButton.vue';
+import WithdrawModal from '@/views/MyPage/WithdrawModal.vue';
 
+const isWithdrawModalOpen = ref(false);
+
+const openWithdrawModal = () => {
+  isWithdrawModalOpen.value = true;
+};
 
 </script>
 
