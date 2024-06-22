@@ -29,12 +29,12 @@
     <div class="accordion-item">
       <h2 class="accordion-header">
         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-          aria-expanded="true" aria-controls="collapseOne">
+          aria-expanded="false" aria-controls="collapseOne">
           <b>▪️ [봉사활동정보_실적확인] 봉사활동한 곳에서 1365로 실적 등록하지 않고 봉사확인서만 제공해줬습니다.</b>
 
         </button>
       </h2>
-      <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+      <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
         <div class="accordion-body">
           봉사자분이 직접 실적을 등록하실 수 없습니다.
           <h6 class="row ms-1">지역자원봉사센터에 봉사확인서를 보내 실적 등록이 가능한지 문의해주시기 바랍니다.</h6>

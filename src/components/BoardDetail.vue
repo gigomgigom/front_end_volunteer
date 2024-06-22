@@ -19,9 +19,11 @@
         <tbody>
           <tr>
             <td colspan="2" class="post-content">
-              <p class="content-text">{{ post.content }}</p>
               <div class="image-container">
                 <img src="@/assets/volunteering-sample.jpg" alt="Volunteering Sample" />
+              </div>
+              <div style="margin-top: 10px;">
+                <p class="content-text">{{ post.content }}</p>
               </div>
             </td>
           </tr>

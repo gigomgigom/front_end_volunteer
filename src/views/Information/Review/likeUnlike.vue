@@ -7,6 +7,7 @@
         </div>
       </div>
     </div>
+    <div class="bottom-line"></div>
   </template>
   
   <script setup>
@@ -18,5 +19,8 @@
   .card{
     margin-top: 20px; margin-bottom: 20px;
     border: none;
+  }
+  .bottom-line{
+    border-bottom: 2px solid #757575;
   }
   </style>
