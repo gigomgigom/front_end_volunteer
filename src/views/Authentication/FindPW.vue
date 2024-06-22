@@ -73,12 +73,16 @@ const emailFields = ref([
 
 const findPassword = (data) => {
   const { findBy, fields } = data;
-
+  //fields: 사용자가 입력한 필드들의 배열.   
   
   const fieldValues = fields.reduce((acc, field) => {
     acc[field.id] = field.value;
     return acc;
   }, {});
+
+  //acc: 누산기로 초기값은 빈 객체 {} 이다.
+  // fieldValues는 { name: '입력된 값', id: '입력된 값', phone: '입력된 값', verificationPhone: '입력된 값' } 형태의 객체가 된다.
+
 
   if (findBy === 'phone') {
     alert(`이름: ${fieldValues.name}, 아이디: ${fieldValues.id}, 휴대번호: ${fieldValues.phone}`);
