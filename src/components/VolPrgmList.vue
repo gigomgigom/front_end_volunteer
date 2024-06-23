@@ -1,75 +1,55 @@
 <template>
-    <div class="card" style="border:none">
-        <div class="card-body" style="padding: 12px;">
-            <div class="row" style="border-bottom: 2px solid gray;">
-                <div class="col-sm-10" style="padding:0 0 8px 0;">
-                    [전체 <span class="highlight">25</span>건,
-                    현재페이지 <span class="highlight">1</span>/3]
-                </div>
-                <div class="col-sm-2">
-                    <button class=""
-                        style="display: inline-block; margin-bottom: 4px; border: none; border-radius: 4px; margin-left: 25px"
-                        @click="emit('showModal')" v-if="isAddPage">새로 생성</button>
-                </div>
+    <div>
+        <div class="row">
+            <div class="col-sm-10" style="padding:0 0 8px 0;">
+                [전체 <span class="highlight">25</span>건,
+                현재페이지 <span class="highlight">1</span>/3]
             </div>
-            <slot name="body">
-                <div class="row_container mt-3 mb-3" v-for="(vol) in volList" :key="vol.no">
-                    <div class="row">
-                        <div class="col-sm-12" style="padding: 0;">
-                            <span style="font-weight: bold; font-size: 18px;">
+            <div class="col-sm-2">
+                <slot name="createButton">
+                    <!--생성버튼 추가-->
+                </slot>
+            </div>
+        </div>
+        <div class="d-flex ps-2" style="border-bottom: 2px solid gray;">
+            <slot name="vol-checkbox">
+
+            </slot>
+        </div>
+        <div class="row-wrapper py-3" v-for="(vol) in volList" :key="vol.no">
+            <div class="row">
+                <div class="col-md-10 d-flex">
+                    <div class="vol-checkbox">
+                        <slot name="checkBox">
+                            <!--선택하기 체크박스 생성-->
+                        </slot>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <div class="vol-title">
+                            <span>
                                 {{ vol.title }}
                             </span>
                         </div>
-                    </div>
-                    <div class="row" style="font-size: 14px;">
-                        <div class="col-sm-10 mt-1" style="padding: 0;">
-                            <span>[모집기간]
-                                <span style="color: gray;">
-                                    {{ vol.recruitDate }}
-                                </span>
-                            </span>
-                            <span class="ms-3">[봉사기간]
-                                <span style="color: gray;">
-                                    {{ vol.volDate }}
-                                </span>
-                            </span>
-                            <span class="ms-3">[봉사시간]
-                                <span style="color: gray;">
-                                    {{ vol.volTime }}
-                                </span>
-                            </span>
+                        <div class="vol-desc">
+                            [모집기간] <span class="me-2" style="color: gray;">{{ vol.recruitDate }}</span>
+                            [봉사기간] <span class="me-2" style="color: gray;">{{ vol.volDate }}</span>
+                            [봉사시간] <span style="color: gray;">{{ vol.volTime }}</span>
                         </div>
-                        <div class="col-sm-2 ">
-                            <button class=""
-                                style="display: inline-block; margin-bottom: 4px; border: none; border-radius: 4px; margin-left: 25px; font-size: 16px; width: 81.63px;"
-                                v-if="isAddPage" @click="emit('showModal')">추가</button>
+                        <div class="vol-desc">
+                            [봉사지역] <span class="me-2" style="color: gray;">{{ vol.registerCenter }}</span>
+                            [모집기관] <span style="color: gray;">{{ vol.recruitCenter }}</span>
                         </div>
-                    </div>
-                    <div class="row" style="font-size: 14px; ">
-                        <div class="col-sm-12 " style="padding: 0;">
-                            <span>[등록기관]
-                                <span style="color: gray;">
-                                    {{ vol.registerCenter }}
-                                </span>
-                            </span>
-                            <span class="ms-3">[모집기관]
-                                <span style="color: gray;">
-                                    {{ vol.recruitCenter }}
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row" style="font-size: 14px; border-bottom: 1px solid gray; padding-bottom: 10px; ">
-                        <div class="col-sm-12 mt-1" style="padding: 0; color: #4e76ad;">
-                            <span>[분류]
-                                <span>
-                                    {{ vol.classification }}
-                                </span>
-                            </span>
+                        <div class="vol-desc">
+                            [분류] <span style="font-weight: bold; color: #4e76ad;">{{ vol.classification }}</span>
                         </div>
                     </div>
                 </div>
-            </slot>
+                <div class="col-md-2 right-side-container">
+                    <slot name="right-side">
+
+                    </slot>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -95,6 +75,37 @@ onMounted(() => {
 </script>
 
 <style scoped>
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.row-wrapper {
+    border-bottom: 1px solid silver;
+}
+
+.vol-title {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.vol-checkbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vol-desc {
+    font-size: 14px;
+}
+
+.right-side-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .highlight {
     color: coral;
     font-weight: bolder;

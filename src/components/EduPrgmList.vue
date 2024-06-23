@@ -1,59 +1,47 @@
 <template>
-    <div class="card" style="border: none;">
-        <div class="card-body" style="padding: 12px;">
-            <div class="row" style="border-bottom: 2px solid gray; ">
-                <div class="col-sm-10" style="padding:0 0 8px 0;">
-                    [전체 <span class="highlight">25</span>건,
-                    현재페이지 <span class="highlight">1</span>/3]
+    <div style="padding: 12px;">
+        <div class="row" style="border-bottom: 2px solid gray;">
+            <div class="col-sm-10" style="padding:0 0 8px 0;">
+                [전체 <span class="highlight">25</span>건,
+                현재페이지 <span class="highlight">1</span>/3]
+            </div>
+            <div class="col-sm-2">
+                <slot name="createButton">
+
+                </slot>
+            </div>
+        </div>
+        <div class="row-wrapper py-3" v-for="(edu) in eduList" :key="edu.no">
+            <div class="row">
+                <div class="col-md-10 edu-container">
+                    <div class="edu-title">
+                        <span>
+                            {{ edu.title }}
+                        </span>
+                    </div>
+                    <div class="edu-desc">
+                        [모집기간]<span class="mx-1" style="color: gray">
+                            {{ edu.recruitDate }}
+                        </span>
+                        [교육기간]<span class="mx-1" style="color: gray;">
+                            {{ edu.eduDate }}
+                        </span>
+                    </div>
+                    <div class="edu-desc">
+                        [교육시간]<span class="mx-1" style="color: gray;">
+                            14:00 ~ 16:00
+                        </span>
+                        [교육센터]<span class="mx-1" style="color: gray;">
+                            {{ edu.center }}
+                        </span>
+                    </div>
                 </div>
-                <div class="col-sm-2">
-                    <button class="" style="display: inline-block; border: none; border-radius: 4px; margin-left: 25px"
-                        @click="emit('buttonClick')" v-if="isAddPage">새로 생성</button>
+                <div class="col-md-2 right-side-container">
+                    <slot name="right-side">
+                        
+                    </slot>
                 </div>
             </div>
-            <slot name="body">
-                <div class="row_container mt-3 mb-3" v-for="(edu) in eduList" :key="edu.no">
-                    <div class="row">
-                        <div class="col-sm-12" style="padding: 0;">
-                            <span style="font-weight: bold; font-size: 18px;">
-                                {{ edu.title }}
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="row" style="font-size: 14px; border-bottom: 1px solid gray; padding-bottom: 10px; ">
-                        <div class="col-sm-3 mt-1" style="padding: 0;">
-                            <span>[교육센터]
-                                <span style="color: gray;">
-                                    {{ edu.center }}
-                                </span>
-                            </span>
-                        </div>
-                        <div class="col-sm-7">
-                            <span class="ms-5" style="">[모집기간]
-                                <span style="color: gray;">
-                                    {{ edu.recruitDate }}
-                                </span>
-                            </span>
-                        </div>
-                        <div class="col-sm-2 ">
-                            <button class="" style="display: inline-block; margin-bottom: 4px; border: none; 
-                            border-radius: 4px; margin-left: 25px; font-size: 16px; width: 81.63px;"
-                                @click="emit('buttonClick')">추가
-                            </button>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12" style="padding: 0; margin-bottom: 4px;">
-                                <span class="">[교육기간]
-                                    <span style="color: gray;">
-                                        {{ edu.eduDate }}
-                                    </span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </slot>
         </div>
     </div>
 </template>
@@ -80,8 +68,34 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.highlight {
-  color: coral;
-  font-weight: bolder;
+* {
+    margin: 0;
+    padding: 0;
 }
-  </style>
+
+.row-wrapper {
+    border-bottom: 1px solid silver;
+}
+
+.edu-container {
+    display: flex;
+    flex-direction: column;
+}
+.edu-title {
+    font-weight: bold;
+    font-size: 18px;
+}
+.edu-desc {
+    font-size: 14px;
+}
+.right-side-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.highlight {
+    color: coral;
+    font-weight: bolder;
+}
+</style>

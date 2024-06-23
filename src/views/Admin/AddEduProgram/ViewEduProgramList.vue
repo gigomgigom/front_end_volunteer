@@ -1,7 +1,14 @@
 <template>
   <div>
     <SearchEduPrgm />
-    <EduPrgmList :isAddPage="true" class="mt-5" @buttonClick="showModal"/>
+    <EduPrgmList>
+      <template v-slot:createButton>
+        <NormalButton text="새로 생성" style="padding-top: 2px; padding-bottom: 2px;" />
+      </template>
+      <template v-slot:right-side>
+        <HighlightButton text="추가" style="padding-top: 2px; padding-bottom: 2px;" />
+      </template>
+    </EduPrgmList>
     <EduPrgmFormTemplateSlot id="addEduProgramModal"/>
   </div>
 </template>
@@ -12,6 +19,8 @@ import EduPrgmList from '@/components/EduPrgmList.vue';
 import EduPrgmFormTemplateSlot from './EduPrgmFormTemplateSlot.vue'
 import { onMounted } from "vue";
 import { Modal } from "bootstrap";
+import NormalButton from '@/components/Common/NormalButton.vue';
+import HighlightButton from '@/components/Common/HighlightButton.vue';
 
 let addEduProgramModal = null;
 

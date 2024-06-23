@@ -1,7 +1,14 @@
 <template>
   <div>
-    <SearchEduPrgm />
-    <EduPrgmListSlot class="mt-5" @showModal="showModal" @showApplicant="showApplicant"/>
+    <SearchEduPrgm/>
+    <EduPrgmList>
+      <template v-slot:right-side>
+        <HighlightButton text="수정하기" class="mb-3"
+          style="padding-top: 2px; padding-bottom: 2px; padding-left: 15px; padding-right: 15px;" />
+        <NormalButton text="신청조회"
+          style="padding-top: 2px; padding-bottom: 2px; padding-left: 15px; padding-right: 15px;" />
+      </template>
+    </EduPrgmList>
     <EduPrgmFormTemplateSlot id="updateEduProgramModal"/>
     <Applicant id="applicant"/>
   </div>
@@ -9,9 +16,11 @@
 
 <script setup>
 import SearchEduPrgm from '@/components/SearchEduPrgm.vue';
-import EduPrgmListSlot from './EduPrgmListSlot.vue';
 import EduPrgmFormTemplateSlot from './EduPrgmFormTemplateSlot.vue'
+import EduPrgmList from '@/components/EduPrgmList.vue';
 import Applicant from '@/components/Applicant.vue';
+import HighlightButton from '@/components/Common/HighlightButton.vue';
+import NormalButton from '@/components/Common/NormalButton.vue';
 import { onMounted } from "vue";
 import { Modal } from "bootstrap";
 

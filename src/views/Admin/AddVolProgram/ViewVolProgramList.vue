@@ -1,9 +1,16 @@
 <template>
   <div id="view-programlist-wrapper">
     <h5>🔶봉사조회</h5>
-    <SearchVolPgrm/>
-    <AddVolProgramModal id="addVolProgramModal"/>
-    <VolPrgmList class="mt-5" :isAddPage="true" @showModal="showDialog"/>
+    <SearchVolPgrm />
+    <AddVolProgramModal id="addVolProgramModal" />
+    <VolPrgmList class="mt-5" :isAddPage="true" @showModal="showDialog">
+      <template v-slot:createButton>
+        <NormalButton text="새로 생성" style="padding-top: 2px; padding-bottom: 2px;" />
+      </template>
+      <template v-slot:right-side>
+        <HighlightButton text="추가" style="padding-top: 2px; padding-bottom: 2px;" />
+      </template>
+    </VolPrgmList>
 
   </div>
 </template>
@@ -14,10 +21,12 @@ import { Modal } from 'bootstrap';
 import SearchVolPgrm from '@/components/SearchVolPgrm.vue';
 import AddVolProgramModal from './AddVolProgramModal.vue';
 import VolPrgmList from '@/components/VolPrgmList.vue'
+import NormalButton from '@/components/Common/NormalButton.vue';
+import HighlightButton from '@/components/Common/HighlightButton.vue';
 
 let addVolProgramModal = null;
 
-onMounted( () => {
+onMounted(() => {
   addVolProgramModal = new Modal(document.querySelector("#addVolProgramModal"));
 });
 
@@ -27,7 +36,7 @@ function showDialog() {
 </script>
 
 <style scoped>
-*{
+* {
   margin: 0;
   padding: 0;
 }

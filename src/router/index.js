@@ -81,7 +81,7 @@ const routes = [
       {
         path: "/Details/Admin",
         name: "Admin",
-        redirect: "/Details/Admin/MngPrgm",
+        redirect: "/Details/Admin/AddVolProgram",
         //2차 Router-View
         children: [
           ...Admin,

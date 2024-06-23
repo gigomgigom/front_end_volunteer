@@ -37,10 +37,6 @@ const routes = [
             {
                 path: "/Details/MyPage/Interest/ViewInterestVolList",
                 component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/MyPage/Interest/ViewInterestVolList.vue'),
-            },
-            {
-                path: "/Details/MyPage/Interest/ViewVolDetail",
-                component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/MyPage/Interest/ViewVolDetail.vue'),
             }
         ]
     },
