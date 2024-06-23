@@ -73,7 +73,7 @@
 }
 
 .sub-text-box {
- background-color: forestgreen;
+ background-color: coral;
  padding: 10px 20px;
  margin-right: -50px; 
 }

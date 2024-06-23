@@ -37,7 +37,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 230px; 
+  gap: 220px; 
 }
 
 .icon-text {

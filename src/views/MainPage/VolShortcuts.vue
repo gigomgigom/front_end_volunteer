@@ -33,13 +33,14 @@
   border-radius: 40px;
   margin: 10px 0;
   color: #fff;
-  background-color: forestgreen;
-  border-color: forestgreen;
+  background-color: coral;
+  border-color: black;
   padding: 12px 24px;
   font-size: 18px;
   width: auto;
   height: auto;
   border-width: 2px;
+  border-style: dashed;
 }
 
 </style>

@@ -108,26 +108,29 @@
 
 .box3 {
   position: relative;
-  background-color: cornsilk !important;
+  background-color: beige !important;
   padding: 20px;
   color: black;
   font-size: 30px;
   min-width: 150px;
-  margin: 0 auto; 
-  width: 80%;
+  margin: 0 auto;
+  width: 100%;
   display: flex;
-  flex-direction: row; 
-  align-items: center; 
+  flex-direction: row;
+  align-items: center;
   z-index: 1;
+  box-sizing: border-box;  
+  overflow: hidden;       
 }
 
-.box3::before, .box3::after {
+.box3::before,
+.box3::after {
   content: '';
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 100vw; 
-  background-color: cornsilk;
+  width: 100vw;
+  background-color: beige;
   z-index: -1;
 }
 
@@ -136,7 +139,7 @@
 }
 
 .box3::after {
-  right: -100vw; 
+  right: -100vw;
 }
 
 @media (max-width: 768px) {
@@ -145,19 +148,17 @@
   }
 }
 
-
-
 h6 {
   margin-top: 0;
   margin-bottom: 10px;
-  text-align: left; 
+  text-align: left;
 }
 
 .row {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%; 
+  width: 100%;
 }
 
 .plus {
@@ -169,13 +170,13 @@ h6 {
   max-height: 180px;
   overflow-y: auto;
   color: #666;
-  width: 100%; 
+  width: 100%;
 }
 
 .section {
   flex: 1;
-  margin: 10px; 
-  background-color: cornsilk;
+  margin: 10px;
+  background-color: beige;
   padding: 20px;
   box-sizing: border-box;
   position: relative;
@@ -206,5 +207,17 @@ h6 {
 .no-underline1 {
   text-decoration: none;
   color: #666;
+  white-space: nowrap;    
+  overflow: hidden;       
+  text-overflow: ellipsis;
+  display: block;         
+  max-width: 100%;        
+}
+
+.container {
+  max-width: 100%; 
+  overflow-x: hidden; 
+  padding: 0 20px;
+  box-sizing: border-box;
 }
   </style>
