@@ -1,14 +1,9 @@
 <template>
-  <div class="card">
-    <div class="card-header">희망봉사 목록 조회</div>
-    <div class="card-body">
-
-    </div>
-  </div>
+  <RequireReplyBoard/>
 </template>
 
 <script setup>
-
+import RequireReplyBoard from '@/components/RequireReplyBoard.vue';
 </script>
 
 <style scoped>
