@@ -5,12 +5,12 @@
     <!-- Find by phone or email -->
     <div class="mb-3 find-by-options">
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" v-model="findBy" value="phone" id="findByPhone">
+        <input class="form-check-input custom-radio" type="radio" v-model="findBy" value="phone" id="findByPhone">
         <label class="form-check-label" for="findByPhone">연락처로 찾기</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" v-model="findBy" value="email" id="findByEmail" >
-        <label class="form-check-label" for="findByEmail" >이메일로 찾기</label>
+        <input class="form-check-input custom-radio" type="radio" v-model="findBy" value="email" id="findByEmail">
+        <label class="form-check-label" for="findByEmail">이메일로 찾기</label>
       </div>
     </div>
 
@@ -100,6 +100,16 @@ export default {
   margin-right: 10px;
 }
 
+.find-by-options .form-check-input:checked {
+  background-color: #ff7f0e;
+  border-color: #ff7f0e;
+}
+
+.find-by-options .form-check-input:focus {
+  border-color: #ff7f0e;
+  box-shadow: 0 0 0 0.2rem rgba(255, 127, 14, 0.25);
+}
+
 .form-label {
   font-weight: bold;
   color: #555;
@@ -121,13 +131,13 @@ export default {
 }
 
 .btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #ff7f0e;
+  border-color: #ff7f0e;
 }
 
 .btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #004085;
+  background-color: #ff6300;
+  border-color: #ff4500;
 }
 
 .rewrite-msg {
