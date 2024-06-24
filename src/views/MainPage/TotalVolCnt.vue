@@ -1,18 +1,20 @@
 <template>
-  <div class="box1 mt-5">
-   <div class="d-flex align-items-center justify-content-between w-100 inner-box">
-     <div class="left-content">
-       <div class="text-box">오늘의 참여현황</div>
-       <div class="text-content main-text">여러분의 마음이 이만큼 모였어요🤗</div>
-     </div>
-     
-     <div class="sub-text-box">
-     <div class="sub-text">봉사 참여 5,080명</div>
-  
- </div>
-   </div>
- </div>
- 
+  <div class="volCnt_container">
+    <div class="volCnt_title mb-3">
+      오늘의 참여현황
+    </div>
+    <div class="volCntInfo_container">
+      <div class="d-flex me-4">
+        <img src="@/assets/Volunteer_icon.jpg" width="80px" />
+        <div class="d-flex align-items-center volCnt">
+          <h1 class="me-3">5,048</h1><span>명</span>
+        </div>
+      </div>
+      <div class="d-flex align-items-center">
+        <span style="font-size: 1em;">여러분들의 마음이 모였어요!</span>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -20,63 +22,37 @@
 </script>
 
 <style scoped>
-.box1 {
- background-color: darkgrey !important;
- padding: 20px;
- display: flex;
- justify-content: center;
- align-items: center;
- height: 200px;
- margin: 0 auto;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.inner-box {
- max-width: 800px; 
+.volCnt_container {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 20px;
+  border-radius: 10px;
 }
 
-.left-content {
- display: flex;
- flex-direction: column;
- align-items: flex-start;
- margin-right: 40px; 
+.volCnt_title {
+  font-size: 1.5em;
+  font-weight: bolder;
+  color: rgb(240, 103, 4);
 }
 
-.text-box {
- border-radius: 40px; 
- margin-bottom: 5px;
- color: #666;
- background-color: #fff;
- border-color: lightsalmon;
- padding: 10px 18px; 
- font-size: 17px; 
- width: auto; 
- height: auto; 
- border-width: 2px; 
+.volCntInfo_container {
+  display: flex;
 }
 
-.text-content {
- margin-top: 10px; 
+.volCntInfo_container>img {
+  margin-right: 30px;
 }
 
-.sub-text {
- color:#fff;
- margin-left: auto; 
- font-size: 20px;
-
- 
+.volCnt>span {
+  font-size: 1.3em;
 }
-
-.main-text {
- font-weight: bold;
- color: #fff;
- font-size: 30px;
-}
-
-.sub-text-box {
- background-color: coral;
- padding: 10px 20px;
- margin-right: -50px; 
-}
-
-
 </style>

@@ -1,6 +1,5 @@
 <!-- 전체 레이아웃 구조 기본 레이아웃 지정-->
 <template>
-  <AppFirstHeader/>
   <AppSecondHeader/>
   <!--메인페이지 바디 or 상세페이지 바디-->
   <router-view/>

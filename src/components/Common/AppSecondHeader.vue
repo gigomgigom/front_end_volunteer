@@ -116,7 +116,7 @@ function goDetailBody(firstFloorIndex) {
     /* 가로 너비 100% 설정 */
     height: 1px;
     /* 밑줄 높이 설정 */
-    background-color: rgb(64, 185, 53);
+    background-color: rgb(240, 103, 4);
     /* 밑줄 색상 설정 */
     transition: bottom 0.3s ease-in-out;
     /* 호버 시 부드러운 이동 효과 적용 */

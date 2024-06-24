@@ -40,8 +40,11 @@
       </tbody>
     </table>
   </div>
-
-
+  <div class="d-flex justify-content-end">
+    <slot name="createButton">
+      <!--글 작성하기 버튼 생성-->
+    </slot>
+  </div>
   <div class="d-flex justify-content-between align-items-center">
     <div class="flex-grow-1 d-flex justify-content-center">
       <nav aria-label="Page navigation example">

@@ -29,16 +29,7 @@
 <style scoped>
 
 .carousel-inner {
-  width: 100%; 
-  margin: 0 auto;
- 
-}
-
-.image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px; 
+  width: 100%;
 }
 
 .icon-text {
