@@ -1,32 +1,32 @@
 <template>
-   <div class="modal" v-if="isOpen">
+ <div class="modal" v-if="isOpen">
     <div class="modal-content">
-      <p>개인정보가 삭제됩니다. 그래도 탈퇴하시겠습니까?</p>
+      <p>
+        모든 개인정보가 삭제됩니다.<br> 그래도 탈퇴하시겠습니까?
+      </p>
       <div class="modal-buttons">
-        <button class="modal-confirm" @click="handleConfirm">확인</button>
-        <button class="modal-cancel" @click="handleCancel">취소</button>
+        <button class="btn btn-small modal-confirm" @click="confirm">확인</button>
+        <button class="btn btn-small modal-cancel" @click="cancel">취소</button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { defineProps, defineEmits } from 'vue';
 
+const props = defineProps({
+  isOpen: Boolean
+});
 
-const isOpen = ref(false);
+const emit = defineEmits(['close', 'confirm']);
 
-const openModal = () => {
-  isOpen.value = true;
+const confirm = () => {
+  emit('confirm');
 };
 
-const handleConfirm = () => {
-  console.log("탈퇴 처리가 완료되었습니다.");
-  isOpen.value = false;
-};
-
-const handleCancel = () => {
-  isOpen.value = false;
+const cancel = () => {
+  emit('close');
 };
 
 </script>
@@ -54,11 +54,24 @@ const handleCancel = () => {
 
 .modal-buttons {
   margin-top: 20px;
+
 }
 
-.modal-confirm, .modal-cancel {
+.modal-confirm{
   padding: 8px 16px;
   margin: 0 8px;
   cursor: pointer;
+  background-color: coral;
+  border-color: #fff;
+  color: #fff;
+}
+
+.modal-cancel {
+  padding: 8px 16px;
+  margin: 0 8px;
+  cursor: pointer;
+  background-color: #666;
+  border-color: #fff;
+  color: #fff;
 }
 </style>

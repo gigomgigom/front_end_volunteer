@@ -1,197 +1,190 @@
 <template>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <TextHeader title="회원가입" />
-  <div class="info-title-container">
-    <div>
-      <h4 id="title1">회원정보</h4>
-    </div>
-    <div class="d-flex align-items-end">
-      <span style="color: red">⁕필수 입력 항목입니다.</span>
-    </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<TextHeader title="회원가입" />
+<div class="info-title-container">
+  <div>
+    <h4 id="title1">회원정보</h4>
   </div>
-  <div class="info-container mb-5">
-    <dl class="row info-row">
-      <dt class="col-3">이름</dt>
-      <dd class="col-9 d-flex align-items-center">
-        <input type="text" class="form-control form-control-sm me-2 custom-input">
-      </dd>
-    </dl>
-    <dl class="row info-row ">
-      <dt class="col-3">성별</dt>
-      <dd class="col-5">
-        <div class="form-check d-flex align-items-center me-4 ms-4">
-          <input class="form-check-input me-1" type="radio" name="sex-check" id="man" value="yes">
-          <label class="form-check-label me-3" for="man">
-            남성
-          </label>
-        </div>
-        <div class="form-check d-flex align-items-center">
-          <input class="form-check-input me-1" type="radio" name="sex-check" id="woman" value="no">
-          <label class="form-check-label" for="woman">
-            여성
-          </label>
-        </div>
-      </dd>
-    </dl>
-    <dl class="row info-row">
-      <dt class="col-3">생년월일</dt>
-      <dd class="col-9 d-flex align-items-center">
-        <VueDatePicker v-model="birthDate" :enable-time-picker="false" class="custom-input me-2" />
-        <span class="verification-text">본인 확인을 위한 자료로 이용합니다.</span>
-      </dd>
-    </dl>
-    <dl class="row info-row">
-      <dt class="col-3">아이디</dt>
-      <dd class="col-9 d-flex align-items-center">
-        <input type="text" class="form-control form-control-sm me-2">
-        <button class="btn btn-danger btn-sm me-2">중복조회</button>
-        <span class="verification-text">8자리 이상 16자리 이하로 입력</span>
-      </dd>
-    </dl>
-    <dl class="row info-row">
-      <dt class="col-3">비밀번호</dt>
-      <dd class="col-9 d-flex align-items-center">
-        <input type="password" class="form-control form-control-sm me-2 custom-input">
-        <span class="verification-text">8자리 이상 16자리 이하로 입력</span>
-      </dd>
-    </dl>
-    <dl class="row info-row">
-      <dt class="col-3">비밀번호 확인</dt>
-      <dd class="col-9 d-flex align-items-center">
-        <input type="password" class="form-control form-control-sm me-2 custom-input">
-
-      </dd>
-    </dl>
-    <dl class="row info-row">
-      <dt class="col-3" style="height: 120px;">주소</dt>
-      <dd class="col-9" style="height: 120px;">
-        <div>
-          <div class="d-flex align-items-center mb-3">
-            <div class="d-flex justify-content-center align-items-center w-100">
-              <input type="text" class="form-control form-control-sm me-2"
-              id="sample6_postcode" placeholder="우편번호">
-              <button class="btn btn-danger btn-sm me-2"  @click="sample6_execDaumPostcode()"
-              >우편번호 찾기</button>
-            </div>
-            <span class="verification-text"></span>
-          </div>
-          <div class="d-flex align-items-center">
-            <input type="text" class="form-control form-control-sm me-2 custom-input "  id="sample6_address" placeholder="주소 입력">
-            <input type="text" class="form-control form-control-sm me-2 custom-input " id="sample6_detailAddress" placeholder="상세 주소 입력">
-          </div>
-        </div>
-      </dd>
-    </dl>
-    <dl class="row info-row">
-      <dt class="col-3">휴대폰번호</dt>
-      <dd class="col-5 d-flex align-items-center">
-        <select class="form-select me-2" aria-label="번호 선택">
-          <option selected>010</option>
-          <option value="1">011</option>
-          <option value="2">016</option>
-          <option value="3">013</option>
-        </select>
-        <input type="text" class="form-control form-control-sm me-2">
-        <input type="text" class="form-control form-control-sm me-2">
-      </dd>
-    </dl>
-    <dl class="row info-row">
-      <dt class="col-3">이메일 주소</dt>
-      <dd class="col-9">
-        <input type="text" class="form-control form-control-sm me-2 custom-input">
-      </dd>
-    </dl>
-
-    <dl class="row info-row">
-      <dt class="col-3" style="height: 120px;">수신동의 여부</dt>
-      <dd class="col-9" style="height: 120px;">
-        <div class="d-flex flex-column">
-          <div class="d-flex mb-3">
-            <div class="d-flex align-items-center me-4">
-              <span class="me-3" style="font-weight: bold">휴대폰</span>
-            </div>
-            <div class="form-check d-flex align-items-center me-4">
-              <input class="form-check-input me-1" type="radio" name="phone-check" id="phone-yes" value="yes">
-              <label class="form-check-label me-3" for="phone-yes">
-                수신동의
-              </label>
-            </div>
-            <div class="form-check d-flex align-items-center">
-              <input class="form-check-input me-1" type="radio" name="phone-check" id="phone-no" value="no">
-              <label class="form-check-label" for="phone-no">
-                수신거부
-              </label>
-            </div>
-          </div>
-          <div class="d-flex align-items-center">
-            <div class="d-flex align-items-center me-4">
-              <span class="me-3" style="font-weight: bold">이메일</span>
-            </div>
-            <div class="form-check d-flex align-items-center me-4">
-              <input class="form-check-input me-1" type="radio" name="email-check" id="email-yes" value="yes">
-              <label class="form-check-label me-3" for="email-yes">
-                수신동의
-              </label>
-            </div>
-            <div class="form-check d-flex align-items-center">
-              <input class="form-check-input me-1" type="radio" name="email-check" id="email-no" value="no">
-              <label class="form-check-label" for="email-no">
-                수신거부
-              </label>
-            </div>
-          </div>
-        </div>
-      </dd>
-    </dl>
+  <div class="d-flex align-items-end">
+    <span style="color: red">⁕필수 입력 항목입니다.</span>
   </div>
-  <div class="info-title-container">
-    <div>
-      <h4 id="title1">회원 부가정보 입력</h4>
-    </div>
-  </div>
-  <div class="info-container">
-    <dl class="row info-row">
-      <dt class="col-3">소속센터</dt>
-      <dd class="col-5 d-flex align-items-center">
-        <select class="form-select me-2" aria-label="시 선택">
-          <option selected>시/군 선택</option>
-          <option value="1">서울특별시</option>
-          <option value="2">부산광역시</option>
-          <option value="3">대구광역시</option>
-        </select>
-        <i class="fas fa-chevron-right me-2"></i>
-        <select class="form-select" aria-label="군 선택">
-          <option selected>선택</option>
-          <option value="1">강남구</option>
-          <option value="2">서초구</option>
-          <option value="3">송파구</option>
-        </select>
-      </dd>
-    </dl>
+</div>
+<div class="info-container mb-5">
+  <dl class="row info-row">
+    <dt class="col-3">이름</dt>
+    <dd class="col-9 d-flex align-items-center">
+      <input type="text" class="form-control form-control-sm me-2 custom-input" id="usernm">
+    </dd>
+  </dl>
+  <dl class="row info-row ">
+    <dt class="col-3">성별</dt>
+    <dd class="col-5">
+      <div class="form-check d-flex align-items-center me-4 ms-4">
+        <input class="form-check-input me-1" type="radio" name="sex-check" id="man" value="yes">
+        <label class="form-check-label me-3" for="man">
+          남성
+        </label>
+      </div>
+      <div class="form-check d-flex align-items-center">
+        <input class="form-check-input me-1" type="radio" name="sex-check" id="woman" value="no">
+        <label class="form-check-label" for="woman">
+          여성
+        </label>
+      </div>
+    </dd>
+  </dl>
+  <dl class="row info-row">
+    <dt class="col-3">생년월일</dt>
+    <dd class="col-9 d-flex align-items-center">
+      <VueDatePicker v-model="birthDate" :enable-time-picker="false" class="custom-input me-2" />
+      <span class="verification-text">본인 확인을 위한 자료로 이용합니다.</span>
+    </dd>
+  </dl>
+  <dl class="row info-row">
+    <dt class="col-3">아이디</dt>
+    <dd class="col-9 d-flex align-items-center">
+      <input type="text" class="form-control form-control-sm me-2" id="userid">
+      <button class="btn btn-danger btn-sm me-2">중복조회</button>
+      <span class="verification-text">8자리 이상 16자리 이하로 입력</span>
+    </dd>
+  </dl>
+  <dl class="row info-row">
+    <dt class="col-3">비밀번호</dt>
+    <dd class="col-9 d-flex align-items-center">
+      <input type="password" class="form-control form-control-sm me-2 custom-input" id="userpw">
+      <span class="verification-text">8자리 이상 16자리 이하로 입력</span>
+    </dd>
+  </dl>
+  <dl class="row info-row">
+    <dt class="col-3">비밀번호 확인</dt>
+    <dd class="col-9 d-flex align-items-center">
+      <input type="password" class="form-control form-control-sm me-2 custom-input" id="userpw2">
+    </dd>
+  </dl>
+  <dl class="row info-row">
+    <dt class="col-3" style="height: 120px;">주소</dt>
+    <dd class="col-9" style="height: 120px;">
+      <div>
+        <div class="d-flex align-items-center mb-3">
+          <div class="d-flex justify-content-center align-items-center w-100">
+            <input type="text" class="form-control form-control-sm me-2"
+            id="sample6_postcode" placeholder="우편번호">
+            <button class="btn btn-danger btn-sm me-2"  @click="sample6_execDaumPostcode()"
+            >우편번호 찾기</button>
+          </div>
+          <span class="verification-text"></span>
+        </div>
+        <div class="d-flex align-items-center">
+          <input type="text" class="form-control form-control-sm me-2 custom-input "  id="sample6_address" placeholder="주소 입력">
+          <input type="text" class="form-control form-control-sm me-2 custom-input " id="sample6_detailAddress" placeholder="상세 주소 입력">
+        </div>
+      </div>
+    </dd>
+  </dl>
+  <dl class="row info-row">
+    <dt class="col-3">휴대폰번호</dt>
+    <dd class="col-5 d-flex align-items-center">
+      <select class="form-select me-2" aria-label="번호 선택">
+        <option selected>010</option>
+        <option value="1">011</option>
+        <option value="2">016</option>
+        <option value="3">013</option>
+      </select>
+      <input type="text" class="form-control form-control-sm me-2">
+      <input type="text" class="form-control form-control-sm me-2">
+    </dd>
+  </dl>
+  <dl class="row info-row">
+    <dt class="col-3">이메일 주소</dt>
+    <dd class="col-9">
+      <input type="text" class="form-control form-control-sm me-2 custom-input" id="useremail">
+    </dd>
+  </dl>
 
-    <dl class="row info-row mb-3">
-      <dt class="col-3">희망분야</dt>
-      <dd class="col-5 d-flex align-items-center">
-        <select class="form-select me-2" aria-label="시 선택">
-          <option selected>선택</option>
-          <option value="1">봉사1</option>
-          <option value="2">봉사2</option>
-          <option value="3">봉사3</option>
-        </select>
-        <i class="fas fa-chevron-right me-2"></i>
-        <select class="form-select" aria-label="군 선택">
-          <option selected>선택</option>
-          <option value="1">봉사1</option>
-          <option value="2">봉사2</option>
-          <option value="3">봉사3</option>
-        </select>
-      </dd>
-    </dl>
-    
-    <div class="text-center mt-4 mb-4">
-      <HighlightButton text="가입"/>
-    </div>
-    </div>
+  <dl class="row info-row">
+    <dt class="col-3" style="height: 120px;">수신동의 여부</dt>
+    <dd class="col-9" style="height: 120px;">
+      <div class="d-flex flex-column">
+        <div class="d-flex mb-3">
+          <div class="d-flex align-items-center me-4">
+            <span class="me-3" style="font-weight: bold">휴대폰</span>
+          </div>
+          <div class="form-check d-flex align-items-center me-4">
+            <input class="form-check-input me-1" type="radio" name="phone-check" id="phone-yes" value="yes">
+            <label class="form-check-label me-3" for="phone-yes">
+              수신동의
+            </label>
+          </div>
+          <div class="form-check d-flex align-items-center">
+            <input class="form-check-input me-1" type="radio" name="phone-check" id="phone-no" value="no">
+            <label class="form-check-label" for="phone-no">
+              수신거부
+            </label>
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center me-4">
+            <span class="me-3" style="font-weight: bold">이메일</span>
+          </div>
+          <div class="form-check d-flex align-items-center me-4">
+            <input class="form-check-input me-1" type="radio" name="email-check" id="email-yes" value="yes">
+            <label class="form-check-label me-3" for="email-yes">
+              수신동의
+            </label>
+          </div>
+          <div class="form-check d-flex align-items-center">
+            <input class="form-check-input me-1" type="radio" name="email-check" id="email-no" value="no">
+            <label class="form-check-label" for="email-no">
+              수신거부
+            </label>
+          </div>
+        </div>
+      </div>
+    </dd>
+  </dl>
+</div>
+<div class="info-title-container">
+  <div>
+    <h4 id="title1">회원 부가정보 입력</h4>
+  </div>
+</div>
+<div class="info-container">
+  <dl class="row info-row">
+    <dt class="col-3">소속센터</dt>
+    <dd class="col-5 d-flex align-items-center">
+      <select class="form-select me-2" aria-label="시 선택">
+        <option selected>시/군 선택</option>
+        <option value="1">서울특별시</option>
+        <option value="2">부산광역시</option>
+        <option value="3">대구광역시</option>
+      </select>
+      <i class="fas fa-chevron-right me-2"></i>
+      <select class="form-select" aria-label="군 선택">
+        <option selected>선택</option>
+        <option value="1">강남구</option>
+        <option value="2">서초구</option>
+        <option value="3">송파구</option>
+      </select>
+    </dd>
+  </dl>
+
+  <dl class="row info-row mb-3">
+    <dt class="col-3">희망분야</dt>
+    <dd class="col-5 d-flex align-items-center">
+      <select class="form-select me-2" aria-label="시 선택">
+        <option selected>선택</option>
+        <option value="1">기획</option>
+        <option value="2">디자인</option>
+        <option value="3">개발</option>
+      </select>
+    </dd>
+  </dl>
+ 
+</div>
+<div class="btn-container d-flex justify-content-end mt-4 mb-4">
+  <HighlightButton text="회원가입"/>
+
+</div>
  
 </template>
 
@@ -267,6 +260,8 @@ function sample6_execDaumPostcode() {
         },
     }).open();
 }
+
+
 </script>
 
 <style scoped>
