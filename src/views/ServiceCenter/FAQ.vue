@@ -192,7 +192,7 @@
 
     </div>
 
-    <div class="accordion-item">
+    <div class="accordion-item mb-4">
       <h2 class="accordion-header">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen"
           aria-expanded="false" aria-controls="collapseThree">
@@ -212,18 +212,7 @@
     </div>
   </div>
 
-  <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center mt-3">
-      <li class="page-item disabled">
 
-      </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item">
-      </li>
-    </ul>
-  </nav>
 </template>
 
 <script setup>
