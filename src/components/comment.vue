@@ -88,11 +88,6 @@ import NormalButton from './Common/NormalButton.vue';
 import { ref } from "vue";
 
 
-
-
-
-
-
 const commentList = ref([
     {
         no: 0,

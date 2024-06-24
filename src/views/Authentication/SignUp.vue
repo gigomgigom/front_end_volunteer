@@ -185,12 +185,18 @@
         </select>
       </dd>
     </dl>
-  </div>
+    
+    <div class="text-center mt-4 mb-4">
+      <HighlightButton text="가입"/>
+    </div>
+    </div>
+ 
 </template>
 
 <script setup>
 import TextHeader from '@/components/Common/TextHeader.vue';
 import { ref } from 'vue';
+import HighlightButton from '@/components/Common/HighlightButton.vue';
 
 const birthDate = ref(null);
 </script>
