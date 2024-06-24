@@ -17,8 +17,7 @@
 
   </div>
    
-  
-    
+
 
     <div class="button-container">
       <div class="text-center mt-3 mb-4">
@@ -35,7 +34,7 @@
 </template>
 
 <script setup>
-import {ref} from 'vue';
+import {ref, onMounted} from 'vue';
 import TextHeader from '@/components/Common/TextHeader.vue';
 import HighlightButton from '@/components/Common/HighlightButton.vue';
 import NormalButton from '@/components/Common/NormalButton.vue';

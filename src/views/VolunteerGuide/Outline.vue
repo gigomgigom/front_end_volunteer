@@ -42,13 +42,15 @@
         <h5><b>2️⃣지역, 분야 등 자신의 조건에 맞는 자원봉사를 조회 </b></h5>
         <div class="volunteer-step">
         <h5 class="mb-0 me-5"><b>3️⃣ 자원봉사 상세정보를 꼼꼼히 확인하여 자원봉사 신청</b></h5>
-        <button class="btn btn-m ms-3 text-white ms-auto"  style="background-color: orange;"> 
-        이용 방법 바로가기</button>
+            
+    <div class="text-end mt-4 mb-4 ms-5">
+      <HighlightButton text="이용방법 바로가기"/>
+    </div>
     </div>
     </div>
     <hr/>
 
-    <div style="text-align: center;">
+    <div class="mb-4" style="text-align: center;">
         <h4><b>늘 마음뿐이던 자원봉사!</b></h4>
         <h4><b>이제 1365와 함께 자원봉사의 주인공이 되어보세요!</b></h4>
         <h6 class="row ms-3 mt-3">·내게 꼭 맞는 ‘맞춤형 자원봉사’를 검색할 수 있습니다.</h6>
@@ -59,6 +61,7 @@
 
 <script setup>
 import TextHeader from "@/components/Common/TextHeader.vue";
+import HighlightButton from '@/components/Common/HighlightButton.vue';
 
 </script>
 
