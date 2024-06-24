@@ -1,14 +1,19 @@
 <template>
-  <div>
-    <div class="card-header">실적에 등록된 봉사 프로그램 목록</div>
-    <div class="card-body">
-      <router-link to="/Details/MyPage/Perform/ViewPerformDetail">상세정보로 가기</router-link>
-    </div>
-  </div>
+  <VolPrgmList>
+    <template v-slot:right-side>
+      <HighlightButton text="후기 작성" style="padding-top: 2px; padding-bottom: 2px; padding-left: 15px; padding-right: 15px;" @buttonClick="moveReviewForm"/>
+    </template>
+  </VolPrgmList>
 </template>
 
 <script setup>
+import HighlightButton from '@/components/Common/HighlightButton.vue';
+import VolPrgmList from '@/components/VolPrgmList.vue';
+import router from '@/router';
 
+function moveReviewForm() {
+  router.push('/Details/Information/Review/WriteReview');
+}
 </script>
 
 <style scoped>

@@ -12,7 +12,7 @@
             </RouterLink>
         </div>
         <div class="col-sm-2  text-center">
-            <HighlightButton text="목록" style="height: 50px;"/>
+            <HighlightButton text="목록" style="height: 50px;" @buttonClick="$emit('moveList')"/>
         </div>
         <div class="col-sm-5  d-flex flex-column align-items-start">
             <RouterLink style="color: #666; text-decoration: none; width: 100%;" to="" >
@@ -30,6 +30,10 @@
 
 <script setup>
 import HighlightButton from './Common/HighlightButton.vue';
+
+defineEmits(["moveList"]);
+
+
 </script>
 
 <style scoped>

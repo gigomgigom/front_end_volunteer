@@ -85,11 +85,13 @@
   }
   
   .title-line {
-    border-bottom: 2px solid #cfcfcf;
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
     text-align: center;
     font-size: 1.05em;
     font-weight: bold;
     color: #333333;
+    background-color: silver;
   }
   
   .write-info {

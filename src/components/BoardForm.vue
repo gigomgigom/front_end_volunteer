@@ -1,5 +1,5 @@
 <template>
-  <div class="form-container">
+  <div class="form-container mt-4">
     <form @submit.prevent="handleSubmit">
       <table class="form-table">
         <tbody>
@@ -26,8 +26,7 @@
               <label for="center">소속센터</label>
             </td>
             <td class="input-cell">
-              <input id="center" type="text" v-model="center" maxlength="15" placeholder="소속센터를 입력하세요" class="form-input"
-                @focus="onFocus" @blur="onBlur">
+              인천광역시 서구
             </td>
           </tr>
 
@@ -44,6 +43,18 @@
           <!-- 첨부파일 -->
           <tr class="form-row">
             <td class="label-cell">
+              <label for="file">이미지 업로드</label>
+            </td>
+            <td class="input-cell" colspan="3">
+              <input id="file" type="file" ref="imageInput" @change="onFileChange">
+              <span v-if="file">
+                <img src="@/assets/trashcan.png" alt="trashcan-img" style="height: 20px; cursor: pointer;"
+                  @click="deleteFile">
+              </span>
+            </td>
+          </tr>
+          <tr class="form-row">
+            <td class="label-cell">
               <label for="file">첨부파일</label>
             </td>
             <td class="input-cell" colspan="3">
@@ -58,81 +69,76 @@
       </table>
 
       <!-- 하단 버튼들 -->
-      <div class="button-container">
-        <button class="submit-button" @click.prevent="submitForm">등록</button>
-        <button class="cancel-button" @click.prevent="resetForm">리셋</button>
-        <button btn-primary class="list-button" @click.prevent="goToList">목록</button>
+      <div class="button-container mt-5">
+        <HighlightButton text="등록" @click="submitForm" class="me-2"/>
+        <NormalButton text="리셋" @click="resetForm" class="me-2"/>
+        <HighlightButton text="목록" @buttonClick="goToList"/>
       </div>
 
     </form>
+    <div style="height: 100px"></div>
   </div>
 </template>
 
-<script>
+<script setup>
 import router from '@/router';
+import HighlightButton from './Common/HighlightButton.vue';
+import { ref } from 'vue';
+import NormalButton from './Common/NormalButton.vue';
 
-export default {
-  data() {
-    return {
-      title: '',
-      author: '',
-      center: '',
-      email: '',
-      phone: '',
-      content: '',
-      file: null
-    };
-  },
-  methods: {
-    onFileChange(event) {
-      this.file = event.target.files[0];
-    },
+const title = ref('');
+const author = ref('');
+const center = ref('');
+const email = ref('');
+const phone = ref('');
+const content = ref('');
+const file = ref(null);
 
-    deleteFile() {
-      this.file = null;
-      let input = this.$refs.fileInput;
-      if (input) {
-        input.value = '';
-      }
-    },
+const imageInput = ref(null);
+const fileInput = ref(null);
 
-    submitForm() {
-      //폼 제출
-      router.push('')
-      alert('폼이 제출되었습니다!');
-    },
+function onFileChange(event) {
+  file.value = event.target.files[0];
+}
 
-    //폼 작성 초기화
-    resetForm() {
-      this.title = '';
-      this.author = '';
-      this.center = '';
-      this.email = '';
-      this.phone = '';
-      this.content = '';
-      this.file = null;
-      let input = this.$refs.fileInput;
-      if (input) {
-        input.value = '';
-      }
-    },
-
-    goToList() {
-
-      alert('목록으로 이동합니다!');
-    },
-
-
-    onFocus(event) {
-      event.target.classList.add('focused');
-    },
-
-
-    onBlur(event) {
-      event.target.classList.remove('focused');
-    }
+function deleteFile() {
+  file.value = null;
+  let input = fileInput.value;
+  if(input) {
+    input.value = '';
   }
-};
+}
+
+function submitForm() {
+  alert('글 작성이 완료되었습니다.');
+  router.push('/Details/Information/Review/ViewReviewList');
+}
+
+function resetForm() {
+  title.value = '';
+  author.value = '';
+  center.value = '';
+  email.value = '';
+  phone.value = '';
+  content.value = '';
+  file.value = null;
+  let input = fileInput;
+  if (input) {
+    input.value = '';
+  }
+}
+
+function goToList() {
+  router.push('/Details/Information/Review/ViewReviewList');
+}
+
+function onFocus(event) {
+  event.target.classList.add('focused');
+}
+
+function onBlur(event) {
+  event.target.classList.remove('focused');
+}
 </script>
 
 <style scoped>
@@ -192,32 +198,6 @@ export default {
 .form-textarea {
   resize: vertical;
   min-height: 400px;
-}
-
-.submit-button {
-  margin: 5px;
-  padding: 10px 15px;
-  background-color: #4d90fe;
-  color: #ffffff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-button {
-  margin: 5px;
-  padding: 10px 15px;
-  background-color: #918f8f;
-  color: #ffffff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-button:hover {
-  background-color: #357ae8;
 }
 
 .form-input.focused,

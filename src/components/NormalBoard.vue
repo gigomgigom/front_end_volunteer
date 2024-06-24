@@ -1,22 +1,21 @@
 <template>
-  
-  <div style="display: flex; justify-content: space-between; align-items: center;">
-  <h6 class="all">
-    [전체 <span class="highlight">{{ posts.length }}</span>건,
-    현재페이지 <span class="highlight">{{ currentPage }}</span>/2]
-  </h6>
-  <div style="display: flex; align-items: center;">
-    <select class="form-select form-select-sm custom-select-width" aria-label="Small select example">
-      <option value="1">제목</option>
-      <option value="2">작성자</option>
-      <option value="3">내용</option>
-    </select>
-    <input class="form-control form-control-sm ms-2 no-margin1" type="text" aria-label=".form-control-sm example">
-    <button class="btn btn-sm btn-primary ms-2 no-margin2" id="btn-sm1">검색</button>
+  <div style="display: flex; justify-content: space-between; align-items: center;" class="mt-4">
+    <h6 class="all">
+      [전체 <span class="highlight">{{ posts.length }}</span>건,
+      현재페이지 <span class="highlight">{{ currentPage }}</span>/2]
+    </h6>
+    <div style="display: flex; align-items: center;">
+      <select class="form-select form-select-sm custom-select-width" aria-label="Small select example">
+        <option value="1">제목</option>
+        <option value="2">작성자</option>
+        <option value="3">내용</option>
+      </select>
+      <input class="form-control form-control-sm ms-2 no-margin1" type="text" aria-label=".form-control-sm example">
+      <button class="btn btn-sm btn-primary ms-2 no-margin2" id="btn-sm1">검색</button>
+    </div>
   </div>
-</div>
-   
-    
+
+
 
   <!-- 게시물 목록 -->
   <div>
@@ -33,7 +32,7 @@
       <tbody>
         <tr v-for="post in paginatedPosts" :key="post.id">
           <td class="col-num no-border-left text-center">{{ post.id }}</td>
-          <td colspan="2">{{ post.title }}</td>
+          <td colspan="2"><span @click="moveDetail(post.id)" style="cursor: pointer;">{{ post.title }}</span></td>
           <td class="col-author text-center">{{ post.author }}</td>
           <td class="col-date text-center">{{ post.date }}</td>
           <td class="col-views no-border-right text-center">{{ post.views }}</td>
@@ -65,7 +64,7 @@
 
 
 <script setup>
-import HighlightButton from './Common/HighlightButton.vue';
+import router from '@/router';
 import { ref, computed } from 'vue';
 
 const posts = ref([
@@ -94,6 +93,11 @@ const posts = ref([
 const currentPage = ref(1);
 const perPage = 10; // 페이지당 표시할 아이템 수
 
+const emits = defineEmits(["moveDetail"]);
+
+function moveDetail(data) {
+  emits("moveDetail", data);
+}
 
 // 현재 페이지에 해당하는 게시글들을 계산하여 반환
 // startIndex는 현재 페이지의 첫 번째 게시글의 인덱스
@@ -120,7 +124,6 @@ function changePage(page) {
 </script>
 
 <style scoped>
-
 .form-label {
   z-index: 999;
 }
@@ -267,23 +270,22 @@ th {
 }
 
 .custom-select-width {
-  width: 90px; 
+  width: 90px;
   box-shadow: none;
 }
 
 .ms-2 {
-  margin-left: 8px; /*기본 마진 제거*/
+  margin-left: 8px;
+  /*기본 마진 제거*/
 }
 
 
 .no-margin1 {
   margin-left: 0;
-  box-shadow: none; 
+  box-shadow: none;
 }
 
 .no-margin2 {
-  margin-left: 0; 
+  margin-left: 0;
 }
-
-
 </style>

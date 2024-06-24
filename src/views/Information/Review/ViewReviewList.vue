@@ -1,5 +1,5 @@
 <template>
-  <NormalBoard/>
+  <NormalBoard @moveDetail="moveReviewDetail"/>
 </template>
 
 <script setup>
@@ -16,8 +16,9 @@ function moveReviewList() {
   router.push('/Details/Information/Review/ViewReviewList');
 }
 
-function moveReviewDetail() {
+function moveReviewDetail(data) { //글번호 전달하는 매개값
   router.push('/Details/Information/Review/ViewReviewDetail');
+  console.log(data);
 }
 </script>
 
