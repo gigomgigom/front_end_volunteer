@@ -159,7 +159,44 @@
 </template>
 
 <script setup>
+import { reactive } from 'vue';
 
+const formData = reactive({
+  id: 'wwuup1111',
+  memberNumber: '26641728',
+  name: '김봉봉',
+  birthDate: '',
+  zipCode: '',
+  address: '',
+  mobileCarrier: '010',
+  mobileNumber: '12345678',
+  emailLocal: 'aa11',
+  emailDomain: 'naver.com',
+  customEmailDomain: '',
+  noEmail: false,
+  center: '',
+  subCenter: '',
+  desiredField: '',
+  subField: '',
+  mobileConsent: false,
+  emailConsent: false,
+});
+
+const handleSubmit = () => {
+  console.log('Form submitted:', formData);
+};
+
+const handleCancel = () => {
+  console.log('Form cancelled');
+};
+
+const changeName = () => {
+  // 이름 변경 로직
+};
+
+const findZipCode = () => {
+  // 우편번호 찾기 로직
+};
 </script>
 
 <style scoped>

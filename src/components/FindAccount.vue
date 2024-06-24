@@ -61,8 +61,10 @@ export default {
   computed: {
     dynamicFields() {
       return this.findBy === 'phone' ? this.phoneFields : this.emailFields;
-    }
+      // dynamicFields: findBy 값에 따라 phoneFields 또는 emailFields를 반환한다. 사용자가 "연락처로 찾기" 또는 "이메일로 찾기"를 선택할 때마다 동적으로 표시될 필드가 변경된다.
+    } 
   },
+  
   methods: {
     handleSubmit() {
       this.$emit('submit', {
