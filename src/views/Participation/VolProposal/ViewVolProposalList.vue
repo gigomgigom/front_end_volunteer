@@ -1,9 +1,17 @@
 <template>
-  <RequireReplyBoard/>
+  <RequireReplyBoardPropose @moveProposeForm = 'moveProposeForm'/>
 </template>
 
 <script setup>
-import RequireReplyBoard from '@/components/RequireReplyBoard.vue';
+import RequireReplyBoardPropose from './RequireReplyBoardPropose.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+function moveProposeForm() {
+  router.push('/Details/Participation/VolProposal/WriteProposal');
+}
+
 </script>
 
 <style scoped>

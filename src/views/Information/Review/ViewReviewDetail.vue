@@ -8,7 +8,7 @@
 <script setup>
 import BoardDetail from '@/components/BoardDetail.vue';
 import likeUnlike from './likeUnlike.vue';
-import comment from '@/components/Comment.vue';
+import comment from '@/components/Comment.vue'
 import MovePost from '@/components/MovePost.vue';
 import router from '@/router';
 

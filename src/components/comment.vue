@@ -13,6 +13,7 @@
         </form>
         <div class="bottom-line"></div>
     </div>
+    <slot name="body">
     <div class="card-body" style="padding: 12px; padding-top: 10px; padding-bottom: 0;"
         v-for="(comment, index) in commentList" :key="comment.no">
         <div class="row">
@@ -79,6 +80,7 @@
         </div>
 
     </div>
+    </slot>
 
 </template>
 

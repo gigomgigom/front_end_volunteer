@@ -1,14 +1,9 @@
 <template>
-  <div class="card">
-    <div class="card-header">희망봉사 제안 작성하기</div>
-    <div class="card-body">
-
-    </div>
-  </div>
+  <BoardForm/>
 </template>
 
 <script setup>
-
+  import BoardForm from '@/components/BoardForm.vue';
 </script>
 
 <style scoped>

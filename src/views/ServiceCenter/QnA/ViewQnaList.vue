@@ -1,14 +1,15 @@
 <template>
-  <div class="card">
-    <div class="card-header">질문과 답변 목록 보기</div>
-    <div class="card-body">
-
-    </div>
-  </div>
+  <RequireReplyBoardQuestion @moveQuestionForm="moveQuestionForm"/>
 </template>
 
 <script setup>
+import RequireReplyBoardQuestion from './RequireReplyBoardQuestion.vue';
+import { useRouter } from 'vue-router';
+const router = useRouter();
 
+function moveQuestionForm() {
+  router.push('/Details/ServiceCenter/QNA/WriteQna');
+}
 </script>
 
 <style scoped>
