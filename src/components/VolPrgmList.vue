@@ -26,7 +26,7 @@
                     </div>
                     <div class="d-flex flex-column">
                         <div class="vol-title">
-                            <span>
+                            <span @click="moveToDetail(url)">
                                 {{ vol.title }}
                             </span>
                         </div>
@@ -55,6 +55,7 @@
 </template>
 
 <script setup>
+import router from "@/router";
 import { onMounted, ref } from "vue";
 
 const props = defineProps(['isAddPage']);
@@ -72,6 +73,11 @@ onMounted(() => {
     isAddPage.value = props.isAddPage;
 })
 
+function moveToDetail(url) {
+    url = "/Details/Participation/VolProgram/ViewVolProgramDetail";
+    router.push(url);
+}
+
 </script>
 
 <style scoped>
@@ -87,6 +93,10 @@ onMounted(() => {
 .vol-title {
     font-weight: bold;
     font-size: 18px;
+}
+
+.vol-title > span {
+    cursor: pointer;
 }
 
 .vol-checkbox {
