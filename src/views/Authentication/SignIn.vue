@@ -41,6 +41,7 @@ import { ref } from "vue";
 const id = ref('');
 const password = ref('');
 
+//유효성, 로그인 성공 여부 메세지 출력
 const idMsg = ref(null);
 const passwordMsg = ref(null);
 
