@@ -11,7 +11,7 @@
                 <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                     <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
                         <li class="brand-logo ms-2">
-                            <RouterLink to="/Main"><img src="@/assets/socialpulse_logo.png" height="85px"></RouterLink>
+                            <RouterLink to="/Main"><img src="@/assets/socialpulse_logo.png" height="100px"></RouterLink>
                             <!-- 로고 누르면 홈으로 이동하게 -->
                         </li>
                         <li class="nav-item">
