@@ -1,8 +1,8 @@
 <template>
-    <div class="col-md-12">
-        <Carousel />
-    </div>
     <div class="main_container row">
+        <div class="col-md-12">
+            <Banner />
+        </div>
         <div class="col-md-12 row mt-3 first_floor">
             <div class="col-md-7">
                 <TotalVolCnt />
@@ -15,7 +15,7 @@
             <div class="col-md-6 our_shortcut">
                 <span style="padding-left: 30px;">SocialPulse에 오신것을 환영합니다.</span>
                 <div class="p-4">
-                    <div class="button_shortcut">
+                    <div class="button_shortcut" @click="router.push('/Details/Participation/VolProgram/ViewVolProgramList')">
                         <dl>
                             <dt style="height: 100px">
                                 <img src="@/assets/MainPage/자원봉사 2.png">
@@ -25,7 +25,7 @@
                             </dd>
                         </dl>
                     </div>
-                    <div class="button_shortcut">
+                    <div class="button_shortcut" @click="router.push('/Details/VolunteerGuide/RegionalCenters')">
                         <dl>
                             <dt style="height: 100px">
                                 <img src="@/assets/MainPage/자원봉사 4.png">
@@ -40,16 +40,16 @@
             <div class="col-md-6 other_shortcut">
                 <span style="padding-left: 30px;">유관기관 사이트 바로가기</span>
                 <div class="d-flex justify-content-between p-4">
-                    <dl class="other_shortcut_logo">
-                        <dt class="d-flex justify-content-center mb-3"><img src="@/assets/logo1365.png" /></dt>
+                    <dl class="other_shortcut_logo" @click="moveExternalPage(0)">
+                        <dt class="d-flex justify-content-center mb-3"><img src="@/assets/logo1365.png"/></dt>
                         <dd><span>1365로 이동하기</span></dd>
                     </dl>
-                    <dl class="other_shortcut_logo">
+                    <dl class="other_shortcut_logo" @click="moveExternalPage(1)">
                         <dt class="d-flex justify-content-center mb-3"><img src="@/assets/logo_Volunteer_Archive.png" />
                         </dt>
                         <dd><span>아카이브로 이동하기</span></dd>
                     </dl>
-                    <dl class="other_shortcut_logo">
+                    <dl class="other_shortcut_logo" @click="moveExternalPage(2)">
                         <dt class="d-flex justify-content-center mb-3"><img src="@/assets/logo_VMS.png" /></dt>
                         <dd><span>VMS로 이동하기</span></dd>
                     </dl>
@@ -90,11 +90,11 @@
                     <h3>공지사항</h3>
                 </div>
                 <div class="mt-4 pb-2 notice_board_head">
-                    <span>더보기</span>
+                    <span @click="router.push('/Details/ServiceCenter/Notice/ViewNoticeList')">더보기</span>
                 </div>
                 <div class="board_content">
                     <div class="d-flex justify-content-between">
-                        <h6 class="board_title">[공지] 서버용 인증서 교체 작성 계획 안내</h6>
+                        <h6 class="board_title" @click="moveNoticeDetail(0)">[공지] 서버용 인증서 교체 작성 계획 안내</h6>
                         <h6>2024-06-24</h6>
                     </div>
                     <div class="d-flex justify-content-between">
@@ -144,13 +144,21 @@
 </template>
 
 <script setup>
-import Carousel from "@/views/MainPage/Carousel.vue";
-import MenuShortcuts from "@/views/MainPage/MenuShortcuts.vue";
-import VolShortcuts from "@/views/MainPage/VolShortcuts.vue";
 import RecruitVol from "@/views/MainPage/RecruitVol.vue";
 import TotalVolCnt from "@/views/MainPage/TotalVolCnt.vue";
 import Login from "./Login.vue";
-import BoardOutline from "@/views/MainPage/BoardOutline.vue";
+import Banner from "./Banner.vue";
+import router from "@/router";
+
+function moveExternalPage(index) {
+    let urlList = ['http://1365.go.kr', 'http://archives.v1365.or.kr', 'http://vms.or.kr'];
+    window.open(urlList[index], '_blank');
+}
+
+function moveNoticeDetail(boardNo) {
+    //게시판 번호를 넘겨줘야함.
+    router.push('/Details/ServiceCenter/Notice/ViewNoticeDetail');
+}
 </script>
 <style scoped>
 * {
@@ -306,23 +314,27 @@ import BoardOutline from "@/views/MainPage/BoardOutline.vue";
     display: flex;
     justify-content: end;
 }
-.notice_board_head > span {
+
+.notice_board_head>span {
     font-weight: bold;
     margin-right: 30px;
     color: rgb(240, 102, 4);
     cursor: pointer;
 }
+
 .board_content {
     border: 2px solid rgb(240, 102, 4);
     border-radius: 10px;
 }
-.board_content > div {
+
+.board_content>div {
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
     padding-right: 10px;
     border-bottom: 1px solid silver;
 }
+
 .board_title {
     cursor: pointer;
 }
