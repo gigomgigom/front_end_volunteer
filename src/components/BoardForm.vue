@@ -127,8 +127,10 @@ function deleteFile() {
 }
 
 function handleSubmit() {
-  titleTouched.value = true;
-  contentTouched.value = true;
+  console.log(titleValid);
+  console.log(contentValid);
+  titleValid.value = true;
+  contentValid.value = true;
   if (!isFormValid.value) {
     alert('제목과 내용을 입력해주세요.');
   } else {

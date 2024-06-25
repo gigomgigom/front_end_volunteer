@@ -1,12 +1,12 @@
 <template>
     <div class="card">
-        <form>
+        <form @submit.prevent="submitComment">
             <div class="row">
                 <div class="col-sm-10">
-                    <textarea type="text" style="width: 100%; height: 80px;"></textarea>
-
+                    <textarea v-model="newComment" placeholder="댓글을 입력하세요." style="width: 100%; height: 80px;">
+                    </textarea>
                 </div>
-                <div class="col-sm-2 " style="padding: 0;">
+                <div class="col-sm-2" style="padding: 0;">
                     <HighlightButton text="등록" style="height: 80px; width: 91%;" />
                 </div>
             </div>
@@ -17,12 +17,12 @@
     <div class="card-body" style="padding: 12px; padding-top: 10px; padding-bottom: 0;"
         v-for="(comment, index) in commentList" :key="comment.no">
         <div class="row">
-            <div class="col-sm-12" style="">
+            <div class="col-sm-12">
                 <span style="color: rgb(240, 103, 4);">{{ comment.writer }}</span>
                 <span style="margin-left: 10px;">{{ comment.date }}</span>
             </div>
             <div class="row">
-                <div class="col-sm-12" style="">
+                <div class="col-sm-12">
                     <span>{{ comment.content }}</span>
                 </div>
             </div>
@@ -31,7 +31,7 @@
             style="font-size: 14px; border-bottom: 1px solid gray; padding-bottom: 10px; padding-top: 5px;">
             <div class="col-sm-8 d-flex align-items-center">
                 <span style="margin-right: 10px;"> <button type="button"
-                        style="border: 0;background-color: transparent;" @click="toggleReply(index)">답글 n개</button>
+                        style="border: 0;background-color: transparent;" @click="toggleReply(index)">답글 {{ comment.replies.length }}개</button>
                 </span>
                 <span><button type="button" style="border: 0;background-color: transparent;"
                         @click="toggleReply(index)">답글달기</button></span>
@@ -62,11 +62,10 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12" style=" margin-top: 10px ">
-                        <form>
-                            <div class="row" style="">
-                                <div class="col-sm-10" style="">
-                                    <textarea type="text" style="width: 100%; height: 30px;"></textarea>
-
+                        <form @submit.prevent="submitReply(index, $event)">
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <textarea v-model="newReply[index]" placeholder="답글을 입력하세요." style="width: 100%; height: 30px;"></textarea>
                                 </div>
                                 <div class="col-sm-2" style="padding: 0 17px;">
                                     <HighlightButton class="" text="등록"
@@ -78,17 +77,15 @@
                 </div>
             </div>
         </div>
-
     </div>
     </slot>
-
 </template>
 
 <script setup>
 import HighlightButton from './Common/HighlightButton.vue';
 import NormalButton from './Common/NormalButton.vue';
 import { ref } from "vue";
-
+import { useRouter } from 'vue-router';
 
 const commentList = ref([
     {
@@ -162,13 +159,66 @@ const commentList = ref([
     },
 ]);
 
+const newComment = ref("");
+const newReply = ref({}); // 각 댓글에 대한 답댓글을 저장(굳이 필요없을까 하는데 일단 찾아서 넣음)
 
-function toggleReply(index) {
-    commentList.value[index].repliesVisible = !commentList.value[index].repliesVisible;
+const router = useRouter();
 
+//중복으로 alert창이 뜨는걸 방지
+function submitComment(event) {
+    event.preventDefault();
+    
+    //요소의 값이 공백을 제외하고 아무 문자도 포함하지 않는 경우를 체크
+    if (newComment.value.trim() === "") {
+        alert("댓글은 공백으로 남길 수 없습니다.");
+        return;
+    }
+
+    const newCommentObj = {
+        no: commentList.value.length,
+        writer: 'current_user', // 실제 사용자 이름으로 대체
+        content: newComment.value,
+        date: new Date().toISOString().slice(0, 16).replace("T", " "),
+        repliesVisible: false,
+        replies: []
+    };
+
+    commentList.value.push(newCommentObj);
+    newComment.value = "";
+    alert("댓글이 등록되었습니다.");
+    router.push('/Details/Information/Review/ViewReviewDetail');
 }
 
+function submitReply(commentIndex, event) {
+    event.preventDefault();
+    
+    //값이 비어 있지 않은 경우 해당 문자열에서 양 끝 공백을 제거한 값을 replyContent에 할당
+    //값이 존재하지 않거나 빈 문자열인 경우에는 빈 문자열 ("")을 할당
+    const replyContent = newReply.value[commentIndex] ? newReply.value[commentIndex].trim() : "";
+    if (replyContent === "") {
+        alert("답댓글은 공백으로 남길 수 없습니다.");
+        return;
+    }
+
+    const newReplyObj = {
+        no: commentList.value[commentIndex].replies.length,
+        writer: 'current_user', // 실제 사용자 이름으로 대체
+        content: replyContent,
+        date: new Date().toISOString().slice(0, 16).replace("T", " "),
+    };
+
+    commentList.value[commentIndex].replies.push(newReplyObj);
+    newReply.value[commentIndex] = "";
+    alert("답댓글이 등록되었습니다.");
+}
+
+//toggleReply 함수 - 댓글 리스트에서 특정 댓글의 답글 표시 여부를 토글하는 역할
+//답글 표시 상태 변경 - 답글이 숨겨져 있으면 보이게 되고, 보이는 상태면 숨겨짐
+function toggleReply(index) {
+    commentList.value[index].repliesVisible = !commentList.value[index].repliesVisible;
+}
 </script>
+
 
 <style scoped>
 .card {
