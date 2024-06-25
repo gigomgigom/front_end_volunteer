@@ -155,7 +155,7 @@ const member = ref({
   highCls: '',
   lowCls: ''
 });
-let originalData = null;
+
 onMounted(() => {
   if (!window.daum) {
     loadScript();

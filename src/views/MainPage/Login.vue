@@ -27,10 +27,12 @@
                 <span>좋은 하루 되세요!</span>
             </div>
             <div class="user_button_wrapper">
-                <div class="me-3">
-                    <button class="btn user_button" @click="router.push('/Details/Admin/MngVolProgram')">
-                        <span>관리자</span>
-                    </button>
+                <div class="me-3" style="width: 70px;">
+                    <div v-if="store.state.menuState.isAdmin">
+                        <button class="btn user_button" @click="router.push('/Details/Admin/MngVolProgram')">
+                            <span>관리자</span>
+                        </button>
+                    </div>
                 </div>
 
                 <button class="btn user_button">
