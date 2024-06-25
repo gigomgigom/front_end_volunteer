@@ -32,7 +32,6 @@
 import {ref, onMounted} from 'vue';
 import TextHeader from '@/components/Common/TextHeader.vue';
 import HighlightButton from '@/components/Common/HighlightButton.vue';
-import NormalButton from '@/components/Common/NormalButton.vue';
 import WithdrawModal from '@/views/MyPage/WithdrawModal.vue';
 
 const isWithdrawModalOpen = ref(false);
