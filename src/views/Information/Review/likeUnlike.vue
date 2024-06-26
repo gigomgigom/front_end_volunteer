@@ -1,17 +1,28 @@
 <template>
-  <div class="container row justify-content-center">
-    <div class="col-sm-12 text-center">
-      <HighlightButton text="추천" style="display: inline-block; margin-right:10px;" />
-      <NormalButton text="비추천" />
+  <div class="container column justify-content-center">
+    <div class="col-sm-12 text-center image-container">
+ 
+        <div class="image-box">
+          <img src="@/assets/good_like.png" class="image"/>
+          <div class="caption">추천</div>
+        </div>
+
+    
+
+        <div class="image-box">
+          <img src="@/assets/dislike.png" class="image"/>
+          <div class="caption">반대</div>
+        </div>
     </div>
   </div>
-  <div class="bottom-line"></div>
 </template>
 
+
+
 <script setup>
-import HighlightButton from '@/components/Common/HighlightButton.vue';
-import NormalButton from '@/components/Common/NormalButton.vue';
+
 </script>
+
 
 <style scoped>
 .container {
@@ -20,7 +31,37 @@ import NormalButton from '@/components/Common/NormalButton.vue';
   border: none;
 }
 
-.bottom-line {
-  border-bottom: 2px solid #757575;
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.image-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer; 
+  user-select: none; 
+  margin: 0 55px; 
+  transition: transform 0.3s; /*애니메이션 효과*/
+}
+
+.image-box:active {
+  transform: scale(0.95); /*클릭 시 크기*/
+}
+
+.image {
+  width: 50px; 
+  height: 50px; 
+}
+
+.caption {
+  margin-top: 5px; 
+  font-size: 12px; 
+  color: #757575; 
+}
+
+
+
 </style>

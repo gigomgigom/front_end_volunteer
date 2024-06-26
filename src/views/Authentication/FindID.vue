@@ -31,7 +31,8 @@ const phoneFields = ref([
     type: 'text',
     value: '',
     placeholder: '휴대폰 번호를 입력해 주세요',
-    errormsg: '올바른 휴대폰 번호를 입력해 주세요'
+    errormsg: '올바른 휴대폰 번호를 입력해 주세요',
+    maxlength:11
   }
 ]);
 

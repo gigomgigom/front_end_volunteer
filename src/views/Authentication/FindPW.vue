@@ -41,7 +41,8 @@
       type: 'text',
       value: '',
       placeholder: '휴대폰 번호를 입력해 주세요',
-      errormsg: '올바른 휴대폰 번호를 입력해 주세요'
+      errormsg: '올바른 휴대폰 번호를 입력해 주세요',
+      maxlength:11
 
   
     }
@@ -54,6 +55,7 @@
       type: 'text',
       value: '',
       placeholder: '이름을 입력해 주세요',
+      errormsg: '올바른 이름을 입력해 주세요'
     },
     {
       id: 'uid',
@@ -61,6 +63,8 @@
       type: 'text',
       value: '',
       placeholder: '아이디를 입력해 주세요',
+      errormsg: '올바른 아이디를 입력해 주세요'
+
     },
     {
       id: 'email',
@@ -68,6 +72,7 @@
       type: 'email',
       value: '',
       placeholder: '이메일을 입력해 주세요',
+      errormsg: '올바른 휴대폰 번호를 입력해 주세요'
     }
   ]);
 

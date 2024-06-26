@@ -152,9 +152,11 @@ table {
 }
 
 thead th {
-  background-color: #666;
+  font-family: 'Noto Sans Korean', '돋움', Arial, sans-serif;
+  background-color: #eee;
   text-align: left;
-  border: 1px solid black;
+  border: 1px solid #6c757d;
+  font-weight: normal;
 }
 
 td,

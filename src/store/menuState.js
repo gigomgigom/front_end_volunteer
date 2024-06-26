@@ -5,7 +5,7 @@ export default {
     //상태 정의
     state: {
         isAdmin: 1,
-        isAuthenticated: 1,
+        isAuthenticated: 0,
 
         //현재 페이지 인덱스 정보
         menuIndex: {

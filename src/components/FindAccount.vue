@@ -25,7 +25,6 @@
         :placeholder="field.placeholder"
         :maxlength="field.maxlength"
       >
-      <small class="rewrite-msg text-muted">{{ field.hint }}</small>
       <div v-if="errors[field.id]" class="text-danger">{{ errors[field.id] }}</div>
     </div>
 
@@ -57,8 +56,8 @@ export default {
 
   data() {
     return {
-      findBy: 'phone',
-      errors: this.errormsg
+      findBy: 'phone', // 사용자가 선택한 찾기 방식을 저장하는 변수. 기본값은 phone
+      errors: this.errormsg //현재 입력 필드의 오류 메시지를 저장하는 객체. 기본값은 errormsg prop.
     };
   },
 
@@ -88,23 +87,24 @@ export default {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       const phoneRegex = /^\d{10,11}$/;
       const idRegex = /^[a-z0-9]{5,12}$/;
-      const nameRegex = /^[A-Za-z가-힣]{1,6}$/; //한글, 영어로 1~6글자
+      const nameRegex = /^[A-Za-z가-힣]{1,6}$/;
 
       this.dynamicFields.forEach(field => {
         if (!field.value) {
+          // 입력칸에 아무것도 입력되지 않았을 때
           errors[field.id] = `${field.label}을(를) 입력해 주세요.`;
         } else {
           if (field.id === 'name' && !nameRegex.test(field.value)) {
             errors[field.id] = '이름을 올바르게 입력해 주세요.';
           }
-          if (field.id === 'uid' && !idRegex.test(field.value)) {
-            errors[field.id] = '유효한 아이디를 입력해 주세요.';
+          if (field.id === 'email' && !emailRegex.test(field.value)) {
+            errors[field.id] = '유효한 이메일 주소를 입력해 주세요.';
           }
           if (field.id === 'phone' && !phoneRegex.test(field.value)) {
             errors[field.id] = '유효한 휴대폰 번호를 입력해 주세요.';
           }
-          if (field.id === 'email' && !emailRegex.test(field.value)) {
-            errors[field.id] = '유효한 이메일 주소를 입력해 주세요.';
+          if (field.id === 'uid' && !idRegex.test(field.value)) {
+            errors[field.id] = '유효한 아이디를 입력해 주세요.';
           }
         }
       });
@@ -190,12 +190,6 @@ export default {
 .btn-primary:hover {
   background-color: #ff6300;
   border-color: #ff4500;
-}
-
-.rewrite-msg {
-  display: block;
-  font-size: 12px;
-  color: #999;
 }
 
 .text-danger {
