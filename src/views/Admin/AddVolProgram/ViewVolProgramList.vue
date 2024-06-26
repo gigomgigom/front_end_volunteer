@@ -23,6 +23,7 @@ import AddVolProgramModal from './AddVolProgramModal.vue';
 import VolPrgmList from '@/components/VolPrgmList.vue'
 import NormalButton from '@/components/Common/NormalButton.vue';
 import HighlightButton from '@/components/Common/HighlightButton.vue';
+
 let addVolProgramModal = null;
 
 //첨부파일 input 객체
@@ -57,22 +58,24 @@ onMounted(() => {
   battachInput = document.querySelector('#battachInput');
   imageInput = document.querySelector('#imageInput');
 });
-
+//봉사프로그램 추가작업
 function addVolProgram() {
-  console.log(imageInput.files[0]);
   const blankResult = isDataBlank(providedData.value);
   if (blankResult.isDataOk) {
-    console.log('유효성 검사 통과');
     const validateResult = isDataValidate(providedData.value);
-    //alert창 띄워줘야함
+    if(validateResult.isDataOk) {
+      //서버 전송하기 위한 데이터 세팅 작업해줘야함
+      //데이터 세팅 작업이 끝난 후 API요청해야함.
+      addVolProgramModal.hide();
+    } else {
+      const errorMsg = validateResult.validateMsgList.join('\n');
+      alert(`잘못 입력된 정보가 있습니다.\n${errorMsg}`);
+    }
   } else {
     let resultMsg = blankResult.noDataList.join(', ')
     alert(`누락된 내용이 있습니다.\n[ 누락된 항목 : ${resultMsg}]`);
   }
 }
-//서버통신을 위한 데이터 세팅 작업
-//addVolProgramModal.hide();
-//서버 통신 - 봉사프로그램 추가
 //공백 확인
 function isDataBlank(data) {
   let isDataOk = true;
@@ -148,11 +151,13 @@ function isDataValidate(data) {
     validateMsgList.push('모집인원은 1명 이상으로 기입해야합니다.');
     isDataOk = false;
   }
-  
+  return { validateMsgList, isDataOk };
 }
 function showDialog(code) {
   if (code) {
     //공공데이터에서 받아온 데이터로 데이터 세팅작업
+    battachInput.value = '';
+    imageInput.value = '';
     addVolProgramModal.show();
   } else {
     resetData(); //데이터 리셋('빈칸으로 세팅');
@@ -177,7 +182,8 @@ function resetData() {
   providedData.value.content = '';
   providedData.value.adultPosbl = false;
   providedData.value.teenPosbl = false;
-  
+  battachInput.value = '';
+  imageInput.value = '';
 }
 </script>
 

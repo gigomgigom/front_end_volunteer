@@ -26,14 +26,16 @@
                                         봉사 기간
                                     </td>
                                     <td colspan="1">
-                                        <VueDatePicker range :enable-time-picker="false" v-model="providedData.actDate"/>
+                                        <VueDatePicker range :enable-time-picker="false"
+                                            v-model="providedData.actDate" />
                                     </td>
                                     <td colspan="1">
                                         봉사 시간
                                     </td>
                                     <td colspan="1">
                                         <VueDatePicker time-picker disable-time-range-validation range
-                                            :show-minute="false" placeholder="Select Time" v-model="providedData.actTime"/>
+                                            :show-minute="false" placeholder="Select Time"
+                                            v-model="providedData.actTime" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -42,7 +44,8 @@
                                     </td>
                                     <td colspan="3">
                                         <div>
-                                            <input type="text" class="form-control" v-model="providedData.recruitCenter">
+                                            <input type="text" class="form-control"
+                                                v-model="providedData.recruitCenter">
                                         </div>
                                     </td>
                                 </tr>
@@ -51,7 +54,8 @@
                                         모집 기간
                                     </td>
                                     <td colspan="1">
-                                        <VueDatePicker range :enable-time-picker="false" v-model="providedData.recruitDate"/>
+                                        <VueDatePicker range :enable-time-picker="false"
+                                            v-model="providedData.recruitDate" />
                                     </td>
                                     <td colspan="1">
                                         모집 인원
@@ -65,7 +69,8 @@
                                         봉사 분야
                                     </td>
                                     <td colspan="1">
-                                        <select class="form-select" @change="selectHighCls($event)" v-model="providedData.highCls">
+                                        <select class="form-select" @change="selectHighCls($event)"
+                                            v-model="providedData.highCls">
                                             <option selected :value="''">전체</option>
                                             <option v-for="(highCls, index) in categoryList" :key="index"
                                                 :value="highCls.highClsCode">{{ highCls.highClsName }}</option>
@@ -84,7 +89,8 @@
                                         봉사 지역
                                     </td>
                                     <td colspan="1">
-                                        <select class="form-select" @change="selectCity($event)" v-model="providedData.city">
+                                        <select class="form-select" @change="selectCity($event)"
+                                            v-model="providedData.city">
                                             <option selected :value="0">전체</option>
                                             <option v-for="(city, index) in regionList" :key="index"
                                                 :value="city.cityCode">{{ city.cityName }}</option>
@@ -125,8 +131,8 @@
                                         내용
                                     </td>
                                     <td colspan="3" rowspan="3">
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" v-model="providedData.content"
-                                            rows="3"></textarea>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1"
+                                            v-model="providedData.content" rows="3"></textarea>
                                     </td>
                                 </tr>
 
@@ -138,15 +144,15 @@
                             <label class="form-check-label me-3" for="adultAble">성인</label>
                             <input class="form-check-input me-1" type="checkbox" v-model="providedData.teenPosbl">
                             <label class="form-check-label" for="yngAble">청소년</label>
-                            <span class="ms-3 validate_text">봉사자 유형을 선택해주세요.</span>
                         </div>
                         <div class="mt-5">
                             <label for="formFile" class="form-label">첨부 파일</label>
-                            <input class="form-control" type="file" id="battachInput">
+                            <input class="form-control" type="file" id="battachInput" @change="battachValidate($event)">
                         </div>
                         <div class="mt-3">
                             <label for="formFile" class="form-label">이미지 파일</label>
-                            <input class="form-control" type="file" id="imageInput">
+                            <input class="form-control" type="file" id="imageInput" accept="image/*"
+                                @change="imageValidate($event)">
                         </div>
                         <div class="mt-1 d-flex justify-content-center">
                             <img src="@/assets/home.png">
@@ -171,7 +177,7 @@ import { useStore } from 'vuex';
 
 const store = useStore();
 
-const providedData = inject('providedData'); 
+const providedData = inject('providedData');
 
 const categoryList = store.state.categoryCode.categoryList;
 const lowClsList = ref([]);
@@ -209,6 +215,30 @@ function findCounty(cityCode) {
     }
     return [];
 }
+//이미지 파일 유효성 검사
+function imageValidate(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        if (event.target.files.length > 1) {
+            alert('파일은 한개만 선택가능합니다.');
+            event.target.value = '';
+        } else if (!validImageTypes.includes(file.type)) {
+            alert('이미지 파일만 업로드 가능합니다.');
+            event.target.value = '';
+        }
+    }
+}
+//첨부 파일 유효성 검사
+function battachValidate(event) {
+    const file = event.target.files[0];
+    if(file) {
+        if(event.target.files.length > 1) {
+            alert('파일은 한개만 선택가능합니다.');
+            event.target.value = '';
+        }
+    }
+}
 
 
 </script>
@@ -233,11 +263,13 @@ td {
 .validate_style {
     border: 1px solid red;
 }
+
 .validate_text {
     color: red;
     font-size: 0.9em;
     display: none;
 }
+
 .validate_text_active {
     display: inline;
 }

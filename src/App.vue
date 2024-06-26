@@ -23,7 +23,6 @@ const menuList = ref(store.state.menuState.menuList);
 //찾아온 MenuIndex를 menuState.MenuIndex(전역 상태)에 set해준다.
 function setMenuIndex() {
    let currentMenuNo = findMenuNo();
-   console.log(currentMenuNo);
    store.commit("menuState/setMenuIndex", currentMenuNo);
 }
 
