@@ -88,10 +88,10 @@
     border-top: 2px solid gray;
     border-bottom: 2px solid gray;
     text-align: center;
-    font-size: 1.05em;
+    font-size: 1.2rem;
     font-weight: bold;
     color: #333333;
-    background-color: silver;
+    /* background-color: silver; */
   }
   
   .write-info {
