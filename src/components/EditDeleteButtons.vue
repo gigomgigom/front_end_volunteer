@@ -29,27 +29,25 @@
   }
   
   button {
-    padding: 8px 16px; /* 패딩 크기 줄임 */
-    border: 2px solid;
-    border-radius: 4px; /* 더 작은 반경 */
+    padding: 8px 16px;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 14px; /* 폰트 크기 줄임 */
-    background: transparent;
-    color: #FF5733; /* 주황색 */
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    font-size: 14px;
+    background: #ff6f4e;
+    border: none; /* 테두리 제거 */
+    color: white;
+    transition: background-color 0.1s, color 0.2s;
   }
   
-  .edit-btn {
-    border-color: #FF5733; /* 주황색 */
-  }
-  
-  .delete-btn {
-    border-color: #ff6341; /* 주황색 */
-  }
-  
+
+.delete-btn{
+    background: #ff613e;
+
+}
+
   button:hover {
-    background-color: #FF5733; /* 호버 시 배경색 주황색 */
-    color: white; /* 호버 시 글자색 흰색 */
+    background-color: #e04e2e; /* 호버 시 더 어두운 주황색 */
+    color: white;
   }
   </style>
   
