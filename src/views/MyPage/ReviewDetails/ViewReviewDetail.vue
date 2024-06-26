@@ -1,14 +1,17 @@
 <template>
-  <div class="card">
-    <div class="card-header">후기 상세정보 보기</div>
-    <div class="card-body">
-
-    </div>
-  </div>
+ <BoardDetail/>
+ <MovePost @moveList="moveReviewList"/>
+ <div style="height: 100px;"></div>
 </template>
 
 <script setup>
+import BoardDetail from '@/components/BoardDetail.vue';
+import MovePost from '@/components/MovePost.vue';
+import router from '@/router';
 
+function moveReviewList() {
+  router.push('/Details/MyPage/ReviewDetails/ViewReviewList');
+}
 </script>
 
 <style scoped>

@@ -1,13 +1,14 @@
 <template>
-  <div class="card">
-    <div class="card-header">작성한 후기 목록 보기</div>
-    <div class="card-body">
-
-    </div>
-  </div>
+  <NormalBoard @moveDetail="moveReviewDetail"/>
 </template>
 
 <script setup>
+import NormalBoard from '@/components/NormalBoard.vue';
+import router from '@/router';
+
+function moveReviewDetail(data){
+  router.push('/Details/Information/Review/ViewReviewDetail');
+}
 
 </script>
 

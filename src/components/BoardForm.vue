@@ -127,8 +127,7 @@ function deleteFile() {
 }
 
 function handleSubmit() {
-  console.log(titleValid);
-  console.log(contentValid);
+ 
   titleValid.value = true;
   contentValid.value = true;
   if (!isFormValid.value) {
