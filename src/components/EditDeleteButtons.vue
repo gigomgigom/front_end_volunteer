@@ -21,7 +21,7 @@
   
   <style scoped>
   .button-component {
-    margin-top: 7px;
+    margin-top: 5px;
     display: flex;
     justify-content: flex-end;
     gap: 8px;
@@ -30,24 +30,26 @@
   
   button {
     padding: 8px 16px;
-    border-radius: 4px;
+    border: 2px solid;
+    border-radius: 4px; 
     cursor: pointer;
-    font-size: 14px;
-    background: #ff6f4e;
-    border: none; /* 테두리 제거 */
-    color: white;
-    transition: background-color 0.1s, color 0.2s;
+    font-size: 14px; 
+    background: transparent;
+    color: #FF5733; /* 주황색 */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
   }
   
-
-.delete-btn{
-    background: #ff613e;
-
-}
-
+  .edit-btn {
+    border-color: #FF5733; /* 주황색 */
+  }
+  
+  .delete-btn {
+    border-color: #FF5733; /* 주황색 */
+  }
+  
   button:hover {
-    background-color: #e04e2e; /* 호버 시 더 어두운 주황색 */
-    color: white;
+    background-color: #FF5733; /* 호버 시 배경색 주황색 */
+    color: white; /* 호버 시 글자색 흰색 */
   }
   </style>
   
