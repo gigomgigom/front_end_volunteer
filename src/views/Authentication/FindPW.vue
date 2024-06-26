@@ -23,15 +23,17 @@
       type: 'text',
       value: '',
       placeholder: '이름을 입력해 주세요',
-      hint: '올바른 이름을 입력해 주세요'
+      errormsg: '올바른 이름을 입력해 주세요'
+
     },
     {
-      id: 'id',
+      id: 'uid',
       label: '아이디',
       type: 'text',
       value: '',
       placeholder: '아이디를 입력해 주세요',
-      hint: '올바른 아이디를 입력해 주세요'
+      errormsg: '올바른 아이디를 입력해 주세요'
+
     },
     {
       id: 'phone',
@@ -39,8 +41,9 @@
       type: 'text',
       value: '',
       placeholder: '휴대폰 번호를 입력해 주세요',
-      hint: '올바른 휴대폰 번호를 입력해 주세요'
-      
+      errormsg: '올바른 휴대폰 번호를 입력해 주세요'
+
+  
     }
   ]);
 
@@ -51,15 +54,13 @@
       type: 'text',
       value: '',
       placeholder: '이름을 입력해 주세요',
-      hint: '올바른 이름을 입력해 주세요'
     },
     {
-      id: 'id',
+      id: 'uid',
       label: '아이디',
       type: 'text',
       value: '',
       placeholder: '아이디를 입력해 주세요',
-      hint: '올바른 아이디를 입력해 주세요'
     },
     {
       id: 'email',
@@ -67,7 +68,6 @@
       type: 'email',
       value: '',
       placeholder: '이메일을 입력해 주세요',
-      hint: '올바른 이메일을 입력해 주세요'
     }
   ]);
 
@@ -75,7 +75,7 @@
     const { findBy, fields } = data;
     // fields: 사용자가 입력한 필드들의 배열.   
     // fields 배열은 FindAccount 컴포넌트에서 dynamicFields 계산 속성으로 결정되며, 
-      // 이는 phoneFields 또는 emailFields 중 하나다. 사용자가 선택한 옵션에 따라 dynamicFields는 fields로 전달되고, 부모 컴포넌트에서는 findPassword 함수에서 fields를 처리하게 된다.
+    // 이는 phoneFields 또는 emailFields 중 하나다. 사용자가 선택한 옵션에 따라 dynamicFields는 fields로 전달되고, 부모 컴포넌트에서는 findPassword 함수에서 fields를 처리하게 된다.
     
     const fieldValues = fields.reduce((acc, field) => {
       acc[field.id] = field.value;
@@ -96,5 +96,5 @@
   };
   </script>
 
-  <style scoped>
+  <style scoped>  
   </style>

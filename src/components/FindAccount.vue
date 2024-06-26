@@ -26,6 +26,7 @@
         :maxlength="field.maxlength"
       >
       <small class="rewrite-msg text-muted">{{ field.hint }}</small>
+      <div v-if="errors[field.id]" class="text-danger">{{ errors[field.id] }}</div>
     </div>
 
     <!-- Submit button -->
@@ -43,34 +44,83 @@ export default {
       type: Array,
       default: () => []
     },
-
     emailFields: {
       type: Array,
       default: () => []
     },
-
-    submitButtonText: { type: String, default: '확인' }
+    submitButtonText: { type: String, default: '확인' },
+    errormsg: {
+      type: Object,
+      default: () => ({})
+    }
   },
-
 
   data() {
     return {
-      findBy: 'phone'
+      findBy: 'phone',
+      errors: this.errormsg
     };
   },
+
+  watch: {
+    errormsg: {
+      handler(newValue) {
+        this.errors = newValue;
+      },
+      deep: true
+    },
+
+    findBy() {
+      // findBy 값이 변경될 때 errors 객체 초기화
+      this.errors = {};
+    }
+  },
+
   computed: {
     dynamicFields() {
       return this.findBy === 'phone' ? this.phoneFields : this.emailFields;
-      // dynamicFields: findBy 값에 따라 phoneFields 또는 emailFields를 반환한다. 사용자가 "연락처로 찾기" 또는 "이메일로 찾기"를 선택할 때마다 동적으로 표시될 필드가 변경된다.
-    } 
+    }
   },
-  
+
   methods: {
-    handleSubmit() {
-      this.$emit('submit', {
-        findBy: this.findBy,
-        fields: this.dynamicFields
+    validateFields() {
+      const errors = {};
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phoneRegex = /^\d{10,11}$/;
+      const idRegex = /^[a-z0-9]{5,12}$/;
+      const nameRegex = /^[A-Za-z가-힣]{1,6}$/; //한글, 영어로 1~6글자
+
+      this.dynamicFields.forEach(field => {
+        if (!field.value) {
+          errors[field.id] = `${field.label}을(를) 입력해 주세요.`;
+        } else {
+          if (field.id === 'name' && !nameRegex.test(field.value)) {
+            errors[field.id] = '이름을 올바르게 입력해 주세요.';
+          }
+          if (field.id === 'uid' && !idRegex.test(field.value)) {
+            errors[field.id] = '유효한 아이디를 입력해 주세요.';
+          }
+          if (field.id === 'phone' && !phoneRegex.test(field.value)) {
+            errors[field.id] = '유효한 휴대폰 번호를 입력해 주세요.';
+          }
+          if (field.id === 'email' && !emailRegex.test(field.value)) {
+            errors[field.id] = '유효한 이메일 주소를 입력해 주세요.';
+          }
+        }
       });
+      return errors;
+    },
+
+    handleSubmit() {
+      this.errors = this.validateFields();
+      if (Object.keys(this.errors).length === 0) {
+        this.$emit('submit', {
+          findBy: this.findBy,
+          fields: this.dynamicFields
+        });
+      } else {
+        this.$emit('update:errormsg', this.errors);
+      }
     }
   }
 };
@@ -146,5 +196,10 @@ export default {
   display: block;
   font-size: 12px;
   color: #999;
+}
+
+.text-danger {
+  color: red;
+  font-size: 12px;
 }
 </style>

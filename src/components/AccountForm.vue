@@ -14,7 +14,7 @@
         <span>{{ member.name }}</span>
       </dd>
     </dl>
-    <dl class="row info-row ">
+    <dl class="row info-row ">34
       <dt class="col-3">성별</dt>
       <dd class="col-5">
         <span>{{ member.sex }}</span>
