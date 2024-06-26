@@ -6,6 +6,7 @@
 <script setup>
 import ViewEduProgramList from './ViewEduProgramList.vue';
 import TextHeader from '@/components/Common/TextHeader.vue';
+
 </script>
 
 <style scoped>

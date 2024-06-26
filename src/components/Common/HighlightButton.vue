@@ -1,16 +1,11 @@
 <template>
-    <button @click="handleButtonClick()">
+    <button @click="$emit('buttonClick')">
         {{ props.text }}
     </button>
 </template>
 
 <script setup>
 const props = defineProps(['text']);
-const emits = defineEmits(['buttonClick']);
-
-function handleButtonClick() {
-    emits('buttonClick');
-}
 </script>
 
 <style scoped>

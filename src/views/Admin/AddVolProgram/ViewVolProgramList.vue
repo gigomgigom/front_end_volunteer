@@ -8,10 +8,32 @@
         <NormalButton text="새로 생성" @buttonClick="showDialog(0)" style="padding-top: 2px; padding-bottom: 2px;" />
       </template>
       <template v-slot:right-side>
-        <HighlightButton text="추가" @buttonClick="showDialog(1)" style="padding-top: 2px; padding-bottom: 2px;" />
+        <button @click="showDialog(1, $event)" style="background-color: rgb(240, 103, 4);
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5%;
+
+    border: none;
+    font-weight: bold;
+    color: white;">추가</button>
+
       </template>
     </VolPrgmList>
-
+    <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+      <ul class="pagination justify-content-between w-50">
+        <li class="page-item">
+          <RouterLink to="#">이전</RouterLink>
+        </li>
+        <li class="page-item">
+          <RouterLink to="#">1</RouterLink>
+        </li>
+        <li class="page-item">
+          <RouterLink to="#">다음</RouterLink>
+        </li>
+      </ul>
+    </nav>
   </div>
 </template>
 
@@ -52,7 +74,6 @@ const providedData = ref({
 });
 //데이터를 하위 컴포넌트들에게 provide
 provide('providedData', providedData);
-
 onMounted(() => {
   addVolProgramModal = new Modal(document.querySelector("#addVolProgramModal"));
   battachInput = document.querySelector('#battachInput');
@@ -63,7 +84,7 @@ function addVolProgram() {
   const blankResult = isDataBlank(providedData.value);
   if (blankResult.isDataOk) {
     const validateResult = isDataValidate(providedData.value);
-    if(validateResult.isDataOk) {
+    if (validateResult.isDataOk) {
       //서버 전송하기 위한 데이터 세팅 작업해줘야함
       //데이터 세팅 작업이 끝난 후 API요청해야함.
       addVolProgramModal.hide();
@@ -139,23 +160,25 @@ function isDataValidate(data) {
   let isDataOk = true;
   let validateMsgList = [];
   //봉사기간과 모집기간이 논리적으로 맞는지 (봉사기간이 모집기간보다 뒤에 있어야한다.)
-  if(data.actDate[0] < data.recruitDate[1]) {
+  if (data.actDate[0] < data.recruitDate[1]) {
     validateMsgList.push('봉사 시작일이 모집 마감일보다 앞서있거나 두 기간이 겹쳐있습니다.');
     isDataOk = false;
   }
-  if(data.actTime[0].hours > data.actTime[1].hours) {
+  if (data.actTime[0].hours > data.actTime[1].hours) {
     validateMsgList.push('봉사 시작시간은 봉사 종료시간 전으로 기입해야합니다.');
     isDataOk = false;
   }
-  if(data.recruitCnt < 1) {
+  if (data.recruitCnt < 1) {
     validateMsgList.push('모집인원은 1명 이상으로 기입해야합니다.');
     isDataOk = false;
   }
   return { validateMsgList, isDataOk };
 }
-function showDialog(code) {
+function showDialog(code, event) {
   if (code) {
     //공공데이터에서 받아온 데이터로 데이터 세팅작업
+    let domElement = event.target.parentElement.id;
+    console.log(domElement);
     battachInput.value = '';
     imageInput.value = '';
     addVolProgramModal.show();

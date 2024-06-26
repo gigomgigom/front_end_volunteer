@@ -2,8 +2,8 @@
     <div>
         <div class="row">
             <div class="col-sm-10" style="padding:0 0 8px 0;">
-                [전체 <span class="highlight">25</span>건,
-                현재페이지 <span class="highlight">1</span>/3]
+                [전체 <span class="highlight">{{data.pager.totalCount}}</span>건,
+                현재페이지 <span class="highlight">{{ data.pager.pageNo }}</span>/3]
             </div>
             <div class="col-sm-2">
                 <slot name="createButton">
@@ -16,7 +16,7 @@
 
             </slot>
         </div>
-        <div class="row-wrapper py-3" v-for="(vol) in volList" :key="vol.no">
+        <div class="row-wrapper py-3" v-for="(vol, index) in data.programList" :key="index">
             <div class="row">
                 <div class="col-md-10 d-flex">
                     <div class="vol-checkbox">
@@ -26,7 +26,7 @@
                     </div>
                     <div class="d-flex flex-column">
                         <div class="vol-title">
-                            <span @click="moveToDetail(url)">
+                            <span @click="moveToDetail(vol.url, vol.isExternal)">
                                 {{ vol.title }}
                             </span>
                         </div>
@@ -36,7 +36,7 @@
                             [봉사시간] <span style="color: gray;">{{ vol.volTime }}</span>
                         </div>
                         <div class="vol-desc">
-                            [봉사지역] <span class="me-2" style="color: gray;">{{ vol.registerCenter }}</span>
+                            [봉사지역] <span class="me-2" style="color: gray;">{{ vol.region }}</span>
                             [모집기관] <span style="color: gray;">{{ vol.recruitCenter }}</span>
                         </div>
                         <div class="vol-desc">
@@ -44,9 +44,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 right-side-container">
+                <div class="col-md-2 right-side-container" :id="vol.no">
                     <slot name="right-side">
-
+                        
                     </slot>
                 </div>
             </div>
@@ -56,26 +56,16 @@
 
 <script setup>
 import router from "@/router";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, inject } from "vue";
 
-const props = defineProps(['isAddPage']);
-const emit = defineEmits(["showModal"]);
-const isAddPage = ref();
-const volList = ref([
-    { no: 1, title: "서구치매안심센터 치매가족프로그램 활동 지원(치매안심센터 건담분소)", registerCenter: "경기도 수원시", recruitCenter: "인천서구육아종합지원센터", recruitDate: "2012.02.10 - 2012.02.11", volDate: "2012.03.12 - 2012.03.16", volTime: "13:00 - 17:00", classification: "생활편의지원 > 활동보조" },
-    { no: 1, title: "서구치매안심센터 치매가족프로그램 활동 지원(치매안심센터 건담분소)", registerCenter: "경기도 수원시", recruitCenter: "인천서구육아종합지원센터", recruitDate: "2012.02.10 - 2012.02.11", volDate: "2012.03.12 - 2012.03.16", volTime: "13:00 - 17:00", classification: "생활편의지원 > 활동보조" },
-    { no: 1, title: "서구치매안심센터 치매가족프로그램 활동 지원(치매안심센터 건담분소)", registerCenter: "경기도 수원시", recruitCenter: "인천서구육아종합지원센터", recruitDate: "2012.02.10 - 2012.02.11", volDate: "2012.03.12 - 2012.03.16", volTime: "13:00 - 17:00", classification: "생활편의지원 > 활동보조" },
-    { no: 1, title: "서구치매안심센터 치매가족프로그램 활동 지원(치매안심센터 건담분소)", registerCenter: "경기도 수원시", recruitCenter: "인천서구육아종합지원센터", recruitDate: "2012.02.10 - 2012.02.11", volDate: "2012.03.12 - 2012.03.16", volTime: "13:00 - 17:00", classification: "생활편의지원 > 활동보조" },
-    { no: 1, title: "서구치매안심센터 치매가족프로그램 활동 지원(치매안심센터 건담분소)", registerCenter: "경기도 수원시", recruitCenter: "인천서구육아종합지원센터", recruitDate: "2012.02.10 - 2012.02.11", volDate: "2012.03.12 - 2012.03.16", volTime: "13:00 - 17:00", classification: "생활편의지원 > 활동보조" },
-]);
+const data = inject('responseData');
 
-onMounted(() => {
-    isAddPage.value = props.isAddPage;
-})
-
-function moveToDetail(url) {
-    url = "/Details/Participation/VolProgram/ViewVolProgramDetail";
-    router.push(url);
+function moveToDetail(url, isExternal) {
+    if(isExternal) {
+        window.open(url, '_blank');
+    } else {
+        router.push(url);
+    }
 }
 
 </script>
