@@ -45,11 +45,10 @@
   
   .delete-btn {
     border-color: #FF5733; /* 주황색 */
+    background-color: #FF5733;
+    color: white;
   }
   
-  button:hover {
-    background-color: #FF5733; /* 호버 시 배경색 주황색 */
-    color: white; /* 호버 시 글자색 흰색 */
-  }
+
   </style>
   
