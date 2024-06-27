@@ -1,7 +1,7 @@
 <template>
   <div>
     <TextHeader title="봉사 프로그램 추가" />
-    <ViewVolProgramList />
+    <ViewVolProgramList  @changePageNo="changePageNo"/>
     <div class="custom_loader_wrapper" ref="loadingContainer">
       <div class="spinner-border" style="width: 7rem; height: 7rem;" role="status">
       </div>
@@ -13,36 +13,85 @@
 import TextHeader from '@/components/Common/TextHeader.vue';
 import ViewVolProgramList from './ViewVolProgramList.vue';
 import dataPortalAPI from '@/apis/dataPortalAPI';
-import { onMounted, provide, ref } from 'vue';
+import { onMounted, provide, ref, watch } from 'vue';
 import { useStore } from 'vuex';
+import { useRoute } from 'vue-router';
+import router from '@/router';
 
-const store = useStore();
-const regionList = store.state.regionCode.regionList;
 const loadingContainer = ref(null);
+
+const route = useRoute();
+const store = useStore();
+
+const pageNo = ref(route.query.pageNo || 1);
+const regionList = store.state.regionCode.regionList;
+
 
 const responseData = ref({
   programList: [],
   pager: {
-    numOfRows: 0,
-    pageNo: 0,
-    totalCount: 0
+    //기본적인 VolProgramList화면에서 필요한 데이터
+    numOfRows: 0, //페이지당 결과 수
+    pageNo: 0, //현재 페이지번호
+    totalCount: 0, //검색결과 총 갯수
+    totalPage: 0, //페이지 총 갯수
+    pageCntPerGroup: 0, //그룹당 페이지 갯수
+    groupNo: 0, //현재 그룹번호
+    groupCount: 0, //총 그룹 갯수
+    startPageNo: 0, //현재 첫 페이지번호
+    endPageNo: 0, //현재 끝 페이지번호
+    pageNoList: []
   }
 });
 
 onMounted(() => {
-  getProgramList();
+  getProgramList(pageNo.value);
 });
 
 provide('responseData', responseData);
-async function getProgramList() {
+
+async function getProgramList(pageNo) {
   try {
     loadingContainer.value.classList.add('loading');
-    let data = {};
+    let data = {pageNo};
     const response = await dataPortalAPI.getVolProgramList(data);
     let resultData = response.data.response.body;
-    responseData.value.pager.numOfRows = resultData.numOfRows;
-    responseData.value.pager.pageNo = resultData.pageNo;
-    responseData.value.pager.totalCount = resultData.totalCount;
+
+    let pagerData = {
+      numOfRows: resultData.numOfRows,
+      pageNo: resultData.pageNo,
+      totalCount: resultData.totalCount,
+      totalPage: 0,
+      pageCntPerGroup: 5,
+      groupNo: 0,
+      groupCount: 0,
+      startPageNo: 0,
+      endPageNo: 0,
+      pageNoList: [],
+    }
+    if(pagerData.totalCount % pagerData.numOfRows) {
+      pagerData.totalPage = Math.floor((pagerData.totalCount / pagerData.numOfRows) + 1);
+    } else {
+      pagerData.totalPage = Math.floor(pagerData.totalCount / pagerData.numOfRows);
+    }
+    if(pagerData.totalPage % pagerData.pageCntPerGroup) {
+      pagerData.groupCount = Math.floor((pagerData.totalPage / pagerData.pageCntPerGroup) + 1);
+    } else {
+      pagerData.groupCount = Math.floor(pagerData.totalPage / pagerData.pageCntPerGroup);
+    }
+    pagerData.groupNo = Math.floor(( (pagerData.pageNo - 1) / pagerData.pageCntPerGroup ) + 1);
+    pagerData.startPageNo = ( (pagerData.groupNo - 1) * pagerData.pageCntPerGroup ) + 1;
+    pagerData.endPageNo = pagerData.startPageNo + pagerData.pageCntPerGroup - 1;
+    if(pagerData.endPageNo > pagerData.totalPage) {
+      pagerData.endPageNo = pagerData.totalPage;
+    }
+
+    for(let i = pagerData.startPageNo; i <= pagerData.endPageNo; i++) {
+      pagerData.pageNoList.push(i);
+    }
+    responseData.value.pager = pagerData;
+    console.log(responseData.value.pager);
+
     let resultList = resultData.items.item;
     for (let program of resultList) {
       let rcStart = `${program.noticeBgnde.toString().substring(0, 4)}.${program.noticeBgnde.toString().substring(4, 6)}.${program.noticeBgnde.toString().substring(6, 8)}`;
@@ -59,7 +108,6 @@ async function getProgramList() {
           }
         }
       }
-
       let newObject = {
         no: program.progrmRegistNo,
         title: program.progrmSj,
@@ -75,40 +123,30 @@ async function getProgramList() {
       responseData.value.programList.push(newObject);
       loadingContainer.value.classList.remove('loading');
     }
-    /* 
-    {
-      items : { item:배열객체 }
-      numOfRows: 한 페이지당 갯수
-      pageNo: 현재 페이지수
-      totalCount: 전체 갯수
-    } 
-    
-    item : [
-      {
-        progrmRegistNo: 프로그램 등록번호
-        actBeginTm: 봉사시작시간
-        actEndTm: 봉사종료시간
-        actPlace: 봉사장소
-        adultPosblAt: 성인가능여부
-        yngbgsPosblAt: 청소년가능여부
-        sidoCd: 시도코드
-        gugunCd: 군구코드
-        nanmmbyNm: 모집기관
-        noticeBgnde: 모집시작일
-        noticeEndde: 모집종료일
-        progrmBgnde: 봉사시작일
-        progrmEndde: 봉사종료일
-        progrmSj: 프로그램 제목
-        srvcClCode: 분야코드
-        url: 상세정보 페이지주소
-        
-      }
-    ]
-    */
   } catch (error) {
     console.log("에러 사유 : ", error);
+    loadingContainer.value.classList.remove('loading');
     return null;
   }
+}
+
+watch(route, (newRoute, oldRoute) => {
+  if(newRoute.query.pageNo) {
+    getProgramList(newRoute.query.pageNo);
+    pageNo.value = newRoute.query.pageNo;
+  } else {
+    getProgramList(1);
+    pageNo.value = 1;
+  }
+})
+
+function changePageNo(pageNo) {
+  router.push({
+    path: '/Details/Admin/AddVolProgram',
+    query: {
+      pageNo
+    }
+  });
 }
 </script>
 

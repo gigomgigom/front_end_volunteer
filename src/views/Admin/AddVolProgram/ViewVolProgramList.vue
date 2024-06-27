@@ -9,28 +9,36 @@
       </template>
       <template v-slot:right-side>
         <button @click="showDialog(1, $event)" style="background-color: rgb(240, 103, 4);
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-radius: 5%;
-
-    border: none;
-    font-weight: bold;
-    color: white;">추가</button>
+            padding-left: 30px;
+            padding-right: 30px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-radius: 5%;
+            border: none;
+            font-weight: bold;
+            color: white;
+            ">
+          추가
+        </button>
 
       </template>
     </VolPrgmList>
-    <nav aria-label="Page navigation example" class="d-flex justify-content-center">
-      <ul class="pagination justify-content-between w-50">
-        <li class="page-item">
-          <RouterLink to="#">이전</RouterLink>
+    <nav aria-label="Page navigation example" class="d-flex justify-content-center my-5">
+      <ul class="pagination justify-content-center align-items-center">
+        <li class="page-item mx-2" v-if="responseData.pager.groupNo > 1">
+          <button class="btn text_button" @click="$emit('changePageNo', 1)">처음</button>
         </li>
-        <li class="page-item">
-          <RouterLink to="#">1</RouterLink>
+        <li class="page-item me-4">
+          <button class="btn text_button" @click="$emit('changePageNo', responseData.pager.startPageNo - 1)">이전</button>
         </li>
-        <li class="page-item">
-          <RouterLink to="#">다음</RouterLink>
+        <li class="page-item mx-1" v-for="n in responseData.pager.pageNoList" :key="n">
+          <button class="btn number_button" @click="$emit('changePageNo', n)" :class="responseData.pager.pageNo === n ? 'selected_button' : ''">{{ n }}</button>
+        </li>
+        <li class="page-item ms-4">
+          <button class="btn text_button" @click="$emit('changePageNo', responseData.pager.endPageNo + 1)">다음</button>
+        </li>
+        <li class="page-item mx-2" v-if="responseData.pager.pageNo !== responseData.pager.totalPage">
+          <button class="btn text_button" @click="$emit('changePageNo', responseData.pager.totalPage)">맨끝</button>
         </li>
       </ul>
     </nav>
@@ -38,15 +46,19 @@
 </template>
 
 <script setup>
-import { onMounted, provide, ref } from 'vue';
+import { inject, onMounted, provide, ref } from 'vue';
 import { Modal } from 'bootstrap';
+import dataPortalAPI from '@/apis/dataPortalAPI';
 import SearchVolPgrm from '@/components/SearchVolPgrm.vue';
 import AddVolProgramModal from './AddVolProgramModal.vue';
 import VolPrgmList from '@/components/VolPrgmList.vue'
 import NormalButton from '@/components/Common/NormalButton.vue';
-import HighlightButton from '@/components/Common/HighlightButton.vue';
+import { useStore } from 'vuex';
 
 let addVolProgramModal = null;
+const responseData = inject('responseData');
+
+const categoryList = useStore().state.categoryCode.categoryList;
 
 //첨부파일 input 객체
 let battachInput = null;
@@ -71,6 +83,7 @@ const providedData = ref({
   content: '',
   adultPosbl: false,
   teenPosbl: false,
+  isExternal: false
 });
 //데이터를 하위 컴포넌트들에게 provide
 provide('providedData', providedData);
@@ -174,13 +187,65 @@ function isDataValidate(data) {
   }
   return { validateMsgList, isDataOk };
 }
-function showDialog(code, event) {
+async function showDialog(code, event) {
   if (code) {
     //공공데이터에서 받아온 데이터로 데이터 세팅작업
     let domElement = event.target.parentElement.id;
-    console.log(domElement);
     battachInput.value = '';
     imageInput.value = '';
+    const response = await dataPortalAPI.getVolProgramDetail(domElement);
+    let data = response.data.response.body.items.item;
+
+    let srvcCdList = data.srvcClCode.split(' > ');
+    for (let highCls of categoryList) {
+      for (let lowCls of highCls.lowClsList) {
+        if (lowCls.lowClsName === srvcCdList[1]) {
+          providedData.value.highCls = highCls.highClsCode;
+          providedData.value.lowCls = lowCls.lowClsCode;
+        }
+      }
+    }
+
+    providedData.value.title = data.progrmSj;
+    providedData.value.recruitDate = [
+      parseIntToDate(data.noticeBgnde),
+      parseIntToDate(data.noticeEndde)
+    ];
+    providedData.value.actTime = [
+      {
+        hours: data.actBeginTm,
+        minutes: 0,
+        seconds: 0
+      },
+      {
+        hours: data.actEndTm,
+        minutes: 0,
+        seconds: 0
+      }
+    ]
+    providedData.value.recruitCenter = data.mnnstNm;
+    providedData.value.actDate = [
+      parseIntToDate(data.progrmBgnde),
+      parseIntToDate(data.progrmEndde)
+    ];
+    providedData.value.recruitCnt = data.rcritNmpr;
+    providedData.value.city = data.sidoCd;
+    providedData.value.county = data.gugunCd;
+    providedData.value.actPlace = data.actPlace;
+    providedData.value.mngName = data.nanmmbyNmAdmn;
+    providedData.value.mngTel = data.telno;
+    providedData.value.content = data.progrmCn;
+    if (data.adultPosblAt === "Y") {
+      providedData.value.adultPosbl = true;
+    } else {
+      providedData.value.adultPosbl = false;
+    }
+    if (data.yngbgsPosblAt === "Y") {
+      providedData.value.teenPosbl = true;
+    } else {
+      providedData.value.teenPosbl = false;
+    }
+    providedData.value.isExternal = true;
     addVolProgramModal.show();
   } else {
     resetData(); //데이터 리셋('빈칸으로 세팅');
@@ -208,6 +273,17 @@ function resetData() {
   battachInput.value = '';
   imageInput.value = '';
 }
+//숫자형 날짜 데이터를 Date객체로 변환
+function parseIntToDate(dateNumber) {
+
+  const dateString = dateNumber.toString();
+  // 연도, 월, 일을 추출
+  const year = parseInt(dateString.substring(0, 4), 10);
+  const month = parseInt(dateString.substring(4, 6), 10) - 1; // 월은 0부터 시작하므로 1을 뺌
+  const day = parseInt(dateString.substring(6, 8), 10);
+  // Date 객체 생성
+  return new Date(year, month, day);
+}
 </script>
 
 <style scoped>
@@ -223,5 +299,34 @@ h5 {
 
 #view-programlist-wrapper {
   padding-top: 30px;
+}
+
+.text_button {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: rgb(240, 103, 4);
+  color: white;
+  font-weight: bold;
+}
+
+.number_button:hover {
+  border: 2px solid rgb(240, 103, 4);
+  background-color: rgb(240, 103, 4);
+  color: white;
+}
+
+.number_button.selected_button {
+  border: 2px solid rgb(240, 103, 4);
+  background-color: rgb(240, 103, 4);
+  color: white;
+}
+
+.number_button {
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 2px solid gray;
+  font-weight: bold;
 }
 </style>

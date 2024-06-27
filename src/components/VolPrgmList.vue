@@ -2,8 +2,8 @@
     <div>
         <div class="row">
             <div class="col-sm-10" style="padding:0 0 8px 0;">
-                [전체 <span class="highlight">{{data.pager.totalCount}}</span>건,
-                현재페이지 <span class="highlight">{{ data.pager.pageNo }}</span>/3]
+                [전체 <span class="highlight">{{ data.pager.totalCount }}</span>건,
+                현재페이지 <span class="highlight">{{ data.pager.pageNo }}</span>/{{ data.pager.totalPage }}]
             </div>
             <div class="col-sm-2">
                 <slot name="createButton">
@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-md-2 right-side-container" :id="vol.no">
                     <slot name="right-side">
-                        
+
                     </slot>
                 </div>
             </div>
@@ -61,7 +61,7 @@ import { onMounted, ref, inject } from "vue";
 const data = inject('responseData');
 
 function moveToDetail(url, isExternal) {
-    if(isExternal) {
+    if (isExternal) {
         window.open(url, '_blank');
     } else {
         router.push(url);
@@ -85,7 +85,7 @@ function moveToDetail(url, isExternal) {
     font-size: 18px;
 }
 
-.vol-title > span {
+.vol-title>span {
     cursor: pointer;
 }
 

@@ -69,7 +69,7 @@
                                         봉사 분야
                                     </td>
                                     <td colspan="1">
-                                        <select class="form-select" @change="selectHighCls($event)"
+                                        <select class="form-select"
                                             v-model="providedData.highCls">
                                             <option selected :value="''">전체</option>
                                             <option v-for="(highCls, index) in categoryList" :key="index"
@@ -89,7 +89,7 @@
                                         봉사 지역
                                     </td>
                                     <td colspan="1">
-                                        <select class="form-select" @change="selectCity($event)"
+                                        <select class="form-select"
                                             v-model="providedData.city">
                                             <option selected :value="0">전체</option>
                                             <option v-for="(city, index) in regionList" :key="index"
@@ -172,7 +172,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, inject } from 'vue';
+import { onMounted, ref, inject, watch, watchEffect } from 'vue';
 import { useStore } from 'vuex';
 
 const store = useStore();
@@ -183,14 +183,6 @@ const categoryList = store.state.categoryCode.categoryList;
 const lowClsList = ref([]);
 const regionList = store.state.regionCode.regionList;
 const countyList = ref([]);
-// 상위 분야 선택시 호출
-function selectHighCls(event) {
-    const highClsCode = event.target.value;
-    //하위 분류 리스트(상태데이터) 수정
-    lowClsList.value = findLowCls(highClsCode);
-    //군/구 리스트에서 기본값(전체)로 selected되도록 함.
-    document.getElementById("lowCls").selectedIndex = 0;
-}
 // 하위 분야 리스트를 찾아오기
 function findLowCls(highClsCode) {
     for (let highCls of categoryList) {
@@ -199,12 +191,6 @@ function findLowCls(highClsCode) {
         }
     }
     return [];
-}
-// 도시 분야 선택시 호출
-function selectCity(event) {
-    const cityCode = Number(event.target.value);
-    countyList.value = findCounty(cityCode);
-    document.getElementById("county").selectedIndex = 0;
 }
 // 하위 분야 리스트를 찾아오기
 function findCounty(cityCode) {
@@ -239,6 +225,24 @@ function battachValidate(event) {
         }
     }
 }
+
+watch(() => providedData.value.city, (newCity, oldCity) => {
+    countyList.value = findCounty(newCity);
+    if(providedData.value.isExternal) {
+        providedData.value.isExternal = false;
+    } else {
+        providedData.value.county = 0;
+    }
+})
+
+watch(() => providedData.value.highCls, (newCls, oldCls) => {
+    lowClsList.value = findLowCls(newCls);
+    if(providedData.value.isExternal) {
+        providedData.value.isExternal = false;
+    } else {
+        providedData.value.lowCls = 0;
+    }
+})
 
 
 </script>
