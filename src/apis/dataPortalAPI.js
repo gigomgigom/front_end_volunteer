@@ -6,7 +6,6 @@ const APIKey = process.env.VUE_APP_PORTAL_API_KEY;
 
 //봉사프로그램 목록을 검색 조건에 맞춰 가져온다.
 function getVolProgramList(searchIndex) {
-    console.log(searchIndex);
     return axios.get(
         `https://cors-anywhere.herokuapp.com/http://openapi.1365.go.kr/openapi/service/rest/VolunteerPartcptnService/getVltrSearchWordList?pageNo=${searchIndex.pageNo}`,
         APIKey
@@ -23,6 +22,12 @@ function getVolProgramDetail(progrmRegistNo) {
         `https://cors-anywhere.herokuapp.com/http://openapi.1365.go.kr/openapi/service/rest/VolunteerPartcptnService/getVltrPartcptnItem?progrmRegistNo=${progrmRegistNo}`,
         requestData
     );
+}
+
+function getEduProgramList(searchIndex) {
+    return axios.get(
+        `https://cors-anywhere.herokuapp.com/http://openapi.1365.go.kr/openapi/service/rest/VolunteeEducationService/getVltrEducationList`
+    )
 }
 
 export default ({

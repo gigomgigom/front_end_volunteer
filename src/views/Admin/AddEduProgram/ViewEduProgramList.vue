@@ -47,7 +47,6 @@ const providedData = ref({
   content: ''
 });
 provide('providedData', providedData);
-
 //모달창 띄우기
 function showAddModal(switchNum) {
   if (switchNum) {
@@ -62,7 +61,6 @@ function showAddModal(switchNum) {
     addEduProgramModal.show();
   }
 }
-
 //데이터 초기화(빈칸으로 만들기)
 function resetData() {
   providedData.value.title = '';

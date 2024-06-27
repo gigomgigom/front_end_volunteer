@@ -83,7 +83,8 @@ const providedData = ref({
   content: '',
   adultPosbl: false,
   teenPosbl: false,
-  isExternal: false
+  isClExternal: false,
+  isRgExternal: false
 });
 //데이터를 하위 컴포넌트들에게 provide
 provide('providedData', providedData);
@@ -173,8 +174,8 @@ function isDataValidate(data) {
   let isDataOk = true;
   let validateMsgList = [];
   //봉사기간과 모집기간이 논리적으로 맞는지 (봉사기간이 모집기간보다 뒤에 있어야한다.)
-  if (data.actDate[0] < data.recruitDate[1]) {
-    validateMsgList.push('봉사 시작일이 모집 마감일보다 앞서있거나 두 기간이 겹쳐있습니다.');
+  if (data.actDate[0] < data.recruitDate[0]) {
+    validateMsgList.push('봉사 시작일이 모집 시작일보다 앞서있습니다.');
     isDataOk = false;
   }
   if (data.actTime[0].hours > data.actTime[1].hours) {
@@ -187,15 +188,18 @@ function isDataValidate(data) {
   }
   return { validateMsgList, isDataOk };
 }
+//봉사 프로그램 추가 버튼을 눌렀을때 해당 봉사 프로그램의 상세정보를 받아오는 함수
 async function showDialog(code, event) {
   if (code) {
     //공공데이터에서 받아온 데이터로 데이터 세팅작업
     let domElement = event.target.parentElement.id;
+    //첨부파일 초기화
     battachInput.value = '';
     imageInput.value = '';
+    //서버 통신 후 데이터를 가져오기
     const response = await dataPortalAPI.getVolProgramDetail(domElement);
     let data = response.data.response.body.items.item;
-
+    //분야 코드 찾기(이름을 통해 분리를 한다.)
     let srvcCdList = data.srvcClCode.split(' > ');
     for (let highCls of categoryList) {
       for (let lowCls of highCls.lowClsList) {
@@ -205,12 +209,14 @@ async function showDialog(code, event) {
         }
       }
     }
-
+    //봉사 프로그램 제목
     providedData.value.title = data.progrmSj;
+    //봉사 프로그램 모집일자(숫자를 Date로 변환)
     providedData.value.recruitDate = [
       parseIntToDate(data.noticeBgnde),
       parseIntToDate(data.noticeEndde)
     ];
+    //봉사 프로그램 봉사시간
     providedData.value.actTime = [
       {
         hours: data.actBeginTm,
@@ -223,29 +229,43 @@ async function showDialog(code, event) {
         seconds: 0
       }
     ]
+    //봉사프로그램 모집기관
     providedData.value.recruitCenter = data.mnnstNm;
+    //봉사 프로그램 봉사기간(숫자를 Date로 변환)
     providedData.value.actDate = [
       parseIntToDate(data.progrmBgnde),
       parseIntToDate(data.progrmEndde)
     ];
+    //봉사프로그램 모집인원
     providedData.value.recruitCnt = data.rcritNmpr;
+    //봉사프로그램 시/도코드
     providedData.value.city = data.sidoCd;
+    //봉사프로그램 구/군코드
     providedData.value.county = data.gugunCd;
+    //봉사프로그램 봉사장소
     providedData.value.actPlace = data.actPlace;
+    //봉사프로그램 담당자명
     providedData.value.mngName = data.nanmmbyNmAdmn;
+    //봉사프로그램 담당자 전화번호
     providedData.value.mngTel = data.telno;
+    //봉사프로그램 내용
     providedData.value.content = data.progrmCn;
+    //봉사프로그램 성인가능여부
     if (data.adultPosblAt === "Y") {
       providedData.value.adultPosbl = true;
     } else {
       providedData.value.adultPosbl = false;
     }
+    //봉사프로그램 청소년가능여부
     if (data.yngbgsPosblAt === "Y") {
       providedData.value.teenPosbl = true;
     } else {
       providedData.value.teenPosbl = false;
     }
-    providedData.value.isExternal = true;
+    //외부에서 가져온 데이터인지 여부를 지정한다.
+    providedData.value.isRgExternal = true;
+    providedData.value.isClExternal = true;
+    //모든 작업이 끝난 후 모달창을 띄운다.
     addVolProgramModal.show();
   } else {
     resetData(); //데이터 리셋('빈칸으로 세팅');
@@ -275,7 +295,6 @@ function resetData() {
 }
 //숫자형 날짜 데이터를 Date객체로 변환
 function parseIntToDate(dateNumber) {
-
   const dateString = dateNumber.toString();
   // 연도, 월, 일을 추출
   const year = parseInt(dateString.substring(0, 4), 10);

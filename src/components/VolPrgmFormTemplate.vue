@@ -228,8 +228,8 @@ function battachValidate(event) {
 
 watch(() => providedData.value.city, (newCity, oldCity) => {
     countyList.value = findCounty(newCity);
-    if(providedData.value.isExternal) {
-        providedData.value.isExternal = false;
+    if(providedData.value.isRgExternal) {
+        providedData.value.isRgExternal = false;
     } else {
         providedData.value.county = 0;
     }
@@ -237,10 +237,10 @@ watch(() => providedData.value.city, (newCity, oldCity) => {
 
 watch(() => providedData.value.highCls, (newCls, oldCls) => {
     lowClsList.value = findLowCls(newCls);
-    if(providedData.value.isExternal) {
-        providedData.value.isExternal = false;
+    if(providedData.value.isClExternal) {
+        providedData.value.isClExternal = false;
     } else {
-        providedData.value.lowCls = 0;
+        providedData.value.lowCls = '';
     }
 })
 
