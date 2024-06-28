@@ -56,7 +56,7 @@
 
 <script setup>
 import router from "@/router";
-import { onMounted, ref, inject } from "vue";
+import { inject } from "vue";
 
 const data = inject('responseData');
 

@@ -25,7 +25,7 @@
     </VolPrgmList>
     <nav aria-label="Page navigation example" class="d-flex justify-content-center my-5">
       <ul class="pagination justify-content-center align-items-center">
-        <li class="page-item mx-2" v-if="responseData.pager.groupNo > 1">
+        <li class="page-item mx-2">
           <button class="btn text_button" @click="$emit('changePageNo', 1)">처음</button>
         </li>
         <li class="page-item me-4">
@@ -37,7 +37,7 @@
         <li class="page-item ms-4">
           <button class="btn text_button" @click="$emit('changePageNo', responseData.pager.endPageNo + 1)">다음</button>
         </li>
-        <li class="page-item mx-2" v-if="responseData.pager.pageNo !== responseData.pager.totalPage">
+        <li class="page-item mx-2">
           <button class="btn text_button" @click="$emit('changePageNo', responseData.pager.totalPage)">맨끝</button>
         </li>
       </ul>

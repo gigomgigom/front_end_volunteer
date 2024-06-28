@@ -65,7 +65,7 @@
                                       교육 센터
                                   </td>
                                   <td colspan="1">
-                                      <select class="form-select" @change="selectCity($event)" v-model="providedData.city">
+                                      <select class="form-select" v-model="providedData.city">
                                           <option :value="0">전체</option>
                                           <option v-for="(city, index) in regionList" :key="index"
                                               :value="city.cityCode">{{ city.cityName }}</option>
@@ -115,11 +115,12 @@
                       </table>
                       <div class="mt-5">
                           <label for="formFile" class="form-label">첨부 파일</label>
-                          <input class="form-control" type="file" id="battachInput">
+                          <input class="form-control" type="file" id="battachInput" @change="battachValidate($event)">
                       </div>
                       <div class="mt-3">
                           <label for="formFile" class="form-label">이미지 파일</label>
-                          <input class="form-control" type="file" id="imageInput">
+                          <input class="form-control" type="file" id="imageInput" accept="image/*"
+                                @change="imageValidate($event)">
                       </div>
                       <div class="mt-1 d-flex justify-content-center">
                           <img src="@/assets/home.png">
@@ -139,7 +140,7 @@
 </template>
 
 <script setup>
-import { inject, onMounted, ref } from 'vue';
+import { inject, watch, ref } from 'vue';
 import { useStore } from 'vuex';
 
 const providedData = inject('providedData');
@@ -162,6 +163,40 @@ function findCounty(cityCode) {
   }
   return [];
 }
+
+//이미지 파일 유효성 검사
+function imageValidate(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        if (event.target.files.length > 1) {
+            alert('파일은 한개만 선택가능합니다.');
+            event.target.value = '';
+        } else if (!validImageTypes.includes(file.type)) {
+            alert('이미지 파일만 업로드 가능합니다.');
+            event.target.value = '';
+        }
+    }
+}
+//첨부 파일 유효성 검사
+function battachValidate(event) {
+    const file = event.target.files[0];
+    if(file) {
+        if(event.target.files.length > 1) {
+            alert('파일은 한개만 선택가능합니다.');
+            event.target.value = '';
+        }
+    }
+}
+
+watch(() => providedData.value.city, (newCity, oldCity) => {
+    countyList.value = findCounty(newCity);
+    if(providedData.value.isExternal) {
+        providedData.value.isExternal = false;
+    } else {
+        providedData.value.county = 0;
+    }
+})
 
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div>
     <TextHeader title="봉사 프로그램 추가" />
-    <ViewVolProgramList  @changePageNo="changePageNo"/>
+    <ViewVolProgramList @changePageNo="changePageNo" />
     <div class="custom_loader_wrapper" ref="loadingContainer">
       <div class="spinner-border" style="width: 7rem; height: 7rem;" role="status">
       </div>
@@ -55,7 +55,7 @@ async function getProgramList(pageNo) {
   try {
     //작업하는 동안 로딩 화면 보여주기
     loadingContainer.value.classList.add('loading');
-    let data = {pageNo};
+    let data = { pageNo };
     //통신 작업 후 데이터를 가져옴
     const response = await dataPortalAPI.getVolProgramList(data);
     let resultData = response.data.response.body;
@@ -74,34 +74,34 @@ async function getProgramList(pageNo) {
       pageNoList: [],
     }
     //전체 페이지 수
-    if(pagerData.totalCount % pagerData.numOfRows) {
+    if (pagerData.totalCount % pagerData.numOfRows) {
       pagerData.totalPage = Math.floor((pagerData.totalCount / pagerData.numOfRows) + 1);
     } else {
       pagerData.totalPage = Math.floor(pagerData.totalCount / pagerData.numOfRows);
     }
     //전체 그룹 수
-    if(pagerData.totalPage % pagerData.pageCntPerGroup) {
+    if (pagerData.totalPage % pagerData.pageCntPerGroup) {
       pagerData.groupCount = Math.floor((pagerData.totalPage / pagerData.pageCntPerGroup) + 1);
     } else {
       pagerData.groupCount = Math.floor(pagerData.totalPage / pagerData.pageCntPerGroup);
     }
     //현재 그룹 번호
-    pagerData.groupNo = Math.floor(( (pagerData.pageNo - 1) / pagerData.pageCntPerGroup ) + 1);
+    pagerData.groupNo = Math.floor(((pagerData.pageNo - 1) / pagerData.pageCntPerGroup) + 1);
     //현재 그룹 시작번호
-    pagerData.startPageNo = ( (pagerData.groupNo - 1) * pagerData.pageCntPerGroup ) + 1;
+    pagerData.startPageNo = ((pagerData.groupNo - 1) * pagerData.pageCntPerGroup) + 1;
     //현재 그룹 끝번호
     pagerData.endPageNo = pagerData.startPageNo + pagerData.pageCntPerGroup - 1;
     //만약 그룹 끝번호가 전체 페이지번호보다 크면 전체 페이지번호로 set
-    if(pagerData.endPageNo > pagerData.totalPage) {
+    if (pagerData.endPageNo > pagerData.totalPage) {
       pagerData.endPageNo = pagerData.totalPage;
     }
     //pagination 버튼을 생성하기 위한 페이지번호 목록을 만든다.
-    for(let i = pagerData.startPageNo; i <= pagerData.endPageNo; i++) {
+    for (let i = pagerData.startPageNo; i <= pagerData.endPageNo; i++) {
       pagerData.pageNoList.push(i);
     }
     //하위 컴포넌트에게 보낼 데이터에 대입해준다.
     responseData.value.pager = pagerData;
-    
+
     //프로그램 목록을 초기화시켜준다.
     responseData.value.programList.length = 0;
     //통신에서 응답받은 프로그램 목록
@@ -141,17 +141,21 @@ async function getProgramList(pageNo) {
       //하위컴포넌트에게 보낼 봉사프로그램 배열에 만든 객체(봉사프로그램 정보)를 추가한다.
       responseData.value.programList.push(newObject);
       //모든 작업이 끝났으므로 로딩창을 없앤다.
-      loadingContainer.value.classList.remove('loading');
     }
   } catch (error) {
     console.log("에러 사유 : ", error);
-    alert('에러가 발생했습니다. 사유:', error);
-    return null;
+    if (pageNo < 1 || pageNo > responseData.value.pager.totalPage) {
+      alert('페이지 인덱스 범위에 벗어났습니다. 초기화면으로 돌아갑니다.');
+    } else {
+      alert('서버와 통신 중 에러가 발생했습니다. 초기화면으로 돌아갑니다.');
+    }
+    router.push('/Details/Admin');
   }
+  loadingContainer.value.classList.remove('loading');
 }
 //요청경로가 변경되었을때 페이지번호에 맞는 봉사프로그램 목록을 가져온다. (param값이 없을경우 pageNo는 1로 지정)
 watch(route, (newRoute, oldRoute) => {
-  if(newRoute.query.pageNo) {
+  if (newRoute.query.pageNo) {
     getProgramList(newRoute.query.pageNo);
     pageNo.value = newRoute.query.pageNo;
   } else {

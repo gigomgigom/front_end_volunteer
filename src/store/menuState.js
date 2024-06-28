@@ -5,7 +5,7 @@ export default {
     //상태 정의
     state: {
         isAdmin: 1,
-        isAuthenticated: 0,
+        isAuthenticated: 1,
 
         //현재 페이지 인덱스 정보
         menuIndex: {
@@ -309,7 +309,6 @@ export default {
     //Setter정의(상태 변경하기, 동기)
     mutations: {
         setMenuIndex: (state, payload) => {
-            console.log('변경시작');
             state.menuIndex.firstFloor = payload.firstFloor;
             state.menuIndex.secondFloor = payload.secondFloor;
             state.menuIndex.thirdFloor = payload.thirdFloor;

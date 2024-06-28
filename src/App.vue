@@ -72,5 +72,5 @@ watch(route, (newRoute, oldRoute) => {
 });
 </script>
 <style scoped>
- 
+
 </style>

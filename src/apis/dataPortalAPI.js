@@ -23,14 +23,22 @@ function getVolProgramDetail(progrmRegistNo) {
         requestData
     );
 }
-
+//교육프로그램 목록을 검색 조건에 맞춰 가져온다.
 function getEduProgramList(searchIndex) {
     return axios.get(
-        `https://cors-anywhere.herokuapp.com/http://openapi.1365.go.kr/openapi/service/rest/VolunteeEducationService/getVltrEducationList`
+        `https://cors-anywhere.herokuapp.com/http://openapi.1365.go.kr/openapi/service/rest/VolunteeEducationService/getVltrEducationList?pageNo=${searchIndex.pageNo}`
+    )
+}
+//교육프로그램 상세 내용을 조회한다.
+function getEduProgramDetail(programRegistNo) {
+    return axios.get(
+        `https://cors-anywhere.herokuapp.com/http://openapi.1365.go.kr/openapi/service/rest/VolunteeEducationService/getVltrEducationItem?crclmRegistNo=${programRegistNo}`
     )
 }
 
 export default ({
     getVolProgramList,
-    getVolProgramDetail
+    getVolProgramDetail,
+    getEduProgramList,
+    getEduProgramDetail
 });
