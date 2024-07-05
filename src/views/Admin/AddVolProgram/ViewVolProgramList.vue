@@ -2,7 +2,7 @@
   <div id="view-programlist-wrapper">
     <h5>🔶봉사조회</h5>
     <SearchVolPgrm />
-    <AddVolProgramModal id="addVolProgramModal" @buttonClick="addVolProgram" />
+    <AddVolProgramModal id="addVolProgramModal" @buttonClick="addVolProgram"/>
     <VolPrgmList class="mt-5">
       <template v-slot:createButton>
         <NormalButton text="새로 생성" @buttonClick="showDialog(0)" style="padding-top: 2px; padding-bottom: 2px;" />

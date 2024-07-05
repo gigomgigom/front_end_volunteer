@@ -29,7 +29,7 @@
 
     <!-- Submit button -->
     <div class="mb-3">
-      <button class="btn btn-primary btn-block" @click="login">확인</button>
+      <button class="btn btn-primary btn-block" @click="loginCheck">확인</button>
     </div>
   </div>
 </template>
@@ -37,6 +37,9 @@
 <script setup>
 import TextHeader from "@/components/Common/TextHeader.vue";
 import { ref } from "vue";
+import router from "@/router";
+import store from "@/store";
+import authAPI from "@/apis/authAPI";
 
 const id = ref('');
 const password = ref('');
@@ -45,7 +48,8 @@ const password = ref('');
 const idMsg = ref(null);
 const passwordMsg = ref(null);
 
-function login() {
+//로그인하기
+function loginCheck() {
   //공백 체크
   if(id.value.length === 0 || password.value.length === 0) {
     if(id.value.length === 0) {
@@ -64,12 +68,37 @@ function login() {
     idMsg.value.classList.remove('active');
     passwordMsg.value.classList.remove('active');
     //로그인 서버 통신
-    if(true) { //만약 DB에서 일치하는 정보가 없을 경우
-      passwordMsg.value.classList.add('active');
-      passwordMsg.value.innerHTML = '아이디 및 비밀번호가 일치하지않습니다.';
-    } else {
-      //로그인 후처리
+    try {
+      login();
+    } catch(error) {
+      alert('서버 통신간 에러가 발생했습니다.');
     }
+  }
+
+  async function login() {
+    //백엔드 서버에게 보낼 데이터 세팅(JSON변환)
+    let member = {
+        memberId: id.value,
+        memberPw: password.value
+      }
+      const data = JSON.parse(JSON.stringify(member));
+      //REST API에 데이터 전송
+      const response = await authAPI.login(data);
+      //로그인 성공 시
+      if(response.data.result === "success") {
+        const payload = {
+          userId: response.data.mid,
+          userRole: response.data.mrole,
+          accessToken: response.data.accessToken
+        };
+        //전역상태에 회원의 정보를 넣어준다.
+        store.dispatch("saveAuth", payload);
+        alert('로그인 되었습니다!');
+        router.push('/Main');
+      } else {
+        passwordMsg.value.classList.add('active');
+        passwordMsg.value.innerHTML = '아이디 및 비밀번호가 일치하지않습니다.';
+      }
   }
 }
 </script>

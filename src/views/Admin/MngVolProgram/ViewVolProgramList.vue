@@ -11,7 +11,7 @@
       </template>
     </VolPrgmList>
     <UpdateVolProgramModal id="updateVolProgramModal" @buttonUpdate="updateVolProgram" @buttonDelete="deleteVolProgram"/>
-    <Applicant id="applicant" />
+    <Applicant id="applicant"/>
   </div>
 </template>
 

@@ -10,4 +10,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 
+store.dispatch("loadAuth");
+
 createApp(App).component('VueDatePicker', VueDatePicker).use(store).use(router).mount('#app')

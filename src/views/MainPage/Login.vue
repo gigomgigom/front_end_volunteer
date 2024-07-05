@@ -1,5 +1,5 @@
 <template>
-    <div class="login_container h-100" v-if="store.state.menuState.isAuthenticated === 0">
+    <div class="login_container h-100" v-if="store.getters.getUserId === ''">
         <div class="login_button" @click="router.push('/Details/Member/SignIn')">
             <span style="font-weight: bold; margin-right: 10px;">Social Pulse</span><span>로그인</span>
         </div>
@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-    <div class="login_container h-100" v-if="store.state.menuState.isAuthenticated">
+    <div class="login_container h-100" v-if="store.getters.getUserId">
         <div class="login_profile">
             <div>
                 <span class="user_logo">
@@ -28,14 +28,14 @@
             </div>
             <div class="user_button_wrapper">
                 <div class="me-3" style="width: 70px;">
-                    <div v-if="store.state.menuState.isAdmin">
+                    <div v-if="store.getters.getUserRole === 'ROLE_ADMIN'">
                         <button class="btn user_button" @click="router.push('/Details/Admin/MngVolProgram')">
                             <span>관리자</span>
                         </button>
                     </div>
                 </div>
 
-                <button class="btn user_button">
+                <button class="btn user_button" @click="logout">
                     <span class="me-2">로그아웃</span>
                     <img src="@/assets/MainPage/logout.png" width="12px">
                 </button>
@@ -73,7 +73,6 @@
 </template>
 
 <script setup>
-import NormalButton from '@/components/Common/NormalButton.vue';
 import router from '@/router';
 import { useStore } from 'vuex';
 
@@ -87,6 +86,12 @@ function moveFindAccPage(index) {
 function moveDetailPage(index) {
     let urlList = ['/Details/MyPage/Perform/ViewPerformList', '/Details/MyPage/VolApplDetails/ViewApplList'];
     router.push(urlList[index]);
+}
+
+function logout() {
+    store.dispatch('deleteAuth');
+    router.go(0);
+    alert('로그아웃 되었습니다!');
 }
 
 </script>

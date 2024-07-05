@@ -7,6 +7,7 @@ const routes = [
             {
                 path: "/Details/MyPage/Perform/ViewPerformList",
                 component: () =>  import(/* webpackChunkName: "DetailBody" */ '@/views/MyPage/Perform/ViewPerformList.vue'),
+                meta: { }
             },
             {
                 path: "/Details/MyPage/Perform/ViewPerformDetail",

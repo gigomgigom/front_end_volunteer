@@ -44,7 +44,7 @@
         <h5 class="mb-0 me-5"><b>3️⃣ 자원봉사 상세정보를 꼼꼼히 확인하여 자원봉사 신청</b></h5>
             
     <div class="text-end mt-4 mb-4 ms-5">
-      <HighlightButton text="이용방법 바로가기"/>
+      <HighlightButton text="이용방법 바로가기" @buttonClick="addCity()"/>
     </div>
     </div>
     </div>
@@ -62,7 +62,6 @@
 <script setup>
 import TextHeader from "@/components/Common/TextHeader.vue";
 import HighlightButton from '@/components/Common/HighlightButton.vue';
-
 </script>
 
 <style scoped>

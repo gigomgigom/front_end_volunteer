@@ -14,8 +14,6 @@ import { onMounted, ref } from 'vue';
 //카카오맵이 올라갈 DOM객체 선언 (이 컴포넌트가 마운트 되었을때 DOM객체(mapContainer)의 값이 들어감.)
 const mapContainer = ref(null);
 
-const lat = ref(37.5519660609558);
-const lng = ref(126.836641912834);
 
 //컴포넌트가 마운트되었다면 카카오맵을 로드한다.
 onMounted(() => {
@@ -24,23 +22,43 @@ onMounted(() => {
 
 const loadKakaoMap = (container) => {
     const script = document.createElement('script');
-    script.src = `http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${process.env.VUE_APP_KAKAO_API_KEY}`;
+    script.src = `http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${process.env.VUE_APP_KAKAO_API_KEY}&libraries=services`;
     document.head.appendChild(script);
 
     script.onload = () => {
         window.kakao.maps.load(() => {
+            var defaultPosition = new window.kakao.maps.LatLng(33.450701, 126.570667);
             const options = {
-                center: new window.kakao.maps.LatLng(lat.value, lng.value),
+                center: defaultPosition,
                 level: 3,
             }
             const mapInterface = new window.kakao.maps.Map(container, options);
-            var markerPosition = new window.kakao.maps.LatLng(lat.value, lng.value);
 
-            var marker = new window.kakao.maps.Marker({
-                position: markerPosition
+            // 주소-좌표 변환 객체를 생성합니다
+            var geocoder = new window.kakao.maps.services.Geocoder();
+            geocoder.addressSearch('서울특별시 광진구 뚝섬로64길 71', function (result, status) {
+                // 정상적으로 검색이 완료됐으면 
+                if (status === window.kakao.maps.services.Status.OK) {
+                    var coords = new window.kakao.maps.LatLng(result[0].y, result[0].x);
+                    console.log('찾음')
+                    // 결과값으로 받은 위치를 마커로 표시합니다
+                    var marker = new window.kakao.maps.Marker({
+                        map: mapInterface,
+                        position: coords
+                    });
+
+                    // 인포윈도우로 장소에 대한 설명을 표시합니다
+                    var infowindow = new window.kakao.maps.InfoWindow({
+                        content: '<div style="width:150px;text-align:center;padding:6px 0;">우리 집</div>'
+                    });
+                    infowindow.open(mapInterface, marker);
+
+                    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                    mapInterface.setCenter(coords);
+                } else {
+                    console.log('못찾음');
+                }
             });
-
-            marker.setMap(mapInterface);
         });
     }
 
