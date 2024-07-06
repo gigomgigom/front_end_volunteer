@@ -192,12 +192,13 @@ function isDataValidate(data) {
 async function showDialog(code, event) {
   if (code) {
     //공공데이터에서 받아온 데이터로 데이터 세팅작업
-    let domElement = event.target.parentElement.id;
+    let listIndex = event.target.parentElement.id;
+    let programNo = responseData.value.programList[listIndex].no;
     //첨부파일 초기화
     battachInput.value = '';
     imageInput.value = '';
     //서버 통신 후 데이터를 가져오기
-    const response = await dataPortalAPI.getVolProgramDetail(domElement);
+    const response = await dataPortalAPI.getVolProgramDetail(programNo);
     let data = response.data.response.body.items.item;
     //분야 코드 찾기(이름을 통해 분리를 한다.)
     let srvcCdList = data.srvcClCode.split(' > ');
@@ -320,32 +321,4 @@ h5 {
   padding-top: 30px;
 }
 
-.text_button {
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  background-color: rgb(240, 103, 4);
-  color: white;
-  font-weight: bold;
-}
-
-.number_button:hover {
-  border: 2px solid rgb(240, 103, 4);
-  background-color: rgb(240, 103, 4);
-  color: white;
-}
-
-.number_button.selected_button {
-  border: 2px solid rgb(240, 103, 4);
-  background-color: rgb(240, 103, 4);
-  color: white;
-}
-
-.number_button {
-  padding-left: 10px;
-  padding-right: 10px;
-  border: 2px solid gray;
-  font-weight: bold;
-}
 </style>

@@ -2,17 +2,31 @@
   <VolPrgmList>
     <template v-slot:right-side>
       <div class="eduApplStts">
-        <span>접수</span>
+        <span>{{ findStatus() }}</span>
       </div>
-      <HighlightButton text="취소"
+      <HighlightButton :text="findStatusButtonText()"
         style="padding-top: 2px; padding-bottom: 2px; padding-left: 15px; padding-right: 15px;" />
     </template>
   </VolPrgmList>
+  <NavBar/>
+  
 </template>
 
 <script setup>
 import VolPrgmList from '@/components/VolPrgmList.vue';
 import HighlightButton from '@/components/Common/HighlightButton.vue';
+import NavBar from "@/components/Common/NavBar.vue";
+import { inject } from 'vue';
+
+let responseData = inject("responseData");
+
+function findStatus(event) {
+  console.log(event.target);
+}
+
+function findStatusButtonText(event) {
+  console.log("버튼", event.target);
+}
 </script>
 
 <style scoped>

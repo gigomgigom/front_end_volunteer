@@ -44,7 +44,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 right-side-container" :id="vol.no">
+                <div class="col-md-2 right-side-container" :id="index">
                     <slot name="right-side">
 
                     </slot>
