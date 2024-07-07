@@ -320,5 +320,32 @@ h5 {
 #view-programlist-wrapper {
   padding-top: 30px;
 }
+.text_button {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: rgb(240, 103, 4);
+  color: white;
+  font-weight: bold;
+}
 
+.number_button:hover {
+  border: 2px solid rgb(240, 103, 4);
+  background-color: rgb(240, 103, 4);
+  color: white;
+}
+
+.number_button.selected_button {
+  border: 2px solid rgb(240, 103, 4);
+  background-color: rgb(240, 103, 4);
+  color: white;
+}
+
+.number_button {
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 2px solid gray;
+  font-weight: bold;
+}
 </style>

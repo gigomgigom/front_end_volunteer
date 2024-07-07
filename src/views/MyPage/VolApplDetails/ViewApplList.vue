@@ -2,9 +2,9 @@
   <VolPrgmList>
     <template v-slot:right-side>
       <div class="eduApplStts">
-        <span>{{ findStatus() }}</span>
+        <span>{{ '접수' }}</span>
       </div>
-      <HighlightButton :text="findStatusButtonText()"
+      <HighlightButton text="취소"
         style="padding-top: 2px; padding-bottom: 2px; padding-left: 15px; padding-right: 15px;" />
     </template>
   </VolPrgmList>
@@ -20,12 +20,12 @@ import { inject } from 'vue';
 
 let responseData = inject("responseData");
 
-function findStatus(event) {
-  console.log(event.target);
+function findStatus() {
+  console.log();
 }
 
-function findStatusButtonText(event) {
-  console.log("버튼", event.target);
+function findStatusButtonText() {
+  console.log();
 }
 </script>
 
