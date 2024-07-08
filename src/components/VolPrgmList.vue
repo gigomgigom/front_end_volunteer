@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="col-md-2 right-side-container" :id="index">
-                    <slot name="right-side">
+                    <slot name="right-side" :index="index">
 
                     </slot>
                 </div>

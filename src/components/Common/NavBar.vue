@@ -2,22 +2,22 @@
     <nav aria-label="Page navigation example" class="d-flex justify-content-center my-5">
         <ul class="pagination justify-content-center align-items-center">
             <li class="page-item mx-2">
-                <button class="btn text_button" @click="changePageNo(1)">처음</button>
+                <button class="btn text_button" @click="searchIndex.changePageNo(1)">처음</button>
             </li>
             <li class="page-item me-4">
                 <button class="btn text_button"
-                    @click="changePageNo(responseData.pager.startPageNo - 1)">이전</button>
+                    @click="searchIndex.changePageNo(responseData.pager.startPageNo - 1)">이전</button>
             </li>
             <li class="page-item mx-1" v-for="n in responseData.pager.pageNoList" :key="n">
-                <button class="btn number_button" @click="changePageNo(n)"
-                    :class="responseData.pager.pageNo === n ? 'selected_button' : ''">{{ n }}</button>
+                <button class="btn number_button" @click="searchIndex.changePageNo(n)"
+                    :class="Number(searchIndex.pageNo) === n ? 'selected_button' : ''">{{ n }}</button>
             </li>
             <li class="page-item ms-4">
                 <button class="btn text_button"
-                    @click="changePageNo(responseData.pager.endPageNo + 1)">다음</button>
+                    @click="searchIndex.changePageNo(responseData.pager.endPageNo + 1)">다음</button>
             </li>
             <li class="page-item mx-2">
-                <button class="btn text_button" @click="changePageNo(responseData.pager.totalPage)">맨끝</button>
+                <button class="btn text_button" @click="searchIndex.changePageNo(responseData.pager.totalPage)">맨끝</button>
             </li>
         </ul>
     </nav>
@@ -27,7 +27,7 @@
 import { inject } from 'vue';
 
 const responseData = inject('responseData');
-const changePageNo = inject('changePageNo');
+const searchIndex = inject('searchIndex');
 </script>
 
 <style scoped>

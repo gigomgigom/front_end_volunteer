@@ -39,7 +39,7 @@ export default createStore({
     actions: {
         //브라우저가 재실행될때 인증 정보를 전역상태로 복구
         loadAuth(context) {
-             //로컬 스토리지에 저장되어있는 UserId와 UserName을 가져온다. (만약 존재하지 않을 시 ""을 대입하라.)
+            //로컬 스토리지에 저장되어있는 UserId와 UserName을 가져온다. (만약 존재하지 않을 시 ""을 대입하라.)
             context.commit("setUserId", localStorage.getItem("userId") || "");
             context.commit("setUserRole", localStorage.getItem("userRole") || "");
             //로컬 스토리지에 저장되어있는 accessToken을 가져온다.
@@ -82,7 +82,7 @@ export default createStore({
             localStorage.removeItem("accessToken");
             //Axios 요청 공통 헤더에 인증 정보 제거
             axiosConfig.removeAuthHeader();
-        }
+        },
     },
     //루트 모듈 하위 상태모듈 정의
     modules: {

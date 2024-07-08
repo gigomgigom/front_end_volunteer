@@ -1,6 +1,6 @@
 <template>
   <TextHeader title="봉사 신청내역" />
-  <Search />
+  <Search/>
   <ViewApplList />
   <div class="custom_loader_wrapper" ref="loadingContainer">
     <div class="spinner-border" style="width: 7rem; height: 7rem;" role="status">
@@ -21,8 +21,14 @@ const loadingContainer = ref(null);
 const route = useRoute();
 const router = useRouter();
 
-//페이지 번호를 받아온다.
-const pageNo = ref(route.query.pageNo || 1);
+const searchIndex = ref({
+  pageNo: route.query.pageNo || 1,
+  keyword: route.query.keyword || '',
+  recruitCenter: route.query.recruitCenter || '',
+  actDate: [],
+  changePageNo,
+  searchBySearchIndex
+});
 
 const responseData = ref({
   programList: [],
@@ -41,20 +47,27 @@ const responseData = ref({
 });
 
 provide('responseData', responseData);
-provide('changePageNo', changePageNo);
+provide('searchIndex', searchIndex);
 
 onMounted(() => {
-  getVolApplList(pageNo.value);
+  getVolApplList();
 });
 
-async function getVolApplList(pageNo) {
-  let rqstData = {
-    pageNo: pageNo
+async function getVolApplList() {
+  let data = {
+    pageNo: searchIndex.value.pageNo,
+    keyword: searchIndex.value.keyword,
+    recruitCenter: searchIndex.value.recruitCenter,
   }
+  if(searchIndex.value.actDate.length) {
+    data.startDate = dateFormat(searchIndex.value.actDate[0]),
+    data.endDate = dateFormat(searchIndex.value.actDate[1]);
+  }
+  const rqstData = JSON.parse(JSON.stringify(data));
   loadingContainer.value.classList.add('loading');
-  const response = await volParticipateAPI.getVolPtcpList(rqstData);
+  const response = await volParticipateAPI.getVolPtcpList(data);
   //페이저 세팅
-  setPager(response.data.pager);
+  responseData.value.pager = setPager(response.data.pager);
   //봉사 신청 내역 목록 세팅
   const volApplList = response.data.volApplList;
   //상태 데이터(목록) 초기화
@@ -63,9 +76,9 @@ async function getVolApplList(pageNo) {
     for (let volAppl of volApplList) {
       let program = volAppl.volDto;
       //지역 찾기
-      let cityCounty = findRegionWithRegionNo(program.regionNo);
+      let cityCounty = findRegionWithRegionNo(program.regionNo, store.state.regionCode.regionList);
       //분야명 찾기
-      let clsName = findClsWithClsNo(program.programCtg);
+      let clsName = findClsWithClsNo(program.programCtg, store.state.categoryCode.categoryList);
       //모집기간 찾기
       let rcStart = dateFormat(program.recruitBgnDate);
       let rcEnd = dateFormat(program.recruitEndDate);
@@ -86,19 +99,15 @@ async function getVolApplList(pageNo) {
       }
       responseData.value.programList.push(newObject);
     }
-  } else {
-    alert('페이지 인덱스가 벗어났습니다. 다시 초기화면으로 이동합니다.');
-    router.push({
-      path: '/Details/MyPage/VolApplDetails/ViewApplList'
-    });
   }
+  responseData.value.volApplList = volApplList;
   loadingContainer.value.classList.remove('loading');
 }
 
 //분야 이름 찾기
-function findClsWithClsNo(clsNo) {
+function findClsWithClsNo(clsNo, clsList) {
   let result = '';
-  for (let highCls of store.state.categoryCode.categoryList) {
+  for (let highCls of clsList) {
     for (let lowCls of highCls.lowClsList) {
       if (lowCls.lowClsCode === clsNo) {
         result = `${highCls.highClsName} > ${lowCls.lowClsName}`
@@ -119,12 +128,12 @@ function dateFormat(dateStr) {
   return date.getFullYear() + '-' + month + '-' + day;
 }
 //지역이름 찾기
-function findRegionWithRegionNo(regionNo) {
+function findRegionWithRegionNo(regionNo, regionList) {
   let result = {
     cityName: '',
     countyName: '',
   }
-  for (let city of store.state.regionCode.regionList) {
+  for (let city of regionList) {
     for (let county of city.county) {
       if (county.countyCode === Number(regionNo)) {
         result.cityName = city.cityName;
@@ -148,26 +157,38 @@ function setPager(rspPager) {
     endPageNo: rspPager.endPageNo, //현재 끝 페이지번호
     pageNoList: rspPager.pageArray
   }
-  responseData.value.pager = newPager;
+  return newPager;
 }
 //요청경로가 변경되었을때 페이지번호에 맞는 봉사프로그램 목록을 가져온다. (param값이 없을경우 pageNo는 1로 지정)
-watch(route, (newRoute, oldRoute) => {
-  if (newRoute.query.pageNo) {
-    getVolApplList(newRoute.query.pageNo);
-    pageNo.value = newRoute.query.pageNo;
-  } else {
-    getVolApplList(1);
-    pageNo.value = 1;
-  }
+watch(route, () => {
+  getVolApplList();
 })
 //pagination에서 버튼을 클릭했을때 현재 페이지 새로고침하며 param으로 pageNo를 넘겨준다.
 function changePageNo(pageNo) {
-  router.push({
+  if(pageNo > responseData.value.pager.totalPage || pageNo <= 0) {
+    alert('페이지 인덱스가 벗어났습니다. 다시 초기화면으로 이동합니다.');
+    router.push({
+      path: '/Details/MyPage/VolApplDetails/ViewApplList'
+    });
+    searchIndex.value.pageNo = 1;
+  } else {
+    searchIndex.value.pageNo = pageNo;
+    router.push({
     path: '/Details/MyPage/VolApplDetails/ViewApplList',
     query: {
-      pageNo
+      pageNo: searchIndex.value.pageNo,
+      keyword: searchIndex.value.keyword,
+      recruitCenter: searchIndex.value.recruitCenter,
+      startDate: searchIndex.value.actDate[0],
+      endDate: searchIndex.value.actDate[1]
     }
   });
+  }
+  
+}
+//검색하기 기능
+function searchBySearchIndex() {
+  changePageNo(1)
 }
 </script>
 

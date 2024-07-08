@@ -8,7 +8,23 @@ function getVolPtcpList(rqstData) {
         {params: rqstData}
     )
 }
+//봉사신청취소
+function cancelVolAppl(programNo) {
+    console.log(programNo)
+    return axios.patch(
+        `/VolParticipate/cancel_vol_application?programNo=${programNo}`
+    )
+}
+//봉사 실적 승인요청하기
+function requestVolPerform(formData) {
+    return axios.patch(
+        '/VolParticipate/request_vol_perform',
+        formData
+    )
+}
 
 export default{
     getVolPtcpList,
+    requestVolPerform,
+    cancelVolAppl,
 }
