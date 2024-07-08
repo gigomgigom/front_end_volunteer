@@ -17,18 +17,34 @@
         <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
       </div>
     </template>
-    <template v-slot:right-side>
+    <template v-slot:right-side="{ index }">
       <div class="right-side">
         <span>마감</span>
-        <span style="color: rgb(240, 103, 4);">14일전</span>
+        <span style="color: rgb(240, 103, 4);">{{ isOverDeadline(index) }}</span>
       </div>
     </template>
   </VolPrgmList>
+  <NavBar/>
 </template>
 
 <script setup>
 import NormalButton from '@/components/Common/NormalButton.vue';
 import VolPrgmList from '@/components/VolPrgmList.vue';
+import NavBar from '@/components/Common/NavBar.vue';
+import { inject } from 'vue';
+
+const responseData = inject('responseData');
+
+function isOverDeadline(index) {
+  let dateList = responseData.value.programList[index].recruitDate.split(' - ');
+  let endDate = new Date(dateList[1]);
+  if(endDate.getTime() < new Date().getTime()) {
+    return '';
+  } else {
+    let timeDiff = endDate.getTime() - new Date().getTime();
+    return Math.floor(timeDiff / (1000 * 60 * 60 * 24)) + '일전';
+  }
+}
 </script>
 
 <style scoped>
