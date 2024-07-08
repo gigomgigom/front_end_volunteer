@@ -5,13 +5,13 @@
         <span>{{ findStatus(index) }}</span>
       </div>
       <HighlightButton :text="findStatusButtonText(index)" @buttonClick="buttonActionPerSttsNo(index)"
-        style="padding-top: 2px; padding-bottom: 2px; padding-left: 15px; padding-right: 15px;" 
-        v-if="findStatus(index) !== '취소' && findStatus(index) !== '승인요청' && responseData.volApplList[index].revWritten !== 1"/>
+        style="padding-top: 2px; padding-bottom: 2px; padding-left: 15px; padding-right: 15px;"
+        v-if="findStatus(index) !== '취소' && findStatus(index) !== '승인요청' && responseData.volApplList[index].revWritten !== 1" />
     </template>
   </VolPrgmList>
-  <ApplRequestModal id="ApplRequestModal" :targetProgramNo="targetProgramNo"/>
-  <NavBar/>
-  
+  <ApplRequestModal id="ApplRequestModal" :targetProgramNo="targetProgramNo" />
+  <NavBar />
+
 </template>
 
 <script setup>
@@ -34,7 +34,7 @@ onMounted(() => {
 //신청내역 상태 텍스트 찾기
 function findStatus(index) {
   let sttsNo = responseData.value.volApplList[index].sttsNo;
-  switch(sttsNo) {
+  switch (sttsNo) {
     case 1:
       return '신청';
     case 2:
@@ -54,7 +54,7 @@ function findStatus(index) {
 //신청내역 버튼 텍스트 찾기
 function findStatusButtonText(index) {
   let sttsNo = responseData.value.volApplList[index].sttsNo;
-  switch(sttsNo) {
+  switch (sttsNo) {
     case 1:
     case 3:
       return '취소';
@@ -70,7 +70,7 @@ function findStatusButtonText(index) {
 function buttonActionPerSttsNo(index) {
   targetProgramNo.value = responseData.value.volApplList[index].programNo;
   let sttsNo = responseData.value.volApplList[index].sttsNo;
-  switch(sttsNo) {
+  switch (sttsNo) {
     case 1:
     case 3:
       //백엔드 취소 api요청
@@ -86,18 +86,21 @@ function buttonActionPerSttsNo(index) {
       showRqstModal(index);
       break;
     case 6:
-      //후기 작성으로 이동
+      router.push('/Details/Information/Review/WriteReview');
       break;
   }
 }
 //신청 취소
 async function cancelVolApply(programNo) {
   const response = await volParticipateAPI.cancelVolAppl(programNo);
-  if(response.data.result === 'success') {
-    alert('성공적으로 취소되었습니다.');
-    router.go('/Details/MyPage/VolApplDetails/ViewApplList');
-  } else {
-    alert('서버에서 오류가 발생했습니다. 잠시후 다시 요청해주십시오.');
+  let cancelConfirm = confirm('취소가 된다면 다시 신청하실 수 없습니다. 정말 취소하시겠습니까?');
+  if (cancelConfirm) {
+    if (response.data.result === 'success') {
+      alert('성공적으로 취소되었습니다.');
+      router.go('/Details/MyPage/VolApplDetails/ViewApplList');
+    } else {
+      alert('서버에서 오류가 발생했습니다. 잠시후 다시 요청해주십시오.');
+    }
   }
 }
 //모달창 띄우기

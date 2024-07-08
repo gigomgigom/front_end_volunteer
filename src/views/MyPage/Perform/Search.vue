@@ -5,7 +5,7 @@
       <div class="d-flex flex-row mb-2">
         <div class="period-selection">
           <span class="bb">기간</span>
-          <VueDatePicker v-model="actDate" range :partial-range="false" :enable-time-picker="false"/>
+          <VueDatePicker v-model="searchIndex.actDate" range :partial-range="false" :enable-time-picker="false" />
         </div>
         <div class="radio-selection">
           <label>
@@ -31,16 +31,16 @@
       <div class="row input-fields mb-5">
         <div class="col-sm-6 input-container">
           <span class="bb">봉사명</span>
-          <input type="text" id="volunteerName" v-model="volunteerName" />
+          <input type="text" id="volunteerName" v-model="searchIndex.keyword" />
         </div>
         <div class="col-sm-6 input-container">
           <span class="bb">모집기관</span>
-          <input type="text" id="requestName" v-model="requestName" />
+          <input type="text" id="requestName" v-model="searchIndex.recruitCenter" />
         </div>
       </div>
       <div class="buttons">
-        <HighlightButton text="검색" class="me-3"/>
-        <NormalButton text="초기화"/>
+        <HighlightButton text="검색" class="me-3" @buttonClick="submitSearchIndex" />
+        <NormalButton text="초기화" @buttonClick="resetForm" />
       </div>
     </div>
   </div>
@@ -49,18 +49,56 @@
 <script setup>
 import HighlightButton from '@/components/Common/HighlightButton.vue';
 import NormalButton from '@/components/Common/NormalButton.vue';
-import { ref } from 'vue';
+import { ref, inject, watch } from 'vue';
 
-const startDate = ref('');
-const endDate = ref('');
 const period = ref('');
-const volunteerName = ref('');
-const requestName = ref('');
-const actDate = ref(null);
+
+const searchIndex = inject('searchIndex');
+
+function submitSearchIndex() {
+  searchIndex.value.searchBySearchIndex();
+}
+
+//라디오 버튼 클릭시 그에 맞는 기간으로 세팅해주기
+watch(period, (newPeriod, oldPeriod) => {
+  let endDate = new Date();
+  let startDate = new Date();
+  if (searchIndex.value.actDate.length) {
+    searchIndex.value.actDate.length = 0;
+  }
+  switch (newPeriod) {
+    case '3개월':
+      startDate.setMonth(startDate.getMonth() - 3);
+      searchIndex.value.actDate.push(startDate);
+      searchIndex.value.actDate.push(endDate);
+      break;
+    case '6개월':
+      startDate.setMonth(startDate.getMonth() - 6);
+      searchIndex.value.actDate.push(startDate);
+      searchIndex.value.actDate.push(endDate);
+      break;
+    case '1년':
+      startDate.setFullYear(startDate.getFullYear() - 1);
+      searchIndex.value.actDate.push(startDate);
+      searchIndex.value.actDate.push(endDate);
+      break;
+    case '3년':
+      startDate.setFullYear(startDate.getFullYear() - 3);
+      searchIndex.value.actDate.push(startDate);
+      searchIndex.value.actDate.push(endDate);
+      break;
+    case '5년':
+      startDate.setFullYear(startDate.getFullYear() - 5);
+      searchIndex.value.actDate.push(startDate);
+      searchIndex.value.actDate.push(endDate);
+      break;
+    case '전체':
+      break;
+  }
+})
 </script>
 
 <style scoped>
-
 .search-form {
   margin: 0 auto;
 }

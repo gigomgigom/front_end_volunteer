@@ -1,6 +1,6 @@
 <template>
   <TextHeader title="봉사 신청내역" />
-  <Search/>
+  <Search class="mb-5" />
   <ViewApplList />
   <div class="custom_loader_wrapper" ref="loadingContainer">
     <div class="spinner-border" style="width: 7rem; height: 7rem;" role="status">
@@ -59,11 +59,10 @@ async function getVolApplList() {
     keyword: searchIndex.value.keyword,
     recruitCenter: searchIndex.value.recruitCenter,
   }
-  if(searchIndex.value.actDate.length) {
+  if (searchIndex.value.actDate.length) {
     data.startDate = dateFormat(searchIndex.value.actDate[0]),
-    data.endDate = dateFormat(searchIndex.value.actDate[1]);
+      data.endDate = dateFormat(searchIndex.value.actDate[1]);
   }
-  const rqstData = JSON.parse(JSON.stringify(data));
   loadingContainer.value.classList.add('loading');
   const response = await volParticipateAPI.getVolPtcpList(data);
   //페이저 세팅
@@ -72,33 +71,31 @@ async function getVolApplList() {
   const volApplList = response.data.volApplList;
   //상태 데이터(목록) 초기화
   responseData.value.programList.length = 0;
-  if (volApplList.length) {
-    for (let volAppl of volApplList) {
-      let program = volAppl.volDto;
-      //지역 찾기
-      let cityCounty = findRegionWithRegionNo(program.regionNo, store.state.regionCode.regionList);
-      //분야명 찾기
-      let clsName = findClsWithClsNo(program.programCtg, store.state.categoryCode.categoryList);
-      //모집기간 찾기
-      let rcStart = dateFormat(program.recruitBgnDate);
-      let rcEnd = dateFormat(program.recruitEndDate);
-      //봉사기간 찾기
-      let actStart = dateFormat(program.actBgnDate);
-      let actEnd = dateFormat(program.actEndDate);
-      let newObject = {
-        no: program.programNo,
-        title: program.programTitle,
-        region: cityCounty.cityName + ' ' + cityCounty.countyName,
-        recruitCenter: program.recruitName,
-        recruitDate: `${rcStart} - ${rcEnd}`,
-        volDate: `${actStart} - ${actEnd}`,
-        volTime: `${program.actBgnTime}:00 - ${program.actEndTime}:00`,
-        classification: clsName,
-        url: "",//url이동 경로 값을 가져와야함
-        isExternal: false
-      }
-      responseData.value.programList.push(newObject);
+  for (let volAppl of volApplList) {
+    let program = volAppl.volDto;
+    //지역 찾기
+    let cityCounty = findRegionWithRegionNo(program.regionNo, store.state.regionCode.regionList);
+    //분야명 찾기
+    let clsName = findClsWithClsNo(program.programCtg, store.state.categoryCode.categoryList);
+    //모집기간 찾기
+    let rcStart = dateFormat(program.recruitBgnDate);
+    let rcEnd = dateFormat(program.recruitEndDate);
+    //봉사기간 찾기
+    let actStart = dateFormat(program.actBgnDate);
+    let actEnd = dateFormat(program.actEndDate);
+    let newObject = {
+      no: program.programNo,
+      title: program.programTitle,
+      region: cityCounty.cityName + ' ' + cityCounty.countyName,
+      recruitCenter: program.recruitName,
+      recruitDate: `${rcStart} - ${rcEnd}`,
+      volDate: `${actStart} - ${actEnd}`,
+      volTime: `${program.actBgnTime}:00 - ${program.actEndTime}:00`,
+      classification: clsName,
+      url: "",//url이동 경로 값을 가져와야함
+      isExternal: false
     }
+    responseData.value.programList.push(newObject);
   }
   responseData.value.volApplList = volApplList;
   loadingContainer.value.classList.remove('loading');
@@ -165,7 +162,7 @@ watch(route, () => {
 })
 //pagination에서 버튼을 클릭했을때 현재 페이지 새로고침하며 param으로 pageNo를 넘겨준다.
 function changePageNo(pageNo) {
-  if(pageNo > responseData.value.pager.totalPage || pageNo <= 0) {
+  if (pageNo > responseData.value.pager.totalPage || pageNo <= 0) {
     alert('페이지 인덱스가 벗어났습니다. 다시 초기화면으로 이동합니다.');
     router.push({
       path: '/Details/MyPage/VolApplDetails/ViewApplList'
@@ -174,17 +171,16 @@ function changePageNo(pageNo) {
   } else {
     searchIndex.value.pageNo = pageNo;
     router.push({
-    path: '/Details/MyPage/VolApplDetails/ViewApplList',
-    query: {
-      pageNo: searchIndex.value.pageNo,
-      keyword: searchIndex.value.keyword,
-      recruitCenter: searchIndex.value.recruitCenter,
-      startDate: searchIndex.value.actDate[0],
-      endDate: searchIndex.value.actDate[1]
-    }
-  });
+      path: '/Details/MyPage/VolApplDetails/ViewApplList',
+      query: {
+        pageNo: searchIndex.value.pageNo,
+        keyword: searchIndex.value.keyword,
+        recruitCenter: searchIndex.value.recruitCenter,
+        startDate: searchIndex.value.actDate[0],
+        endDate: searchIndex.value.actDate[1]
+      }
+    });
   }
-  
 }
 //검색하기 기능
 function searchBySearchIndex() {
