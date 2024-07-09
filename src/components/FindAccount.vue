@@ -2,17 +2,11 @@
   <div>
     <p class="title">{{ title }}</p>
     <div class="container">
-      
+
       <div class="mb-3" v-for="(field, index) in Fields" :key="index">
         <label class="form-label" :for="field.id">{{ field.label }}</label>
-        <input
-          class="form-control"
-          :type="field.type"
-          :id="field.id"
-          v-model="field.value"
-          :placeholder="field.placeholder"
-          :maxlength="field.maxlength"
-        >
+        <input class="form-control" :type="field.type" :id="field.id" v-model="field.value"
+          :placeholder="field.placeholder" :maxlength="field.maxlength">
         <div v-if="errors[field.id]" class="text-danger">{{ errors[field.id] }}</div>
       </div>
 
@@ -45,6 +39,7 @@
 
 <script>
 import { Modal } from 'bootstrap';
+import memberAPI from '@/apis/memberAPI';
 
 export default {
   props: {
@@ -57,7 +52,7 @@ export default {
     errormsg: {
       type: Object, default: () => ({})
     },
-    pageType: { type: String, default: 'findId' } 
+    pageType: { type: String, default: 'findId' }
   },
 
   data() {
@@ -102,18 +97,9 @@ export default {
     },
 
     handleSubmit() {
-      this.errors = this.validateFields();
       this.$emit('submit', {
         fields: this.Fields
       });
-
-      if (this.pageType === 'findId') {
-        this.modalMessage = '귀하의 이메일로 아이디를 전송했습니다';
-      } else if (this.pageType === 'findPw') {
-        this.modalMessage = '귀하의 이메일로 임시 비밀번호를 전송했습니다.';
-      }
-
-      this.showModal();
     },
 
     showModal() {

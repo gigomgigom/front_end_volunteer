@@ -9,7 +9,7 @@ function findId(data) {
         }
     */
     return axios.get(
-        '/Member/find_password',
+        '/Member/find_Id',
         {params: data}
     );
 }
