@@ -9,11 +9,12 @@
 // 마운트 될때마다 무한적으로 script가 추가가된다. fix해야함
 //------------------------------------
 
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, inject } from 'vue';
 
 //카카오맵이 올라갈 DOM객체 선언 (이 컴포넌트가 마운트 되었을때 DOM객체(mapContainer)의 값이 들어감.)
 const mapContainer = ref(null);
 
+let locationData = inject('volDetail');
 
 //컴포넌트가 마운트되었다면 카카오맵을 로드한다.
 onMounted(() => {
@@ -26,6 +27,7 @@ const loadKakaoMap = (container) => {
     document.head.appendChild(script);
 
     script.onload = () => {
+        console.log(locationData.value.location);
         window.kakao.maps.load(() => {
             var defaultPosition = new window.kakao.maps.LatLng(33.450701, 126.570667);
             const options = {
@@ -36,7 +38,7 @@ const loadKakaoMap = (container) => {
 
             // 주소-좌표 변환 객체를 생성합니다
             var geocoder = new window.kakao.maps.services.Geocoder();
-            geocoder.addressSearch('서울특별시 광진구 뚝섬로64길 71', function (result, status) {
+            geocoder.addressSearch(locationData.value.location, function (result, status) {
                 // 정상적으로 검색이 완료됐으면 
                 if (status === window.kakao.maps.services.Status.OK) {
                     var coords = new window.kakao.maps.LatLng(result[0].y, result[0].x);
@@ -49,7 +51,7 @@ const loadKakaoMap = (container) => {
 
                     // 인포윈도우로 장소에 대한 설명을 표시합니다
                     var infowindow = new window.kakao.maps.InfoWindow({
-                        content: '<div style="width:150px;text-align:center;padding:6px 0;">우리 집</div>'
+                        content: '<div style="text-align:center;padding:6px 0;">' + locationData.value.location + '</div>'
                     });
                     infowindow.open(mapInterface, marker);
 
@@ -61,9 +63,6 @@ const loadKakaoMap = (container) => {
             });
         });
     }
-
-
-
 }
 
 </script>

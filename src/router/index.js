@@ -106,7 +106,7 @@ const router = createRouter({
   routes,
   //만약 페이지이동을 했을 때 스크롤 위치를 최상단으로 위치시키는 코드
   scrollBehavior(){
-    return { top: 0 };
+    return { top: 0, behavior: 'instant' };
   }
 })
 
