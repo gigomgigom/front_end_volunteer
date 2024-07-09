@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-md-10 d-flex">
                     <div class="vol-checkbox">
-                        <slot name="checkBox">
+                        <slot name="checkBox" :index="index">
                             <!--선택하기 체크박스 생성-->
                         </slot>
                     </div>
