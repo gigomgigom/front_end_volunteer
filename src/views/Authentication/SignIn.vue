@@ -23,8 +23,8 @@
     </div>
 
     <div class="mt-1 mb-3 text-center"> <!-- Center align content -->
-      <a href="#" class="find-links" style="margin-right: 12px;">아이디 찾기</a>  | <!-- Apply find-links class for styling -->
-      <a href="#" class="find-links" style="margin-left: 12px;">비밀번호 찾기</a> <!-- Apply find-links class for styling -->
+      <a href="/Details/Member/FindId" class="find-links" style="margin-right: 12px;">아이디 찾기</a>  | <!-- Apply find-links class for styling -->
+      <a href="/Details/Member/FindPW" class="find-links" style="margin-left: 12px;">비밀번호 찾기</a> <!-- Apply find-links class for styling -->
     </div>
 
     <!-- Submit button -->

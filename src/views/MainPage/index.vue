@@ -243,7 +243,7 @@ function moveNoticeDetail(boardNo) {
 .button_shortcut {
     width: 49%;
     height: 140px;
-    border: 2px solid rgba(240, 102, 4, 0.6);
+    /* border: 2px solid rgba(240, 102, 4, 0.6); */
     border-radius: 5px;
     cursor: pointer;
 }
