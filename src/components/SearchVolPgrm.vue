@@ -17,14 +17,14 @@
             <tbody>
                 <tr>
                     <td style="width: 20%">
-                        <select id="select-city" class="form-select" multiple>
-                            <option value=0 selected @click="selectCity(null)">전체</option>
-                            <option v-for="(city, index) in regionList" :key="index" :value="city.cityCode"
-                                @click="selectCity(city.county)">{{ city.cityName }}</option>
+                        <select id="select-city" class="form-select" multiple v-model="cityCode">
+                            <option :value="0" selected>전체</option>
+                            <option v-for="(city, index) in regionList" :key="index" :value="city.cityCode">{{
+                                city.cityName }}</option>
                         </select>
                     </td>
                     <td style="width: 15%">
-                        <select id="select-county" class="form-select" multiple>
+                        <select id="select-county" class="form-select" multiple v-model="countyCode">
                             <option id="default-option" value=0 selected>전체</option>
                             <option v-for="(county, index) in countyList" :key="index" :value="county.countyCode">
                                 {{ county.countyName }}
@@ -32,24 +32,24 @@
                         </select>
                     </td>
                     <td style="width: 23%">
-                        <select id="select-high-class" class="form-select" multiple>
-                            <option selected @click="selectHighCls(null)">전체</option>
-                            <option v-for="(highCls, index) in categoryList" :key="index" :value="highCls.highClsCode"
-                                @click="selectHighCls(highCls.lowClsList)">{{ highCls.highClsName }}</option>
+                        <select id="select-high-class" class="form-select" multiple v-model="highClsCode">
+                            <option selected :value="''">전체</option>
+                            <option v-for="(highCls, index) in categoryList" :key="index" :value="highCls.highClsCode">
+                                {{ highCls.highClsName }}</option>
                         </select>
                     </td>
                     <td style="width: 30%">
-                        <select id="select-low-class" class="form-select" multiple>
-                            <option selected>전체</option>
+                        <select id="select-low-class" class="form-select" multiple v-model="lowClsCode">
+                            <option selected :value="''">전체</option>
                             <option v-for="(lowCls, index) in lowClsList" :key="index" :value="lowCls.lowClsCode"> {{
                                 lowCls.lowClsName }}</option>
                         </select>
                     </td>
                     <td style="width: 12%">
-                        <select id="select-recruit" class="form-select" multiple>
-                            <option selected>전체</option>
-                            <option>모집중</option>
-                            <option>모집완료</option>
+                        <select id="select-recruit" class="form-select" multiple v-model="recruitStts">
+                            <option selected :value="0">전체</option>
+                            <option :value="1">모집중</option>
+                            <option :value="2">모집완료</option>
                         </select>
                     </td>
                 </tr>
@@ -60,27 +60,27 @@
                 <div class="search-input mb-4">
                     <div class="me-5">
                         <label class="me-2" for="act-date">▪️봉사 기간</label>
-                        <input id="act-start-date" type="date" :value="currentDate"/>
+                        <input id="act-start-date" type="date" v-model="searchIndex.startDate" />
                         <span> - </span>
-                        <input id="act-end-date" type="date" />
+                        <input id="act-end-date" type="date" v-model="searchIndex.endDate"/>
                     </div>
                     <div class="d-flex align-items-center">
                         <span class="me-2">▪️봉사자 유형</span>
-                        <input class="form-check-input me-1" type="checkbox" value="Y" id="adultAble">
+                        <input class="form-check-input me-1" type="checkbox" id="adultAble" v-model="searchIndex.adultPosbl">
                         <label class="form-check-label me-3" for="adultAble">성인</label>
-                        <input class="form-check-input me-1" type="checkbox" value="Y" id="yngAble">
+                        <input class="form-check-input me-1" type="checkbox" id="yngAble" v-model="searchIndex.teenPosbl">
                         <label class="form-check-label" for="yngAble">청소년</label>
                     </div>
                 </div>
                 <div class="search-input mb-4">
                     <div class="d-flex w-75">
                         <label class="w-25" for="search-keyword">▪️봉사명 검색</label>
-                        <input id="search-keyword" class="form-control" type="text"/>
+                        <input id="search-keyword" class="form-control" type="text" v-model="searchIndex.keyword"/>
                     </div>
                 </div>
                 <div class="search-input">
-                    <HighLightButton text="검색" class="me-5" @buttonClick="searchVolProgram"/>
-                    <NormalButton text="초기화" @buttonClick="resetInputValue"/>
+                    <HighLightButton text="검색" class="me-5" @buttonClick="searchVolProgram" />
+                    <NormalButton text="초기화" @buttonClick="resetInputValue" />
                 </div>
             </div>
         </div>
@@ -90,65 +90,100 @@
 import HighLightButton from "@/components/Common/HighlightButton.vue";
 import NormalButton from "@/components/Common/NormalButton.vue";
 
-import { ref } from "vue";
-import { useStore } from "vuex";
+import { inject, onMounted, ref, watch } from "vue";
+import store from "@/store";
+const searchIndex = inject('searchIndex');
 
-const emits = defineEmits(['showModal']);
-
-
-//상태 데이터(지역코드, 분야코드)를 사용하기 위한 store객체 생성
-const store = useStore();
+const recruitStts = ref([searchIndex.value.recruitStts]);
 
 //-----지역코드 사용
 //상태 데이터에 저장되어있는 지역정보 리스트를 가져온다.
 const regionList = store.state.regionCode.regionList;
+const cityCode = ref([0]);
+const countyCode = ref([0]);
 //군/구 목록 상태 데이터 정의
 const countyList = ref([]);
-
-// 시/도 선택시 호출
-function selectCity(listData) {
-
-    //군/구 리스트(상태데이터) 수정
-    countyList.value = listData;
-    //군/구 리스트에서 기본값(전체)로 selected되도록 함.
-    document.getElementById("select-county").selectedIndex = 0;
+// 하위 분야 리스트를 찾아오기
+function findCounty(cityCode) {
+    for (let city of regionList) {
+        if (city.cityCode === cityCode) {
+            return city.county;
+        }
+    }
+    return [];
 }
-
+watch(cityCode, (newCode) => {
+    countyList.value = findCounty(newCode[0]);
+    document.getElementById("select-county").selectedIndex = 0;
+}, { deep: true });
 //-----분야코드 사용
 //상태 데이터에 저장되어있는 분야코드 리스트를 가져온다.
 const categoryList = store.state.categoryCode.categoryList;
+const highClsCode = ref(['']);
+const lowClsCode = ref(['']);
 //하위 분야 목록 상태 데이터 정의
 const lowClsList = ref([]);
-
-// 상위 분야 선택시 호출
-function selectHighCls(listData) {
-    //하위 분류 리스트(상태데이터) 수정
-    lowClsList.value = listData;
-    //군/구 리스트에서 기본값(전체)로 selected되도록 함.
+//하위 분야 리스트를 찾아오기
+function findLowCls(highClsCode) {
+    for (let highCls of categoryList) {
+        if (highCls.highClsCode === highClsCode) {
+            return highCls.lowClsList;
+        }
+    }
+    return [];
+}
+watch(highClsCode, (newCode, oldCode) => {
+    lowClsList.value = findLowCls(newCode[0]);
     document.getElementById("select-low-class").selectedIndex = 0;
-}
-
-//----봉사 프로그램 검색버튼 누를시 호출
-function searchVolProgram() {
-    emits('showModal');
-}
-
-const currentDate = new Date();
-//----검색어 입력 초기화 버튼
+}, {deep: true});
+//----검색어 입력 초기화 버튼 (작업해야함)
 function resetInputValue() {
-    document.getElementById("select-city").selectedIndex = 0;
-    document.getElementById("select-county").selectedIndex = 0;
-    document.getElementById("select-high-class").selectedIndex = 0;
-    document.getElementById("select-low-class").selectedIndex = 0;
-    document.getElementById("select-recruit").selectedIndex = 0;
-    document.getElementById("act-start-date").value = currentDate;
-    document.getElementById("act-end-date").value = currentDate;
-    document.getElementById("search-keyword").value = '';
-
+    searchIndex.value.keyword = '';
+    searchIndex.value.startDate = null;
+    searchIndex.value.endDate = null;
+    searchIndex.value.regionNo = 0;
+    cityCode.value = [0];
+    countyCode.value = [0];
+    searchIndex.value.ctgNo = '';
+    highClsCode.value = [''];
+    lowClsCode.value = [''];
+    searchIndex.value.recruitStts = 0;
+    searchIndex.value.adultPosbl = false;
+    searchIndex.value.teenPosbl = false;
     countyList.value = [];
     lowClsList.value = [];
 }
-
+//url 쿼리를 통해서 전달된 검색 조건을 반영시키기
+onMounted(() => {
+    if(searchIndex.value.regionNo) {
+        for(let city of regionList) {
+            for(let county of city.county) {
+                if(county.countyCode === Number(searchIndex.value.regionNo)) {
+                    cityCode.value = [city.cityCode];
+                    countyCode.value = [county.countyCode];
+                }
+            }
+        }
+    }
+    if(searchIndex.value.ctgNo) {
+        for(let highCls of categoryList) {
+            for(let lowCls of highCls.lowClsList) {
+                if(lowCls.lowClsCode === searchIndex.value.ctgNo) {
+                    highClsCode.value = [highCls.highClsCode];
+                    lowClsCode.value = [lowCls.lowClsCode];
+                }
+            }
+        }
+    }
+});
+const emit = defineEmits(['searchBySearchIndex']);
+//----봉사 프로그램 검색버튼 누를시 호출
+function searchVolProgram() {
+    searchIndex.value.regionNo = countyCode.value[0];
+    searchIndex.value.ctgNo = lowClsCode.value[0];
+    searchIndex.value.recruitStts = recruitStts.value[0];
+    searchIndex.value.searchBySearchIndex();
+}
 </script>
 <style scoped>
 * {
