@@ -144,10 +144,20 @@ async function showApplicantModal(index) {
   applicant.show();
 }
 //봉사 프로그램 삭제
-function deleteVolProgram() {
+async function deleteVolProgram() {
   //삭제 로직 작성
-  console.log('삭제 작업');
-  updateVolProgramModal.hide();
+  try {
+    const response = await adminAPI.deleteVolProgram(providedData.value.programNo);
+    if(response.data.result === 'success') {
+      alert('봉사프로그램이 성공적으로 삭제되었습니다.');
+      router.go();
+    } else {
+      alert('봉사프로그램이 존재하지 않습니다.');
+      router.go();
+    }
+  } catch(error) {
+    console.log(error);
+  }
 }
 //봉사프로그램 수정
 async function updateVolProgram() {

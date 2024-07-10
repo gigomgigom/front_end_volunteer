@@ -2,7 +2,7 @@
   <div id="view-programlist-wrapper">
     <h5>🔶봉사조회</h5>
     <SearchVolPgrm />
-    <AddVolProgramModal id="addVolProgramModal" @buttonClick="addVolProgram"/>
+    <AddVolProgramModal id="addVolProgramModal" @buttonClick="addVolProgram" />
     <VolPrgmList class="mt-5">
       <template v-slot:createButton>
         <NormalButton text="새로 생성" @buttonClick="showDialog(0)" style="padding-top: 2px; padding-bottom: 2px;" />
@@ -32,7 +32,8 @@
           <button class="btn text_button" @click="$emit('changePageNo', responseData.pager.startPageNo - 1)">이전</button>
         </li>
         <li class="page-item mx-1" v-for="n in responseData.pager.pageNoList" :key="n">
-          <button class="btn number_button" @click="$emit('changePageNo', n)" :class="Number(searchIndex.pageNo) === n ? 'selected_button' : ''">{{ n }}</button>
+          <button class="btn number_button" @click="$emit('changePageNo', n)"
+            :class="Number(searchIndex.pageNo) === n ? 'selected_button' : ''">{{ n }}</button>
         </li>
         <li class="page-item ms-4">
           <button class="btn text_button" @click="$emit('changePageNo', responseData.pager.endPageNo + 1)">다음</button>
@@ -54,6 +55,8 @@ import AddVolProgramModal from './AddVolProgramModal.vue';
 import VolPrgmList from '@/components/VolPrgmList.vue'
 import NormalButton from '@/components/Common/NormalButton.vue';
 import { useStore } from 'vuex';
+import adminAPI from '@/apis/adminAPI';
+import router from '@/router';
 
 let addVolProgramModal = null;
 const responseData = inject('responseData');
@@ -96,14 +99,46 @@ onMounted(() => {
   imageInput = document.querySelector('#imageInput');
 });
 //봉사프로그램 추가작업
-function addVolProgram() {
+async function addVolProgram() {
   const blankResult = isDataBlank(providedData.value);
   if (blankResult.isDataOk) {
     const validateResult = isDataValidate(providedData.value);
     if (validateResult.isDataOk) {
       //서버 전송하기 위한 데이터 세팅 작업해줘야함
+      let formData = new FormData();
+      formData.append('programTitle', providedData.value.title);
+      formData.append('actBgnDate', dateFormat(providedData.value.actDate[0]));
+      formData.append('actEndDate', dateFormat(providedData.value.actDate[1]));
+      formData.append('actBgnTime', providedData.value.actTime[0].hours);
+      formData.append('actEndTime', providedData.value.actTime[1].hours);
+      formData.append('recruitName', providedData.value.recruitCenter);
+      formData.append('recruitBgnDate', dateFormat(providedData.value.recruitDate[0]));
+      formData.append('recruitEndDate', dateFormat(providedData.value.recruitDate[1]));
+      formData.append('recruitCnt', providedData.value.recruitCnt);
+      formData.append('programCtg', providedData.value.lowCls);
+      formData.append('regionNo', providedData.value.county);
+      formData.append('actPlace', providedData.value.actPlace);
+      formData.append('mngName', providedData.value.mngName);
+      formData.append('mngTel', providedData.value.mngTel);
+      formData.append('content', providedData.value.content);
+      formData.append('location', providedData.value.location);
+      formData.append('adultPosbl', (providedData.value.adultPosbl ? 1 : 0));
+      formData.append('teenPosbl', (providedData.value.teenPosbl ? 1 : 0));
+      formData.append('battachFile', battachInput.files[0]);
+      formData.append('battachImg', imageInput.files[0]);
       //데이터 세팅 작업이 끝난 후 API요청해야함.
-      addVolProgramModal.hide();
+      try {
+        const response = await adminAPI.addVolProgram(formData);
+        if (response.data.result === 'success') {
+          alert('봉사 프로그램이 추가되었습니다.');
+          router.go();
+        } else {
+          alert('서버에서 오류가 발생하였습니다. 잠시후 다시 시도하여주십시오');
+          router.go();
+        }
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       const errorMsg = validateResult.validateMsgList.join('\n');
       alert(`잘못 입력된 정보가 있습니다.\n${errorMsg}`);
@@ -306,6 +341,17 @@ function parseIntToDate(dateNumber) {
   // Date 객체 생성
   return new Date(year, month, day);
 }
+//DATE객체를 문자열(YYYY-MM-DD)로 변환
+function dateFormat(dateStr) {
+  const date = new Date(dateStr);
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+
+  month = month >= 10 ? month : '0' + month;
+  day = day >= 10 ? day : '0' + day;
+
+  return date.getFullYear() + '-' + month + '-' + day;
+}
 </script>
 
 <style scoped>
@@ -322,6 +368,7 @@ h5 {
 #view-programlist-wrapper {
   padding-top: 30px;
 }
+
 .text_button {
   padding-left: 20px;
   padding-right: 20px;
