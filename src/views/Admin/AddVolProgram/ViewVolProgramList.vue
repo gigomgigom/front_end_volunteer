@@ -54,11 +54,33 @@ import AddVolProgramModal from './AddVolProgramModal.vue';
 import VolPrgmList from '@/components/VolPrgmList.vue'
 import NormalButton from '@/components/Common/NormalButton.vue';
 import { useStore } from 'vuex';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
 
 let addVolProgramModal = null;
 const responseData = inject('responseData');
 
 const categoryList = useStore().state.categoryCode.categoryList;
+
+const searchIndex = ref({
+  pageNo: route.query.pageNo || 1,
+  keyword: route.query.keyword || '',
+  startDate: route.query.startDate || null,
+  endDate: route.query.endDate || null,
+  regionNo: route.query.regionNo || 0,
+  ctgNo: route.query.ctgNo || '',
+  recruitStts: route.query.recruitStts || 0,
+  adultPosbl: route.query.adultPosbl || false,
+  teenPosbl: route.query.teenPosbl || false,
+  searchBySearchIndex
+});
+
+provide('searchIndex', searchIndex);
+
+function searchBySearchIndex() {
+  
+}
 
 //첨부파일 input 객체
 let battachInput = null;

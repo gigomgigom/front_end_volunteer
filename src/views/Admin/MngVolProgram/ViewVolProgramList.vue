@@ -3,20 +3,21 @@
     <h5>🔶봉사조회</h5>
     <SearchVolPgrm/>
     <VolPrgmList>
-      <template v-slot:right-side>
+      <template v-slot:right-side="{ index }">
         <HighlightButton text="수정하기" class="mb-3"
-          style="padding-top: 2px; padding-bottom: 2px; padding-left: 15px; padding-right: 15px;" @buttonClick="showUpdateModal"/>
+          style="padding-top: 2px; padding-bottom: 2px; padding-left: 15px; padding-right: 15px;" @buttonClick="showUpdateModal(index)"/>
         <NormalButton text="신청조회"
-          style="padding-top: 2px; padding-bottom: 2px; padding-left: 15px; padding-right: 15px;" @buttonClick="showApplicantModal"/>
+          style="padding-top: 2px; padding-bottom: 2px; padding-left: 15px; padding-right: 15px;" @buttonClick="showApplicantModal(index)"/>
       </template>
     </VolPrgmList>
+    <navBar/>
     <UpdateVolProgramModal id="updateVolProgramModal" @buttonUpdate="updateVolProgram" @buttonDelete="deleteVolProgram"/>
     <Applicant id="applicant"/>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref, provide } from 'vue';
+import { onMounted, ref, provide, inject } from 'vue';
 import { Modal } from 'bootstrap';
 import SearchVolPgrm from '@/components/SearchVolPgrm.vue';
 import VolPrgmList from '@/components/VolPrgmList.vue';
@@ -24,7 +25,11 @@ import Applicant from '@/components/Applicant.vue';
 import UpdateVolProgramModal from './UpdateVolProgramModal.vue';
 import HighlightButton from '@/components/Common/HighlightButton.vue';
 import NormalButton from '@/components/Common/NormalButton.vue';
+import NavBar from '@/components/Common/NavBar.vue';
+import volProgramAPI from '@/apis/volProgramAPI';
+import store from '@/store';
 
+const responseData = inject('responseData');
 let updateVolProgramModal = null;
 let applicant = null;
 //첨부파일 input 객체
@@ -63,26 +68,68 @@ const providedData = ref({
 provide('providedData', providedData);
 
 //수정하기 모달창 띄우기
-function showUpdateModal() {
+async function showUpdateModal(index) {
   battachInput.value = '';
   imageInput.value = '';
-  //수정할 봉사프로그램의 정보를 세팅해주는 작업
+  try {
+    const response = await volProgramAPI.getVolProgramDetail(responseData.value.programList[index].no);
+    if(response.data.result === 'success') {
+      const volProgram = response.data.volProgram;
+
+      let newObject = {
+        title: volProgram.programTitle,
+        actDate: [new Date(volProgram.actBgnDate), new Date(volProgram.actEndDate)],
+        actTime: [{hours: volProgram.actBgnTime, minutes: 0, seconds: 0}, {hours: volProgram.actEndTime, minutes: 0, seconds: 0}],
+        recruitCenter: volProgram.recruitName,
+        recruitDate: [new Date(volProgram.recruitBgnDate), new Date(volProgram.recruitEndDate)],
+        recruitCnt: volProgram.recruitCnt,
+        //highCls
+        lowCls: volProgram.programCtg,
+        //city
+        county: volProgram.regionNo,
+        actPlace: volProgram.actPlace,
+        mngName: volProgram.mngName,
+        mngTel: volProgram.mngTel,
+        content: volProgram.content,
+        adultPosbl: volProgram.adultPosbl === 1 ? true : false,
+        teenPosbl: volProgram.teenPosbl === 1 ? true : false,
+      }
+      for(let city of store.state.regionCode.regionList) {
+        for(let county of city.county) {
+          if(county.countyCode === Number(newObject.county)) {
+            newObject.city = city.cityCode;
+          }
+        }
+      }
+      for(let highCls of store.state.categoryCode.categoryList) {
+        for(let lowCls of highCls.lowClsList) {
+          if(lowCls.lowClsCode === newObject.lowCls) {
+            newObject.highCls = highCls.highClsCode;
+          }
+        }
+      }
+      providedData.value = newObject;
+      console.log(providedData.value);
+    } else {
+      alert('해당 봉사프로그램은 존재하지않습니다.');
+    }
+  } catch(error) {
+    console.log(error);
+  }
   updateVolProgramModal.show();
 }
-
 //신청인 조회 모달창 띄우기
-function showApplicantModal() {
+function showApplicantModal(index) {
   //해당 봉사프로그램의 신청인 목록을 가져와야 함.
   applicant.show();
 }
-
 //봉사 프로그램 삭제
 function deleteVolProgram() {
   //삭제 로직 작성
   console.log('삭제 작업');
   updateVolProgramModal.hide();
 }
-
+//봉사프로그램 수정
 function updateVolProgram() {
   const blankResult = isDataBlank(providedData.value);
   if (blankResult.isDataOk) {
