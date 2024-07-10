@@ -85,7 +85,7 @@ import KakaoMap from './KakaoMap.vue';
 import { inject } from 'vue';
 import axios from 'axios';
 
-const volDetail = inject('volDetail');
+const volDetail = inject('detail');
 </script>
 
 <style scoped>

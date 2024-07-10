@@ -19,7 +19,13 @@ function getInterestVolList(pageNo) {
         `/VolProgram/get_interest_program_list?pageNo=${pageNo}`,
     )
 }
-//관심 봉사 취소하기
+//관심 봉사 추가하기
+function addInterestVolProgram(programNo) {
+    return axios.post(
+        `/VolProgram/add_interest_program?programNo=${programNo}`
+    )
+}
+//관심 봉사 제거하기
 function cancelInterestVolProgram(noList) {
     return axios.put(
         '/VolProgram/remove_interest_program',
@@ -30,5 +36,6 @@ export default {
     getInterestVolList,
     cancelInterestVolProgram,
     getVolProgramList,
-    getVolProgramDetail
+    getVolProgramDetail,
+    addInterestVolProgram
 }

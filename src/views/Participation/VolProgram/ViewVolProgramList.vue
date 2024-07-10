@@ -106,7 +106,7 @@ async function getVolProgramList() {
         volDate: `${actStart} - ${actEnd}`,
         volTime: `${volProgram.actBgnTime}:00 - ${volProgram.actEndTime}:00`,
         classification: clsName,
-        url: "",//url이동 경로 값을 가져와야함
+        url: `/Details/Participation/VolProgram/ViewVolProgramDetail?programNo=${volProgram.programNo}`,//url이동 경로 값을 가져와야함
         isExternal: false
       }
       responseData.value.programList.push(newObject);
