@@ -28,6 +28,7 @@ import NormalButton from '@/components/Common/NormalButton.vue';
 import NavBar from '@/components/Common/NavBar.vue';
 import volProgramAPI from '@/apis/volProgramAPI';
 import store from '@/store';
+import adminAPI from '@/apis/adminAPI';
 
 const responseData = inject('responseData');
 let updateVolProgramModal = null;
@@ -119,8 +120,18 @@ async function showUpdateModal(index) {
   updateVolProgramModal.show();
 }
 //신청인 조회 모달창 띄우기
-function showApplicantModal(index) {
+async function showApplicantModal(index) {
   //해당 봉사프로그램의 신청인 목록을 가져와야 함.
+  try{
+    const response = await adminAPI.getVolParticipantList(responseData.value.programList[index].no);
+    if(response.data.result === 'success') {
+      providedData.value.applicant = response.data.applicantList;
+    } else {
+      alert('오류가 발생했습니다. 잠시후 다시 요청해주세요');
+    }
+  } catch(error) {
+    console.log(error);
+  }
   applicant.show();
 }
 //봉사 프로그램 삭제

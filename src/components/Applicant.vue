@@ -21,12 +21,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(member, index) in applicantList" :key="index">
-                                    <td>{{ member.name }}</td>
-                                    <td>{{ member.id }}</td>
-                                    <td>{{ member.birth }}</td>
+                                <tr v-for="(member, index) in providedData.applicant" :key="index">
+                                    <td>{{ member.memberName }}</td>
+                                    <td>{{ member.memberId }}</td>
+                                    <td>{{ dateFormat(member.birthdate) }}</td>
                                     <td>{{ member.tel }}</td>
-                                    <td>{{ member.affCenter }}</td>
+                                    <td>{{ findRegionWithRegionNo(Number(member.affCenter), store.state.regionCode.regionList) }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -41,395 +41,38 @@
 </template>
 
 <script setup>
+import { inject } from 'vue';
+import { useStore } from 'vuex';
 
-const applicantList = [
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-    {
-        name: '심영조',
-        id: 'tlarlrma',
-        birth: '2000.01.07',
-        tel: '01028104870',
-        affCenter: '인천광역시 서구'
-    },
-];
+const store = useStore();
+const providedData = inject('providedData');
 
+//DATE객체를 문자열(YYYY-MM-DD)로 변환
+function dateFormat(dateStr) {
+    const date = new Date(dateStr);
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+
+    month = month >= 10 ? month : '0' + month;
+    day = day >= 10 ? day : '0' + day;
+
+    return date.getFullYear() + '-' + month + '-' + day;
+}
+function findRegionWithRegionNo(regionNo, regionList) {
+    let result = {
+        cityName: '',
+        countyName: '',
+    }
+    for (let city of regionList) {
+        for (let county of city.county) {
+            if (county.countyCode === Number(regionNo)) {
+                result.cityName = city.cityName;
+                result.countyName = county.countyName;
+            }
+        }
+    }
+    return result.cityName + ' ' + result.countyName;
+}
 </script>
 
 <style scoped>
