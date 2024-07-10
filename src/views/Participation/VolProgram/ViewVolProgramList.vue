@@ -212,7 +212,8 @@ function isOverDeadline(index) {
   }
 }
 //요청경로가 변경되었을때 페이지번호에 맞는 봉사프로그램 목록을 가져온다. (param값이 없을경우 pageNo는 1로 지정)
-watch(route, () => {
+watch(route, (newRoute, oldRoute) => {
+  searchIndex.value.pageNo = newRoute.query.pageNo;
   getVolProgramList();
 })
 onMounted(() => {

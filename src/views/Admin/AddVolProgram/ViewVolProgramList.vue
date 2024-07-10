@@ -32,7 +32,7 @@
           <button class="btn text_button" @click="$emit('changePageNo', responseData.pager.startPageNo - 1)">이전</button>
         </li>
         <li class="page-item mx-1" v-for="n in responseData.pager.pageNoList" :key="n">
-          <button class="btn number_button" @click="$emit('changePageNo', n)" :class="responseData.pager.pageNo === n ? 'selected_button' : ''">{{ n }}</button>
+          <button class="btn number_button" @click="$emit('changePageNo', n)" :class="Number(searchIndex.pageNo) === n ? 'selected_button' : ''">{{ n }}</button>
         </li>
         <li class="page-item ms-4">
           <button class="btn text_button" @click="$emit('changePageNo', responseData.pager.endPageNo + 1)">다음</button>
@@ -54,33 +54,12 @@ import AddVolProgramModal from './AddVolProgramModal.vue';
 import VolPrgmList from '@/components/VolPrgmList.vue'
 import NormalButton from '@/components/Common/NormalButton.vue';
 import { useStore } from 'vuex';
-import { useRoute } from 'vue-router';
-
-const route = useRoute();
 
 let addVolProgramModal = null;
 const responseData = inject('responseData');
+const searchIndex = inject('searchIndex');
 
 const categoryList = useStore().state.categoryCode.categoryList;
-
-const searchIndex = ref({
-  pageNo: route.query.pageNo || 1,
-  keyword: route.query.keyword || '',
-  startDate: route.query.startDate || null,
-  endDate: route.query.endDate || null,
-  regionNo: route.query.regionNo || 0,
-  ctgNo: route.query.ctgNo || '',
-  recruitStts: route.query.recruitStts || 0,
-  adultPosbl: route.query.adultPosbl || false,
-  teenPosbl: route.query.teenPosbl || false,
-  searchBySearchIndex
-});
-
-provide('searchIndex', searchIndex);
-
-function searchBySearchIndex() {
-  
-}
 
 //첨부파일 input 객체
 let battachInput = null;
@@ -103,6 +82,7 @@ const providedData = ref({
   mngName: '',
   mngTel: '',
   content: '',
+  location: '',
   adultPosbl: false,
   teenPosbl: false,
   isClExternal: false,

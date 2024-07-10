@@ -22,10 +22,24 @@ const loadingContainer = ref(null);
 
 const route = useRoute();
 const store = useStore();
-
-//페이지 번호를 받아온다.
-const pageNo = ref(route.query.pageNo || 1);
 const regionList = store.state.regionCode.regionList;
+
+const searchIndex = ref({
+  pageNo: route.query.pageNo || 1,
+  keyword: route.query.keyword || '',
+  startDate: route.query.startDate || null,
+  endDate: route.query.endDate || null,
+  regionNo: route.query.regionNo,
+  ctgNo: route.query.ctgNo,
+  recruitStts: route.query.recruitStts || 0,
+  adultPosbl: route.query.adultPosbl,
+  teenPosbl: route.query.teenPosbl,
+  searchBySearchIndex
+});
+
+provide('searchIndex', searchIndex);
+
+
 
 //프로그램 목록과 pagination 구현을 위한 pager객체를 가져온다.
 const responseData = ref({
@@ -45,19 +59,31 @@ const responseData = ref({
 });
 
 onMounted(() => {
-  getProgramList(pageNo.value);
+  getProgramList();
 });
-
+function searchBySearchIndex() {
+  getProgramList();
+}
 provide('responseData', responseData);
 
 //프로그램 목록 가져오는 함수 (페이지 번호를 받아야됨)
-async function getProgramList(pageNo) {
+async function getProgramList() {
   try {
     //작업하는 동안 로딩 화면 보여주기
     loadingContainer.value.classList.add('loading');
-    let data = { pageNo };
+    let rqstData = { 
+      pageNo: searchIndex.value.pageNo,
+      keyword: searchIndex.value.keyword,
+      schCateGu: 'all',
+      progrmBgnde: searchIndex.value.startDate,
+      startDate: searchIndex.value.endDate,
+      schSign1: searchIndex.value.regionNo === 0 ? null : searchIndex.value.regionNo,
+      nanmClCode: searchIndex.value.ctgNo,
+      adultPosblAt: searchIndex.value.adultPosbl ? 'Y' : null,
+      yngbgsPosblAt: searchIndex.value.teenPosbl ? 'Y' : null
+     };
     //통신 작업 후 데이터를 가져옴
-    const response = await dataPortalAPI.getVolProgramList(data);
+    const response = await dataPortalAPI.getVolProgramList(rqstData);
     let resultData = response.data.response.body;
 
     //통신후 받고 세팅할 페이저 객체 초기화
@@ -144,7 +170,7 @@ async function getProgramList(pageNo) {
     }
   } catch (error) {
     console.log("에러 사유 : ", error);
-    if (pageNo < 1 || pageNo > responseData.value.pager.totalPage) {
+    if (searchIndex.value.pageNo < 1 || searchIndex.value.pageNo > responseData.value.pager.totalPage) {
       alert('페이지 인덱스 범위에 벗어났습니다. 초기화면으로 돌아갑니다.');
     } else {
       alert('서버와 통신 중 에러가 발생했습니다. 초기화면으로 돌아갑니다.');
@@ -156,11 +182,11 @@ async function getProgramList(pageNo) {
 //요청경로가 변경되었을때 페이지번호에 맞는 봉사프로그램 목록을 가져온다. (param값이 없을경우 pageNo는 1로 지정)
 watch(route, (newRoute, oldRoute) => {
   if (newRoute.query.pageNo) {
-    getProgramList(newRoute.query.pageNo);
-    pageNo.value = newRoute.query.pageNo;
+    searchIndex.value.pageNo = newRoute.query.pageNo;
+    getProgramList();
   } else {
-    getProgramList(1);
-    pageNo.value = 1;
+    searchIndex.value.pageNo = 1;
+    getProgramList();
   }
 })
 //pagination에서 버튼을 클릭했을때 현재 페이지 새로고침하며 param으로 pageNo를 넘겨준다.

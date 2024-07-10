@@ -187,8 +187,9 @@ function setPager(rspPager) {
 onMounted(() => {
     getVolProgramList();
 })
-watch(route, () => {
-  getVolProgramList();
+watch(route, (newRoute, oldRoute) => {
+    searchIndex.value.pageNo = newRoute.query.pageNo;
+    getVolProgramList();
 })
 </script>
 

@@ -245,8 +245,6 @@ let member = ref({
   interest2:""
 });
 
-
-
 function handleSubmit() {
   const tel = member.value.num1 + "-" + member.value.num2 + "-" + member.value.num3;
   let isDataOk = true;

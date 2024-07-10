@@ -114,6 +114,14 @@
                                 </tr>
                                 <tr>
                                     <td colspan="1">
+                                        주소
+                                    </td>
+                                    <td colspan="3">
+                                        <input type="text" class="form-control" v-model="providedData.location">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">
                                         담당자명
                                     </td>
                                     <td colspan="1">
