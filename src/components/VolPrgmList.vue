@@ -24,30 +24,47 @@
                             <!--선택하기 체크박스 생성-->
                         </slot>
                     </div>
-                    <div class="d-flex flex-column">
-                        <div class="vol-title">
-                            <span @click="moveToDetail(vol.url, vol.isExternal)">
-                                {{ vol.title }}
-                            </span>
-                        </div>
-                        <div class="vol-desc">
-                            [모집기간] <span class="me-2" style="color: gray;">{{ vol.recruitDate }}</span>
-                            [봉사기간] <span class="me-2" style="color: gray;">{{ vol.volDate }}</span>
-                            [봉사시간] <span style="color: gray;">{{ vol.volTime }}</span>
-                        </div>
-                        <div class="vol-desc">
-                            [봉사지역] <span class="me-2" style="color: gray;">{{ vol.region }}</span>
-                            [모집기관] <span style="color: gray;">{{ vol.recruitCenter }}</span>
-                        </div>
-                        <div class="vol-desc">
-                            [분류] <span style="font-weight: bold; color: #4e76ad;">{{ vol.classification }}</span>
-                        </div>
-                    </div>
                 </div>
-                <div class="col-md-2 right-side-container" :id="index">
-                    <slot name="right-side" :index="index">
+                <div class="d-flex ps-2" style="border-bottom: 2px solid gray;">
+                    <slot name="vol-checkbox">
 
                     </slot>
+                </div>
+                <div class="row-wrapper py-3" v-for="(vol, index) in data.programList" :key="index">
+                    <div class="row">
+                        <div class="col-md-10 d-flex">
+                            <div class="vol-checkbox">
+                                <slot name="checkBox">
+                                    <!--선택하기 체크박스 생성-->
+                                </slot>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <div class="vol-title">
+                                    <span @click="moveToDetail(vol.url, vol.isExternal)">
+                                        {{ vol.title }}
+                                    </span>
+                                </div>
+                                <div class="vol-desc">
+                                    [모집기간] <span class="me-2" style="color: gray;">{{ vol.recruitDate }}</span>
+                                    [봉사기간] <span class="me-2" style="color: gray;">{{ vol.volDate }}</span>
+                                    [봉사시간] <span style="color: gray;">{{ vol.volTime }}</span>
+                                </div>
+                                <div class="vol-desc">
+                                    [봉사지역] <span class="me-2" style="color: gray;">{{ vol.region }}</span>
+                                    [모집기관] <span style="color: gray;">{{ vol.recruitCenter }}</span>
+                                </div>
+                                <div class="vol-desc">
+                                    [분류] <span style="font-weight: bold; color: #4e76ad;">{{ vol.classification
+                                        }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 right-side-container" :id="index">
+                            <slot name="right-side" :index="index">
+
+                            </slot>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -42,6 +42,7 @@ let battachInput = null;
 //이미지파일 input 객체
 let imageInput = null;
 
+//특정 HTML 요소들을 JavaScript 객체로 초기화
 onMounted(() => {
   updateVolProgramModal = new Modal(document.querySelector("#updateVolProgramModal"));
   applicant = new Modal(document.querySelector("#applicant"));

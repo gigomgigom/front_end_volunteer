@@ -16,8 +16,17 @@ function login(member) {
     );
 }
 
+//아이디 중복 조회
+function checkId(memberId) {
+    return axios.get(
+        "/Auth/checkId",
+        {params:{memberId}}
+    );
+}
+
 
 export default {
     join,
-    login
+    login,
+    checkId
 }

@@ -46,9 +46,13 @@ const responseData = ref({
   }
 });
 
+
+//자식 컴포넌트에서 사용할 수 있도록 데이터를 제공
 provide('responseData', responseData);
 provide('searchIndex', searchIndex);
 
+
+//컴포넌트가 마운트 될 때마다 'getVolAppList' 함수 호출
 onMounted(() => {
   getVolApplList();
 });
