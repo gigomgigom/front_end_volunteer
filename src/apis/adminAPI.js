@@ -40,11 +40,18 @@ function modifyEduProgram(formData) {
         formData
     );
 }
+//교육 프로그램 삭제하기
+function deleteEduProgram(programNo) {
+    return axios.patch(
+        `/Admin/delete_edu_program/${programNo}`
+    )
+}
 export default {
     addVolProgram,
     modifyVolProgram,
     deleteVolProgram,
     getVolParticipantList,
     addEduProgram,
-    modifyEduProgram
+    modifyEduProgram,
+    deleteEduProgram
 }

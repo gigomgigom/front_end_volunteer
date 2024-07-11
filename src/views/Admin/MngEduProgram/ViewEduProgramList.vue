@@ -105,9 +105,20 @@ async function showUpdateModal(index) {
 function showApplicantModal(){
   applicant.show();
 }
-function deleteEduProgram() {
-  //프로그램 삭제 로직 작성
-  updateEduProgramModal.hide();
+async function deleteEduProgram() {
+  try {
+    const response = await adminAPI.deleteEduProgram(providedData.value.no);
+    if(response.data.result === 'success') {
+      alert('교육 프로그램이 삭제되었습니다.');
+      router.go();
+    } else {
+      alert('교육 프로그램 삭제 중 문제가 발생하였습니다. 잠시 후 다시 시도해주십시오');
+      router.go();
+    }
+  } catch(error) {
+    alert('서버 통신 중 오류가 발생하였습니다. 잠시 후 다시 시도해주십시오');
+    router.go();
+  }
 }
 async function updateEduProgram() {
   const blankResult = isDataBlank(providedData.value);
