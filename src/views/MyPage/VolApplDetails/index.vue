@@ -205,6 +205,7 @@ function searchBySearchIndex() {
   display: none;
 }
 
+
 .loading {
   width: 100%;
   height: 100%;

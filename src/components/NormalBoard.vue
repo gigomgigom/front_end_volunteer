@@ -1,17 +1,17 @@
 <template>
   <div style="display: flex; justify-content: space-between; align-items: center;" class="mt-4">
     <h6 class="all">
-      [전체 <span class="highlight">{{ posts.length }}</span>건,
-      현재페이지 <span class="highlight">{{ currentPage }}</span>/2]
+      [전체 <span class="highlight">{{ data.pager.totalCount }}</span>건,
+      현재페이지 <span class="highlight">{{ data.pager.pageNo }}</span>/{{ data.pager.totalPage }}]
     </h6>
     <div style="display: flex; align-items: center;">
-      <select class="form-select form-select-sm custom-select-width" aria-label="Small select example">
+      <select class="form-select form-select-sm custom-select-width" aria-label="Small select example" v-model="searchIndex.keywordIndex">
         <option value="1">제목</option>
         <option value="2">작성자</option>
         <option value="3">내용</option>
       </select>
-      <input class="form-control form-control-sm ms-2 no-margin1" type="text" aria-label=".form-control-sm example">
-      <button class="btn btn-sm btn-primary ms-2 no-margin2" id="btn-sm1">검색</button>
+      <input class="form-control form-control-sm ms-2 no-margin1" type="text" aria-label=".form-control-sm example" v-model="searchIndex.keyword">
+      <button class="btn btn-sm btn-primary ms-2 no-margin2" id="btn-sm1" type="button" @click="submitSearchIndex">검색</button>
     </div>
   </div>
 
@@ -30,12 +30,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="post in paginatedPosts" :key="post.id">
-          <td class="col-num no-border-left text-center">{{ post.id }}</td>
-          <td colspan="2"><span @click="moveDetail(post.id)" style="cursor: pointer;">{{ post.title }}</span></td>
-          <td class="col-author text-center">{{ post.author }}</td>
-          <td class="col-date text-center">{{ post.date }}</td>
-          <td class="col-views no-border-right text-center">{{ post.views }}</td>
+        <tr v-for="(notice, index) in data.noticeList" :key="index">
+          <td class="col-num no-border-left text-center">{{ notice.no }}</td>
+          <td colspan="2"><span @click="moveDetail(notice.no)" style="cursor: pointer;">{{ notice.title }}</span></td>
+          <td class="col-author text-center">{{ notice.writer }}</td>
+          <td class="col-date text-center">{{ notice.date }}</td>
+          <td class="col-views no-border-right text-center">{{ notice.hitCnt }}</td>
         </tr>
       </tbody>
     </table>
@@ -45,21 +45,7 @@
       <!--글 작성하기 버튼 생성-->
     </slot>
   </div>
-  <div class="d-flex justify-content-between align-items-center">
-    <div class="flex-grow-1 d-flex justify-content-center">
-      <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center mb-4 ms-5">
 
-          <!--배열을 순회하면서 각 페이지에 대해 li 요소를 생성 -->
-          <!-- 현재 페이지(currentPage)와 일치하는 페이지 번호에 active 클래스를 적용-->
-          <li class="page-item" v-for="page in totalPages" :key="page" :class="{ active: page === currentPage }">
-            <!--클릭 이벤트를 막고, changePage 함수를 호출하여 페이지를 변경-->
-            <a class="page-link" href="#" @click.prevent="changePage(page)">{{ page }}</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </div>
 
 
 
@@ -69,61 +55,15 @@
 <script setup>
 import router from '@/router';
 import { ref, computed } from 'vue';
+import { inject } from "vue";
 
-const posts = ref([
-  { id: 1, title: "제목 1", author: "황세림", date: "2024-06-17", views: 100 },
-  { id: 2, title: "제목 2", author: "황세림", date: "2024-06-17", views: 150 },
-  { id: 3, title: "제목 3", author: "황세림", date: "2024-06-17", views: 120 },
-  { id: 4, title: "제목 4", author: "황세림", date: "2024-06-17", views: 90 },
-  { id: 5, title: "제목 5", author: "황세림", date: "2024-06-17", views: 80 },
-  { id: 6, title: "제목 6", author: "황세림", date: "2024-06-17", views: 70 },
-  { id: 7, title: "제목 7", author: "황세림", date: "2024-06-17", views: 60 },
-  { id: 8, title: "제목 8", author: "황세림", date: "2024-06-17", views: 50 },
-  { id: 9, title: "제목 9", author: "황세림", date: "2024-06-17", views: 40 },
-  { id: 10, title: "제목 10", author: "황세림", date: "2024-06-17", views: 30 },
-  { id: 1, title: "제목 11", author: "황세림", date: "2024-06-17", views: 100 },
-  { id: 2, title: "제목 12", author: "황세림", date: "2024-06-17", views: 150 },
-  { id: 3, title: "제목 13", author: "황세림", date: "2024-06-17", views: 120 },
-  { id: 4, title: "제목 14", author: "황세림", date: "2024-06-17", views: 90 },
-  { id: 5, title: "제목 15", author: "황세림", date: "2024-06-17", views: 80 },
-  { id: 6, title: "제목 16", author: "황세림", date: "2024-06-17", views: 70 },
-  { id: 7, title: "제목 17", author: "황세림", date: "2024-06-17", views: 60 },
-  { id: 8, title: "제목 18", author: "황세림", date: "2024-06-17", views: 50 },
-  { id: 9, title: "제목 19", author: "황세림", date: "2024-06-17", views: 40 },
-  { id: 10, title: "제목 20", author: "황세림", date: "2024-06-17", views: 30 }
-]);
+const moveDetail = inject('moveDetail');
+const data = inject('responseData');
+const searchIndex = inject('searchIndex');
 
-const currentPage = ref(1);
-const perPage = 10; // 페이지당 표시할 아이템 수
-
-const emits = defineEmits(["moveDetail"]);
-
-function moveDetail(data) {
-  emits("moveDetail", data);
+function submitSearchIndex() {
+  searchIndex.value.searchBySearchIndex();
 }
-
-// 현재 페이지에 해당하는 게시글들을 계산하여 반환
-// startIndex는 현재 페이지의 첫 번째 게시글의 인덱스
-//paginatedPosts => 현재 페이지에 해당하는 게시글들을 계산하여 반환하는 계산 속성.
-const paginatedPosts = computed(() => {
-  const startIndex = (currentPage.value - 1) * perPage;
-  return posts.value.slice(startIndex, startIndex + perPage);
-});
-
-
-// 전체 페이지 수를 계산하여 반환
-// posts 배열의 길이를 페이지당 표시할 게시글 수로 나누어 올림 처리
-const totalPages = computed(() => Math.ceil(posts.value.length / perPage));
-
-
-// 페이지를 변경하는 함수
-// 유효한 페이지 번호일 경우 currentPage를 변경
-function changePage(page) {
-  if (page >= 1 && page <= totalPages.value) {
-    currentPage.value = page;
-  }
-}
-
 </script>
 
 <style scoped>

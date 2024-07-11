@@ -1,18 +1,34 @@
 <template>
   <NormalBoard>
-    <template v-slot:createButton>
-      <HighlightButton text="글 작성하기" style="padding-left: 5px; padding-right: 5px;"/>
+    <template v-slot:createButton v-if="true">
+      <HighlightButton text="글 작성하기" @buttonClick="writeBoard" style="padding-left: 5px; padding-right: 5px;"/>
     </template>
   </NormalBoard>
+  <NavBar />
 </template>
 
 <script setup>
 import HighlightButton from '@/components/Common/HighlightButton.vue';
 import NormalBoard from '@/components/NormalBoard.vue';
+import NavBar from '@/components/Common/NavBar.vue';
 import router from '@/router';
+import { provide, inject } from 'vue';
 
-function goWriteForm() {
-  router.push('/Details/ServiceCenter/Notice/WriteNotice');
+provide("moveDetail", moveDetail);
+const authority = inject("authority")
+
+let result = false;
+if(authority != null){
+  result = true;
+}else{
+  result = false;
+}
+
+function writeBoard(){
+  router.push("/Details/ServiceCenter/Notice/WriteNotice")
+}
+function moveDetail(data) {
+  router.push(`/Details/ServiceCenter/Notice/ViewNoticeDetail?boardNo=${data}`);
 }
 </script>
 

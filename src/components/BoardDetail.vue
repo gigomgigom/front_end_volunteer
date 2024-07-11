@@ -5,14 +5,14 @@
           
           <tr style="font-size: 25px; ">
             <th colspan="2" class="title-line">
-              <span>{{ post.title }}</span>
+              <span>{{boardDetail.title}}</span>
             </th>
           </tr>
           <tr>
             <th colspan="2" class="write-info">
-              작성자: <span class="normal-text">{{ post.author }}</span>
+              작성자: <span class="normal-text">{{boardDetail.memberId}}</span>
               <span class="separator">|</span>
-              작성일: <span class="normal-text">{{ post.date }}</span>
+              작성일: <span class="normal-text">{{boardDetail.boardDate}}</span>
             </th>
           </tr>
         </thead>
@@ -23,7 +23,7 @@
                 <img src="@/assets/volunteering-sample.jpg" alt="Volunteering Sample" />
               </div>
               <div style="margin-top: 10px;">
-                <p class="content-text">{{ post.content }}</p>
+                <p class="content-text">{{boardDetail.content}}</p>
               </div>
             </td>
           </tr>
@@ -31,8 +31,8 @@
         <tfoot>
           <tr>
             <td colspan="2" class="bottom-line">
-              <div v-if="attachedFile">
-                <span class="attachedfile-text">첨부파일: {{ attachedFile }}</span>
+              <div>
+                <span class="attachedfile-text">첨부파일:</span>
               </div>
             </td>
           </tr>
@@ -41,20 +41,10 @@
     <!-- </div> -->
   </template>
   
-  <script>
-  export default {
-    data() {
-      return {
-        post: {
-          title: '게시물 제목입니다',
-          author: '홍길동',
-          date: '2024년 6월 18일',
-          content: '게시물 내용이 여기에 들어갑니다'
-        },
-        attachedFile: '첨부파일 이름'
-      };
-    }
-  };
+  <script setup>
+  import { inject } from 'vue';
+  const boardDetail = inject("boardDetail");  
+  console.log(boardDetail);
   </script>
   
   <style scoped>
