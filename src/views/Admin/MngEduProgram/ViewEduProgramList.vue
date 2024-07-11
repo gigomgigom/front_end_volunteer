@@ -2,10 +2,10 @@
   <div>
     <SearchEduPrgm/>
     <EduPrgmList>
-      <template v-slot:right-side>
-        <HighlightButton text="수정하기" class="mb-3" @click="showUpdateModal"
+      <template v-slot:right-side="{index}">
+        <HighlightButton text="수정하기" class="mb-3" @click="showUpdateModal(index)"
           style="padding-top: 2px; padding-bottom: 2px; padding-left: 15px; padding-right: 15px;" />
-        <NormalButton text="신청조회" @click="showApplicantModal"
+        <NormalButton text="신청조회" @click="showApplicantModal(index)"
           style="padding-top: 2px; padding-bottom: 2px; padding-left: 15px; padding-right: 15px;" />
       </template>
     </EduPrgmList>
@@ -23,13 +23,17 @@ import Applicant from '@/components/Applicant.vue';
 import HighlightButton from '@/components/Common/HighlightButton.vue';
 import NormalButton from '@/components/Common/NormalButton.vue';
 import NavBar from '@/components/Common/NavBar.vue';
-import { onMounted, ref, provide } from "vue";
+import { onMounted, ref, provide, inject } from "vue";
 import { Modal } from "bootstrap";
+import eduProgramAPI from '@/apis/eduProgramAPI';
+import router from '@/router';
+import store from '@/store';
 
 let updateEduProgramModal = null;
 let applicant = null;
 let battachInput = null;
 let imageInput = null;
+const responseData = inject('responseData');
 
 onMounted(() => {
   updateEduProgramModal = new Modal(document.querySelector("#updateEduProgramModal"));
@@ -37,9 +41,9 @@ onMounted(() => {
   battachInput = document.querySelector('#battachInput');
   imageInput = document.querySelector('#imageInput');
 });
-
 //하위컴포넌트(모달 등)에 데이터 전달
 const providedData = ref({
+  no: 0,
   title: '',
   eduDate: [],
   eduTime: [],
@@ -55,9 +59,44 @@ const providedData = ref({
 });
 provide('providedData', providedData);
 
-function showUpdateModal() {
+async function showUpdateModal(index) {
   battachInput.value = '';
   imageInput.value = '';
+  try {
+    const response = await eduProgramAPI.getEduProgramDetail(responseData.value.programList[index].no);
+    if(response.data.result === 'success') {
+      const eduProgram = response.data.eduProgram;
+      let newObject = {
+        no: eduProgram.programNo,
+        title: eduProgram.programTitle,
+        eduDate: [new Date(eduProgram.actBgnDate), new Date(eduProgram.actEndDate)],
+        eduTime: [{hours: eduProgram.actBgnTime, minutes: 0, seconds: 0}, {hours: eduProgram.actEndTime, minutes: 0, seconds: 0}],
+        recruitDate: [new Date(eduProgram.recruitBgnDate), new Date(eduProgram.recruitEndDate)],
+        recruitCnt: eduProgram.recruitCnt,
+        city: 0,
+        county: Number(eduProgram.recruitRegion),
+        eduPlace: eduProgram.actPlace,
+        mngName: eduProgram.mngName,
+        mngTel: eduProgram.mngTel,
+        content: eduProgram.content
+      };
+      for(let city of store.state.regionCode.regionList) {
+        for(let county of city.county) {
+          if(county.countyCode === newObject.county) {
+            newObject.city = city.cityCode;
+          }
+        }
+      }
+      providedData.value = newObject;
+      providedData.value.isRgExternal = true;
+      providedData.value.isClExternal = true;
+    } else {
+      alert('봉사프로그램이 존재하지 않습니다.');
+      router.go();
+    }
+  } catch(error) {
+    console.log(error);
+  }
   updateEduProgramModal.show();
 }
 function showApplicantModal(){

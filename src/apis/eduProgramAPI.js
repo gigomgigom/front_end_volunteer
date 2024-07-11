@@ -7,7 +7,14 @@ function getEduProgramList(searchIndex) {
         {params: searchIndex}
     )
 }
+//교육 프로그램 상세 가져오기
+function getEduProgramDetail(programNo) {
+    return axios.get(
+        `/EduProgram/get_edu_program_detail?programNo=${programNo}`
+    )
+}
 
 export default {
-    getEduProgramList
+    getEduProgramList,
+    getEduProgramDetail
 }
