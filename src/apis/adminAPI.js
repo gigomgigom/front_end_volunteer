@@ -7,7 +7,6 @@ function addVolProgram(formData) {
         formData
     )
 }
-
 //봉사프로그램 수정하기
 function modifyVolProgram(formData) {
     return axios.put(
@@ -27,10 +26,17 @@ function getVolParticipantList(programNo) {
         `/Admin/get_vol_participant_list?programNo=${programNo}`
     );
 }
-
+//교육 프로그램 추가하기
+function addEduProgram(formData) {
+    return axios.post(
+        '/Admin/create_edu_program',
+        formData
+    )
+}
 export default {
     addVolProgram,
     modifyVolProgram,
     deleteVolProgram,
-    getVolParticipantList
+    getVolParticipantList,
+    addEduProgram
 }
