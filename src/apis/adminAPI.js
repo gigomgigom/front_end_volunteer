@@ -46,6 +46,12 @@ function deleteEduProgram(programNo) {
         `/Admin/delete_edu_program/${programNo}`
     )
 }
+//교육 프로그램 신청인 목록 가져오기
+function getEduParticipantList(programNo) {
+    return axios.get(
+        `/Admin/get_edu_participant_list?programNo=${programNo}`
+    )
+}
 export default {
     addVolProgram,
     modifyVolProgram,
@@ -53,5 +59,6 @@ export default {
     getVolParticipantList,
     addEduProgram,
     modifyEduProgram,
-    deleteEduProgram
+    deleteEduProgram,
+    getEduParticipantList
 }

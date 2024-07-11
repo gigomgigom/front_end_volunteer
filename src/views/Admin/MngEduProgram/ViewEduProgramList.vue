@@ -102,7 +102,19 @@ async function showUpdateModal(index) {
   }
   updateEduProgramModal.show();
 }
-function showApplicantModal(){
+async function showApplicantModal(index){
+  try {
+    const response = await adminAPI.getEduParticipantList(responseData.value.programList[index].no);
+    if(response.data.result === 'success') {
+      providedData.value.applicant = response.data.applicantList;
+    } else {
+      alert('오류가 발생하였습니다. 잠시 후 다시 요청해주세요.');
+      router.go();
+    }
+  } catch(error) {
+    alert('서버 통신간 오류가 발생하였습니다. 잠시 후 다시 시도해주십시오');
+    router.go();
+  }
   applicant.show();
 }
 async function deleteEduProgram() {
