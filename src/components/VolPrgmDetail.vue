@@ -65,7 +65,7 @@
     <div class="row info-wrapper">
       <dl class="col-md-12">
         <dt style="width: 15%;">첨부파일</dt>
-        <dd style="width: 85%;"><span>{{ volDetail.fileName }}</span></dd>
+        <dd style="width: 85%;"><a :href="`http://localhost/VolProgram/download_vol_pgrm_battach_file?programNo=${programNo}`" style="cursor: pointer">{{ volDetail.fileName }}</a></dd>
       </dl>
     </div>
   </div>
