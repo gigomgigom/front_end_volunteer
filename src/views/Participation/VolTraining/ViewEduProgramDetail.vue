@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex justify-content-end">
-    <HighlightButton text="신청하기" class="me-2" @buttonClick="applyOrCancel()" v-if="detailData.isEduApplExist==='true'"/>
+    <HighlightButton text="신청하기" class="me-2" @buttonClick="applyOrCancel()" v-if="!detailData.isEduApplExist"/>
   </div>
   <div class="title-wrapper">
     <div class="rc-status"><b>{{ detailData.recruitStts === 1 ? '모집중' : '모집완료' }}</b></div>
@@ -69,8 +69,10 @@ async function applyEduProgram() {
         location: eduProgram.location,
         content: eduProgram.content,
         recruitStts: eduProgram.recruitStts,
-        isEduApplExist: eduProgram.isEduApplExist === 1 ? true : false
+        isEduApplExist: response.data.isEduApplExist !== 0 ? true : false
       }
+      console.log(eduProgram.isEduApplExist);
+      console.log(typeof eduProgram.isEduApplExist);
       detailData.value = newObject;
     } else {
       alert('프로그램이 존재하지 않습니다. 다시 시도해주십시오');
