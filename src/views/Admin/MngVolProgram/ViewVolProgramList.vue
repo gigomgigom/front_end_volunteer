@@ -187,7 +187,6 @@ async function updateVolProgram() {
       formData.append('teenPosbl', providedData.value.teenPosbl ? 1 : 0);
       formData.append('location', providedData.value.location);
       //주소 집어넣어야함
-      console.log(battachInput, imageInput);
       if (battachInput.files.length !== 0) {
         formData.append('battachFile', battachInput.files[0]);
       }

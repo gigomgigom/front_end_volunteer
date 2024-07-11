@@ -33,10 +33,18 @@ function addEduProgram(formData) {
         formData
     )
 }
+//교육 프로그램 수정하기
+function modifyEduProgram(formData) {
+    return axios.put(
+        '/Admin/update_edu_program',
+        formData
+    );
+}
 export default {
     addVolProgram,
     modifyVolProgram,
     deleteVolProgram,
     getVolParticipantList,
-    addEduProgram
+    addEduProgram,
+    modifyEduProgram
 }

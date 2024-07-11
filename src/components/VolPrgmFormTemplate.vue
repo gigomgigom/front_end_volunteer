@@ -226,7 +226,6 @@ function imageValidate(event) {
             };
             reader.readAsDataURL(file);
         }
-
     }
 }
 //첨부 파일 유효성 검사

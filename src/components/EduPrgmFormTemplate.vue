@@ -131,7 +131,7 @@
                                 @change="imageValidate($event)">
                       </div>
                       <div class="mt-1 d-flex justify-content-center">
-                          <img src="@/assets/home.png">
+                          <img class="w-100" src="https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg" id="thumbnailImg">
                       </div>
                   </div>
               </div>
@@ -183,6 +183,13 @@ function imageValidate(event) {
         } else if (!validImageTypes.includes(file.type)) {
             alert('이미지 파일만 업로드 가능합니다.');
             event.target.value = '';
+        } else {
+            console.log(event.target.result);
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                document.getElementById('thumbnailImg').setAttribute("src", event.target.result);
+            };
+            reader.readAsDataURL(file);
         }
     }
 }

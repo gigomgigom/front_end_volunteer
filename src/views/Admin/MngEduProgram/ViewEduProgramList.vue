@@ -28,6 +28,7 @@ import { Modal } from "bootstrap";
 import eduProgramAPI from '@/apis/eduProgramAPI';
 import router from '@/router';
 import store from '@/store';
+import adminAPI from '@/apis/adminAPI';
 
 let updateEduProgramModal = null;
 let applicant = null;
@@ -70,6 +71,7 @@ async function showUpdateModal(index) {
         no: eduProgram.programNo,
         title: eduProgram.programTitle,
         eduDate: [new Date(eduProgram.actBgnDate), new Date(eduProgram.actEndDate)],
+        recruitCenter: findRegionWithRegionNo(eduProgram.recruitRegion, store.state.regionCode.regionList),
         eduTime: [{hours: eduProgram.actBgnTime, minutes: 0, seconds: 0}, {hours: eduProgram.actEndTime, minutes: 0, seconds: 0}],
         recruitDate: [new Date(eduProgram.recruitBgnDate), new Date(eduProgram.recruitEndDate)],
         recruitCnt: eduProgram.recruitCnt,
@@ -78,7 +80,8 @@ async function showUpdateModal(index) {
         eduPlace: eduProgram.actPlace,
         mngName: eduProgram.mngName,
         mngTel: eduProgram.mngTel,
-        content: eduProgram.content
+        content: eduProgram.content,
+        location: eduProgram.location
       };
       for(let city of store.state.regionCode.regionList) {
         for(let county of city.county) {
@@ -106,14 +109,48 @@ function deleteEduProgram() {
   //프로그램 삭제 로직 작성
   updateEduProgramModal.hide();
 }
-function updateEduProgram() {
+async function updateEduProgram() {
   const blankResult = isDataBlank(providedData.value);
   if(blankResult.isDataOk) {
     const validateResult = isDataValidate(providedData.value);
     if(validateResult.isDataOk) {
+      
       //서버 전송하기 위한 데이터 세팅 작업해줘야함
-      //데이터 세팅 작업이 끝난 후 API요청해야함
-      alert('수정완료되었습니다!');
+      const formData = new FormData();
+      formData.append('programNo', providedData.value.no);
+      formData.append('programTitle', providedData.value.title);
+      formData.append('actBgnDate', dateFormat(providedData.value.eduDate[0]));
+      formData.append('actEndDate', dateFormat(providedData.value.eduDate[1]));
+      formData.append('actBgnTime', providedData.value.eduTime[0].hours);
+      formData.append('actEndTime', providedData.value.eduTime[1].hours);
+      formData.append('recruitBgnDate', dateFormat(providedData.value.recruitDate[0]));
+      formData.append('recruitEndDate', dateFormat(providedData.value.recruitDate[1]));
+      formData.append('recruitCnt', providedData.value.recruitCnt);
+      formData.append('recruitRegion', providedData.value.county);
+      formData.append('actPlace', providedData.value.eduPlace);
+      formData.append('mngName', providedData.value.mngName);
+      formData.append('mngTel', providedData.value.mngTel);
+      formData.append('content', providedData.value.content);
+      formData.append('location', providedData.value.location);
+      if(battachInput.files.length !== 0) {
+        formData.append('battachFile', battachInput.files[0]);
+      }
+      if(imageInput.files.length !== 0) {
+        formData.append('battachImg', imageInput.files[0]);
+      }
+      try {
+        const response = await adminAPI.modifyEduProgram(formData);
+        if(response.data.result === 'success') {
+          alert('교육 프로그램 수정이 완료되었습니다.');
+          router.go();
+        } else {
+          alert('교육 프로그램 수정 중 오류가 발생하였습니다. 잠시 후 다시 시도해주십시오');
+          router.go();
+        }
+      } catch(error) {
+        alert('통신 중 오류가 발생하였습니다. 잠시 후 다시 시도해주십시오.');
+        router.push('/Details/Admin/MngEduProgram');
+      }
       updateEduProgramModal.hide();
     } else {
       const validateMsg = validateResult.validateMsgList.join('\n');
@@ -192,6 +229,33 @@ function isDataValidate(data) {
     isDataOk = false;
   }
   return { validateMsgList, isDataOk };
+}
+//지역이름 찾기
+function findRegionWithRegionNo(regionNo, regionList) {
+    let result = {
+        cityName: '',
+        countyName: '',
+    }
+    for (let city of regionList) {
+        for (let county of city.county) {
+            if (county.countyCode === Number(regionNo)) {
+                result.cityName = city.cityName;
+                result.countyName = county.countyName;
+            }
+        }
+    }
+    return result.cityName + ' ' + result.countyName + ' 자원봉사센터';
+}
+//DATE객체를 문자열(YYYY-MM-DD)로 변환
+function dateFormat(dateStr) {
+    const date = new Date(dateStr);
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+
+    month = month >= 10 ? month : '0' + month;
+    day = day >= 10 ? day : '0' + day;
+
+    return date.getFullYear() + '-' + month + '-' + day;
 }
 </script>
 
