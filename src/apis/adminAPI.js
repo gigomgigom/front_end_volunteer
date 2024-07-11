@@ -52,6 +52,19 @@ function getEduParticipantList(programNo) {
         `/Admin/get_edu_participant_list?programNo=${programNo}`
     )
 }
+//봉사 프로그램 승인요청 목록 가져오기
+function getApproveRequestList(pageNo) {
+    return axios.get(
+        `/Admin/get_perform_rqst_list?pageNo=${pageNo}`
+    )
+}
+//봉사 프로그램 승인요청 상세 보기
+function getApproveRequestDetail(memberId, programNo) {
+    return axios.get(
+        '/Admin/get_perform_rqst_detail',
+        { params: {memberId, programNo}}
+    )
+}
 export default {
     addVolProgram,
     modifyVolProgram,
@@ -60,5 +73,7 @@ export default {
     addEduProgram,
     modifyEduProgram,
     deleteEduProgram,
-    getEduParticipantList
+    getEduParticipantList,
+    getApproveRequestList,
+    getApproveRequestDetail
 }

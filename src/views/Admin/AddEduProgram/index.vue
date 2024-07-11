@@ -54,7 +54,6 @@ async function getProgramList(pageNo) {
         let data = { pageNo };
         const response = await dataPortalAPI.getEduProgramList(data);
         let resultData = response.data.response.body;
-        console.log(resultData);
         let pagerData = {
             numOfRows: resultData.numOfRows,
             pageNo: resultData.pageNo,

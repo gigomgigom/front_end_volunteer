@@ -17,7 +17,7 @@
                     봉사 제목
                   </td>
                   <td colspan="3">
-                    <input type="text" class="form-control" readonly>
+                    <input type="text" class="form-control" readonly v-model="providedData.volProgram.title">
                   </td>
                 </tr>
                 <tr>
@@ -25,7 +25,7 @@
                     봉사 기간
                   </td>
                   <td colspan="1">
-                    <input type="text" class="form-control" readonly>
+                    <input type="text" class="form-control" readonly >
                   </td>
                   <td colspan="1">
                     봉사 시간
@@ -124,8 +124,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <HighlightButton text="승인" data-bs-dismiss="modal" />
-          <NormalButton text="거부" data-bs-dismiss="modal" />
+          <HighlightButton text="승인" data-bs-dismiss="modal"/>
+          <NormalButton text="거부" data-bs-dismiss="modal"/>
         </div>
       </div>
     </div>
@@ -135,8 +135,9 @@
 <script setup>
 import HighlightButton from '@/components/Common/HighlightButton.vue';
 import NormalButton from '@/components/Common/NormalButton.vue';
+import { inject } from 'vue';
 
-
+const providedData = inject('providedData');
 </script>
 
 <style scoped></style>
