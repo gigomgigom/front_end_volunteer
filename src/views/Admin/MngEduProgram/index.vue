@@ -97,7 +97,7 @@ async function getEduProgramList() {
                     title: eduProgram.programTitle,
                     eduDate: dateFormat(eduProgram.actBgnDate) + ' - ' + dateFormat(eduProgram.actEndDate),
                     url: '',
-                    isExternal: true
+                    isExternal: false
                 }
                 responseData.value.programList.push(newObject);
             }

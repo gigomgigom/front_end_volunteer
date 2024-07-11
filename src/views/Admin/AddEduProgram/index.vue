@@ -19,6 +19,14 @@ const route = useRoute();
 const pageNo = ref(route.query.pageNo || 1);
 
 const loadingContainer = ref(null);
+const searchIndex = ref({
+  pageNo: route.query.pageNo || 1,
+  keyword: route.query.keyword || '',
+  regionNo: route.query.regionNo,
+  recruitStts: route.query.recruitStts || 0,
+  changePageNo
+});
+provide('searchIndex', searchIndex);
 
 const responseData = ref({
     programList: [],
@@ -39,8 +47,6 @@ provide('responseData', responseData);
 onMounted(() => {
     getProgramList(pageNo.value);
 });
-
-
 
 async function getProgramList(pageNo) {
     try {
