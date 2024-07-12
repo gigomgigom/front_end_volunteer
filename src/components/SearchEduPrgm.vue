@@ -1,7 +1,6 @@
 <template>
     <div class="card">
         <div class="card-body" style="padding: 12px;">
-            <form>
                 <div class="row" style="margin-bottom: 30px; margin-top: 10px;">
                     <div class="col-sm-6 aa">
                         <span class="bb">교육지역</span>
@@ -10,7 +9,7 @@
                             <option v-for="(city, index) in regionList" :key="index" :value="city.cityCode">{{
                                 city.cityName }}</option>
                         </select>
-                        <select id="county" class="">
+                        <select id="county" class="" v-model="searchIndex.regionNo">
                             <option selected>전체</option>
                             <option v-for="(county, index) in countyList" :key="index" :value="county.countyCode">{{
                                 county.countyName }}</option>
@@ -19,34 +18,39 @@
                     <div class="col-sm-6 aa">
                         <span class="bb">모집상태</span>
                         <div class="ms-4" style="display: inline-block;">
-                            <span class="checks small"><input type="radio" id="ex_rds1" name="searchSrvcStts"
-                                    value="3"><label for="ex_rds1" class="ms-1">전체</label></span>
-                            <span class="checks small ms-2"><input type="radio" id="ex_rds2" name="searchSrvcStts"
-                                    value="0" checked="checked"><label for="ex_rds2" class="ms-1">모집중</label></span>
-                            <span class="checks small ms-2"><input type="radio" id="ex_rds3" name="searchSrvcStts"
-                                    value="1"><label for="ex_rds3" class="ms-1">모집완료</label></span>
+                            <span class="checks small">
+                                <input type="radio" id="ex_rds1" v-model="searchIndex.recruitStts" value="0">
+                                <label for="ex_rds1" class="ms-1">전체</label>
+                            </span>
+                            <span class="checks small ms-2">
+                                <input type="radio" id="ex_rds2" v-model="searchIndex.recruitStts" value="1">
+                                <label for="ex_rds2" class="ms-1">모집중</label>
+                            </span>
+                            <span class="checks small ms-2">
+                                <input type="radio" id="ex_rds3" v-model="searchIndex.recruitStts" value="2">
+                                <label for="ex_rds3" class="ms-1">모집완료</label>
+                            </span>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 aa">
                         <span class="bb">봉사명</span>
-                        <input type="text" style="width: 83%; margin-left: 40px; border-radius: 2px; border: 1px solid">
+                        <input type="text" v-model="searchIndex.keyword" style="width: 83%; margin-left: 40px; border-radius: 2px; border: 1px solid">
                     </div>
                 </div>
                 <div class="mt-4 mb-2" style="text-align: center;">
-                    <button class="btn btn-info me-2"
+                    <button class="btn btn-info me-2" @click="searchIndex.searchBySearchIndex"
                         style="color: #fff; background-color: #d43e0c; border: none; border-radius: 0">검색</button>
                     <button class="btn btn-danger"
                         style="background-color: #666; border: none; border-radius: 0;">초기화</button>
                 </div>
-            </form>
         </div>
     </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { inject, ref } from 'vue';
 import { useStore } from 'vuex';
 
 const store = useStore();
@@ -68,6 +72,7 @@ function findCounty(cityCode) {
     }
     return [];
 }
+const searchIndex = inject('searchIndex');
 
 </script>
 

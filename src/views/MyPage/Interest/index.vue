@@ -76,7 +76,7 @@ async function getInterestVol() {
       volDate: `${actStart} - ${actEnd}`,
       volTime: `${vol.actBgnTime}:00 - ${vol.actEndTime}:00`,
       classification: clsName,
-      url: "",//url이동 경로 값을 가져와야함
+      url: `/Details/Participation/VolProgram/ViewVolProgramDetail?programNo=${vol.programNo}`,//url이동 경로 값을 가져와야함
       isExternal: false
     }
     responseData.value.programList.push(newObject);

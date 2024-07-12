@@ -47,10 +47,13 @@
           <span class="verification-text2" ref="idRegex_error">형식에 맞게 입력해주세요.</span>
         </dt>
         <dd class="col-9 d-flex align-items-center">
-          <input type="text" class="form-control form-control-sm me-2" v-model="member.id">
-          <button class="btn btn-danger btn-sm me-2" type="button">중복조회</button>
-          <span class="verification-text" id="memberIdError" style="font-size: 12px;">영어(소문자), 숫자로 5자리 이상 12자리 이하로 입력</span>
-        </dd>
+      <input type="text" class="form-control form-control-sm me-2" v-model="member.id">
+      <button class="btn btn-danger btn-sm me-2" type="button" @click="checkId">중복조회</button>
+      <span class="error-text">{{ errorMessage }}</span>
+      <span class="verification-text" id="memberIdError" style="font-size: 12px;" v-if="!errorMessage">
+        영어(소문자), 숫자로 5자리 이상 12자리 이하로 입력
+      </span>
+    </dd>
       </dl>
       <dl class="row info-row">
         <dt class="col-3">비밀번호
@@ -163,6 +166,11 @@ import { ref, onMounted} from "vue";
 import { useStore } from 'vuex';
 import TextHeader from '@/components/Common/TextHeader.vue';
 import HighlightButton from '@/components/Common/HighlightButton.vue';
+import axios from 'axios';
+import authAPI from "@/apis/authAPI";
+
+
+
 
 const store = useStore();
 const regionList = store.state.regionCode.regionList;
@@ -231,7 +239,7 @@ let member = ref({
   birthDate: "",
   id: "",
   password: "",
-  passwordCheck: "",
+  passwordpasswordCheck: "",
   postCode: "",
   address: "",
   detailAddress: "",
@@ -244,8 +252,6 @@ let member = ref({
   interest1:"",
   interest2:""
 });
-
-
 
 function handleSubmit() {
   const tel = member.value.num1 + "-" + member.value.num2 + "-" + member.value.num3;
@@ -280,6 +286,7 @@ function handleSubmit() {
     isDataOk = false;
   }else{
     formData.birthDate = member.value.birthDate
+    console.log(formData);
   }
   if(member.value.id === ""){
     errorElements[3].value.classList.add('userinfo_error');
@@ -342,14 +349,83 @@ function handleSubmit() {
       isDataOk = false;
     }
   }
+  //Member DTO에 담음
+  let requestMem = {
+  memberId: member.value.id,
+  memberName: member.value.name,
+  birthdate: member.value.birthDate,
+  memberPw: member.value.password,
+  postNo: member.value.postCode,
+  address: member.value.address,
+  addressDetail: member.value.detailAddress,
+  tel: member.value.num1 + "-" +  member.value.num2 + "-" +member.value.num3,
+  email: member.value.email,
+  affCenter: member.value.center2 ,
+  hopeCtg: member.value.interest2
+}
+ 
+
   console.log(JSON.parse(JSON.stringify(member.value)));
   console.log(JSON.parse(JSON.stringify(formData)));
   console.log('유효성 검사 결과 : ',isDataOk);
+  console.log(requestMem);
   //만약 유효성 검사에 단 하나도 걸리지 않았다면 isDataOk가 true값이 넘어오게 된다.
   if(isDataOk) {
+    const data = JSON.parse(JSON.stringify(member));
+    //REST API에 데이터 전송
   //formData 객체를 JSON으로 변환한 후 DB에 통신해야함 ㅇㅇ
   }
+
+  if (isDataOk) {
+    // REST API에 데이터 전송
+    axios.post('/Auth/join', requestMem)
+      .then(response => {
+        console.log(response.data);
+        // 성공 시 처리 로직
+        alert('회원가입이 완료되었습니다.');
+      })
+      .catch(error => {
+        if (error.response) {
+          // 서버가 응답을 했으나 상태 코드가 2xx 범위 밖에 있음
+          console.error('Error response:', error.response.data);
+          console.error('Error status:', error.response.status);
+          console.error('Error headers:', error.response.headers);
+        } else if (error.request) {
+          // 요청이 만들어졌으나 응답을 받지 못함
+          console.error('Error request:', error.request);
+          alert('서버와의 통신 중 문제가 발생했습니다. 서버가 실행 중인지 확인해주세요.');
+        } else {
+          // 요청을 설정하는 동안 문제가 발생함
+          console.error('Error message:', error.message);
+          alert('알 수 없는 오류가 발생했습니다.');
+        }
+        console.error('Error config:', error.config);
+      });
+  }
 }
+
+//아이디 중복조회
+const errorMessage = ref('');
+const successMessage = ref('');
+
+const checkId = async () => {
+  errorMessage.value = ''; //초기화
+
+  try {
+    console.log('Checking ID:', member.value.id);
+   const response = await authAPI.checkId(member.value.id);
+    console.log('Response:', response.data);
+    if (response.data) {
+      errorMessage.value = '해당 아이디는 이미 사용중입니다.';
+    } else {
+      errorMessage.value = '';
+    }
+  } catch (error) {
+    console.error('Error checking ID:', error);
+    errorMessage.value = '아이디 중복 조회 중 오류가 발생했습니다.';
+  }
+};
+    
 
 //도로명 주소 스크립트
 onMounted(() => {
@@ -410,6 +486,7 @@ function sample6_execDaumPostcode() {
       detailAddress.value.focus();
     },
   }).open();
+
 }
 </script>
 
@@ -526,5 +603,12 @@ dd {
 }
 .userinfo_error {
   display: block;
+}
+
+.error-text {
+  color: red;
+  font-size: 12px;
+  white-space: nowrap; 
+  max-width: 200px;
 }
 </style>

@@ -14,7 +14,7 @@ import { onMounted, ref, inject } from 'vue';
 //카카오맵이 올라갈 DOM객체 선언 (이 컴포넌트가 마운트 되었을때 DOM객체(mapContainer)의 값이 들어감.)
 const mapContainer = ref(null);
 
-let locationData = inject('volDetail');
+let locationData = inject('detail');
 
 //컴포넌트가 마운트되었다면 카카오맵을 로드한다.
 onMounted(() => {

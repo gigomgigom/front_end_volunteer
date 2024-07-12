@@ -2,13 +2,14 @@
   <div>
     <SearchEduPrgm/>
     <EduPrgmList>
-      <template v-slot:right-side>
-        <HighlightButton text="수정하기" class="mb-3" @click="showUpdateModal"
+      <template v-slot:right-side="{index}">
+        <HighlightButton text="수정하기" class="mb-3" @click="showUpdateModal(index)"
           style="padding-top: 2px; padding-bottom: 2px; padding-left: 15px; padding-right: 15px;" />
-        <NormalButton text="신청조회" @click="showApplicantModal"
+        <NormalButton text="신청조회" @click="showApplicantModal(index)"
           style="padding-top: 2px; padding-bottom: 2px; padding-left: 15px; padding-right: 15px;" />
       </template>
     </EduPrgmList>
+    <navBar/>
     <EduPrgmFormTemplateSlot id="updateEduProgramModal" @buttonUpdate="updateEduProgram" @buttonDelete="deleteEduProgram"/>
     <Applicant id="applicant"/>
   </div>
@@ -21,13 +22,19 @@ import EduPrgmList from '@/components/EduPrgmList.vue';
 import Applicant from '@/components/Applicant.vue';
 import HighlightButton from '@/components/Common/HighlightButton.vue';
 import NormalButton from '@/components/Common/NormalButton.vue';
-import { onMounted, ref, provide } from "vue";
+import NavBar from '@/components/Common/NavBar.vue';
+import { onMounted, ref, provide, inject } from "vue";
 import { Modal } from "bootstrap";
+import eduProgramAPI from '@/apis/eduProgramAPI';
+import router from '@/router';
+import store from '@/store';
+import adminAPI from '@/apis/adminAPI';
 
 let updateEduProgramModal = null;
 let applicant = null;
 let battachInput = null;
 let imageInput = null;
+const responseData = inject('responseData');
 
 onMounted(() => {
   updateEduProgramModal = new Modal(document.querySelector("#updateEduProgramModal"));
@@ -35,9 +42,9 @@ onMounted(() => {
   battachInput = document.querySelector('#battachInput');
   imageInput = document.querySelector('#imageInput');
 });
-
 //하위컴포넌트(모달 등)에 데이터 전달
 const providedData = ref({
+  no: 0,
   title: '',
   eduDate: [],
   eduTime: [],
@@ -53,26 +60,120 @@ const providedData = ref({
 });
 provide('providedData', providedData);
 
-function showUpdateModal() {
+async function showUpdateModal(index) {
   battachInput.value = '';
   imageInput.value = '';
+  try {
+    const response = await eduProgramAPI.getEduProgramDetail(responseData.value.programList[index].no);
+    if(response.data.result === 'success') {
+      const eduProgram = response.data.eduProgram;
+      let newObject = {
+        no: eduProgram.programNo,
+        title: eduProgram.programTitle,
+        eduDate: [new Date(eduProgram.actBgnDate), new Date(eduProgram.actEndDate)],
+        recruitCenter: findRegionWithRegionNo(eduProgram.recruitRegion, store.state.regionCode.regionList),
+        eduTime: [{hours: eduProgram.actBgnTime, minutes: 0, seconds: 0}, {hours: eduProgram.actEndTime, minutes: 0, seconds: 0}],
+        recruitDate: [new Date(eduProgram.recruitBgnDate), new Date(eduProgram.recruitEndDate)],
+        recruitCnt: eduProgram.recruitCnt,
+        city: 0,
+        county: Number(eduProgram.recruitRegion),
+        eduPlace: eduProgram.actPlace,
+        mngName: eduProgram.mngName,
+        mngTel: eduProgram.mngTel,
+        content: eduProgram.content,
+        location: eduProgram.location
+      };
+      for(let city of store.state.regionCode.regionList) {
+        for(let county of city.county) {
+          if(county.countyCode === newObject.county) {
+            newObject.city = city.cityCode;
+          }
+        }
+      }
+      providedData.value = newObject;
+      providedData.value.isRgExternal = true;
+      providedData.value.isClExternal = true;
+    } else {
+      alert('봉사프로그램이 존재하지 않습니다.');
+      router.go();
+    }
+  } catch(error) {
+    console.log(error);
+  }
   updateEduProgramModal.show();
 }
-function showApplicantModal(){
+async function showApplicantModal(index){
+  try {
+    const response = await adminAPI.getEduParticipantList(responseData.value.programList[index].no);
+    if(response.data.result === 'success') {
+      providedData.value.applicant = response.data.applicantList;
+    } else {
+      alert('오류가 발생하였습니다. 잠시 후 다시 요청해주세요.');
+      router.go();
+    }
+  } catch(error) {
+    alert('서버 통신간 오류가 발생하였습니다. 잠시 후 다시 시도해주십시오');
+    router.go();
+  }
   applicant.show();
 }
-function deleteEduProgram() {
-  //프로그램 삭제 로직 작성
-  updateEduProgramModal.hide();
+async function deleteEduProgram() {
+  try {
+    const response = await adminAPI.deleteEduProgram(providedData.value.no);
+    if(response.data.result === 'success') {
+      alert('교육 프로그램이 삭제되었습니다.');
+      router.go();
+    } else {
+      alert('교육 프로그램 삭제 중 문제가 발생하였습니다. 잠시 후 다시 시도해주십시오');
+      router.go();
+    }
+  } catch(error) {
+    alert('서버 통신 중 오류가 발생하였습니다. 잠시 후 다시 시도해주십시오');
+    router.go();
+  }
 }
-function updateEduProgram() {
+async function updateEduProgram() {
   const blankResult = isDataBlank(providedData.value);
   if(blankResult.isDataOk) {
     const validateResult = isDataValidate(providedData.value);
     if(validateResult.isDataOk) {
+      
       //서버 전송하기 위한 데이터 세팅 작업해줘야함
-      //데이터 세팅 작업이 끝난 후 API요청해야함
-      alert('수정완료되었습니다!');
+      const formData = new FormData();
+      formData.append('programNo', providedData.value.no);
+      formData.append('programTitle', providedData.value.title);
+      formData.append('actBgnDate', dateFormat(providedData.value.eduDate[0]));
+      formData.append('actEndDate', dateFormat(providedData.value.eduDate[1]));
+      formData.append('actBgnTime', providedData.value.eduTime[0].hours);
+      formData.append('actEndTime', providedData.value.eduTime[1].hours);
+      formData.append('recruitBgnDate', dateFormat(providedData.value.recruitDate[0]));
+      formData.append('recruitEndDate', dateFormat(providedData.value.recruitDate[1]));
+      formData.append('recruitCnt', providedData.value.recruitCnt);
+      formData.append('recruitRegion', providedData.value.county);
+      formData.append('actPlace', providedData.value.eduPlace);
+      formData.append('mngName', providedData.value.mngName);
+      formData.append('mngTel', providedData.value.mngTel);
+      formData.append('content', providedData.value.content);
+      formData.append('location', providedData.value.location);
+      if(battachInput.files.length !== 0) {
+        formData.append('battachFile', battachInput.files[0]);
+      }
+      if(imageInput.files.length !== 0) {
+        formData.append('battachImg', imageInput.files[0]);
+      }
+      try {
+        const response = await adminAPI.modifyEduProgram(formData);
+        if(response.data.result === 'success') {
+          alert('교육 프로그램 수정이 완료되었습니다.');
+          router.go();
+        } else {
+          alert('교육 프로그램 수정 중 오류가 발생하였습니다. 잠시 후 다시 시도해주십시오');
+          router.go();
+        }
+      } catch(error) {
+        alert('통신 중 오류가 발생하였습니다. 잠시 후 다시 시도해주십시오.');
+        router.push('/Details/Admin/MngEduProgram');
+      }
       updateEduProgramModal.hide();
     } else {
       const validateMsg = validateResult.validateMsgList.join('\n');
@@ -151,6 +252,33 @@ function isDataValidate(data) {
     isDataOk = false;
   }
   return { validateMsgList, isDataOk };
+}
+//지역이름 찾기
+function findRegionWithRegionNo(regionNo, regionList) {
+    let result = {
+        cityName: '',
+        countyName: '',
+    }
+    for (let city of regionList) {
+        for (let county of city.county) {
+            if (county.countyCode === Number(regionNo)) {
+                result.cityName = city.cityName;
+                result.countyName = county.countyName;
+            }
+        }
+    }
+    return result.cityName + ' ' + result.countyName + ' 자원봉사센터';
+}
+//DATE객체를 문자열(YYYY-MM-DD)로 변환
+function dateFormat(dateStr) {
+    const date = new Date(dateStr);
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+
+    month = month >= 10 ? month : '0' + month;
+    day = day >= 10 ? day : '0' + day;
+
+    return date.getFullYear() + '-' + month + '-' + day;
 }
 </script>
 

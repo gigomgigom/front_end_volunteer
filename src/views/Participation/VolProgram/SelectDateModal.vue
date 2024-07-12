@@ -13,14 +13,14 @@
                     <div style="border: 1px solid black" class="mb-2"></div>
                     <div class="row py-2 mb-4 px-2">
                         <div class="col-md-6 d-flex flex-column">
-                            <span><b>봉사프로그램명</b> : 폐지줍기</span>
-                            <span><b>봉사자 유형</b> : 청소년</span>
-                            <span><b>봉사분야</b> : 행정보조 > 업무지원</span>
+                            <span><b>제목</b> : {{ volDetail.title }}</span>
+                            <span><b>봉사자 유형</b> : {{ volDetail.adultTeen }}</span>
+                            <span><b>봉사분야</b> : {{ volDetail.ctg }}</span>
                         </div>
                         <div class="col-md-6 d-flex flex-column">
-                            <span><b>모집 기관</b> : 양평서부청소년문화의집</span>
-                            <span><b>봉사 지역</b> : 서울특별시 송파구</span>
-                            <span><b>봉사 장소</b> : IT 벤처타워</span>
+                            <span><b>모집 기관</b> : {{ volDetail.recruitCenter }}</span>
+                            <span><b>봉사 지역</b> : {{ volDetail.region }}</span>
+                            <span><b>봉사 장소</b> : {{ volDetail.actPlace }}</span>
                         </div>
                     </div>
                     <div class="row">
@@ -30,8 +30,8 @@
                             </div>
                             <div style="border: 1px solid black" class="mb-2"></div>
                             <VueDatePicker class="mb-5" v-model="selectedDate" :min-date="startDate" no-title
-                                :max-date="endDate" multi-dates @update:model-value="updateSelectedDateCount"
-                                :enable-time-picker="false" :day-names="['월', '화', '수', '목', '금', '토', '일']">
+                                :max-date="endDate" multi-dates :enable-time-picker="false"
+                                :day-names="['월', '화', '수', '목', '금', '토', '일']">
                             </VueDatePicker>
                         </div>
                         <div class="col-md-7">
@@ -64,9 +64,9 @@
                         </div>
                         <div style="border: 1px solid black"></div>
                         <div class="d-flex justify-content-between py-2 px-2">
-                            <span><b>신청인</b> : 심영조</span>
-                            <span><b>연락처</b> : 010-2810-4870</span>
-                            <span><b>이메일</b> : tlarlrma@naver.com</span>
+                            <span><b>신청인</b> : {{ memberInfo.name }}</span>
+                            <span><b>연락처</b> : {{ memberInfo.tel }}</span>
+                            <span><b>이메일</b> : {{ memberInfo.email }}</span>
                         </div>
                         <div class="d-flex flex-column py-2 px-3"
                             style="border: 1px solid silver;  border-radius: 5px; font-size: 13px;">
@@ -74,7 +74,8 @@
                             <span style="color: rgb(243, 98, 0);">연락처가 미 등록된 경우 봉사활동 정보를 받으실 수 없습니다.</span>
                             <span>휴대폰번호 및 이메일로 봉사활동 정보를 제공 받으시겠습니까?</span>
                             <div class="d-flex justify-content-center mt-3">
-                                <input class="form-check-input me-3" type="checkbox" id="checkbox" style="border: 1px solid gray">
+                                <input class="form-check-input me-3" type="checkbox" id="checkbox"
+                                    style="border: 1px solid gray">
                                 <label class="form-check-label" for="checkbox">
                                     정보제공 및 수신동의
                                 </label>
@@ -83,7 +84,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <HighlightButton text="신청하기" data-bs-dismiss="modal" />
+                    <HighlightButton text="신청하기" data-bs-dismiss="modal" @buttonClick="applyVolProgram" />
                     <NormalButton text="취소" data-bs-dismiss="modal" />
                 </div>
             </div>
@@ -92,14 +93,78 @@
 </template>
 
 <script setup>
+import memberAPI from '@/apis/memberAPI';
+import volParticipateAPI from '@/apis/volParticipateAPI';
 import HighlightButton from '@/components/Common/HighlightButton.vue';
 import NormalButton from '@/components/Common/NormalButton.vue';
-import { ref, vModelCheckbox, watch } from 'vue';
-
-const startDate = new Date(2024, 5, 19);
-const endDate = new Date(2024, 5, 23);
+import router from '@/router';
+import { inject, onMounted, ref } from 'vue';
 
 const selectedDate = ref(null);
+
+const volDetail = inject('detail');
+const startDate = ref(null);
+const endDate = ref(null);
+const memberInfo = ref({
+    name: '',
+    tel: '',
+    email: ''
+});
+
+onMounted(() => {
+    startDate.value = new Date(volDetail.value.actDate.split(' - ')[0]);
+    endDate.value = new Date(volDetail.value.actDate.split(' - ')[1]);
+    getMemberInfo();
+})
+
+async function getMemberInfo() {
+    try {
+        const response = await memberAPI.getMemberInfo();
+        memberInfo.value.name = response.data.member.memberName;
+        memberInfo.value.tel = response.data.member.tel;
+        memberInfo.value.email = response.data.member.email;
+    } catch(error) {
+        alert('에러가 발생했습니다. 다시 시도해주십시오.');
+        router.go();
+    }
+}
+
+async function applyVolProgram() {
+    let selectedDateToString = [];
+    for(let date of selectedDate.value) {
+        selectedDateToString.push(dateFormat(date));
+    }
+    let data = {
+        programNo: volDetail.value.no,
+        dateList: selectedDateToString
+    }
+    try {
+        const response = await volParticipateAPI.applyVolProgram(JSON.parse(JSON.stringify(data)));
+        if(response.data.result === 'success') {
+            alert('신청이 완료되었습니다!');
+            router.go();
+        } else {
+            alert(response.data.reason);
+            router.go();
+        }
+    } catch(error) {
+        alert('에러가 발생했습니다. 다시 시도해주십시오.');
+        console.log(error);
+        router.go();
+    }
+}
+
+//DATE객체를 문자열(YYYY-MM-DD)로 변환
+function dateFormat(dateStr) {
+  const date = new Date(dateStr);
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+
+  month = month >= 10 ? month : '0' + month;
+  day = day >= 10 ? day : '0' + day;
+
+  return date.getFullYear() + '-' + month + '-' + day;
+}
 </script>
 
 <style scoped></style>

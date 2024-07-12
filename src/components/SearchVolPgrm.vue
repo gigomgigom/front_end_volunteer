@@ -176,7 +176,6 @@ onMounted(() => {
         }
     }
 });
-const emit = defineEmits(['searchBySearchIndex']);
 //----봉사 프로그램 검색버튼 누를시 호출
 function searchVolProgram() {
     searchIndex.value.regionNo = countyCode.value[0];

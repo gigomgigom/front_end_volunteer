@@ -46,9 +46,13 @@ const responseData = ref({
   }
 });
 
+
+//자식 컴포넌트에서 사용할 수 있도록 데이터를 제공
 provide('responseData', responseData);
 provide('searchIndex', searchIndex);
 
+
+//컴포넌트가 마운트 될 때마다 'getVolAppList' 함수 호출
 onMounted(() => {
   getVolApplList();
 });
@@ -92,7 +96,7 @@ async function getVolApplList() {
       volDate: `${actStart} - ${actEnd}`,
       volTime: `${program.actBgnTime}:00 - ${program.actEndTime}:00`,
       classification: clsName,
-      url: "",//url이동 경로 값을 가져와야함
+      url: `/Details/Participation/VolProgram/ViewVolProgramDetail?programNo=${program.programNo}`,//url이동 경로 값을 가져와야함
       isExternal: false
     }
     responseData.value.programList.push(newObject);
@@ -200,6 +204,7 @@ function searchBySearchIndex() {
   z-index: 999;
   display: none;
 }
+
 
 .loading {
   width: 100%;

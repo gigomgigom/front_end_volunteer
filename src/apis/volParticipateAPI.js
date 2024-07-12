@@ -15,6 +15,13 @@ function getVolPerformList(rqstData) {
         {params: rqstData}
     )
 }
+//봉사프로그램 신청하기
+function applyVolProgram(rqstData) {
+    return axios.post(
+        '/VolParticipate/apply_vol_program',
+        rqstData
+    )
+}
 //봉사신청취소
 function cancelVolAppl(programNo) {
     console.log(programNo)
@@ -34,5 +41,6 @@ export default{
     getVolPtcpList,
     requestVolPerform,
     cancelVolAppl,
-    getVolPerformList
+    getVolPerformList,
+    applyVolProgram
 }

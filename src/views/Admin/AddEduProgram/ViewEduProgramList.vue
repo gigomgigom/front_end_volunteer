@@ -52,6 +52,8 @@ import EduPrgmFormTemplateSlot from './EduPrgmFormTemplateSlot.vue'
 import NormalButton from '@/components/Common/NormalButton.vue';
 import dataPortalAPI from "@/apis/dataPortalAPI";
 import { useStore } from "vuex";
+import adminAPI from "@/apis/adminAPI";
+import router from "@/router";
 
 let addEduProgramModal = null;
 let battachInput = null;
@@ -79,6 +81,7 @@ const providedData = ref({
   mngName: '',
   mngTel: '',
   content: '',
+  location: '',
   isExternal: false
 });
 provide('providedData', providedData);
@@ -155,14 +158,44 @@ function resetData() {
   imageInput.value = '';
 }
 //데이터 추가전 확인하는 함수
-function addEduProgram() {
+async function addEduProgram() {
   const blankResult = isDataBlank(providedData.value);
   if (blankResult.isDataOk) {
     const validateResult = isDataValidate(providedData.value);
     if (validateResult.isDataOk) {
       //서버 전송하기 위한 데이터 세팅 작업해줘야함
+      const formData = new FormData();
+      formData.append('programTitle', providedData.value.title);
+      formData.append('actBgnDate', dateFormat(providedData.value.eduDate[0]));
+      formData.append('actEndDate', dateFormat(providedData.value.eduDate[1]));
+      formData.append('actBgnTime', providedData.value.eduTime[0].hours);
+      formData.append('actEndTime', providedData.value.eduTime[1].hours);
+      formData.append('recruitBgnDate', dateFormat(providedData.value.recruitDate[0]));
+      formData.append('recruitEndDate', dateFormat(providedData.value.recruitDate[1]));
+      formData.append('recruitCnt', providedData.value.recruitCnt);
+      formData.append('recruitRegion', providedData.value.county);
+      formData.append('actPlace', providedData.value.eduPlace);
+      formData.append('mngName', providedData.value.mngName);
+      formData.append('mngTel', providedData.value.mngTel);
+      formData.append('content', providedData.value.content);
+      formData.append('location', providedData.value.location);
+      formData.append('battachFile', battachInput.files[0]);
+      formData.append('battachImg', imageInput.files[0]);
       //데이터 세팅 작업이 끝난 후 API요청해야함.
-      addEduProgramModal.hide();
+      try {
+        const response = await adminAPI.addEduProgram(formData);
+        if(response.data.result === 'success') {
+          alert('교육 프로그램이 추가되었습니다!');
+          router.go();
+        } else {
+          alert('서버 통신 중 문제가 발생하였습니다. 잠시 후 다시 시도해주십시오');
+          router.go();
+        }
+      } catch(error) {
+        alert('에러가 발생하였습니다. 잠시후 다시 시도해주십시오');
+        router.go();
+      }
+      
     } else {
       const validateMsg = validateResult.validateMsgList.join('\n');
       alert(`잘못 입력된 정보가 있습니다.\n${validateMsg}`);
@@ -250,6 +283,17 @@ function parseIntToDate(dateNumber) {
   const day = parseInt(dateString.substring(6, 8), 10);
   // Date 객체 생성
   return new Date(year, month, day);
+}
+//DATE객체를 문자열(YYYY-MM-DD)로 변환
+function dateFormat(dateStr) {
+  const date = new Date(dateStr);
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+
+  month = month >= 10 ? month : '0' + month;
+  day = day >= 10 ? day : '0' + day;
+
+  return date.getFullYear() + '-' + month + '-' + day;
 }
 </script>
 

@@ -5,10 +5,11 @@ import qs from "qs";
 const APIKey = process.env.VUE_APP_PORTAL_API_KEY;
 
 //봉사프로그램 목록을 검색 조건에 맞춰 가져온다.
-function getVolProgramList(searchIndex) {
+function getVolProgramList(rqstData) {
+    rqstData.serviceKey = APIKey;
     return axios.get(
-        `https://cors-anywhere.herokuapp.com/http://openapi.1365.go.kr/openapi/service/rest/VolunteerPartcptnService/getVltrSearchWordList?pageNo=${searchIndex.pageNo}`,
-        APIKey
+        `https://cors-anywhere.herokuapp.com/http://openapi.1365.go.kr/openapi/service/rest/VolunteerPartcptnService/getVltrSearchWordList`,
+        {params: rqstData}
     );
 }
 //봉사 프로그램 상세 내용을 조회한다.

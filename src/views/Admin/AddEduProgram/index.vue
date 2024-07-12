@@ -19,6 +19,14 @@ const route = useRoute();
 const pageNo = ref(route.query.pageNo || 1);
 
 const loadingContainer = ref(null);
+const searchIndex = ref({
+  pageNo: route.query.pageNo || 1,
+  keyword: route.query.keyword || '',
+  regionNo: route.query.regionNo,
+  recruitStts: route.query.recruitStts || 0,
+  changePageNo
+});
+provide('searchIndex', searchIndex);
 
 const responseData = ref({
     programList: [],
@@ -40,15 +48,12 @@ onMounted(() => {
     getProgramList(pageNo.value);
 });
 
-
-
 async function getProgramList(pageNo) {
     try {
         loadingContainer.value.classList.add('loading');
         let data = { pageNo };
         const response = await dataPortalAPI.getEduProgramList(data);
         let resultData = response.data.response.body;
-        console.log(resultData);
         let pagerData = {
             numOfRows: resultData.numOfRows,
             pageNo: resultData.pageNo,

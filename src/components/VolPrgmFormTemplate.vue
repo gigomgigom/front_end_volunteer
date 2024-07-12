@@ -69,8 +69,7 @@
                                         봉사 분야
                                     </td>
                                     <td colspan="1">
-                                        <select class="form-select"
-                                            v-model="providedData.highCls">
+                                        <select class="form-select" v-model="providedData.highCls">
                                             <option selected :value="''">전체</option>
                                             <option v-for="(highCls, index) in categoryList" :key="index"
                                                 :value="highCls.highClsCode">{{ highCls.highClsName }}</option>
@@ -89,8 +88,7 @@
                                         봉사 지역
                                     </td>
                                     <td colspan="1">
-                                        <select class="form-select"
-                                            v-model="providedData.city">
+                                        <select class="form-select" v-model="providedData.city">
                                             <option selected :value="0">전체</option>
                                             <option v-for="(city, index) in regionList" :key="index"
                                                 :value="city.cityCode">{{ city.cityName }}</option>
@@ -110,6 +108,14 @@
                                     </td>
                                     <td colspan="3">
                                         <input type="text" class="form-control" v-model="providedData.actPlace">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">
+                                        주소
+                                    </td>
+                                    <td colspan="3">
+                                        <input type="text" class="form-control" v-model="providedData.location">
                                     </td>
                                 </tr>
                                 <tr>
@@ -155,7 +161,7 @@
                                 @change="imageValidate($event)">
                         </div>
                         <div class="mt-1 d-flex justify-content-center">
-                            <img src="@/assets/home.png">
+                            <img src="@/assets/home.png" class="w-100" id="thumbnailImg">
                         </div>
                     </div>
                 </div>
@@ -172,7 +178,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, inject, watch, watchEffect } from 'vue';
+import { ref, inject, watch } from 'vue';
 import { useStore } from 'vuex';
 
 const store = useStore();
@@ -212,14 +218,21 @@ function imageValidate(event) {
         } else if (!validImageTypes.includes(file.type)) {
             alert('이미지 파일만 업로드 가능합니다.');
             event.target.value = '';
+        } else {
+            console.log(event.target.result);
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                document.getElementById('thumbnailImg').setAttribute("src", event.target.result);
+            };
+            reader.readAsDataURL(file);
         }
     }
 }
 //첨부 파일 유효성 검사
 function battachValidate(event) {
     const file = event.target.files[0];
-    if(file) {
-        if(event.target.files.length > 1) {
+    if (file) {
+        if (event.target.files.length > 1) {
             alert('파일은 한개만 선택가능합니다.');
             event.target.value = '';
         }
@@ -228,7 +241,7 @@ function battachValidate(event) {
 
 watch(() => providedData.value.city, (newCity, oldCity) => {
     countyList.value = findCounty(newCity);
-    if(providedData.value.isRgExternal) {
+    if (providedData.value.isRgExternal) {
         providedData.value.isRgExternal = false;
     } else {
         providedData.value.county = 0;
@@ -237,7 +250,7 @@ watch(() => providedData.value.city, (newCity, oldCity) => {
 
 watch(() => providedData.value.highCls, (newCls, oldCls) => {
     lowClsList.value = findLowCls(newCls);
-    if(providedData.value.isClExternal) {
+    if (providedData.value.isClExternal) {
         providedData.value.isClExternal = false;
     } else {
         providedData.value.lowCls = '';
