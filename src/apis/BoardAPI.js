@@ -12,4 +12,3 @@ function getNoticeList() {
 export default {
     getNoticeList
 }
-

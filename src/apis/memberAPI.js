@@ -62,10 +62,5 @@ export default {
     deleteMember,
     getMemberName,
     changePw
-    //내보내기할 함수(리턴값은 promise)
-    findId,
-    findPw,
-    deleteMember,
-    getMemberName,
-    changePw
+
 }
