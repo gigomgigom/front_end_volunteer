@@ -25,13 +25,13 @@
                     봉사 기간
                   </td>
                   <td colspan="1">
-                    <input type="text" class="form-control" readonly >
+                    <input type="text" class="form-control" readonly v-model="providedData.volProgram.actDate">
                   </td>
                   <td colspan="1">
                     봉사 시간
                   </td>
                   <td colspan="1">
-                    <input type="text" class="form-control" readonly>
+                    <input type="text" class="form-control" readonly v-model="providedData.volProgram.actTime">
                   </td>
                 </tr>
                 <tr>
@@ -40,7 +40,7 @@
                   </td>
                   <td colspan="3">
                     <div>
-                      <input type="text" class="form-control" readonly>
+                      <input type="text" class="form-control" readonly v-model="providedData.volProgram.recruitCenter">
                     </div>
                   </td>
                 </tr>
@@ -49,10 +49,10 @@
                     봉사 분야
                   </td>
                   <td colspan="1">
-                    <input type="text" class="form-control" readonly>
+                    <input type="text" class="form-control" readonly v-model="providedData.volProgram.ctg.highCls">
                   </td>
                   <td colspan="2">
-                    <input type="text" class="form-control" readonly>
+                    <input type="text" class="form-control" readonly v-model="providedData.volProgram.ctg.lowCls">
                   </td>
                 </tr>
                 <tr>
@@ -60,10 +60,10 @@
                     봉사 지역
                   </td>
                   <td colspan="1">
-                    <input type="text" class="form-control" readonly>
+                    <input type="text" class="form-control" readonly v-model="providedData.volProgram.region.cityName">
                   </td>
                   <td colspan="2">
-                    <input type="text" class="form-control" readonly>
+                    <input type="text" class="form-control" readonly v-model="providedData.volProgram.region.countyName">
                   </td>
                 </tr>
                 <tr>
@@ -71,7 +71,7 @@
                     봉사 장소
                   </td>
                   <td colspan="3">
-                    <input type="text" class="form-control" readonly>
+                    <input type="text" class="form-control" readonly v-model="providedData.volProgram.actPlace">
                   </td>
                 </tr>
                 <tr>
@@ -79,13 +79,13 @@
                     신청인 ID
                   </td>
                   <td colspan="1">
-                    <input type="text" class="form-control" readonly>
+                    <input type="text" class="form-control" v-model="providedData.memberId" readonly>
                   </td>
                   <td colspan="1">
                     신청인 이름
                   </td>
                   <td colspan="1">
-                    <input type="text" class="form-control" readonly>
+                    <input type="text" class="form-control" v-model="providedData.memberName" readonly>
                   </td>
                 </tr>
                 <tr>
@@ -93,13 +93,13 @@
                     담당자명
                   </td>
                   <td colspan="1">
-                    <input type="text" class="form-control" readonly>
+                    <input type="text" class="form-control" v-model="providedData.volProgram.mngName" readonly>
                   </td>
                   <td colspan="1">
                     부서 연락처
                   </td>
                   <td colspan="1">
-                    <input type="text" class="form-control" readonly>
+                    <input type="text" class="form-control" readonly v-model="providedData.volProgram.mngTel">
                   </td>
                 </tr>
                 <tr>
@@ -107,7 +107,7 @@
                     신청 내용
                   </td>
                   <td colspan="3">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly v-model="providedData.rqstContent"></textarea>
                   </td>
                 </tr>
                 <tr>
@@ -115,8 +115,8 @@
                     증명서류
                   </td>
                   <td colspan="3">
-                    <NormalButton text="증명 서류가 없습니다." />
-                    <HighlightButton text="자원봉사_증명서류.pdf 다운로드" />
+                    <NormalButton text="증명 서류가 없습니다." v-if="providedData.fileOName === ''"/>
+                    <HighlightButton text="자원봉사_증명서류.pdf 다운로드" v-if="providedData.fileOName"/>
                   </td>
                 </tr>
               </tbody>
@@ -138,6 +138,17 @@ import NormalButton from '@/components/Common/NormalButton.vue';
 import { inject } from 'vue';
 
 const providedData = inject('providedData');
+//DATE객체를 문자열(YYYY-MM-DD)로 변환
+function dateFormat(dateStr) {
+    const date = new Date(dateStr);
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+
+    month = month >= 10 ? month : '0' + month;
+    day = day >= 10 ? day : '0' + day;
+
+    return date.getFullYear() + '-' + month + '-' + day;
+}
 </script>
 
 <style scoped></style>

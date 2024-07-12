@@ -1,7 +1,7 @@
 <template>
   <div class="main_container row">
       <div class="col-md-12">
-          <Banner />
+          <Banner/>
       </div>
       <div class="col-md-12 row mt-3 first_floor">
           <div class="col-md-7">
@@ -111,7 +111,6 @@ import Login from "./Login.vue";
 import Banner from "./Banner.vue";
 import router from "@/router";
 import { ref, onMounted } from "vue";
-import axios from "axios";
 import boardAPI from '@/apis/boardAPI';
 import volProgramApi from '@/apis/volProgramAPI';  // API 파일 import
 

@@ -45,6 +45,7 @@ import { useRoute } from 'vue-router';
 import router from '@/router';
 import adminAPI from '@/apis/adminAPI';
 import NavBar from '@/components/Common/NavBar.vue';
+import store from '@/store';
 
 let rqstDetailModal = null;
 const route = useRoute();
@@ -107,8 +108,12 @@ watch(route, (newRoute, oldRoute) => {
 })
 async function viewDetail(memberId, programNo) {
   const response = await adminAPI.getApproveRequestDetail(memberId, programNo);
+  console.log(response.data);
   providedData.value = response.data;
-  providedData.value.volProgram.programNo = programNo;
+  providedData.value.volProgram.actDate = `${dateFormat(response.data.volProgram.actBgnDate)} - ${dateFormat(response.data.volProgram.actEndDate)}`;
+  providedData.value.volProgram.actTime = `${response.data.volProgram.actBgnTime}시 - ${response.data.volProgram.actEndTime}시`;
+  providedData.value.volProgram.ctg = findClsWithClsNo(response.data.volProgram.ctg, store.state.categoryCode.categoryList);
+  providedData.value.volProgram.region = findRegionWithRegionNo(response.data.volProgram.region, store.state.regionCode.regionList);
   rqstDetailModal.show();
 }
 //페이지네이션 정보 세팅
@@ -151,6 +156,38 @@ function dateFormat(dateStr) {
     day = day >= 10 ? day : '0' + day;
 
     return date.getFullYear() + '-' + month + '-' + day;
+}
+//지역이름 찾기
+function findRegionWithRegionNo(regionNo, regionList) {
+    let result = {
+        cityName: '',
+        countyName: '',
+    }
+    for (let city of regionList) {
+        for (let county of city.county) {
+            if (county.countyCode === Number(regionNo)) {
+                result.cityName = city.cityName;
+                result.countyName = county.countyName;
+            }
+        }
+    }
+    return result;
+}
+//분야 이름 찾기
+function findClsWithClsNo(clsNo, clsList) {
+    let result = {
+      highCls: '',
+      lowCls: ''
+    };
+    for (let highCls of clsList) {
+        for (let lowCls of highCls.lowClsList) {
+            if (lowCls.lowClsCode === clsNo) {
+              result.highCls = highCls.highClsName;
+              result.lowCls = lowCls.lowClsName;
+            }
+        }
+    }
+    return result;
 }
 onMounted(() => {
   rqstDetailModal = new Modal(document.querySelector('#rqstDetailModal'));
