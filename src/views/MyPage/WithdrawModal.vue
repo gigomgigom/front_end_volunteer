@@ -1,11 +1,10 @@
 <template>
- <div class="modal" v-if="isOpen">
+  <div class="modal" v-if="isOpen">
+    <loading :active="isLoading" :can-cancel="false"/>
     <div class="modal-content">
-      <p>
-        모든 개인정보가 삭제됩니다.<br> 그래도 탈퇴하시겠습니까?
-      </p>
+      <p>{{ modalMessage }}</p>
       <div class="modal-buttons">
-        <button class="btn btn-small modal-confirm" @click="confirm">확인</button>
+        <button class="btn btn-small modal-confirm" @click="confirmAndDelete">확인</button>
         <button class="btn btn-small modal-cancel" @click="cancel">취소</button>
       </div>
     </div>
@@ -13,7 +12,14 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import { defineProps, defineEmits } from 'vue';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/css/index.css';
+import memberAPI from '@/apis/memberAPI';
+
+const isLoading = ref(false);
+const modalMessage = ref('정말 탈퇴하시겠습니까...?');
 
 const props = defineProps({
   isOpen: Boolean
@@ -21,14 +27,26 @@ const props = defineProps({
 
 const emit = defineEmits(['close', 'confirm']);
 
-const confirm = () => {
-  emit('confirm');
+const confirmAndDelete = async () => {
+  isLoading.value = true;
+  try {
+    const response = await memberAPI.deleteMember();
+    if (response.data.result === 'success') {
+      modalMessage.value = '회원 탈퇴가 완료되었습니다!';
+    } else {
+      modalMessage.value = '탈퇴 처리가 정상적으로 되지 않았습니다.';
+    }
+  } catch (error) {
+    console.log('에러 발생: ', error);
+    modalMessage.value = '오류가 발생했습니다. 잠시 후 다시 시도해 주세요!';
+  } finally {
+    isLoading.value = false;
+  }
 };
 
 const cancel = () => {
   emit('close');
 };
-
 </script>
 
 <style scoped>
@@ -54,10 +72,9 @@ const cancel = () => {
 
 .modal-buttons {
   margin-top: 20px;
-
 }
 
-.modal-confirm{
+.modal-confirm {
   padding: 8px 16px;
   margin: 0 8px;
   cursor: pointer;

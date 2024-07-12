@@ -28,7 +28,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-              <button type="button" class="btn btn-login" @click="goToLogin">로그인하러 가기</button>
+              <!-- <button type="button" class="btn btn-login" @click="goToLogin">로그인하러 가기</button> -->
             </div>
           </div>
         </div>
@@ -39,7 +39,6 @@
 
 <script>
 import { Modal } from 'bootstrap';
-import memberAPI from '@/apis/memberAPI';
 
 export default {
   props: {
@@ -102,7 +101,8 @@ export default {
       });
     },
 
-    showModal() {
+    showModal(message) {
+      this.modalMessage = message;
       const customModal = new Modal(document.getElementById('customModal'));
       customModal.show();
     },
