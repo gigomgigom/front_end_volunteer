@@ -39,6 +39,8 @@
 
 <script>
 import { Modal } from 'bootstrap';
+import memberAPI from '@/apis/memberAPI';
+
 
 export default {
   props: {

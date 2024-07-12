@@ -1,3 +1,4 @@
+
 <template>
     <div class="login_container h-100" v-if="store.getters.getUserId === ''">
         <div class="login_button" @click="router.push('/Details/Member/SignIn')">
@@ -23,7 +24,7 @@
                 </span>
             </div>
             <div class="user_name me-3">
-                <span style="font-size: 1.1em; font-weight: bold;">{{ store.state.userId }}님</span>
+                <span style="font-size: 1.1em; font-weight: bold;">{{ member.memberName }} 님</span>
                 <span>좋은 하루 되세요!</span>
             </div>
             <div class="user_button_wrapper">
@@ -75,8 +76,11 @@
 <script setup>
 import router from '@/router';
 import { useStore } from 'vuex';
+import memberAPI from '@/apis/memberAPI';
+import { ref } from 'vue';
 
 const store = useStore();
+const member = ref({});
 
 function moveFindAccPage(index) {
     let urlList = ['/Details/Member/FindID', '/Details/Member/FindPW', '/Details/Member/SignUp'];
@@ -94,6 +98,16 @@ function logout() {
     alert('로그아웃 되었습니다!');
 }
 
+async function getMemberName() {
+    try {
+        const response = await memberAPI.getMemberName();
+        member.value = response.data.member;
+        console.log(member.value);
+    } catch(error) {
+        console.log(error);
+    }
+}
+getMemberName();
 </script>
 
 <style scoped>
@@ -159,9 +173,9 @@ function logout() {
 
 .user_logo>img {
     width: 64px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-radius: 100%;
-    background-color: rgb(240, 103, 4);
+    background-color: rgb(255, 107, 1)
 }
 
 .user_name {

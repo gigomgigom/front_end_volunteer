@@ -1,5 +1,12 @@
 import axios from "axios";
 
+// 메인에 최신 봉사 프로그램 가져오기
+function getRecentVolProgramToMain() {
+    return axios.get(
+        '/recent-volprograms'
+    )
+}
+
 //봉사프로그램 목록가져오기
 function getVolProgramList(searchIndex) {
     return axios.get(
@@ -37,5 +44,6 @@ export default {
     cancelInterestVolProgram,
     getVolProgramList,
     getVolProgramDetail,
-    addInterestVolProgram
+    addInterestVolProgram,
+    getRecentVolProgramToMain
 }
