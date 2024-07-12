@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-content-end">
+  <div class="d-flex justify-content-end" v-if="store.state.userId!==''">
     <HighlightButton :text="volDetail.isApplied ? '신청 취소' : '신청하기' " class="me-2" @buttonClick="participate()" v-if="(volDetail.recruitStts==1)&&(!volDetail.isApplied)"/>
     <NormalButton :text="volDetail.isInterestAdded ? '관심 취소' : '관심등록'" @buttonClick="interest()" v-if="volDetail.recruitStts==1"/>
   </div>
