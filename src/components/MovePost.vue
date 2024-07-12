@@ -6,11 +6,11 @@
                     <img src="@/assets/ico_board_btn_prev.png" style="margin-left: 15px;">
                     이전글
                 </div>
-                <div class="ellipsis" style="clear: both; display: block; content: '';">
-                    어른신들을 위한 이.미용 활동sssssssssssssssssssssssssssssssssssssssss
+                <div class="ellipsis" style="text-align: right; clear: both; display: block; content: '';">
+                    {{boardDto.preTitle}}
                 </div>
             </RouterLink>
-        </div>
+        </div>          
         <div class="col-sm-2  text-center">
             <HighlightButton text="목록" style="height: 50px;" @buttonClick="$emit('moveList')"/>
         </div>
@@ -20,8 +20,8 @@
                     다음글
                     <img src="@/assets/ico_board_btn_next.png" style="margin-right: 15px;">
                 </div>
-                <div class="ellipsis">
-                    익산시 공공 승마장 자원봉사 모집[재활승마]sdasdasdasdsdasdasd
+                <div class="ellipsis" style="text-align: left;">
+                    {{boardDto.nextTitle}}
                 </div>
             </RouterLink>
         </div>       
@@ -30,9 +30,23 @@
 
 <script setup>
 import HighlightButton from './Common/HighlightButton.vue';
-
+import intergratedBoardAPI from '@/apis/intergratedBoardAPI';
+import { inject,ref } from 'vue';
+import { onMounted } from 'vue';
 defineEmits(["moveList"]);
+const boardDto = inject("boardDto");
 
+onMounted(() => { 
+    getSequenceBoard(boardDto.value);
+});
+
+async function getSequenceBoard(formData){
+  const response = await intergratedBoardAPI.getSequenceBoard(formData);
+  boardDto.value.preTitle = response.data.previous.title;
+  boardDto.value.preBoardNo = response.data.previous.boardNo;
+  boardDto.value.nextTitle = response.data.next.title;
+  boardDto.value.nextBoardNo = response.data.next.boardNo;
+}
 
 </script>
 

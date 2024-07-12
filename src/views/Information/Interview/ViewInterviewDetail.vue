@@ -1,7 +1,7 @@
 <template>
   <BoardDetail />
   <EditDeleteButtons />
-  <MovePost @moveList="moveList" />
+  <MovePost @moveList="moveList" v-if="loadEnd"/>
   <div style="height: 100px;"></div>
   <div class="custom_loader_wrapper" ref="loadingContainer">
     <div class="spinner-border" style="width: 7rem; height: 7rem;" role="status">
@@ -21,11 +21,15 @@ const moveList = inject("moveList");
 const route = useRoute();
 const Num = route.query.boardNo;
 let formData = ref({});
+let boardDto = ref({});
+const loadEnd = ref(false);
 provide("boardDetail", formData);
-
+provide("boardDto", boardDto);
 onMounted(() => {
   getBoardByNo(Num);
 });
+
+
 
 async function getBoardByNo(boardNo) {
   const response = await intergratedBoardAPI.getBoardDetail(boardNo);
@@ -43,6 +47,12 @@ async function getBoardByNo(boardNo) {
   formData.value.imgOname = response.data.imgOname;
   formData.value.imgType = response.data.imgType;
   formData.value.memberId = response.data.memberId;
+  formData.value.downloadFileUrl = `http://localhost/Board/download_board_battach_file?boardNo=${response.data.boardNo}`;
+  formData.value.downloadImgUrl =  `http://localhost/Board/download_board_img_file?boardNo=${response.data.boardNo}`;
+  formData.value.boardNo = response.data.boardNo;
+  boardDto.value.boardNo = formData.value.boardNo;
+  boardDto.value.boardCtg = formData.value.boardCtg;
+  loadEnd.value = true;
 }
 
 function dateFormat(dateStr) {

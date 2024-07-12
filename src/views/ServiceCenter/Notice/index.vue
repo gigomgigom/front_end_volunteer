@@ -76,10 +76,8 @@ async function getNoticeList() {
   loadingContainer.value.classList.add('loading');
   const memberResponse = await intergratedBoardAPI.getMemberInfo();
   memberInfo.value.memberId = memberResponse.data.memberId;
-  memberInfo.value.cityName = memberResponse.data.cityName;
-  memberInfo.value.countyName = memberResponse.data.countyName;
-  memberInfo.value.center = memberResponse.data.cityName + " " + memberResponse.data.countyName;
-  console.log(memberInfo);
+  memberInfo.value.center = memberResponse.data.affCenter;
+  console.log('실행', memberResponse.data);
   const response = await intergratedBoardAPI.getBoardList(data);
   //페이저 세팅
   responseData.value.pager = setPager(response.data.pager);
