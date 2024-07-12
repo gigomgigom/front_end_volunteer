@@ -8,11 +8,11 @@
           <div class="card-container d-flex justify-content-center">
             <div v-for="program in chunk" :key="program.programNo" class="card custom-card">
               <img :src="getImageUrl(program)" class="card-img-top" alt="..." style="height: 180px;">
-              <router-link :to="'/Details/Participation/VolProgram/ViewVolProgramDetail/' + program.programNo" class="card-body no-underline">
+              <router-link :to="'/Details/Participation/VolProgram/ViewVolProgramDetail/?programNo=' + program.programNo" class="card-body no-underline">
                 <p class="card-text1" >{{ program.programTitle }}</p>
-                <p class="card-text2">▶️ 모집인원: n명 / {{ program.recruitCnt }}명</p>
-                <p class="card-text2">▶️ 모집기간: {{ formatDate(program.recruitBgnDate) }} ~ {{ formatDate(program.recruitEndDate) }}</p>
-                <p class="card-text2">▶️ 봉사기간: {{ formatDate(program.actBgnDate) }} ~ {{ formatDate(program.actEndDate) }}</p>
+                <p class="card-text2">▶️ 모집인원: {{ program.applyCnt }}명 / {{ program.recruitCnt }}명</p>
+                <p class="card-text2">{{ `▶️ 모집기간: \n${formatDate(program.recruitBgnDate)}~${formatDate(program.recruitEndDate)}`}}</p>
+                <p class="card-text2">{{ `▶️ 봉사기간: \n${formatDate(program.actBgnDate)}~${formatDate(program.actEndDate)}`}}</p>
               </router-link>
             </div>
           </div>
@@ -32,8 +32,6 @@
 
 <script setup>
 import { computed } from 'vue';
-import { ref } from 'vue';
-import volProgramAPI from '@/apis/volProgramAPI';
 
 
 const props = defineProps({
@@ -59,7 +57,7 @@ function getImageUrl(program) {
 //날짜 형식 변환
 function formatDate(date) {
   const d = new Date(date);
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
 }
 </script>
 
@@ -88,6 +86,10 @@ function formatDate(date) {
 .card-text1 {
   font-weight: bolder;
   font-size: large;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
 }
 
 .card-text2 {
