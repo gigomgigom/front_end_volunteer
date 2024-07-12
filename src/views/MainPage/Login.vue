@@ -23,7 +23,7 @@
                 </span>
             </div>
             <div class="user_name me-3">
-                <span style="font-size: 1.1em; font-weight: bold;">심영조님</span>
+                <span style="font-size: 1.1em; font-weight: bold;">{{ store.state.userId }}님</span>
                 <span>좋은 하루 되세요!</span>
             </div>
             <div class="user_button_wrapper">
