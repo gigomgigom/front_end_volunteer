@@ -26,10 +26,18 @@ function getBoardDetail(rqstData){
         "/Board/read_board/" + rqstData
     )
 }
+//이전 게시글, 다음 게시글 가져오기
+function getSequenceBoard(rqstData){
+    return axios.get(
+        "/Board/get_previous_next_board",
+        {params: rqstData}
+    )
+}
 
 export default{
     getBoardList,
     getMemberInfo,
     createBoard,
-    getBoardDetail
+    getBoardDetail,
+    getSequenceBoard
 }

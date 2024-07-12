@@ -31,11 +31,11 @@
       </thead>
       <tbody>
         <tr v-for="(notice, index) in data.noticeList" :key="index">
-          <td class="col-num no-border-left text-center">{{ notice.no }}</td>
-          <td colspan="2"><span @click="moveDetail(notice.no)" style="cursor: pointer;">{{ notice.title }}</span></td>
-          <td class="col-author text-center">{{ notice.writer }}</td>
-          <td class="col-date text-center">{{ notice.date }}</td>
-          <td class="col-views no-border-right text-center">{{ notice.hitCnt }}</td>
+          <td class="col-num no-border-left text-center ellipsis">{{ notice.no }}</td>
+          <td class="ellipsis" colspan="2"><span @click="moveDetail(notice.no)" style="cursor: pointer;">{{ notice.title }}</span></td>
+          <td class="col-author text-center ellipsis">{{ notice.writer }}</td>
+          <td class="col-date text-center ellipsis">{{ notice.date }}</td>
+          <td class="col-views no-border-right text-center ellipsis">{{ notice.hitCnt }}</td>
         </tr>
       </tbody>
     </table>
@@ -232,5 +232,12 @@ th {
 
 .no-margin2 {
   margin-left: 0;
+}
+
+.ellipsis{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 </style>

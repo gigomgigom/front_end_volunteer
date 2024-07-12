@@ -21,11 +21,21 @@ const moveList = inject("moveList");
 const route = useRoute();
 const Num = route.query.boardNo;
 let formData = ref({});
+let boardDto = ref({
+  boardNo : formData.value.boardNo,
+  boardCtg : formData.value.boardCtg
+});
 provide("boardDetail", formData);
 
 onMounted(() => {
   getBoardByNo(Num);
+  getSequenceBoard(boardDto);
 });
+
+async function getSequenceBoard(formData){
+  const response = await intergratedBoardAPI.getSequenceBoard(formData);
+  console.log(response.data.previous);
+}
 
 async function getBoardByNo(boardNo) {
   const response = await intergratedBoardAPI.getBoardDetail(boardNo);
@@ -43,6 +53,9 @@ async function getBoardByNo(boardNo) {
   formData.value.imgOname = response.data.imgOname;
   formData.value.imgType = response.data.imgType;
   formData.value.memberId = response.data.memberId;
+  formData.value.downloadFileUrl = `http://localhost/Board/download_board_battach_file?boardNo=${response.data.boardNo}`;
+  formData.value.downloadImgUrl =  `http://localhost/Board/download_board_img_file?boardNo=${response.data.boardNo}`;
+  formData.value.boardNo = response.data.boardNo;
 }
 
 function dateFormat(dateStr) {

@@ -1,7 +1,7 @@
 <template>
   <BoardDetail/>
   <EditDeleteButtons/>
-  <MovePost @moveList="moveList"/>
+  <MovePost @moveList="moveList" v-if="loadEnd"/>
   <div style="height: 100px;"></div>
   <div class="custom_loader_wrapper" ref="loadingContainer">
     <div class="spinner-border" style="width: 7rem; height: 7rem;" role="status">
@@ -18,17 +18,22 @@ import { useRoute } from 'vue-router';
 import { onMounted } from 'vue';
 import intergratedBoardAPI from '@/apis/intergratedBoardAPI';
 const moveList = inject("moveList");
+const loadEnd = ref(false);
 //게시글의 번호를 받아서 객체를 생성하고 provide로 boardDetail로 넘겨주고
 //페이지 상세 데이터 보여주기 
 const route = useRoute();
 const Num = route.query.boardNo;
 let formData = ref({});
-
+let boardDto = ref({});
 provide("boardDetail", formData);
-
-onMounted(() => {
+provide("boardDto", boardDto);
+onMounted(() => { 
   getBoardByNo(Num);
+  
 });
+
+
+
 
 async function getBoardByNo(boardNo) {
   const response = await intergratedBoardAPI.getBoardDetail(boardNo);
@@ -49,8 +54,9 @@ async function getBoardByNo(boardNo) {
   formData.value.downloadFileUrl = `http://localhost/Board/download_board_battach_file?boardNo=${response.data.boardNo}`;
   formData.value.downloadImgUrl =  `http://localhost/Board/download_board_img_file?boardNo=${response.data.boardNo}`;
   formData.value.boardNo = response.data.boardNo;
-  console.log(formData);
-  console.log(response);
+  boardDto.value.boardNo = formData.value.boardNo;
+  boardDto.value.boardCtg = formData.value.boardCtg;
+  loadEnd.value = true;
 }
 
 function dateFormat(dateStr) {
