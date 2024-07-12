@@ -21,7 +21,6 @@ function findId(data) {
     );
 }
 
-
 //비밀번호 찾기
 function findPw(data) {
     return axios.get(
@@ -64,4 +63,9 @@ export default {
     getMemberName,
     changePw
     //내보내기할 함수(리턴값은 promise)
+    findId,
+    findPw,
+    deleteMember,
+    getMemberName,
+    changePw
 }
