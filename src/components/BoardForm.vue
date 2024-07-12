@@ -9,7 +9,7 @@
               <label for="title">제목</label>
             </td>
             <td class="input-cell" colspan="3">
-              <input id="title" type="text" v-model="board.title" maxlength="30" class="form-input"/>
+              <input id="title" type="text" v-model="board.title"  class="form-input"/>
               <span class="verification-text" ref="title_error" v-if="refsInitialized">제목을 입력해라 좀</span>
             </td>
           </tr>
