@@ -7,9 +7,9 @@
         <div v-for="(chunk, index) in chunkedPrograms" :key="index" :class="['carousel-item', { active: index === 0 }]">
           <div class="card-container d-flex justify-content-center">
             <div v-for="program in chunk" :key="program.programNo" class="card custom-card">
-              <img :src="getImageUrl(program)" class="card-img-top" alt="...">
+              <img :src="getImageUrl(program)" class="card-img-top" alt="..." style="height: 180px;">
               <router-link :to="'/Details/Participation/VolProgram/ViewVolProgramDetail/' + program.programNo" class="card-body no-underline">
-                <p class="card-text1">{{ program.programTitle }}</p>
+                <p class="card-text1" >{{ program.programTitle }}</p>
                 <p class="card-text2">▶️ 모집인원: n명 / {{ program.recruitCnt }}명</p>
                 <p class="card-text2">▶️ 모집기간: {{ formatDate(program.recruitBgnDate) }} ~ {{ formatDate(program.recruitEndDate) }}</p>
                 <p class="card-text2">▶️ 봉사기간: {{ formatDate(program.actBgnDate) }} ~ {{ formatDate(program.actEndDate) }}</p>
