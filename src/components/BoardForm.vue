@@ -23,7 +23,7 @@
             <td class="label-cell">
               <label for="center">소속센터</label>
             </td>
-            <td class="input-cell">{{memberInfo.center ? memberInfo.center : "없음"}}</td>
+            <td class="input-cell">{{findRegionByCountyNo(memberInfo.center)}}</td>
           </tr>
 
           <!-- 내용 입력 -->
@@ -75,6 +75,7 @@ import { ref, onMounted, computed } from 'vue';
 import NormalButton from './Common/NormalButton.vue';
 import intergratedBoardAPI from '@/apis/intergratedBoardAPI';
 import { inject } from 'vue';
+import store from '@/store';
 let moveList = inject("moveList");
 let memberInfo = inject("memberInfo");
 const title_error = ref(null);
@@ -94,6 +95,7 @@ onMounted(() => {
   refsInitialized.value = true;
   battachInput = document.querySelector('#file_input');
   imageInput = document.querySelector('#image_input');
+  console.log(memberInfo.value);
 });
 
 const board = ref({
@@ -159,6 +161,17 @@ function resetForm() {
  
 }
 
+function findRegionByCountyNo(countyNo) {
+  let regionStr = '없음';
+  for (let city of store.state.regionCode.regionList) {
+    for(let county of city.county) {
+      if(county.countyCode === Number(countyNo)) {
+        regionStr = city.cityName + ' ' + county.countyName;
+      }
+    }
+  }
+  return regionStr;
+}
 
 
 </script>

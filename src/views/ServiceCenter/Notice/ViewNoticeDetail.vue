@@ -29,7 +29,6 @@ provide("boardDetail", formData);
 provide("boardDto", boardDto);
 onMounted(() => { 
   getBoardByNo(Num);
-  
 });
 
 
@@ -37,6 +36,7 @@ onMounted(() => {
 
 async function getBoardByNo(boardNo) {
   const response = await intergratedBoardAPI.getBoardDetail(boardNo);
+  console.log(response.data.battachOname)
   formData.value.title = response.data.title;
   formData.value.adminReply = response.data.adminReply;
   formData.value.battachData = response.data.battachData;

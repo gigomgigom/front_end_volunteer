@@ -19,7 +19,7 @@
     <tbody>
       <tr>
         <td colspan="2" class="post-content">
-          <div class="image-container">
+          <div class="image-container" v-if="boardDetail.imgOname != null">
             <img :src="`${axios.defaults.baseURL}/Board/download_board_img_file?boardNo=${boardDetail.boardNo}`">
           </div>
           <div style="margin-top: 10px;">

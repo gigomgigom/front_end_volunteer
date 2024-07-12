@@ -112,7 +112,7 @@ import Banner from "./Banner.vue";
 import router from "@/router";
 import { ref, onMounted } from "vue";
 import axios from "axios";
-import boardAPI from '@/apis/boardAPI';
+import boardAPI from '@/apis/BoardAPI';
 import volProgramApi from '@/apis/volProgramAPI';  // API 파일 import
 
 const noticelist = ref([]);
