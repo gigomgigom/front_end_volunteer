@@ -98,6 +98,7 @@ import volParticipateAPI from '@/apis/volParticipateAPI';
 import HighlightButton from '@/components/Common/HighlightButton.vue';
 import NormalButton from '@/components/Common/NormalButton.vue';
 import router from '@/router';
+import store from '@/store';
 import { inject, onMounted, ref } from 'vue';
 
 const selectedDate = ref(null);
@@ -114,7 +115,10 @@ const memberInfo = ref({
 onMounted(() => {
     startDate.value = new Date(volDetail.value.actDate.split(' - ')[0]);
     endDate.value = new Date(volDetail.value.actDate.split(' - ')[1]);
-    getMemberInfo();
+    if(store.state.userId !== '') {
+        getMemberInfo();
+    }
+    
 })
 
 async function getMemberInfo() {
