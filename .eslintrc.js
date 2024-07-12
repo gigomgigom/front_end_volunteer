@@ -17,5 +17,7 @@ module.exports = {
     "no-unused-vars":"off",
     'vue/multi-word-component-names' : 'off',
     'no-constant-condition': 'off'
-  }
+  },
+
+
 }
