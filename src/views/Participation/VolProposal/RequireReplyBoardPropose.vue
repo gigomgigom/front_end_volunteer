@@ -1,5 +1,5 @@
 <template>
-  <RequireReplyBoard @moveDetail="moveDetail">
+  <RequireReplyBoard>
     <template v-slot:createInfo>
         <div class="row" style="border: 1px solid black; width: 100%; margin:auto; margin-bottom: 30px;"><!--슬롯으로 뺄 예정-->
             <div class="col-sm-12" style="font-size: 14px; color: #666; padding-top: 14px; padding-bottom: 14px;">
@@ -22,7 +22,7 @@
         </div>
     </template>
     <template v-slot:createButton>
-        <HighlightButton @buttonClick="emit('moveProposeForm')" text="봉사제안" style="font-size: 15px; padding: 5px 20px; width: 100%; margin-bottom: 5px;"/>
+        <HighlightButton @buttonClick="writeBoard" text="봉사제안" style="font-size: 15px; padding: 5px 20px; width: 100%; margin-bottom: 5px;"/>
     </template>
   </RequireReplyBoard>
 </template>
@@ -31,11 +31,15 @@
 import RequireReplyBoard from '@/components/RequireReplyBoard.vue';
 import HighlightButton from '@/components/Common/HighlightButton.vue';
 import { useRouter } from 'vue-router';
+import { provide } from 'vue';
 const router = useRouter();
-const emit = defineEmits(["moveProposeForm"]);
-function moveDetail(data) { //글번호 전달하는 매개값
-  router.push('/Details/Participation/VolProposal/ViewVolProposalDetail');
-  console.log(data);
+
+provide("moveDetail", moveDetail);
+function writeBoard() {
+  router.push("/Details/Participation/VolProposal/WriteProposal")
+}
+function moveDetail(data) {
+  router.push(`/Details/Participation/VolProposal/ViewVolProposalDetail?boardNo=${data}`);
 }
 
 
