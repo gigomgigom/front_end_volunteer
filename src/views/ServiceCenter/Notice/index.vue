@@ -48,8 +48,6 @@ const responseData = ref({
 
 const memberInfo = ref({
   memberId: null,
-  cityName: null,
-  countyName: null,
   center:null
 });
 

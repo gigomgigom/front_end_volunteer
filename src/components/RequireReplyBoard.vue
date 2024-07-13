@@ -6,8 +6,8 @@
 
         <div class="row">
             <div class="col-sm-10">
-                [전체 <span class="highlight">25</span>건,
-                현재페이지 <span class="highlight">1</span>/3]
+                [전체 <span class="highlight">{{ data.pager.totalCount }}</span>건,
+                현재페이지 <span class="highlight">{{ data.pager.pageNo }}</span>/{{ data.pager.totalPage }}]
             </div>
             <div class="col-sm-2">
                 <slot name="createButton">
@@ -27,13 +27,13 @@
                             <th style="width: 15%;">처리현황</th>
                         </tr>
                     </thead>
-                    <tbody v-for="(pro) in proposeList" :key="pro.no">
+                    <tbody v-for="(notice, index) in data.noticeList" :key="index">
                         <tr>
-                            <td>{{pro.no}}</td>
-                            <td @click="$emit('moveDetail',pro.no)" style="cursor: pointer;" class="hover-bold">{{pro.title}}</td>
-                            <td>{{pro.writer}}</td>
-                            <td>{{pro.date}}</td>
-                            <td>{{pro.Complete}}</td>
+                            <td>{{ notice.no }}</td>
+                            <td @click="moveDetail(notice.no)" style="cursor: pointer;" class="hover-bold">{{notice.title}}</td>
+                            <td>{{ notice.writer }}</td>
+                            <td>{{ notice.date }}</td>
+                            <td>{{ (notice.adminReply != null) ? "완료" : "미완료"}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -45,6 +45,16 @@
 <script setup>
 import {  ref } from 'vue';
 const emit = defineEmits(["moveDetail"]);
+import { inject } from "vue";
+
+const moveDetail = inject('moveDetail');
+const data = inject('responseData');
+
+
+
+
+
+
 const proposeList = ref([
     { no: 1, title: "서구치매안심센터 치매가족프로그램 활동 지원", writer: "홍길동", date: "2012.02.10", Complete: "미완료" },
     { no: 2, title: "서구치매안심센터 치매가족프로그램 활동 지원", writer: "임걱정", date: "2012.02.10", Complete: "미완료" },

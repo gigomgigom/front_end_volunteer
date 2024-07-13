@@ -1,17 +1,14 @@
 <template>
-  <RequireReplyBoardQuestion @moveQuestionForm="moveQuestionForm"/>
+  <RequireReplyBoardQuestion />
+  <NavBar />
 </template>
 
 <script setup>
 import RequireReplyBoardQuestion from './RequireReplyBoardQuestion.vue';
-import { useRouter } from 'vue-router';
-const router = useRouter();
-
-function moveQuestionForm() {
-  router.push('/Details/ServiceCenter/QNA/WriteQna');
-}
+import NavBar from '@/components/Common/NavBar.vue';
 </script>
 
 <style scoped>
+
 
 </style>
