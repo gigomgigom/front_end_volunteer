@@ -108,7 +108,4 @@ const proposeList = ref([
     font-weight: normal;
     transition: font-weight 0.3s; 
 }
-.hover-bold:hover {
-    font-weight: bold;
-}
 </style>

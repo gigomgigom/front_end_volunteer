@@ -14,6 +14,12 @@ function createBoard(rqstData){
         rqstData
     )
 }
+//관리자 답변 달기 
+
+
+//관리자 답변 조회
+
+
 //회원 정보 가져오기
 function getMemberInfo(){
     return axios.get(

@@ -22,7 +22,7 @@
           <div class="image-container" v-if="boardDetail.imgOname != null">
             <img :src="`${axios.defaults.baseURL}/Board/download_board_img_file?boardNo=${boardDetail.boardNo}`">
           </div>
-          <div style="margin-top: 10px;">
+          <div style="margin-top: 10px;" class="content-container">
             <p class="content-text">{{ boardDetail.content }}</p>
           </div>
         </td>
@@ -115,9 +115,15 @@ td {
 }
 
 .content-text {
-  font-size: 1.0em;
-  margin-left: 20px;
-  font-weight: normal;
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #333;  
+}
+.content-container {
+  margin-top: 10px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .post-content {
