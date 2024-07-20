@@ -58,6 +58,12 @@
 <script setup>
 import TextHeader from '@/components/Common/TextHeader.vue';
 import KakaoMap from '@/components/KakaoMap.vue';
+import { provide, ref } from 'vue';
+
+const data = ref({
+  location: '서울특별시 송파구 중대로 135'
+});
+provide("detail", data);
 </script>
 
 <style scoped>

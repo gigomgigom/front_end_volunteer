@@ -138,17 +138,6 @@ import NormalButton from '@/components/Common/NormalButton.vue';
 import { inject } from 'vue';
 
 const providedData = inject('providedData');
-//DATE객체를 문자열(YYYY-MM-DD)로 변환
-function dateFormat(dateStr) {
-    const date = new Date(dateStr);
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-
-    month = month >= 10 ? month : '0' + month;
-    day = day >= 10 ? day : '0' + day;
-
-    return date.getFullYear() + '-' + month + '-' + day;
-}
 </script>
 
 <style scoped></style>

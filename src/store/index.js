@@ -25,7 +25,7 @@ export default createStore({
     },
     //Setter정의(루트 상태 변경하기, 동기)
     mutations: {
-        setUserId(state, payload) {
+        setUserId(state, payload) { 
             state.userId = payload;
         },
         setUserRole(state, payload) {
