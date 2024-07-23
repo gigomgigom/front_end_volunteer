@@ -150,12 +150,12 @@ function searchBySearchIndex() {
 function changePageNo(pageNo) {
   if (pageNo > responseData.value.pager.totalPage || pageNo <= 0) {
     alert('페이지 인덱스가 벗어났습니다. 다시 초기화면으로 이동합니다.');
-    window.location.href = '/Details/Participation/VolProgram/ViewVolProgramList';
+    window.location.href = '/Details/Participation/VolTraining/ViewEduProgramList';
     searchIndex.value.pageNo = 1;
   } else {
     searchIndex.value.pageNo = pageNo;
     router.push({
-      path: '/Details/Participation/VolProgram/ViewVolProgramList',
+      path: '/Details/Participation/VolTraining/ViewEduProgramList',
       query: {
         pageNo: searchIndex.value.pageNo,
         keyword: searchIndex.value.keyword,

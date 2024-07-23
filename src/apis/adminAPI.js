@@ -65,6 +65,13 @@ function getApproveRequestDetail(memberId, programNo) {
         { params: {memberId, programNo}}
     )
 }
+
+function approvePerform(data) {
+    return axios.patch(
+        '/Admin/approve_perform_rqst',
+        data
+    )
+}
 export default {
     addVolProgram,
     modifyVolProgram,
@@ -75,5 +82,6 @@ export default {
     deleteEduProgram,
     getEduParticipantList,
     getApproveRequestList,
-    getApproveRequestDetail
+    getApproveRequestDetail,
+    approvePerform
 }

@@ -63,7 +63,8 @@
                     <input type="text" class="form-control" readonly v-model="providedData.volProgram.region.cityName">
                   </td>
                   <td colspan="2">
-                    <input type="text" class="form-control" readonly v-model="providedData.volProgram.region.countyName">
+                    <input type="text" class="form-control" readonly
+                      v-model="providedData.volProgram.region.countyName">
                   </td>
                 </tr>
                 <tr>
@@ -107,7 +108,8 @@
                     신청 내용
                   </td>
                   <td colspan="3">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly v-model="providedData.rqstContent"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly
+                      v-model="providedData.rqstContent"></textarea>
                   </td>
                 </tr>
                 <tr>
@@ -115,8 +117,8 @@
                     증명서류
                   </td>
                   <td colspan="3">
-                    <NormalButton text="증명 서류가 없습니다." v-if="providedData.fileOName === ''"/>
-                    <HighlightButton text="자원봉사_증명서류.pdf 다운로드" v-if="providedData.fileOName"/>
+                    <NormalButton text="증명 서류가 없습니다." v-if="providedData.fileOName === ''" />
+                    <HighlightButton text="자원봉사_증명서류.pdf 다운로드" v-if="providedData.fileOName" />
                   </td>
                 </tr>
               </tbody>
@@ -124,8 +126,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <HighlightButton text="승인" data-bs-dismiss="modal"/>
-          <NormalButton text="거부" data-bs-dismiss="modal"/>
+          <HighlightButton text="승인" @buttonClick="approvePerform"/>
+          <NormalButton text="거부" data-bs-dismiss="modal" />
         </div>
       </div>
     </div>
@@ -133,11 +135,27 @@
 </template>
 
 <script setup>
+import adminAPI from '@/apis/adminAPI';
 import HighlightButton from '@/components/Common/HighlightButton.vue';
 import NormalButton from '@/components/Common/NormalButton.vue';
+import router from '@/router';
 import { inject } from 'vue';
 
 const providedData = inject('providedData');
+
+async function approvePerform() {
+  console.log(providedData.value);
+  let appdetail = {
+    memberId: providedData.value.memberId,
+    programNo: providedData.value.volProgram.programNo
+  }
+  const data = JSON.parse(JSON.stringify(appdetail));
+  const response = await adminAPI.approvePerform(data);
+  if(response.data.result === 'success') {
+    alert('승인되었습니다!');
+    router.go();
+  }
+}
 </script>
 
 <style scoped></style>

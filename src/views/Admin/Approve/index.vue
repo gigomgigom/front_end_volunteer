@@ -110,6 +110,7 @@ async function viewDetail(memberId, programNo) {
   const response = await adminAPI.getApproveRequestDetail(memberId, programNo);
   console.log(response.data);
   providedData.value = response.data;
+  providedData.value.volProgram.programNo = programNo;
   providedData.value.volProgram.actDate = `${dateFormat(response.data.volProgram.actBgnDate)} - ${dateFormat(response.data.volProgram.actEndDate)}`;
   providedData.value.volProgram.actTime = `${response.data.volProgram.actBgnTime}시 - ${response.data.volProgram.actEndTime}시`;
   providedData.value.volProgram.ctg = findClsWithClsNo(response.data.volProgram.ctg, store.state.categoryCode.categoryList);
