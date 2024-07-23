@@ -1,22 +1,12 @@
 <template>
     <div class="button-component">
-      <button class="edit-btn" @click="edit">수정</button>
-      <button class="delete-btn" @click="remove">삭제</button>
+      <button class="edit-btn" @click="$emit('modifyBoard')">수정</button>
+      <button class="delete-btn" @click="$emit('editBoard')">삭제</button>
     </div>
   </template>
   
   <script>
-  export default {
-    name: 'EditDeleteButtons',
-    methods: {
-      edit() {
-        this.$emit('edit');
-      },
-      remove() {
-        this.$emit('remove');
-      }
-    }
-  }
+  
   </script>
   
   <style scoped>

@@ -1,5 +1,6 @@
 <template>
-  <BoardDetail/>
+  <BoardDetail :key="key"/>
+  <EditDeleteButtons v-if ="writerCheck"/>
   <Comment>
     <template v-slot:body>
       <div class="card-body" style="padding: 12px; padding-top: 10px; padding-bottom: 0; margin-bottom: 30px;">
@@ -26,7 +27,7 @@
     </div>
     </template>
   </Comment>
-  <MovePost @moveList="moveList" v-if="loadEnd"/>
+  <MovePost @moveList="moveList"  @movePrevious="movePrevious" @moveNext="moveNext" v-if="loadEnd"/>
   <div style="height: 100px;"></div>
   <div class="custom_loader_wrapper" ref="loadingContainer">
     <div class="spinner-border" style="width: 7rem; height: 7rem;" role="status">
@@ -38,25 +39,35 @@
 <script setup>
 import BoardDetail from '@/components/BoardDetail.vue';
 import Comment from '@/components/Comment.vue';
+import EditDeleteButtons from '@/components/EditDeleteButtons.vue';
 import HighlightButton from '@/components/Common/HighlightButton.vue';
 import NormalButton from '@/components/Common/NormalButton.vue';
 import MovePost from '@/components/MovePost.vue';
 import { inject,provide, ref } from 'vue';
-import { useRoute } from 'vue-router';
-import { onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { onMounted, watch } from 'vue';
 import intergratedBoardAPI from '@/apis/intergratedBoardAPI';
-
+const memberInfo = inject("memberInfo");
 const moveList = inject("moveList");
 const loadEnd = ref(false);
+const key = ref(0);
+const writerCheck = ref(false);
 
 const route = useRoute();
+const router = useRouter();
 const Num = route.query.boardNo;
 let formData = ref({});
 let boardDto = ref({});
+let boardDto2 = ref({});
 provide("boardDetail", formData);
-provide("boardDto", boardDto);
+provide("boardDto2", boardDto2);
 onMounted(() => { 
   getBoardByNo(Num);
+});
+
+watch(() => route.query.boardNo, (newBoardNo) => {
+  getBoardByNo(newBoardNo);
+  key.value++;
 });
 
 async function getBoardByNo(boardNo) {
@@ -82,7 +93,22 @@ async function getBoardByNo(boardNo) {
   boardDto.value.boardNo = formData.value.boardNo;
   boardDto.value.boardCtg = formData.value.boardCtg;
   loadEnd.value = true;
-  console.log(boardDto)
+  userWrite();
+  getSequenceBoard(boardDto.value);
+}
+
+async function getSequenceBoard(formData){
+  const response = await intergratedBoardAPI.getSequenceBoard(formData);
+  boardDto2.value.preTitle = response.data.previous.title;
+  boardDto2.value.preBoardNo = response.data.previous.boardNo;
+  boardDto2.value.nextTitle = response.data.next.title;
+  boardDto2.value.nextBoardNo = response.data.next.boardNo;
+}
+
+function userWrite(){
+  if(memberInfo.value.memberId === formData.value.memberId){
+    writerCheck.value = true;
+  }
 }
 
 function dateFormat(dateStr) {
@@ -95,12 +121,30 @@ function dateFormat(dateStr) {
 
   return date.getFullYear() + '-' + month + '-' + day;
 }
+function movePrevious(data){
+const newUrl = `/Details/ServiceCenter/Notice/ViewNoticeDetail?boardNo=` + data;
+if (router.currentRoute.value.fullPath === newUrl) {
+    router.push(newUrl).then(() => {
+      key.value++;
+    });
+  } else {
+    router.push(newUrl);
+  }
+}
+function moveNext(data) {
+  const newUrl = `/Details/ServiceCenter/Notice/ViewNoticeDetail?boardNo=` + data;
+  if (router.currentRoute.value.fullPath === newUrl) {
+    router.go(0); // 동일한 라우트로 푸시될 경우 강제로 페이지 리프레시
+  } else {
+    router.push(newUrl);
+  }
+}
 
 const comment = ref(
     {
         no: 0,
         writer: 'cosa1992',
-        content: '정말 보람차셨을 것 같아요!',
+        content: '상세한 봉사제안 내용에 감사드립니다. 해당 부서와 상의 후 결정되면 말씀드리겠습니다.',
         date: '2024.04.12 17:32'
     }
   )

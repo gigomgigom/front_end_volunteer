@@ -91,7 +91,7 @@ const commentList = ref([
     {
         no: 0,
         writer: 'cosa1992',
-        content: '정말 보람차셨을 것 같아요!',
+        content: '나는야 홍길동이다 덤벼라~',
         date: '2024.04.12 17:32',
         repliesVisible: false,
         replies: [

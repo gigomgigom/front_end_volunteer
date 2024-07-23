@@ -10,7 +10,7 @@
             </td>
             <td class="input-cell" colspan="3">
               <input id="title" type="text" v-model="board.title"  class="form-input"/>
-              <span class="verification-text" ref="title_error" v-if="refsInitialized">제목을 입력해라 좀</span>
+              <span class="verification-text" ref="title_error" v-if="refsInitialized">제목을 입력해주세요.</span>
             </td>
           </tr>
           <!-- 작성자와 소속센터 -->
@@ -33,7 +33,7 @@
             </td>
             <td class="input-cell" colspan="3">
               <textarea id="content" v-model="board.content" class="form-textarea"></textarea>
-              <span class="verification-text" ref="content_error" v-if="refsInitialized">내용을 입력해라 좀</span>
+              <span class="verification-text" ref="content_error" v-if="refsInitialized">내용을 입력해주세요.</span>
             </td>
           </tr>
           <!-- 첨부파일 -->
@@ -107,6 +107,7 @@ const board = ref({
 
 async function handleSubmit() {
   let isDataOk = true;
+  boardDto = new FormData();
   for(let element of errorElements.value) {
     element.value.classList.remove('userinfo_error');
   }
@@ -150,10 +151,6 @@ async function creataeBoard(data){
 }
                         
 
-function submitForm() {
-  alert('글 작성이 완료되었습니다.');
-  moveList();
-}
 
 function resetForm() {
   board.value.title = '';

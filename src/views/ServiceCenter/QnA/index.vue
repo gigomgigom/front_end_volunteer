@@ -1,5 +1,5 @@
 <template>
-  <TextHeader title="질문과 답변 조회하기"/>
+  <TextHeader title="질문과 답변"/>
   <RouterView/>
   <div class="custom_loader_wrapper" ref="loadingContainer">
     <div class="spinner-border" style="width: 7rem; height: 7rem;" role="status">

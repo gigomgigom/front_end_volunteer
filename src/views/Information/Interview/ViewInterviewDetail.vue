@@ -1,7 +1,7 @@
 <template>
-  <BoardDetail />
-  <EditDeleteButtons />
-  <MovePost @moveList="moveList" v-if="loadEnd"/>
+  <BoardDetail :key="key"/>
+  <EditDeleteButtons v-if="writerCheck" />
+  <MovePost @moveList="moveList" @movePrevious="movePrevious" @moveNext="moveNext" v-if="loadEnd"/>
   <div style="height: 100px;"></div>
   <div class="custom_loader_wrapper" ref="loadingContainer">
     <div class="spinner-border" style="width: 7rem; height: 7rem;" role="status">
@@ -15,23 +15,35 @@ import MovePost from '@/components/MovePost.vue';
 import EditDeleteButtons from '@/components/EditDeleteButtons.vue';
 import intergratedBoardAPI from '@/apis/intergratedBoardAPI';
 import { inject, provide, ref } from 'vue';
-import { useRoute } from 'vue-router';
-import { onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { onMounted, watch } from 'vue';
 const moveList = inject("moveList");
+const memberInfo = inject("memberInfo");
+const router = useRouter();
 const route = useRoute();
+const key = ref(0);
+const writerCheck = ref(false);
 const Num = route.query.boardNo;
 let formData = ref({});
 let boardDto = ref({});
+let boardDto2 = ref({});
 const loadEnd = ref(false);
 provide("boardDetail", formData);
-provide("boardDto", boardDto);
+provide("boardDto2", boardDto2);
+
 onMounted(() => {
   getBoardByNo(Num);
+});
+
+watch(() => route.query.boardNo, (newBoardNo) => {
+  getBoardByNo(newBoardNo);
+  key.value++;
 });
 
 
 
 async function getBoardByNo(boardNo) {
+  formData.value.downloadImgUrl =  `http://localhost/Board/download_board_img_file?boardNo=${boardNo}`;
   const response = await intergratedBoardAPI.getBoardDetail(boardNo);
   formData.value.title = response.data.title;
   formData.value.adminReply = response.data.adminReply;
@@ -48,11 +60,27 @@ async function getBoardByNo(boardNo) {
   formData.value.imgType = response.data.imgType;
   formData.value.memberId = response.data.memberId;
   formData.value.downloadFileUrl = `http://localhost/Board/download_board_battach_file?boardNo=${response.data.boardNo}`;
-  formData.value.downloadImgUrl =  `http://localhost/Board/download_board_img_file?boardNo=${response.data.boardNo}`;
+  
   formData.value.boardNo = response.data.boardNo;
   boardDto.value.boardNo = formData.value.boardNo;
   boardDto.value.boardCtg = formData.value.boardCtg;
   loadEnd.value = true;
+  userWrite()
+  getSequenceBoard(boardDto.value);
+}
+
+async function getSequenceBoard(formData){
+  const response = await intergratedBoardAPI.getSequenceBoard(formData);
+  boardDto2.value.preTitle = response.data.previous.title;
+  boardDto2.value.preBoardNo = response.data.previous.boardNo;
+  boardDto2.value.nextTitle = response.data.next.title;
+  boardDto2.value.nextBoardNo = response.data.next.boardNo;
+}
+
+function userWrite(){
+  if(memberInfo.value.memberId === formData.value.memberId){
+    writerCheck.value = true;
+  }
 }
 
 function dateFormat(dateStr) {
@@ -64,6 +92,25 @@ function dateFormat(dateStr) {
   day = day >= 10 ? day : '0' + day;
 
   return date.getFullYear() + '-' + month + '-' + day;
+}
+
+function movePrevious(data){
+const newUrl = `/Details/ServiceCenter/Notice/ViewNoticeDetail?boardNo=` + data;
+if (router.currentRoute.value.fullPath === newUrl) {
+    router.push(newUrl).then(() => {
+      key.value++;
+    });
+  } else {
+    router.push(newUrl);
+  }
+}
+function moveNext(data) {
+  const newUrl = `/Details/ServiceCenter/Notice/ViewNoticeDetail?boardNo=` + data;
+  if (router.currentRoute.value.fullPath === newUrl) {
+    router.go(0); // 동일한 라우트로 푸시될 경우 강제로 페이지 리프레시
+  } else {
+    router.push(newUrl);
+  }
 }
 
 </script>

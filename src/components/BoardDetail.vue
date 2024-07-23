@@ -20,7 +20,7 @@
       <tr>
         <td colspan="2" class="post-content">
           <div class="image-container" v-if="boardDetail.imgOname != null">
-            <img :src="`${axios.defaults.baseURL}/Board/download_board_img_file?boardNo=${boardDetail.boardNo}`">
+            <img :src="`${axios.defaults.baseURL}/Board/download_board_img_file?boardNo=${boardNumber}`">
           </div>
           <div style="margin-top: 10px;" class="content-container">
             <p class="content-text">{{ boardDetail.content }}</p>
@@ -49,8 +49,10 @@
 <script setup>
 import { inject } from 'vue';
 import axios from 'axios';
+import { useRoute } from 'vue-router';
+const route = useRoute();
 const boardDetail = inject("boardDetail");
-console.log(boardDetail);
+const boardNumber = route.query.boardNo
 </script>
 
 <style scoped>
@@ -122,8 +124,6 @@ td {
 .content-container {
   margin-top: 10px;
   padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .post-content {
